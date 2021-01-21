@@ -25,13 +25,13 @@ class TransactionsViewModel {
     }
     
     func showAddScreen() {
-        if let addTransactionController = UIStoryboard(name: "Summary", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className()) as? AddTransactionTableViewController {
+        if let addTransactionController = UIStoryboard(name: "Advanced", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className()) as? AddTransactionTableViewController {
             self.navigationController?.pushViewController(addTransactionController, animated: true)
         }
     }
     
     func showEditScreen(_ transaction: Transaction) {
-        if let addTransactionController = UIStoryboard(name: "Summary", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className()) as? AddTransactionTableViewController {
+        if let addTransactionController = UIStoryboard(name: "Advanced", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className()) as? AddTransactionTableViewController {
             addTransactionController.editedTransaction = transaction
             self.navigationController?.pushViewController(addTransactionController, animated: true)
         }

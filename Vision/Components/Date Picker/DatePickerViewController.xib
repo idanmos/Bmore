@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="Vision" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="B_more" customModuleProvider="target">
             <connections>
+                <outlet property="datePicker" destination="kBy-jP-OmF" id="u6m-bK-jXt"/>
+                <outlet property="textLabel" destination="K1q-Qg-u1j" id="Fe7-fJ-qa6"/>
                 <outlet property="view" destination="dMv-E0-dj0" id="otv-mj-pWI"/>
             </connections>
         </placeholder>
@@ -18,41 +21,79 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcm-9T-Pff">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcm-9T-Pff">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
+                    <connections>
+                        <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="TFV-x8-JUd"/>
+                    </connections>
                 </button>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="kBy-jP-OmF">
-                    <rect key="frame" x="0.0" y="680" width="414" height="216"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="216" id="dgV-1b-qip"/>
-                    </constraints>
-                    <locale key="locale" localeIdentifier="he_IL"/>
-                </datePicker>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-Dl-SQ6">
                     <rect key="frame" x="0.0" y="636" width="414" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="tf3-XO-Qc5"/>
                     </constraints>
                     <items>
-                        <barButtonItem systemItem="stop" id="u3G-LT-z9O"/>
+                        <barButtonItem title="שמירה" id="akr-EX-Brb">
+                            <connections>
+                                <action selector="onSave:" destination="-1" id="Qjz-CI-AKq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KeX-ZZ-cLT"/>
-                        <barButtonItem title="שמירה" id="akr-EX-Brb"/>
+                        <barButtonItem systemItem="stop" id="u3G-LT-z9O">
+                            <connections>
+                                <action selector="onCancel:" destination="-1" id="BPJ-LP-qDZ"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2rr-FF-lNn">
+                    <rect key="frame" x="0.0" y="680" width="414" height="216"/>
+                    <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="kBy-jP-OmF">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="216" id="dgV-1b-qip"/>
+                            </constraints>
+                            <locale key="locale" localeIdentifier="he_IL"/>
+                        </datePicker>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="kBy-jP-OmF" secondAttribute="bottom" id="DGl-xR-wCp"/>
+                        <constraint firstItem="kBy-jP-OmF" firstAttribute="leading" secondItem="2rr-FF-lNn" secondAttribute="leading" id="WNX-dS-atX"/>
+                        <constraint firstAttribute="trailing" secondItem="kBy-jP-OmF" secondAttribute="trailing" id="Whs-cR-RHW"/>
+                        <constraint firstItem="kBy-jP-OmF" firstAttribute="top" secondItem="2rr-FF-lNn" secondAttribute="top" id="xFP-rz-bJZ"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1q-Qg-u1j">
+                    <rect key="frame" x="207" y="658" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ka2-kV-VAX"/>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="kBy-jP-OmF" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="3jf-ok-Evv"/>
-                <constraint firstAttribute="bottom" secondItem="kBy-jP-OmF" secondAttribute="bottom" id="Lq7-Dl-IU6"/>
+                <constraint firstItem="2rr-FF-lNn" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="0kH-1h-CrQ"/>
+                <constraint firstItem="ff1-Dl-SQ6" firstAttribute="top" secondItem="rcm-9T-Pff" secondAttribute="bottom" id="CuT-f0-wag"/>
+                <constraint firstItem="K1q-Qg-u1j" firstAttribute="centerX" secondItem="dMv-E0-dj0" secondAttribute="centerX" id="GLd-j4-vTs"/>
+                <constraint firstAttribute="bottom" secondItem="2rr-FF-lNn" secondAttribute="bottom" id="M7W-Nc-GuM"/>
+                <constraint firstItem="rcm-9T-Pff" firstAttribute="top" secondItem="dMv-E0-dj0" secondAttribute="top" id="QQR-r4-2rW"/>
+                <constraint firstItem="2rr-FF-lNn" firstAttribute="top" secondItem="ff1-Dl-SQ6" secondAttribute="bottom" id="RY1-aY-hB4"/>
                 <constraint firstItem="ff1-Dl-SQ6" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="TrW-rg-VKf"/>
-                <constraint firstItem="kBy-jP-OmF" firstAttribute="top" secondItem="ff1-Dl-SQ6" secondAttribute="bottom" id="ssJ-yl-78G"/>
+                <constraint firstItem="rcm-9T-Pff" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="cBL-L8-mvO"/>
+                <constraint firstItem="2rr-FF-lNn" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="rsy-Xy-xcE"/>
+                <constraint firstItem="rcm-9T-Pff" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="tpv-UY-w3Z"/>
                 <constraint firstItem="ff1-Dl-SQ6" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="umJ-72-WX2"/>
-                <constraint firstItem="kBy-jP-OmF" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="wKu-fe-NY2"/>
+                <constraint firstItem="K1q-Qg-u1j" firstAttribute="centerY" secondItem="ff1-Dl-SQ6" secondAttribute="centerY" id="zBF-8m-u1U"/>
             </constraints>
-            <point key="canvasLocation" x="-351" y="24"/>
+            <point key="canvasLocation" x="-352.17391304347831" y="23.4375"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

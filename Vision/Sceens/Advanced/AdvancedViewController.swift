@@ -36,9 +36,10 @@ class AdvancedViewController: UIViewController {
         
         self.showDisplay(fo: .balance)
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            HelpGestureViewController.show(presenter: self)
-        }
+        // TODO: Fix save to defaults
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+//            HelpGestureViewController.show(presenter: self)
+//        }
     }
 
 }
@@ -57,15 +58,13 @@ extension AdvancedViewController {
         // get appropriate view controller
         var viewController: UIViewController
         if category == .balance {
-            viewController = BalancePageViewController.build()
+            viewController = FactoryController.Screen.AdvancedScreen.balance.viewController
         } else if category == .meetings {
-            viewController = MeetingsTableViewController(nibName: MeetingsTableViewController.className(), bundle: nil)
+            viewController = FactoryController.Screen.AdvancedScreen.meetings.viewController
         } else if category == .transactions {
-            viewController = TransactionsTableViewController(nibName: TransactionsTableViewController.className(), bundle: nil)
-        } else if category == .leads {
-            viewController = UIStoryboard(name: "Advanced", bundle: nil).instantiateInitialViewController()!
+            viewController = FactoryController.Screen.AdvancedScreen.transactions.viewController
         } else {
-            viewController = UIStoryboard(name: "Tasks", bundle: nil).instantiateInitialViewController()!
+            viewController = FactoryController.Screen.AdvancedScreen.tasks.viewController
         }
         
         // set correct frame

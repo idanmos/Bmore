@@ -8,15 +8,14 @@
 import UIKit
 
 enum AdvancedCategory: Int, CaseIterable {
-    case balance, meetings, transactions, leads, tasks
+    case balance, meetings, transactions, tasks
     
     func image() -> UIImage? {
         switch self {
         case .balance: return UIImage(named: "goal_financial")
         case .meetings: return UIImage(named: "goal_meetings")
         case .transactions: return UIImage(named: "goal_transactions")
-        case .leads: return UIImage(named: "goal_leads")
-        case .tasks: return UIImage(named: "goal_tasks")
+        case .tasks: return UIImage(named: "goal_score")
         }
     }
     
@@ -25,7 +24,6 @@ enum AdvancedCategory: Int, CaseIterable {
         case .balance: return NSLocalizedString("financial_balance", comment: "")
         case .meetings: return NSLocalizedString("meetings", comment: "")
         case .transactions: return NSLocalizedString("transactions", comment: "")
-        case .leads: return NSLocalizedString("leads", comment: "")
         case .tasks: return NSLocalizedString("tasks", comment: "")
         }
     }

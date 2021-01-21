@@ -25,10 +25,15 @@ class LeadsTableViewController: UITableViewController {
 //        self.navigationItem.hidesSearchBarWhenScrolling = false
         
         self.tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.viewModel.fetchData()
         self.tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

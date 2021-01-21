@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ContactsUI
 
 class NewTaskTableViewController: UITableViewController {
     
@@ -17,7 +18,18 @@ class NewTaskTableViewController: UITableViewController {
         case contact = 4
         case comments = 5
         case alerts = 6
-        case reminders = 7
+        
+        func title() -> String {
+            switch self {
+            case .title: return NSLocalizedString("title", comment: "")
+            case .status: return NSLocalizedString("status", comment: "")
+            case .type: return NSLocalizedString("type", comment: "")
+            case .date: return NSLocalizedString("due_date", comment: "")
+            case .contact: return NSLocalizedString("contact", comment: "")
+            case .comments: return NSLocalizedString("comments", comment: "")
+            case .alerts: return NSLocalizedString("alerts", comment: "")
+            }
+        }
         
         static func sections() -> Int {
             return SectionType.allCases.count
@@ -31,17 +43,14 @@ class NewTaskTableViewController: UITableViewController {
             case .date: return 2
             case .contact: return 1
             case .comments: return 1
-            case .alerts: return 2
-            case .reminders: return 1
+            case .alerts: return 1
             }
         }
         
         func height(indexPath: IndexPath, isExpanded: Bool? = nil) -> CGFloat {
             switch self {
-            case .title: return 44.0
-            case .status: return 44.0
-            case .type: return 44.0
-            case .date, .alerts:
+            case .title, .contact, .alerts, .type, .status: return 44.0
+            case .date:
                 if indexPath.row == 0 {
                     return 55.0
                 } else {
@@ -54,20 +63,51 @@ class NewTaskTableViewController: UITableViewController {
                     }
                 }
                 return UITableView.automaticDimension
-            case .contact: return 44.0
             case .comments: return 120.0
-            case .reminders: return 44.0
             }
         }
     }
     
+    // MARK: - Outlets
+    
+    /// - Tag: Title
+    @IBOutlet private weak var titleTextField: UITextField!
+    
+    /// - Tag: Status
+    @IBOutlet private weak var statusSegmentControl: UISegmentedControl!
+    
+    /// - Tag: Type
+    @IBOutlet private weak var typeSegmentControl: UISegmentedControl!
+    
+    /// - Tag: Date
+    @IBOutlet private weak var dateTitleLabel: UILabel!
     @IBOutlet private weak var dateValueLabel: UILabel!
     @IBOutlet private weak var dateSwitch: UISwitch!
     @IBOutlet private weak var datePicker: UIDatePicker!
     
-    @IBOutlet private weak var alertValueLabel: UILabel!
-    @IBOutlet private weak var alertsSwitch: UISwitch!
-    @IBOutlet private weak var alertDatePicker: UIDatePicker!
+    /// - Tag: Contact
+    @IBOutlet private weak var contactTextField: UITextField!
+    @IBOutlet private weak var contactAddButton: UIButton!
+    @IBOutlet private weak var contactDeleteButton: UIButton!
+    
+    /// - Tag: Comments
+    @IBOutlet weak var commentsTextView: UITextView!
+    
+    /// - Tag: Alerts
+    @IBOutlet private weak var alertTitleLabel: UILabel!
+    @IBOutlet private weak var alertSwitch: UISwitch!
+    
+    // MARK: - Variables
+    
+    var editedTask: Task?
+    private var contactId: String?
+    
+    private lazy var saveBarButtonItem: UIBarButtonItem = {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveAndClose))
+        return saveButton
+    }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +117,54 @@ class NewTaskTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.setupUI()
     }
-
+    
+    private func setupUI() {
+        self.title = "new_task".localized
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveAndClose))
+        
+        /// - Tag: Title
+        self.titleTextField.placeholder = "title".localized
+        self.titleTextField.addTollbar(target: self.titleTextField, action: #selector(self.titleTextField.resignFirstResponder))
+        
+        /// - Tag: Status
+        self.statusSegmentControl.setTitle("pending".localized, forSegmentAt: 0)
+        self.statusSegmentControl.setTitle("in_progress".localized, forSegmentAt: 1)
+        self.statusSegmentControl.setTitle("closed".localized, forSegmentAt: 2)
+        self.statusSegmentControl.setTitle("canceled".localized, forSegmentAt: 3)
+        
+        /// - Tag: Type
+        self.typeSegmentControl.setTitle("call".localized, forSegmentAt: 0)
+        self.typeSegmentControl.setTitle("email".localized, forSegmentAt: 1)
+        self.typeSegmentControl.setTitle("meeting".localized, forSegmentAt: 2)
+        self.typeSegmentControl.setTitle("other".localized, forSegmentAt: 3)
+        
+        /// - Tag: Date
+        self.dateTitleLabel.text = "date".localized
+        self.dateValueLabel.text = nil
+        self.datePicker.isHidden = true
+        self.datePicker.translatesAutoresizingMaskIntoConstraints = false
+        self.dateValueLabel.isHidden = true
+        
+        /// - Tag: Contact
+        self.contactTextField.placeholder = "contact_details".localized
+        
+        /// - Tag: Comments
+        self.commentsTextView.text = nil
+        self.commentsTextView.addTollbar(target: self.commentsTextView, action: #selector(self.commentsTextView.resignFirstResponder))
+        
+        /// - Tag: Alerts
+        self.alertTitleLabel.text = "push_notification".localized
+        
+        /// - Tag: Edit Mode
+        if let _ = self.editedTask {
+            self.restore(self.editedTask!)
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,16 +174,6 @@ class NewTaskTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SectionType(rawValue: section)?.rows() ?? 0
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let type = SectionType(rawValue: indexPath.section) else { return UITableView.automaticDimension }
@@ -107,7 +183,7 @@ class NewTaskTableViewController: UITableViewController {
         if type == .date {
             height = type.height(indexPath: indexPath, isExpanded: self.dateSwitch.isOn)
         } else if type == .alerts {
-            height = type.height(indexPath: indexPath, isExpanded: self.alertsSwitch.isOn)
+            height = type.height(indexPath: indexPath, isExpanded: self.alertSwitch.isOn)
         } else {
             height = type.height(indexPath: indexPath)
         }
@@ -115,54 +191,15 @@ class NewTaskTableViewController: UITableViewController {
         return height
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let type = SectionType(rawValue: section) else { return nil }
+        return type.title()
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // guard let type = SectionType(rawValue: indexPath.section) else { return }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -170,6 +207,72 @@ class NewTaskTableViewController: UITableViewController {
 
 extension NewTaskTableViewController {
     
+    private func restore(_ editedTask: Task) {
+        self.titleTextField.text = editedTask.title
+        self.statusSegmentControl.selectedSegmentIndex = Int(editedTask.status)
+        self.typeSegmentControl.selectedSegmentIndex = Int(editedTask.type)
+        
+        if let date: Date = editedTask.date {
+            self.datePicker.date = date
+            self.dateSwitch.isOn = true
+            self.showDatePicker()
+        }
+        
+        self.contactId = editedTask.contactId
+        if let _ = self.contactId {
+            let contacts: [CNContact] = ContactsService.shared.findContacts([self.contactId!])
+            if let contact: CNContact = contacts.first {
+                self.saveAndShow(contact)
+            }
+        }
+        
+        self.commentsTextView.text = editedTask.comments
+        self.alertSwitch.isOn = editedTask.isPushEnabled
+    }
+    
+    @objc private func saveAndClose() {
+        guard let title: String = self.titleTextField.text, !title.isEmpty else {
+            self.showAlert(title: "error".localized, message: "title_cannot_be_empty".localized) { (alertAction: UIAlertAction) in
+                self.titleTextField.becomeFirstResponder()
+            }
+            return
+        }
+        
+        if self.alertSwitch.isOn && !self.dateSwitch.isOn {
+            AlertViewModel.showAlert(.needPushAndDate)
+            return
+        }
+        
+        var configuration: TaskConfiguration
+        if let _ = self.editedTask {
+            configuration = TaskConfiguration(taskId: self.editedTask!.taskId!)
+        } else {
+            configuration = TaskConfiguration(taskId: UUID().uuidString)
+        }
+        
+        configuration.title = title
+        configuration.status = Application.TaskStatus(rawValue: Int16(self.statusSegmentControl.selectedSegmentIndex))!
+        configuration.type = Application.TaskType(rawValue: Int16(self.typeSegmentControl.selectedSegmentIndex))!
+        configuration.date = self.dateSwitch.isOn ? self.datePicker.date : nil
+        configuration.contactId = self.contactId
+        configuration.comments = self.commentsTextView.text
+        configuration.isPushEnabled = self.alertSwitch.isOn
+        
+        if let _ = self.editedTask {
+            PersistentStorage.shared.edit(self.editedTask!, configuration: configuration)
+        } else {
+            PersistentStorage.shared.save(configuration)
+        }
+        
+        if configuration.isPushEnabled {
+            if let _ = configuration.date {
+                TaskEvent.perform(.schedule(taskConfiguration: configuration))
+            }
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+        
     private func showPickerView(pickerView: UIDatePicker, valueLabel: UILabel) {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
@@ -207,16 +310,6 @@ extension NewTaskTableViewController {
         self.hidePickerView(pickerView: self.datePicker,
                             valueLabel: self.dateValueLabel)
     }
-    
-    private func showAlertDatePicker() {
-        self.showPickerView(pickerView: self.alertDatePicker,
-                            valueLabel: self.alertValueLabel)
-    }
-    
-    private func hideAlertDatePicker() {
-        self.hidePickerView(pickerView: self.alertDatePicker,
-                            valueLabel: self.alertValueLabel)
-    }
         
 }
 
@@ -224,6 +317,7 @@ extension NewTaskTableViewController {
 
 extension NewTaskTableViewController {
     
+    /// - Tag: Date
     @IBAction func OnPressDatePickerSwitch(_ sender: UISwitch) {
         self.dateValueLabel.text = NSLocalizedString("today", comment: "")
         
@@ -233,23 +327,51 @@ extension NewTaskTableViewController {
             self.hideDatePicker()
         }
     }
-    
-    @IBAction func OnPressAlertsDatePickerSwitch(_ sender: UISwitch) {
-        self.dateValueLabel.text = NSLocalizedString("today", comment: "")
         
-        if sender.isOn {
-            self.showDatePicker()
-        } else {
-            self.hideDatePicker()
-        }
-    }
-    
     @IBAction func onDatePickerValueChange(_ sender: UIDatePicker) {
         self.dateValueLabel.text = DateFormatter.dayFormatter.string(from: sender.date)
     }
+        
+    /// - Tag: Contacts
+    @IBAction private func onAddContact(_ sender: Any) {
+        ContactsService.shared.showContactsPicker(delegate: self, presenter: self)
+    }
     
-    @IBAction func onAlertsDatePickerValueChange(_ sender: UIDatePicker) {
-        self.alertValueLabel.text = DateFormatter.dayFormatter.string(from: sender.date)
+    @IBAction private func onDeleteContact(_ sender: Any) {
+        self.contactTextField.text = nil
+    }
+    
+    /// - Tag: Alerts
+    @IBAction func OnPressAlertsDatePickerSwitch(_ sender: UISwitch) {
+        //
+    }
+    
+    /// - Tag: Reminders
+    
+}
+
+// MARK: - CNContactPickerDelegate
+
+extension NewTaskTableViewController: CNContactPickerDelegate {
+    
+    private func saveAndShow(_ contact: CNContact) {
+        self.contactId = contact.identifier
+        
+        var text: String = "\(contact.givenName) \(contact.familyName)"
+        if let phoneNumber: String = contact.phoneNumbers.first?.value.stringValue {
+            text += ", "
+            text += phoneNumber
+        }
+        self.contactTextField.text = text
+    }
+    
+    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        debugPrint(#function)
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        debugPrint(#function, contact)
+        self.saveAndShow(contact)
     }
     
 }

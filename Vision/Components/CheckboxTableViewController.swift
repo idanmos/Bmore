@@ -13,12 +13,16 @@ protocol CheckboxTableViewControllerDelegate: class {
 
 class CheckboxTableViewController: UITableViewController {
     
-    private var values: [String]
-    private var defaultSelectedIndex: Int?
-    init(values: [String], defaultSelectedIndex: Int? = nil) {
-        self.values = values
-        self.defaultSelectedIndex = defaultSelectedIndex
-        super.init(nibName: CheckboxTableViewController.className(), bundle: nil)
+    var values: [String] = []
+    var defaultSelectedIndex: Int?
+    
+    private lazy var saveBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveAndClose))
+        return button
+    }()
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
         self.view.frame = UIScreen.main.bounds
     }
     
@@ -30,11 +34,26 @@ class CheckboxTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if self.navigationItem.leftBarButtonItem == self.navigationItem.backBarButtonItem {
+            self.navigationItem.rightBarButtonItem = self.saveBarButtonItem
+        } else {
+            self.navigationItem.leftBarButtonItem = self.saveBarButtonItem
+        }
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className())
         self.tableView.tableFooterView = UIView(frame: .zero)
     }
-
+    
+    // MARK: General Methods
+    
+    @objc private func saveAndClose() {
+        if let index: Int = self.defaultSelectedIndex {
+            self.delegate?.checkboxTableView(self, didSelectRowAt: index)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,7 +67,6 @@ class CheckboxTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className(), for: indexPath)
         cell.textLabel?.text = self.values[indexPath.row]
-        cell.textLabel?.textAlignment = .center
         
         if let defaultSelectedIndex: Int = self.defaultSelectedIndex {
             cell.accessoryType = (defaultSelectedIndex == indexPath.row) ? .checkmark : .none
@@ -58,7 +76,9 @@ class CheckboxTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.delegate?.checkboxTableView(self, didSelectRowAt: indexPath.row)
+        
+        self.defaultSelectedIndex = indexPath.row
+        tableView.reloadData()
     }
     
     /*

@@ -9,6 +9,8 @@ import UIKit
 
 class MultipleSelectionTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var topLabel: UILabel!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none

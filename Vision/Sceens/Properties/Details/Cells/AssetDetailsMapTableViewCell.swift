@@ -10,6 +10,7 @@ import MapKit
 
 class AssetDetailsMapTableViewCell: UITableViewCell {
     
+    @IBOutlet private weak var topTitleLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     deinit {
@@ -19,6 +20,7 @@ class AssetDetailsMapTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.topTitleLabel.text = "location".localized
         self.mapView.delegate = self
     }
 
@@ -31,7 +33,7 @@ class AssetDetailsMapTableViewCell: UITableViewCell {
     func configure(property: Property) {
         if property.latitude != 0.0 && property.longitude != 0.0 {
             self.addAnnotation(title: property.address ?? "",
-                               subtitle: "₪ \(property.price ?? "")",
+                               subtitle: "\(Application.SpecialCharacters.localizedCurrencySign) \(property.price ?? "")",
                                coordinate: CLLocationCoordinate2DMake(property.latitude, property.longitude))
             
             self.showDirections(source: self.mapView.userLocation.coordinate,

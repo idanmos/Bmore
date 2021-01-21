@@ -36,13 +36,16 @@ class GraphViewController: UIViewController {
             .dataLabelsEnabled(true) //Enable or disable the data labels. Defaults to false
             .tooltipValueSuffix(configuration.tooltip)//the value suffix of the chart tooltip
             .categories(configuration.categories)
-            .colorsTheme([UIColor.systemGreen.hexString!, UIColor.systemRed.hexString!])
+            .colorsTheme([UIColor.systemBlue.hexString!, UIColor.systemGreen.hexString!, UIColor.systemRed.hexString!])
             .series([AASeriesElement()
-                        .name(NSLocalizedString("revenue", comment: ""))
-                        .data(configuration.revenue),
+                        .name(NSLocalizedString("none", comment: ""))
+                        .data([configuration.balance.none]),
                     AASeriesElement()
-                        .name(NSLocalizedString("expenses", comment: ""))
-                        .data(configuration.expenses)])
+                        .name(NSLocalizedString("revenue", comment: ""))
+                        .data([configuration.balance.revenue]),
+                    AASeriesElement()
+                            .name(NSLocalizedString("expenses", comment: ""))
+                            .data([configuration.balance.expenses])])
         
         if configuration.isRefresh {
             self.graphView.chartView.aa_refreshChartWholeContentWithChartModel(chartModel)

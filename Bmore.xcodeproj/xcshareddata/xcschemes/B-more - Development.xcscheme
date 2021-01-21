@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A973D5D257C12AD002422B8"
-               BuildableName = "B-more.app"
-               BlueprintName = "B-more"
-               ReferencedContainer = "container:B-more.xcodeproj">
+               BuildableName = "Bmore.app"
+               BlueprintName = "Bmore"
+               ReferencedContainer = "container:Bmore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A973D5D257C12AD002422B8"
-            BuildableName = "B-more.app"
-            BlueprintName = "B-more"
-            ReferencedContainer = "container:B-more.xcodeproj">
+            BuildableName = "Bmore.app"
+            BlueprintName = "Bmore"
+            ReferencedContainer = "container:Bmore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A973D5D257C12AD002422B8"
-            BuildableName = "B-more.app"
-            BlueprintName = "B-more"
-            ReferencedContainer = "container:B-more.xcodeproj">
+            BuildableName = "Bmore.app"
+            BlueprintName = "Bmore"
+            ReferencedContainer = "container:Bmore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

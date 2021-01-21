@@ -19,7 +19,9 @@ class AssetsMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
+        self.title = "map".localized
+        
         self.setupCompassButton()
         self.setupUserTrackingButtonAndScaleView()
                 

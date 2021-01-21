@@ -11,6 +11,25 @@ class TransactionsTableViewController: UITableViewController {
     
     private var viewModel: TransactionsViewModel!
     
+    private lazy var addBarButton: UIBarButtonItem = {
+        let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))
+        return control
+    }()
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        
+        if let advancedController = parent as? AdvancedViewController {
+            if Application.isHebrew() {
+                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
+                advancedController.navigationItem.rightBarButtonItem = self.editButtonItem
+            } else {
+                advancedController.navigationItem.leftBarButtonItem = self.editButtonItem
+                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                         
@@ -22,21 +41,6 @@ class TransactionsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let navController: UINavigationController = self.navigationController {
-            for viewController in navController.viewControllers {
-                if let insightsController = viewController as? InsightsViewController {
-                    insightsController.addBarButton.replace(target: self, action: #selector(self.onPressAddTransaction(_:)))
-                    
-                    if insightsController.navigationItem.leftBarButtonItem == insightsController.addBarButton {
-                        insightsController.navigationItem.rightBarButtonItem = self.editButtonItem
-                    } else {
-                        insightsController.navigationItem.leftBarButtonItem = self.editButtonItem
-                    }
-                    break
-                }
-            }
-        }
         
         self.viewModel.fetchTransactions()
         self.tableView.reloadData()
@@ -103,7 +107,7 @@ extension TransactionsTableViewController {}
 
 extension TransactionsTableViewController {
     
-    @objc private func onPressAddTransaction(_ sender: Any) {
+    @objc private func onPressAddButton(_ sender: Any) {
         self.viewModel.showAddScreen()
     }
     

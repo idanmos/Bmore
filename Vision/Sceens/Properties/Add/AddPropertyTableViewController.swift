@@ -1,5 +1,5 @@
 //
-//  AddPropertyViewController.swift
+//  AddPropertyTableViewController.swift
 //  Vision
 //
 //  Created by Idan Moshe on 10/12/2020.
@@ -14,24 +14,79 @@ fileprivate enum DatePickerType: Int {
     case exclusivity, enterDate
 }
 
-class AddPropertyViewController: UITableViewController {
+class AddPropertyTableViewController: BaseTableViewController {
+    
+    private enum Constants {
+        static let defaultCellHeight: CGFloat = 43.5
+        static let pickerCellExpandedHeight: CGFloat = 216.0
+        static let pickerCellCollapsedHeight: CGFloat = 0.0
+        static let moreInfoCellHeight: CGFloat = 155.0
+        static let photosCellHeight: CGFloat = 70.0
+    }
+    
+    private enum SectionType: Int, CaseIterable {
+        case types = 0
+        case entryImmediatly = 1
+        case entryDate = 2
+        case exclusivityDate = 3
+        case address = 4
+        case sizeAndFloor = 5
+        case roomsBalconyParking = 6
+        case extraInfo = 7
+        case price = 8
+        case contact = 9
+        case photos = 10
+        
+        func numberOfRows() -> Int {
+            switch self {
+            case .types: return 2
+            case .entryImmediatly: return 1
+            case .entryDate: return 2
+            case .exclusivityDate: return 2
+            case .address: return 1
+            case .sizeAndFloor: return 2
+            case .roomsBalconyParking: return 3
+            case .extraInfo: return 1
+            case .price: return 1
+            case .contact: return 1
+            case .photos: return 2
+            }
+        }
+        
+        func height(isExpanded: Bool, indexPath: IndexPath) -> CGFloat {
+            switch self {
+            case .types: return Constants.defaultCellHeight
+            case .entryImmediatly: return Constants.defaultCellHeight
+            case .entryDate: return isExpanded ? Constants.pickerCellExpandedHeight : Constants.pickerCellCollapsedHeight
+            case .exclusivityDate: return isExpanded ? Constants.pickerCellExpandedHeight : Constants.pickerCellCollapsedHeight
+            case .address: return Constants.defaultCellHeight
+            case .sizeAndFloor: return Constants.defaultCellHeight
+            case .roomsBalconyParking: return Constants.defaultCellHeight
+            case .extraInfo: return Constants.moreInfoCellHeight
+            case .price: return Constants.defaultCellHeight
+            case .contact: return Constants.defaultCellHeight
+            case .photos: return indexPath.item == 0 ? Constants.defaultCellHeight : Constants.photosCellHeight
+            }
+        }
+    }
     
     // MARK: - Outlets
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    /// - Tag: Transaction Type
+    @IBOutlet weak var transactionTypeLabel: UILabel!
     
     /// - Tag: Exclusivity
-    @IBOutlet weak var exclusivityLabel: UILabel!
-    @IBOutlet weak var exclusivityTextField: UITextField!
+    @IBOutlet weak var exclusivityTitleLabel: UILabel!
+    @IBOutlet weak var exclusivityValueLabel: UILabel!
     @IBOutlet weak var exclusivitySwitch: UISwitch!
-    @IBOutlet weak var exclusivityDateButton: UIButton!
+    @IBOutlet weak var exclusivityDatePicker: UIDatePicker!
     
-    /// - Tag: Sale/Rent
-    @IBOutlet weak var saleOrRentSegmentedControl: UISegmentedControl!
+    /// - Tag: Sell/Rent
+    @IBOutlet weak var sellOrRentSegmentedControl: UISegmentedControl!
     
     /// - Tag: Type
-    @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var typeButton: UIButton!
+    @IBOutlet weak var typeTitleLabel: UILabel!
+    @IBOutlet weak var typeSubtitleLabel: UILabel!
     
     /// - Tag: Address
     @IBOutlet weak var addressTextField: UITextField!
@@ -40,59 +95,57 @@ class AddPropertyViewController: UITableViewController {
     @IBOutlet weak var sizeTextField: UITextField!
     
     /// - Tag: Enter Date
-    @IBOutlet weak var enterDateTextField: UITextField!
+    @IBOutlet weak var enterDateTitleLabel: UILabel!
+    @IBOutlet weak var enterDateValueLabel: UILabel!
+    @IBOutlet weak var enterDateSwitch: UISwitch!
+    @IBOutlet weak var enterDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var enterDateImmediateTitleLabel: UILabel!
     @IBOutlet weak var enterNowSwitch: UISwitch!
     
     /// - Tag: Rooms
+    @IBOutlet weak var roomsTitleLabel: UILabel!
     @IBOutlet weak var roomsTextField: UITextField!
     
     /// - Tag: Balcony
+    @IBOutlet weak var balconyTitleLabel: UILabel!
     @IBOutlet weak var balconyTextField: UITextField!
     
     /// - Tag: Parking
+    @IBOutlet weak var parkingTitleLabel: UILabel!
     @IBOutlet weak var parkingTextField: UITextField!
     
     /// - Tag: Floor
+    @IBOutlet weak var floorNumberTitleLabel: UILabel!
+    @IBOutlet weak var totalFloorNumberTitleLabel: UILabel!
     @IBOutlet weak var floorNumberTextField: UITextField!
     @IBOutlet weak var totalFloorNumberTextField: UITextField!
     
     /// - Tag: Extra Info
+    @IBOutlet weak var extraInfoTitleLabel: UILabel!
     @IBOutlet weak var extraInfoTextView: UITextView!
     
     /// - Tag: Price
+    @IBOutlet weak var priceTitleLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var currencySignLabel: UILabel!
     
     /// - Tag: Contact
+    @IBOutlet weak var contactTitleLabel: UILabel!
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var contactButton: UIButton!
     
     /// - Tag: Images
+    @IBOutlet weak var deletePhotosButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
-    @IBOutlet weak var firstImageButton: UIButton!
-    @IBOutlet weak var secondImageButton: UIButton!
-    @IBOutlet weak var thirdImageButton: UIButton!
-    @IBOutlet weak var forthImageButton: UIButton!
-    @IBOutlet weak var fifthImageButton: UIButton!
+    @IBOutlet weak var galleryCollectionView: UICollectionView!
     
     // MARK: - Variables
-    
-//    private lazy var datePicker: UIDatePicker = {
-//        let picker = UIDatePicker()
-//        picker.date = Date()
-//        picker.datePickerMode = .date
-//        picker.addTarget(self, action: #selector(self.OnPressDatePicker(_:)), for: .valueChanged)
-//
-//        if #available(iOS 13.4, *) {
-//            picker.preferredDatePickerStyle = .wheels
-//        }
-//
-//        return picker
-//    }()
-    
+        
     private lazy var locationPicker: LocationPickerViewController = {
         let locationPicker = LocationPickerViewController()
         locationPicker.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeLocationController))
-        locationPicker.title = "מיקום"
+        locationPicker.title = NSLocalizedString("place", comment: "")
         locationPicker.modalPresentationStyle = .fullScreen
         locationPicker.showCurrentLocationButton = true
         locationPicker.useCurrentLocationAsHint = true
@@ -100,15 +153,17 @@ class AddPropertyViewController: UITableViewController {
         return locationPicker
     }()
     
-    private lazy var cameraImage: UIImage? = {
-        return UIImage(systemName: "camera", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
+    private lazy var imagePicker: ImagePickerController = {
+        let imagePickerController = ImagePickerController()
+        imagePickerController.delegate = self
+        // imagePickerController.imageLimit = 5
+        imagePickerController.modalPresentationStyle = .fullScreen
+        return imagePickerController
     }()
     
-    private lazy var datePickerController: DatePickerViewController = {
-        let pickerController = DatePickerViewController(nibName: DatePickerViewController.className(), bundle: nil)
-        pickerController.modalPresentationStyle = .overFullScreen
-        pickerController.delegate = self
-        return pickerController
+        
+    private lazy var cameraImage: UIImage? = {
+        return UIImage(systemName: "camera", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
     }()
     
     /// - Tag: User Settings
@@ -135,30 +190,58 @@ class AddPropertyViewController: UITableViewController {
     
     private func setupUI() {
         self.title = NSLocalizedString("new", comment: "")
+                
+        self.transactionTypeLabel.text = NSLocalizedString("transaction_type", comment: "")
+        self.exclusivityTitleLabel.text = NSLocalizedString("exclusivity", comment: "") + " (" + NSLocalizedString("due_date", comment: "") + ")"
+        self.sellOrRentSegmentedControl.setTitle(NSLocalizedString("sell", comment: ""), forSegmentAt: 0)
+        self.sellOrRentSegmentedControl.setTitle(NSLocalizedString("rent", comment: ""), forSegmentAt: 1)
+        self.typeTitleLabel.text = NSLocalizedString("property_type", comment: "")
+        self.enterDateTitleLabel.text = NSLocalizedString("entry_date", comment: "")
+        self.enterDateImmediateTitleLabel.text = NSLocalizedString("entry_available_immediately", comment: "")
+        self.addressTextField.placeholder = NSLocalizedString("address", comment: "")
+        self.sizeTextField.placeholder = NSLocalizedString("size_in_meters", comment: "")
+        self.floorNumberTitleLabel.text = NSLocalizedString("floor_number", comment: "")
+        self.totalFloorNumberTitleLabel.text = NSLocalizedString("out_of", comment: "")
+        self.roomsTitleLabel.text = NSLocalizedString("number_of_rooms", comment: "")
+        self.balconyTitleLabel.text = NSLocalizedString("balcony", comment: "")
+        self.parkingTitleLabel.text = NSLocalizedString("parking", comment: "")
+        self.extraInfoTitleLabel.text = NSLocalizedString("more_info", comment: "")
+        self.priceTitleLabel.text = NSLocalizedString("price", comment: "")
+        self.contactTitleLabel.text = NSLocalizedString("contact", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("save", comment: ""),
                                                                  style: .done,
                                                                  target: self,
                                                                  action: #selector(self.saveAndClose))
-        
-        self.priceTextField.delegate = self
-        
+                
         self.sizeTextField.addTollbar(target: self, action: #selector(self.closeKeyboard))
         self.floorNumberTextField.addTollbar(target: self, action: #selector(self.closeKeyboard))
         self.totalFloorNumberTextField.addTollbar(target: self, action: #selector(self.closeKeyboard))
         self.priceTextField.addTollbar(target: self, action: #selector(self.closeKeyboard))
-        
-        self.typeButton.layer.cornerRadius = 3
-        self.typeButton.layer.borderWidth = 2
-        self.typeButton.layer.borderColor = UIColor.lightGray.cgColor
+        self.extraInfoTextView.addTollbar(target: self, action: #selector(self.closeKeyboard))
+        self.addressTextField.addMapTollbar(target: self, action: #selector(self.showLocationPicker))
         
         self.extraInfoTextView.layer.cornerRadius = 3
         self.extraInfoTextView.layer.borderWidth = 2
         self.extraInfoTextView.layer.borderColor = UIColor.systemGroupedBackground.cgColor
+                        
+        self.typeSubtitleLabel.text = Application.AssetType.allCases[0].localized()
         
-        self.addressTextField.addMapTollbar(target: self, action: #selector(self.showLocationPicker))
+        self.enterDateValueLabel.text = ""
+        self.enterDateValueLabel.isHidden = true
+        self.enterDatePicker.isHidden = true
+        self.enterDatePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        self.exclusivityDateButton.isEnabled = false
+        self.exclusivityValueLabel.text = ""
+        self.exclusivityValueLabel.isHidden = true
+        self.exclusivityDatePicker.isHidden = true
+        self.exclusivityDatePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.currencySignLabel.text = Application.SpecialCharacters.localizedCurrencySign
+        
+        self.tableView.estimatedRowHeight = Constants.defaultCellHeight
+        
+        self.galleryCollectionView.register(className: MiniGalleryCollectionViewCell.self)
     }
     
     // MARK: - Navigation
@@ -180,26 +263,64 @@ class AddPropertyViewController: UITableViewController {
         self.present(navController, animated: true, completion: nil)
     }
     
-    private func showImagePicker() {
-        let imagePickerController = ImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.imageLimit = 5
-        imagePickerController.modalPresentationStyle = .fullScreen
-        self.present(imagePickerController, animated: true, completion: nil)
+    private func showSelectCategory() {
+        let checkboxController = CheckboxTableViewController(style: .insetGrouped)
+        checkboxController.delegate = self
+        checkboxController.values = Application.AssetType.valuesLocalized()
+        checkboxController.defaultSelectedIndex = self.selectedAssetType
+        checkboxController.view.bounds = self.view.bounds
+        checkboxController.view.frame = self.view.frame
+        self.navigationController?.pushViewController(checkboxController, animated: true)
     }
     
-    private func showSelectCategory() {
-        let miniTableView = MiniTableViewController(values: Application.AssetType.valuesLocalized(), defaultSelectedIndex: self.selectedAssetType)
-        miniTableView.delegate = self
-        miniTableView.modalPresentationStyle = .overFullScreen
-        self.present(miniTableView, animated: true, completion: nil)
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension AddPropertyTableViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return SectionType.allCases.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let type = SectionType(rawValue: section) else { return 0 }
+        return type.numberOfRows()
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let type = SectionType(rawValue: indexPath.section) else { return UITableView.automaticDimension }
+        
+        if type == .entryDate {
+            if indexPath.row == 0 {
+                return Constants.defaultCellHeight
+            } else {
+                return type.height(isExpanded: self.enterDateSwitch.isOn, indexPath: indexPath)
+            }
+        } else if type == .exclusivityDate {
+            if indexPath.row == 0 {
+                return Constants.defaultCellHeight
+            } else {
+                return type.height(isExpanded: self.exclusivitySwitch.isOn, indexPath: indexPath)
+            }
+        }
+        
+        return type.height(isExpanded: false, indexPath: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let type = SectionType(rawValue: indexPath.section) else { return }
+        if type == .types && indexPath.row == 1 {
+            self.showSelectCategory()
+        }
     }
     
 }
 
 // MARK: - General Methods
 
-extension AddPropertyViewController {
+extension AddPropertyTableViewController {
     
     @objc func saveAndClose() {
         // save to core data
@@ -229,11 +350,14 @@ extension AddPropertyViewController {
         
         info[.dateIsNow] = self.enterNowSwitch.isOn
         
-        if let saleOrRent: String = self.saleOrRentSegmentedControl.titleForSegment(at: self.saleOrRentSegmentedControl.selectedSegmentIndex) {
+        if let saleOrRent: String = self.sellOrRentSegmentedControl.titleForSegment(at: self.sellOrRentSegmentedControl.selectedSegmentIndex) {
             info[.sellOrRent] = saleOrRent
         }
         if let size: String = self.sizeTextField.text {
             info[.size] = size
+        }
+        if let rooms: String = self.roomsTextField.text, rooms != "0", rooms != "0.0" {
+            info[.rooms] = rooms
         }
         if let balcony: String = self.balconyTextField.text, balcony != "0", balcony != "0.0" {
             info[.balcony] = balcony
@@ -260,8 +384,13 @@ extension AddPropertyViewController {
             info[.exclusivityEndDate] = exclusiveEndDate
         }
         
+        self.showSpinner()
+        
         PersistentStorage.shared.save(info)
         ImageStorage.shared.save(images: self.images, propertyId: self.propertyUUID)
+        
+        self.hideSpinner()
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -269,42 +398,70 @@ extension AddPropertyViewController {
         self.view.endEditing(true)
     }
     
-}
-
-// MARK: - UITextFieldDelegate
-
-extension AddPropertyViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Scroll to the text field so that it is
-        // not hidden by the keyboard during editing.
-        guard let textFieldSuperView = textField.superview else { return }
-        self.scrollView.setContentOffset(CGPoint(x: 0, y: textFieldSuperView.frame.origin.y + textField.frame.origin.y), animated: true)
+    private func showPickerView(pickerView: UIDatePicker, valueLabel: UILabel) {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+        pickerView.alpha = 0.0
+        valueLabel.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.25) {
+            pickerView.alpha = 1.0
+            valueLabel.alpha = 1.0
+        } completion: { (isFinished: Bool) in
+            pickerView.isHidden = false
+            valueLabel.isHidden = false
+        }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // Remove any content offset from the scroll
-        // view otherwise the scroll view will look odd.
-        self.scrollView.setContentOffset(.zero, animated: true)
+    private func hidePickerView(pickerView: UIDatePicker, valueLabel: UILabel) {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+        
+        UIView.animate(withDuration: 0.25) {
+            pickerView.alpha = 0.0
+            valueLabel.alpha = 0.0
+        } completion: { (isFinished: Bool) in
+            pickerView.isHidden = true
+            valueLabel.isHidden = true
+        }
+    }
+    
+    private func showEntryDatePicker() {
+        self.showPickerView(pickerView: self.enterDatePicker,
+                            valueLabel: self.enterDateValueLabel)
+    }
+    
+    private func hideEntryDatePicker() {
+        self.hidePickerView(pickerView: self.enterDatePicker,
+                            valueLabel: self.enterDateValueLabel)
+    }
+    
+    private func showExclusivityDatePicker() {
+        self.showPickerView(pickerView: self.exclusivityDatePicker,
+                            valueLabel: self.exclusivityValueLabel)
+    }
+    
+    private func hideExclusivityDatePicker() {
+        self.hidePickerView(pickerView: self.exclusivityDatePicker,
+                            valueLabel: self.exclusivityValueLabel)
     }
     
 }
 
-// MARK: - MiniTableViewControllerDelegate
+// MARK: - CheckboxTableViewController
 
-extension AddPropertyViewController: MiniTableViewControllerDelegate {
+extension AddPropertyTableViewController: CheckboxTableViewControllerDelegate {
     
-    func miniTableView(_ miniTableView: MiniTableViewController, didSelectRowAt index: Int) {
-        miniTableView.dismiss(animated: true, completion: nil)
+    func checkboxTableView(_ checkboxTableView: CheckboxTableViewController, didSelectRowAt index: Int) {
         self.selectedAssetType = index
-         self.typeLabel.text = Application.AssetType.allCases[index].hebrewLocalized()
+        self.typeSubtitleLabel.text = Application.AssetType.allCases[index].localized()
     }
     
 }
 
 // MARK: - Location Picker
 
-extension AddPropertyViewController {
+extension AddPropertyTableViewController {
     
     @objc private func closeLocationController() {
         self.locationPicker.dismiss(animated: true, completion: nil)
@@ -314,18 +471,7 @@ extension AddPropertyViewController {
 
 // MARK: - ImagePickerDelegate
 
-extension AddPropertyViewController: ImagePickerDelegate {
-        
-    @objc private func onPressOnImage(_ sender: Any) {
-        guard let button = sender as? UIButton else { return }
-        guard let image = button.image(for: .normal) else { return }
-        
-        let previewViewController = ImagePreviewViewController(image: image)
-        let navController = UINavigationController(rootViewController: previewViewController)
-        navController.modalPresentationStyle = .fullScreen
-        
-        self.present(navController, animated: true, completion: nil)
-    }
+extension AddPropertyTableViewController: ImagePickerDelegate {
     
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         imagePicker.dismiss(animated: true, completion: nil)
@@ -334,33 +480,12 @@ extension AddPropertyViewController: ImagePickerDelegate {
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         imagePicker.dismiss(animated: true, completion: nil)
         
-        self.images = images
-        
-        self.onPressClearImagesButton(imagePicker)
-        
-        let numberOfImages: Int = images.count
-        guard numberOfImages > 0 else { return }
-        
-        if numberOfImages == 1 {
-            self.firstImageButton.setImage(images[0], for: .normal)
-        } else if numberOfImages == 2 {
-            self.firstImageButton.setImage(images[0], for: .normal)
-            self.secondImageButton.setImage(images[1], for: .normal)
-        } else if numberOfImages == 3 {
-            self.firstImageButton.setImage(images[0], for: .normal)
-            self.secondImageButton.setImage(images[1], for: .normal)
-            self.thirdImageButton.setImage(images[2], for: .normal)
-        } else if numberOfImages == 4 {
-            self.firstImageButton.setImage(images[0], for: .normal)
-            self.secondImageButton.setImage(images[1], for: .normal)
-            self.thirdImageButton.setImage(images[2], for: .normal)
-            self.forthImageButton.setImage(images[3], for: .normal)
-        } else if numberOfImages == 5 {
-            self.firstImageButton.setImage(images[0], for: .normal)
-            self.secondImageButton.setImage(images[1], for: .normal)
-            self.thirdImageButton.setImage(images[2], for: .normal)
-            self.forthImageButton.setImage(images[3], for: .normal)
-            self.fifthImageButton.setImage(images[4], for: .normal)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            self.images = images
+            DispatchQueue.main.async {
+                self.galleryCollectionView.reloadData()
+            }
         }
     }
     
@@ -370,62 +495,43 @@ extension AddPropertyViewController: ImagePickerDelegate {
     
 }
 
-// MARK: - DatePickerViewControllerDelegate
-
-extension AddPropertyViewController: DatePickerViewControllerDelegate {
-    
-    func pickerController(_ pickerController: DatePickerViewController, didFinishPicking date: Date) {
-        pickerController.dismiss(animated: true, completion: nil)
-        
-        let dateformatter = DateFormatter()
-        dateformatter.dateStyle = .medium
-        
-        guard let type = DatePickerType(rawValue: pickerController.view.tag) else { return }
-        
-        if type == .enterDate {
-            self.enterDateTextField.text = dateformatter.string(from: date)
-            self.enterDate = date
-        } else if type == .exclusivity {
-            self.exclusivityTextField.text = dateformatter.string(from: date)
-            self.exclusivityEndDate = date
-        }
-    }
-    
-    func pickerControllerDidCancel(_ pickerController: DatePickerViewController) {
-        pickerController.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
 // MARK: - Actions
 
-extension AddPropertyViewController {
+extension AddPropertyTableViewController {
     
     @IBAction private func onPressExlusivitySwitch(_ sender: Any) {
-        guard let exlusivitySwitch = sender as? UISwitch else { return }
-        self.exclusivityDateButton.isEnabled = exlusivitySwitch.isOn
+        guard let dateSwitch = sender as? UISwitch else { return }
+        self.exclusivityValueLabel.text = NSLocalizedString("today", comment: "")
         
-        let isVisible: Bool = self.datePickerController.viewIfLoaded?.window != nil
-        
-        if exlusivitySwitch.isOn {
-            if isVisible == false {
-                self.onPressExlusivityDatePicker(sender)
-            }
+        if dateSwitch.isOn {
+            self.showExclusivityDatePicker()
+        } else {
+            self.hideExclusivityDatePicker()
         }
     }
     
-    @IBAction private func onPressExlusivityDatePicker(_ sender: Any) {
-        self.datePickerController.view.tag = DatePickerType.exclusivity.rawValue
-        self.present(self.datePickerController, animated: true, completion: nil)
+    @IBAction private func onExlusivityDatePickerValueChange(_ sender: Any) {
+        guard let picker = sender as? UIDatePicker else { return }
+        self.exclusivityValueLabel.text = DateFormatter.dayFormatter.string(from: picker.date)
     }
     
-    @IBAction func OnPressType(_ sender: Any) {
-        self.showSelectCategory()
+    @IBAction func OnPressDatePickerSwitch(_ sender: Any) {
+        guard let dateSwitch = sender as? UISwitch else { return }
+        self.enterDateValueLabel.text = NSLocalizedString("today", comment: "")
+        
+        if dateSwitch.isOn {
+            if self.enterNowSwitch.isOn {
+                self.enterNowSwitch.isOn = false
+            }
+            self.showEntryDatePicker()
+        } else {
+            self.hideEntryDatePicker()
+        }
     }
     
-    @IBAction func OnPressDatePicker(_ sender: Any) {
-        self.datePickerController.view.tag = DatePickerType.enterDate.rawValue
-        self.present(self.datePickerController, animated: true, completion: nil)
+    @IBAction func onEnterDatePickerValueChange(_ sender: Any) {
+        guard let picker = sender as? UIDatePicker else { return }
+        self.enterDateValueLabel.text = DateFormatter.dayFormatter.string(from: picker.date)
     }
     
     @IBAction func onPressAddContact(_ sender: Any) {
@@ -452,48 +558,27 @@ extension AddPropertyViewController {
     }
     
     @IBAction func onPressDateIsNow(_ sender: Any) {
+        guard let dateSwitch = sender as? UISwitch else { return }
+        if dateSwitch.isOn {
+            if self.enterDateSwitch.isOn {
+                self.enterDateSwitch.isOn = false
+                self.hideEntryDatePicker()
+            }
+        }
     }
     
     @IBAction func onAddImageButton(_ sender: Any) {
-        self.showImagePicker()
+        self.present(self.imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func onPressClearImagesButton(_ sender: Any) {
-        self.firstImageButton.setImage(nil, for: .normal)
-        self.secondImageButton.setImage(nil, for: .normal)
-        self.thirdImageButton.setImage(nil, for: .normal)
-        self.forthImageButton.setImage(nil, for: .normal)
-        self.fifthImageButton.setImage(nil, for: .normal)
-    }
-    
-    @IBAction func onPressFirstImageButton(_ sender: Any) {
-        if let button = sender as? UIButton { button.tag = 1 }
-        self.onPressOnImage(sender)
-    }
-    
-    @IBAction func onPressSecondImageButton(_ sender: Any) {
-        if let button = sender as? UIButton { button.tag = 2 }
-        self.onPressOnImage(sender)
-    }
-    
-    @IBAction func onPressThirdImageButton(_ sender: Any) {
-        if let button = sender as? UIButton { button.tag = 3 }
-        self.onPressOnImage(sender)
-    }
-    
-    @IBAction func onPressForthImageButton(_ sender: Any) {
-        if let button = sender as? UIButton { button.tag = 4 }
-        self.onPressOnImage(sender)
-    }
-    
-    @IBAction func onPressFifthImageButton(_ sender: Any) {
-        if let button = sender as? UIButton { button.tag = 5 }
-        self.onPressOnImage(sender)
+        self.images.removeAll()
+        self.galleryCollectionView.reloadData()
     }
     
 }
 
-extension AddPropertyViewController: CNContactPickerDelegate {
+extension AddPropertyTableViewController: CNContactPickerDelegate {
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         debugPrint(#function)
@@ -510,6 +595,30 @@ extension AddPropertyViewController: CNContactPickerDelegate {
             text += phoneNumber
         }
         self.contactTextField.text = text
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
+extension AddPropertyTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeue(className: MiniGalleryCollectionViewCell.self, indexPath: indexPath)
+        cell.imageView.image = self.images[indexPath.item]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let previewViewController = ImagePreviewViewController(image: self.images[indexPath.item])
+        let navController = UINavigationController(rootViewController: previewViewController)
+        navController.modalPresentationStyle = .fullScreen
+        
+        self.present(navController, animated: true, completion: nil)
     }
     
 }

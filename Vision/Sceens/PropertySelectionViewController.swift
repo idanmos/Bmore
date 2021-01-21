@@ -8,7 +8,9 @@
 import UIKit
 
 protocol PropertySelectionViewControllerDelegate: class {
-    func propertyController(_ propertyController: PropertySelectionViewController, didSelect property: Property)
+    var allowsMultipleSelection: Bool { get }
+    // TODO: show/hide navigation controller
+    func propertyController(_ propertyController: PropertySelectionViewController, didSelect properties: [Property])
 }
 
 class PropertySelectionViewController: UICollectionViewController {
@@ -23,6 +25,27 @@ class PropertySelectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(self.closeScreen(_:))
+        )
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(self.saveAndClose(_:))
+        )
+        
+        if let _ = self.selectionDelegate {
+            self.collectionView.allowsMultipleSelection = self.selectionDelegate!.allowsMultipleSelection
+        }
+        
+        self.view.backgroundColor = .white
+        self.collectionView.backgroundColor = .white
         
         self.title = "properties".localized
         
@@ -56,6 +79,24 @@ class PropertySelectionViewController: UICollectionViewController {
         super.viewWillTransition(to: size, with: coordinator)
     }
     
+    // MARK: - General Methods
+    
+    @objc private func closeScreen(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func saveAndClose(_ sender: Any) {
+        if let indexPathsForSelectedItems: [IndexPath] = self.collectionView.indexPathsForSelectedItems {
+            var properties: [Property] = []
+            indexPathsForSelectedItems.forEach { (indexPath: IndexPath) in
+                properties.append(self.viewModel.properties[indexPath.item])
+            }
+            self.selectionDelegate?.propertyController(self, didSelect: properties)
+        }
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.properties.count
     }
@@ -65,15 +106,20 @@ class PropertySelectionViewController: UICollectionViewController {
         cell.deleteButton.isHidden = true
         let property: Property = self.viewModel.properties[indexPath.row]
         cell.configure(property)
+        
+        if let _ = self.selectionDelegate {
+            cell.allowsMultipleSelection = self.selectionDelegate!.allowsMultipleSelection
+        }
+        
         return cell
     }
     
-    // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+    // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        let property: Property = self.viewModel.properties[indexPath.row]
-        self.selectionDelegate?.propertyController(self, didSelect: property)
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//        let property: Property = self.viewModel.properties[indexPath.row]
+//        self.selectionDelegate?.propertyController(self, didSelect: property)
     }
     
 }

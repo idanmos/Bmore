@@ -11,6 +11,25 @@ class MeetingsTableViewController: UITableViewController {
     
     private let viewModel = MeetingsViewModel()
     
+    private lazy var addBarButton: UIBarButtonItem = {
+        let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))
+        return control
+    }()
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        
+        if let advancedController = parent as? AdvancedViewController {
+            if Application.isHebrew() {
+                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
+                advancedController.navigationItem.rightBarButtonItem = self.editButtonItem
+            } else {
+                advancedController.navigationItem.leftBarButtonItem = self.editButtonItem
+                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,25 +49,6 @@ class MeetingsTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.viewModel.fetchEvents()
                 self.tableView.reloadData()
-            }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let navController: UINavigationController = self.navigationController {
-            for viewController in navController.viewControllers {
-                if let insightsController = viewController as? AdvancedViewController {
-                    insightsController.addBarButton.replace(target: self, action: #selector(self.onPressAddMeeting(_:)))
-                    
-                    if insightsController.navigationItem.leftBarButtonItem == insightsController.addBarButton {
-                        insightsController.navigationItem.rightBarButtonItem = self.editButtonItem
-                    } else {
-                        insightsController.navigationItem.leftBarButtonItem = self.editButtonItem
-                    }
-                    break
-                }
             }
         }
     }
@@ -162,7 +162,7 @@ extension MeetingsTableViewController: MeetingTableViewCellDelegate {
 
 extension MeetingsTableViewController {
     
-    @objc private func onPressAddMeeting(_ sender: Any) {
+    @objc private func onPressAddButton(_ sender: UIBarButtonItem) {
         self.viewModel.create(presenter: self)
     }
     

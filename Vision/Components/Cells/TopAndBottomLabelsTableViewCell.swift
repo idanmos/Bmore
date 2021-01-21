@@ -8,7 +8,11 @@
 import UIKit
 
 class TopAndBottomLabelsTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var accessoryImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
