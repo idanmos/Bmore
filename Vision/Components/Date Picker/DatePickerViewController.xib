@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="Vision" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="dMv-E0-dj0" id="otv-mj-pWI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="dMv-E0-dj0">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcm-9T-Pff">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </button>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="kBy-jP-OmF">
+                    <rect key="frame" x="0.0" y="680" width="414" height="216"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="216" id="dgV-1b-qip"/>
+                    </constraints>
+                    <locale key="locale" localeIdentifier="he_IL"/>
+                </datePicker>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-Dl-SQ6">
+                    <rect key="frame" x="0.0" y="636" width="414" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="tf3-XO-Qc5"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="stop" id="u3G-LT-z9O"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KeX-ZZ-cLT"/>
+                        <barButtonItem title="שמירה" id="akr-EX-Brb"/>
+                    </items>
+                </toolbar>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Ka2-kV-VAX"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kBy-jP-OmF" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="3jf-ok-Evv"/>
+                <constraint firstAttribute="bottom" secondItem="kBy-jP-OmF" secondAttribute="bottom" id="Lq7-Dl-IU6"/>
+                <constraint firstItem="ff1-Dl-SQ6" firstAttribute="trailing" secondItem="Ka2-kV-VAX" secondAttribute="trailing" id="TrW-rg-VKf"/>
+                <constraint firstItem="kBy-jP-OmF" firstAttribute="top" secondItem="ff1-Dl-SQ6" secondAttribute="bottom" id="ssJ-yl-78G"/>
+                <constraint firstItem="ff1-Dl-SQ6" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="umJ-72-WX2"/>
+                <constraint firstItem="kBy-jP-OmF" firstAttribute="leading" secondItem="Ka2-kV-VAX" secondAttribute="leading" id="wKu-fe-NY2"/>
+            </constraints>
+            <point key="canvasLocation" x="-351" y="24"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LeadContactTableViewCell" customModule="B_more" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DUJ-se-0GL">
+                        <rect key="frame" x="80" y="2" width="160" height="40"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6l-w3-ojW">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KWQ-mq-91j"/>
+                                    <constraint firstAttribute="width" constant="40" id="vpg-tg-RJP"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="5" minY="8" maxX="5" maxY="8"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="envelope" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPressSendEmail:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6GX-If-bdb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hj-ND-yi8">
+                                <rect key="frame" x="60" y="0.0" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="HxW-nW-qnI"/>
+                                    <constraint firstAttribute="height" constant="40" id="WoM-S5-Zo4"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="message" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPressSendMessage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qwE-ho-XPG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hK5-DR-ihm">
+                                <rect key="frame" x="120" y="0.0" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2i4-15-rIv"/>
+                                    <constraint firstAttribute="width" constant="40" id="js4-C3-TkI"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="phone" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPressMakePhoneCall:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HP5-wi-CvG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DUJ-se-0GL" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0MZ-4W-33a"/>
+                    <constraint firstItem="DUJ-se-0GL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OBg-72-KvP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="makePhoneCallButton" destination="hK5-DR-ihm" id="T10-Hr-zyz"/>
+                <outlet property="sendEmailButton" destination="g6l-w3-ojW" id="nEq-rp-gd9"/>
+                <outlet property="sendMessageButton" destination="8Hj-ND-yi8" id="sSF-H1-zfN"/>
+                <outletCollection property="leadContactButtons" destination="g6l-w3-ojW" collectionClass="NSMutableArray" id="ZEl-vQ-DfK"/>
+                <outletCollection property="leadContactButtons" destination="8Hj-ND-yi8" collectionClass="NSMutableArray" id="Q2V-jl-ksz"/>
+                <outletCollection property="leadContactButtons" destination="hK5-DR-ihm" collectionClass="NSMutableArray" id="A3w-Sm-3o5"/>
+            </connections>
+            <point key="canvasLocation" x="0.0" y="26"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="envelope" catalog="system" width="128" height="93"/>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="phone" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWy-DU-4pS">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--אנשי קשר-->
+        <scene sceneID="3b7-4B-1jS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EWy-DU-4pS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="אנשי קשר" image="person.2" catalog="system" id="T9p-C5-BeT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="XuE-Lu-DZS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yle-OW-aVy" kind="relationship" relationship="rootViewController" id="fXu-YH-7gZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAm-BN-ewU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698.55072463768124" y="747.99107142857144"/>
+        </scene>
+        <!--אנשי קשר-->
+        <scene sceneID="sQ6-35-WQC">
+            <objects>
+                <tableViewController id="yle-OW-aVy" customClass="LeadsTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zjd-OL-ruh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactTableViewCell" rowHeight="50" id="iOV-Hz-i9M" customClass="ContactTableViewCell" customModule="Bmore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iOV-Hz-i9M" id="7ul-ER-awO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כותרת משנה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOH-5n-jHk">
+                                            <rect key="frame" x="308.5" y="25" width="85.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כותרת" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOY-ad-RI2">
+                                            <rect key="frame" x="351" y="4" width="43" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ok5-3T-6QI">
+                                            <rect key="frame" x="20" y="7.5" width="35" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="F7S-51-2cn"/>
+                                                <constraint firstAttribute="width" constant="35" id="sFT-Uz-J4s"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="hOH-5n-jHk" secondAttribute="trailing" constant="20" symbolic="YES" id="5XI-Xi-k5k"/>
+                                        <constraint firstItem="Ok5-3T-6QI" firstAttribute="centerY" secondItem="7ul-ER-awO" secondAttribute="centerY" id="5bI-Qf-hdS"/>
+                                        <constraint firstAttribute="bottom" secondItem="hOH-5n-jHk" secondAttribute="bottom" constant="4" id="Axh-OK-91X"/>
+                                        <constraint firstItem="BOY-ad-RI2" firstAttribute="top" secondItem="7ul-ER-awO" secondAttribute="top" constant="4" id="Chl-Kf-ha9"/>
+                                        <constraint firstAttribute="trailing" secondItem="BOY-ad-RI2" secondAttribute="trailing" constant="20" symbolic="YES" id="VKe-hM-Foc"/>
+                                        <constraint firstItem="Ok5-3T-6QI" firstAttribute="leading" secondItem="7ul-ER-awO" secondAttribute="leading" constant="20" symbolic="YES" id="dzq-Nj-1NV"/>
+                                        <constraint firstItem="hOH-5n-jHk" firstAttribute="top" secondItem="BOY-ad-RI2" secondAttribute="bottom" id="gq4-PN-jjf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contactImageView" destination="Ok5-3T-6QI" id="OwD-ce-OXR"/>
+                                    <outlet property="contactNameLabel" destination="BOY-ad-RI2" id="C2u-c4-xHG"/>
+                                    <outlet property="contactNoteLabel" destination="hOH-5n-jHk" id="4b4-ZJ-6Ir"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yle-OW-aVy" id="cQC-fQ-nll"/>
+                            <outlet property="delegate" destination="yle-OW-aVy" id="MX5-hA-9Dw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="אנשי קשר" id="L8L-nS-fAd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="htb-AF-jtv"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NRY-qX-wdk">
+                            <connections>
+                                <action selector="onPressAddContacts:" destination="yle-OW-aVy" id="U2q-UD-fIA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dMK-ep-FOB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500.0000000000002" y="747.99107142857144"/>
+        </scene>
+        <!--Lead Details View Controller-->
+        <scene sceneID="0Qe-0d-ydB">
+            <objects>
+                <viewController storyboardIdentifier="LeadDetailsViewController" modalPresentationStyle="overFullScreen" id="h8z-GD-G0A" customClass="LeadDetailsViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fmY-H3-4oi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBM-gD-OD5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem id="6WZ-Xa-9Xa">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="HO3-pL-Viz">
+                                            <connections>
+                                                <action selector="onPressCloseBarButton:" destination="h8z-GD-G0A" id="LyS-MM-jIO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jHJ-bL-Wvq">
+                                            <connections>
+                                                <action selector="onPressSaveBarButton:" destination="h8z-GD-G0A" id="JdN-An-VSd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-bF-i2H">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="h8z-GD-G0A" id="9Rs-d8-bkt"/>
+                                    <outlet property="delegate" destination="h8z-GD-G0A" id="Azp-9Y-Rrf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LyZ-nz-8CN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sBM-gD-OD5" firstAttribute="trailing" secondItem="LyZ-nz-8CN" secondAttribute="trailing" id="41h-ew-4Ay"/>
+                            <constraint firstAttribute="trailing" secondItem="R7u-bF-i2H" secondAttribute="trailing" id="44B-UI-ART"/>
+                            <constraint firstItem="sBM-gD-OD5" firstAttribute="leading" secondItem="LyZ-nz-8CN" secondAttribute="leading" id="OxQ-oU-Ndc"/>
+                            <constraint firstItem="LyZ-nz-8CN" firstAttribute="bottom" secondItem="R7u-bF-i2H" secondAttribute="bottom" id="P61-wU-07B"/>
+                            <constraint firstItem="R7u-bF-i2H" firstAttribute="top" secondItem="sBM-gD-OD5" secondAttribute="bottom" id="WBU-Xg-EOc"/>
+                            <constraint firstItem="sBM-gD-OD5" firstAttribute="top" secondItem="LyZ-nz-8CN" secondAttribute="top" id="d0f-Nr-zJT"/>
+                            <constraint firstItem="R7u-bF-i2H" firstAttribute="leading" secondItem="fmY-H3-4oi" secondAttribute="leading" id="zeX-2Q-e5w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeBarButton" destination="HO3-pL-Viz" id="oHj-nw-Uyk"/>
+                        <outlet property="customNavigationBar" destination="sBM-gD-OD5" id="3BO-la-22a"/>
+                        <outlet property="saveBarButton" destination="jHJ-bL-Wvq" id="ziZ-Wt-c3d"/>
+                        <outlet property="tableView" destination="R7u-bF-i2H" id="vcR-cF-DHr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3j8-KT-1SS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2366.666666666667" y="747.99107142857144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="avatar_placeholder" width="20" height="20"/>
+        <image name="person.2" catalog="system" width="128" height="81"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

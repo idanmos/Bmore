@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Tk-Lv-vC2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Time Track-->
+        <scene sceneID="A1U-Bj-6G8">
+            <objects>
+                <tableViewController id="cq3-QD-P52" customClass="TimeTrackingTableViewController" customModule="Vision" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mqO-Pc-mwN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="cq3-QD-P52" id="kHi-JM-OoD"/>
+                            <outlet property="delegate" destination="cq3-QD-P52" id="dlL-hA-Xfr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Time Track" id="Q95-c8-aLC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="dn4-2U-5XZ">
+                            <connections>
+                                <action selector="onPressEdit:" destination="cq3-QD-P52" id="bIK-vS-zxN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="51A-lk-DEG">
+                            <connections>
+                                <action selector="onPressAdd:" destination="cq3-QD-P52" id="z5b-0t-uDL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="znX-6n-ecX" kind="show" identifier="SegueToDetails" id="X5f-K0-mWm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tI8-PK-yTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="706" y="170"/>
+        </scene>
+        <!--Time Track Details Table View Controller-->
+        <scene sceneID="J9Q-qL-z7M">
+            <objects>
+                <tableViewController id="znX-6n-ecX" customClass="TimeTrackDetailsTableViewController" customModule="Vision" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Zmb-kS-b3I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="znX-6n-ecX" id="1d0-63-gAP"/>
+                            <outlet property="delegate" destination="znX-6n-ecX" id="SK4-jY-xCY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="P5U-qf-sXf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="UrR-7Q-FoI">
+                            <connections>
+                                <action selector="onPressSave:" destination="znX-6n-ecX" id="YD0-sR-bhi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DCy-yD-TQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="169"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Oq9-Za-x10">
+            <objects>
+                <navigationController id="1Tk-Lv-vC2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="BNE-V0-EL8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cq3-QD-P52" kind="relationship" relationship="rootViewController" id="mpD-74-Sxz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pT1-Bd-hlU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184" y="170"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

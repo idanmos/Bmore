@@ -1,0 +1,164 @@
+/* 
+  Localizable.strings
+  Vision
+
+  Created by Idan Moshe on 14/12/2020.
+  
+*/
+
+// MARK: - Important
+
+"app_name" = "B-more";
+"language" = "english";
+
+// MARK: - General
+
+"yes" = "Yes";
+"no" = "No";
+"new" = "New";
+"save" = "Save";
+"date" = "Date";
+"title" = "Title";
+"today" = "Today";
+"percentage" = "Percentage";
+"map" = "Map";
+"close" = "Close";
+"no_data" = "No Data";
+"not_available" = "Not Available";
+"required_field" = "Required Field";
+"size" = "Size";
+"rooms" = "Rooms";
+"floor" = "Floor";
+
+// MARK: - Errors
+
+"error" = "Error";
+"title_cannot_be_empty" = "Title cannot be empty";
+"need_push_and_date" = "When 'Push Notification' is enabled 'Due Date' option must be enabled";
+
+// MARK: - Properties
+
+"property" = "Property";
+"properties" = "Properties";
+"property_details" = "Property Details";
+"sell_or_rent" = "Sell/Rent";
+"property_type" = "Property Type";
+"size_in_meters" = "Size (meters)";
+"price" = "Price";
+"number_of_rooms" = "Rooms";
+"floor_number" = "Floor Number";
+"balcony" = "Balcony";
+"parking" = "Parking";
+"entry_date" = "Entry Date";
+"sold" = "Sold";
+"mark_as_sold" = "Mark as sold?";
+"exclusivity" = "Exclusivity";
+"until" = "until";
+"share" = "Hi,\nI'm using B-more app and wanted to share this property with you:\n";
+
+// Add Property
+
+"transaction_type" = "Transaction Type";
+"rent" = "Rent";
+"due_date" = "Due Date";
+"address" = "Address";
+"entry_available_immediately" = "Entry available immediatly";
+"out_of" = "out of";
+"more_info" = "More info";
+"contact" = "Contact";
+"photos" = "Photos";
+"more_info" = "More info";
+"delete_photos" = "Delete photos";
+
+// MARK: - Contacts
+
+"leads" = "Leads";
+"contact_info" = "Contact Info";
+
+
+// MARK: - Time Tracking
+
+"time_tracking" = "Time Tracking";
+"start" = "Start";
+"end" = "End";
+"cancel" = "Cancel";
+"start_or_end" = "Start/End";
+"please_choose" = "Please choose";
+"time_tracking_start_shift" = "Start date";
+"time_tracking_end_shift" = "End date";
+"start_hour" = "Start hour";
+"end_hour" = "End hour";
+"not_yet_defined" = "Not yet defined";
+"time_track_new_day" = "Edit time track";
+
+// MARK: - Advanced
+
+"advanced" = "Advanced";
+"financial_balance" = "Balance";
+"meetings" = "Meetings";
+"transactions" = "Transactions";
+"leads" = "Leads";
+"goals" = "Goals";
+"day" = "Day";
+"week" = "Week";
+"month" = "Month";
+"quarter" = "Quarter";
+"year" = "Year";
+"all" = "All";
+"revenue" = "Revenue";
+"expenses" = "Expenses";
+"is_all_day" = "All Day";
+"delete" = "Delete";
+"ok" = "OK";
+"delete_message_dialog" = "Are you sure you want to delete?";
+"transaction_type" = "Transaction Type";
+"total_price" = "Total Price";
+"commision" = "Commision";
+"buy" = "Buy";
+"sell" = "Sell";
+"new_transaction" = "New Transaction";
+
+// New Transaction
+
+"status" = "Status";
+"pending" = "Pending";
+"closed" = "Closed";
+"type" = "Type";
+"none" = "None";
+"expense" = "Expense";
+"canceled" = "Canceled";
+"location" = "Location";
+"percent" = "Percent";
+"amount" = "Amount";
+"contact_details" = "Contact Details";
+
+// MARK: - Targets
+
+"targets" = "Targets";
+
+// MARK: - Tasks
+
+"tasks" = "Tasks";
+"new_task" = "New Task";
+"comments" = "Comments";
+"alerts" = "Alerts";
+"reminders" = "Reminders";
+"call" = "Call";
+"email" = "Email";
+"meeting" = "Meeting";
+"other" = "Other";
+"repeat" = "Repeat";
+"push_notification" = "Push Notification";
+"reminders_footer" = "Enable this option will disabled 'Due Date' option";
+"in_progress" = "In Progress";
+"priority" = "Priority";
+"low" = "Low";
+"middle" = "Medium";
+"high" = "High";
+"never" = "Never";
+"every_day" = "Every Day";
+"every_week" = "Every Week";
+"every_month" = "Every Month";
+"every_3_months" = "Every 3 Months";
+"every_6_months" = "Every 6 Months";
+"every_year" = "Every Year";

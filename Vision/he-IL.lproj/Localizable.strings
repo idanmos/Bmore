@@ -1,0 +1,158 @@
+/* 
+  Localizable.strings
+  Vision
+
+  Created by Idan Moshe on 14/12/2020.
+  
+*/
+
+// MARK: - Important
+
+"app_name" = "B-more";
+"language" = "hebrew";
+
+// MARK: - General
+
+"yes" = "כן";
+"no" = "לא";
+"new" = "חדש";
+"save" = "שמירה";
+"date" = "תאריך";
+"title" = "כותרת";
+"today" = "היום";
+"percentage" = "אחוז";
+"map" = "מפה";
+"close" = "סגור";
+"no_data" = "אין נתונים";
+"not_available" = "לא זמין";
+"required_field" = "שדה חובה";
+"size" = "גודל";
+"rooms" = "חדרים";
+"floor" = "קומה";
+
+// MARK: - Errors
+
+"error" = "שגיאה";
+"title_cannot_be_empty" = "הכותרת לא יכולה להיות ריקה";
+"need_push_and_date" = "כאשר האפשרות 'הודעת פוש' מופעלת - יש להפעיל את האפשרות 'תאריך יעד'";
+
+// MARK: - Properties
+
+"property" = "נכס";
+"properties" = "נכסים";
+"leads" = "לידים";
+"contact_info" = "איש קשר";
+"property_details" = "פרטי הנכס";
+"sell_or_rent" = "מכירה/השכרה";
+"property_type" = "סוג הנכס";
+"size_in_meters" = "גודל (במ״ר)";
+"price" = "מחיר";
+"number_of_rooms" = "מס׳ חדרים";
+"floor_number" = "מס׳ קומה";
+"balcony" = "מרפסת";
+"parking" = "חניה";
+"entry_date" = "תאריך כניסה";
+"sold" = "מכירה";
+"mark_as_sold" = "סמן/י כנמכר?";
+"exclusivity" = "בלעדיות";
+"until" = "עד";
+
+
+// Add Property
+
+"transaction_type" = "סוג עסקה";
+"rent" = "השכרה";
+"due_date" = "תאריך יעד";
+"address" = "כתובת";
+"entry_available_immediately" = "כניסה מיידית";
+"out_of" = "מתוך";
+"contact" = "איש קשר";
+"photos" = "תמונות";
+"more_info" = "מידע נוסף";
+"delete_photos" = "מחק תמונות";
+"share" = "היי,\nאני משתמש באפליקציית B-more ורציתי לחלוק איתך נכס זה:\n";
+
+"time_tracking" = "שעות עבודה";
+"start" = "התחלה";
+"end" = "סיום";
+"cancel" = "ביטול";
+"start_or_end" = "התחלה/סיום";
+"please_choose" = "אנא בחר/י";
+"time_tracking_start_shift" = "שעת התחלה";
+"time_tracking_end_shift" = "שעת סיום";
+"start_hour" = "שעת התחלה";
+"end_hour" = "שעת סיום";
+"not_yet_defined" = "עדיין לא הוגדר";
+"time_track_new_day" = "עריכת מעקב שעות";
+
+// MARK: - Advanced
+
+"advanced" = "מתקדם";
+"financial_balance" = "מאזן";
+"meetings" = "פגישות";
+"transactions" = "עסקאות";
+"leads" = "לידים";
+"goals" = "יעדים";
+"day" = "יום";
+"week" = "שבוע";
+"month" = "חודש";
+"quarter" = "רבעון";
+"year" = "שנה";
+"all" = "הכל";
+"revenue" = "הכנסות";
+"expenses" = "הוצאות";
+"is_all_day" = "כל היום";
+"delete" = "מחיקה";
+"ok" = "אישור";
+"delete_message_dialog" = "האם את/ה בטוח/ה שברצונך למחוק?";
+"transaction_type" = "סוג עסקה";
+"total_price" = "מחיר כולל";
+"commision" = "עמלה";
+"buy" = "קניה";
+"sell" = "מכירה";
+"new_transaction" = "עסקה חדשה";
+
+// New Transaction
+
+"status" = "סטטוס";
+"pending" = "בהמתנה";
+"closed" = "סגור";
+"type" = "סוג";
+"none" = "ללא";
+"expense" = "הוצאה";
+"canceled" = "בוטל";
+"location" = "מיקום";
+"percent" = "אחוז";
+"amount" = "סכום";
+"contact_details" = "פרטי איש הקשר";
+
+// MARK: - Targets
+
+"targets" = "יעדים";
+
+// MARK: - Tasks
+
+"tasks" = "משימות";
+"new_task" = "משימה חדשה";
+"comments" = "הערות";
+"alerts" = "התראות";
+"reminders" = "תזכורות";
+"call" = "שיחה";
+"email" = "אימייל";
+"meeting" = "פגישה";
+"other" = "אחר";
+"repeat" = "חזרה";
+"push_notification" = "הודעת פוש";
+"reminders_footer" = "הפעלת אפשרות זו תשבית את האפשרות 'תאריך יעד'";
+"in_progress" = "בתהליך";
+"priority" = "עדיפות";
+"low" = "נמוכה";
+"middle" = "בינונית";
+"high" = "גבוהה";
+"never" = "אף פעם";
+"every_day" = "פעם ביום";
+"every_week" = "פעם בשבוע";
+"every_month" = "פעם בחודש";
+"every_3_months" = "פעם ברבעון";
+"every_6_months" = "פעם בחצי שנה";
+"every_year" = "פעם בשנה";

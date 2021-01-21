@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Vision
+
+  Created by Idan Moshe on 14/12/2020.
+  
+*/
+
+// MARK: - Important
+
+"app_name" = "B-more";
+"language" = "russian";
