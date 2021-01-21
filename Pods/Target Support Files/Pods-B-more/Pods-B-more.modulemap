@@ -1,0 +1,6 @@
+framework module Pods_B_more {
+  umbrella header "Pods-B-more-umbrella.h"
+
+  export *
+  module * { export * }
+}
