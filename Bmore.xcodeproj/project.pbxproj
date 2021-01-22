@@ -47,7 +47,7 @@
 		8A4901632598AEFF00CFA2A1 /* MeetingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901622598AEFF00CFA2A1 /* MeetingEvent.swift */; };
 		8A4901672599D04300CFA2A1 /* MeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901652599D04300CFA2A1 /* MeetingTableViewCell.swift */; };
 		8A4901682599D04300CFA2A1 /* MeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4901662599D04300CFA2A1 /* MeetingTableViewCell.xib */; };
-		8A742A372593A50F0014848A /* AAInfographics in Frameworks */ = {isa = PBXBuildFile; productRef = 8A742A362593A50F0014848A /* AAInfographics */; };
+		8A742A372593A50F0014848A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A742A362593A50F0014848A /* SwiftPackageProductDependency */; };
 		8A742A3A2593A5490014848A /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A392593A5490014848A /* GraphView.swift */; };
 		8A742A4025947C970014848A /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A3E25947C970014848A /* BalanceCollectionViewCell.swift */; };
 		8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A742A3F25947C970014848A /* BalanceCollectionViewCell.xib */; };
@@ -62,9 +62,9 @@
 		8A81CAA925A6EBC9002BC2D8 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAA825A6EBC9002BC2D8 /* GoalsViewController.swift */; };
 		8A81CAB425A6FC26002BC2D8 /* GoalsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAB325A6FC26002BC2D8 /* GoalsPageViewController.swift */; };
 		8A81CAB825A6FD4C002BC2D8 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAB725A6FD4C002BC2D8 /* GraphViewController.swift */; };
-		8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED425B52A3A008F4D96 /* FacebookCore */; };
-		8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED625B52A3A008F4D96 /* FacebookLogin */; };
-		8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED825B52A3A008F4D96 /* FacebookShare */; };
+		8A881ED525B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */; };
+		8A881ED725B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */; };
+		8A881ED925B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */; };
 		8A881EDD25B52C5B008F4D96 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EDB25B52C5B008F4D96 /* LoginViewController.swift */; };
 		8A881EDE25B52C5B008F4D96 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A881EDC25B52C5B008F4D96 /* LoginViewController.xib */; };
 		8A881EE425B52F52008F4D96 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EE325B52F52008F4D96 /* FacebookManager.swift */; };
@@ -110,7 +110,7 @@
 		8A973E36257FD2E1002422B8 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E35257FD2E1002422B8 /* PersistentStorage.swift */; };
 		8A973E3A257FD8E9002422B8 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E39257FD8E9002422B8 /* ImageStorage.swift */; };
 		8A973E3D257FDF45002422B8 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E3C257FDF45002422B8 /* URL+Extensions.swift */; };
-		8A973E6A25801891002422B8 /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8A973E6925801891002422B8 /* LocationPicker */; };
+		8A973E6A25801891002422B8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A973E6925801891002422B8 /* SwiftPackageProductDependency */; };
 		8A973E6E25814D09002422B8 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E6D25814D09002422B8 /* ImagePreviewViewController.swift */; };
 		8A973E7425816AD0002422B8 /* MiniTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E7225816AD0002422B8 /* MiniTableViewController.swift */; };
 		8A973E7525816AD0002422B8 /* MiniTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A973E7325816AD0002422B8 /* MiniTableViewController.xib */; };
@@ -191,14 +191,9 @@
 		8ADDB037259DA57400E12C37 /* AddTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */; };
 		8ADDB0CA259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */; };
 		8ADDB0D325A0894900E12C37 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0D225A0894900E12C37 /* BalanceViewModel.swift */; };
-		B533F1EBC15E03FF018E338A /* Pods_B_more.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC6B43A6387787DDE72BB18 /* Pods_B_more.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D9DA058B6B8AD3FDE1109BF /* Pods-Vision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vision.debug.xcconfig"; path = "Target Support Files/Pods-Vision/Pods-Vision.debug.xcconfig"; sourceTree = "<group>"; };
-		37338125CBF653DA789C922D /* Pods-Vision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vision.release.xcconfig"; path = "Target Support Files/Pods-Vision/Pods-Vision.release.xcconfig"; sourceTree = "<group>"; };
-		3BC6B43A6387787DDE72BB18 /* Pods_B_more.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_B_more.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85955309B28EE9ED174E4B6E /* Pods-B-more.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-B-more.release.xcconfig"; path = "Target Support Files/Pods-B-more/Pods-B-more.release.xcconfig"; sourceTree = "<group>"; };
 		8A0608402586524A000765D8 /* MultipleSelectionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionCollectionViewController.swift; sourceTree = "<group>"; };
 		8A0608412586524A000765D8 /* MultipleSelectionCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionCollectionViewController.xib; sourceTree = "<group>"; };
 		8A060846258652BC000765D8 /* MultipleSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionTableViewController.swift; sourceTree = "<group>"; };
@@ -383,7 +378,6 @@
 		8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewController.swift; sourceTree = "<group>"; };
 		8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		8ADDB0D225A0894900E12C37 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
-		F0F2B45100F955374FDEA19F /* Pods-B-more.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-B-more.debug.xcconfig"; path = "Target Support Files/Pods-B-more/Pods-B-more.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,12 +385,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */,
-				8A742A372593A50F0014848A /* AAInfographics in Frameworks */,
-				8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */,
-				8A973E6A25801891002422B8 /* LocationPicker in Frameworks */,
-				B533F1EBC15E03FF018E338A /* Pods_B_more.framework in Frameworks */,
-				8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */,
+				8A881ED725B52A3A008F4D96 /* BuildFile in Frameworks */,
+				8A742A372593A50F0014848A /* BuildFile in Frameworks */,
+				8A881ED925B52A3A008F4D96 /* BuildFile in Frameworks */,
+				8A973E6A25801891002422B8 /* BuildFile in Frameworks */,
+				8A881ED525B52A3A008F4D96 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,7 +652,6 @@
 				8A973D60257C12AD002422B8 /* Vision */,
 				8A973D5F257C12AD002422B8 /* Products */,
 				BDD6F82053A45ABAAE603B23 /* Pods */,
-				F5F013519C38C9BD2A6A5085 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1068,20 +1060,8 @@
 		BDD6F82053A45ABAAE603B23 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0D9DA058B6B8AD3FDE1109BF /* Pods-Vision.debug.xcconfig */,
-				37338125CBF653DA789C922D /* Pods-Vision.release.xcconfig */,
-				F0F2B45100F955374FDEA19F /* Pods-B-more.debug.xcconfig */,
-				85955309B28EE9ED174E4B6E /* Pods-B-more.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		F5F013519C38C9BD2A6A5085 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3BC6B43A6387787DDE72BB18 /* Pods_B_more.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1091,11 +1071,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A973D75257C12AF002422B8 /* Build configuration list for PBXNativeTarget "Bmore" */;
 			buildPhases = (
-				8B29F7725442E8EA7392A336 /* [CP] Check Pods Manifest.lock */,
 				8A973D5A257C12AD002422B8 /* Sources */,
 				8A973D5B257C12AD002422B8 /* Frameworks */,
 				8A973D5C257C12AD002422B8 /* Resources */,
-				884AFEF320B780A0DF1D32AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1103,11 +1081,11 @@
 			);
 			name = Bmore;
 			packageProductDependencies = (
-				8A973E6925801891002422B8 /* LocationPicker */,
-				8A742A362593A50F0014848A /* AAInfographics */,
-				8A881ED425B52A3A008F4D96 /* FacebookCore */,
-				8A881ED625B52A3A008F4D96 /* FacebookLogin */,
-				8A881ED825B52A3A008F4D96 /* FacebookShare */,
+				8A973E6925801891002422B8 /* SwiftPackageProductDependency */,
+				8A742A362593A50F0014848A /* SwiftPackageProductDependency */,
+				8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */,
+				8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */,
+				8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */,
 			);
 			productName = Vision;
 			productReference = 8A973D5E257C12AD002422B8 /* Bmore.app */;
@@ -1140,9 +1118,9 @@
 			);
 			mainGroup = 8A973D55257C12AD002422B8;
 			packageReferences = (
-				8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */,
-				8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */,
-				8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				8A973E6825801891002422B8 /* RemoteSwiftPackageReference */,
+				8A742A352593A50F0014848A /* RemoteSwiftPackageReference */,
+				8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 8A973D5F257C12AD002422B8 /* Products */;
 			projectDirPath = "";
@@ -1216,48 +1194,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		884AFEF320B780A0DF1D32AD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-B-more/Pods-B-more-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-B-more/Pods-B-more-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-B-more/Pods-B-more-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B29F7725442E8EA7392A336 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-B-more-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A973D5A257C12AD002422B8 /* Sources */ = {
@@ -1538,7 +1474,6 @@
 		};
 		8A973D76257C12AF002422B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0F2B45100F955374FDEA19F /* Pods-B-more.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1562,7 +1497,6 @@
 		};
 		8A973D77257C12AF002422B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85955309B28EE9ED174E4B6E /* Pods-B-more.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1607,7 +1541,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */ = {
+		8A742A352593A50F0014848A /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AAChartModel/AAChartKit-Swift.git";
 			requirement = {
@@ -1615,7 +1549,7 @@
 				minimumVersion = 5.0.4;
 			};
 		};
-		8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+		8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
@@ -1623,7 +1557,7 @@
 				minimumVersion = 8.2.0;
 			};
 		};
-		8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */ = {
+		8A973E6825801891002422B8 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/almassapargali/LocationPicker.git";
 			requirement = {
@@ -1634,29 +1568,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8A742A362593A50F0014848A /* AAInfographics */ = {
+		8A742A362593A50F0014848A /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */;
+			package = 8A742A352593A50F0014848A /* RemoteSwiftPackageReference */;
 			productName = AAInfographics;
 		};
-		8A881ED425B52A3A008F4D96 /* FacebookCore */ = {
+		8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
 			productName = FacebookCore;
 		};
-		8A881ED625B52A3A008F4D96 /* FacebookLogin */ = {
+		8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
 			productName = FacebookLogin;
 		};
-		8A881ED825B52A3A008F4D96 /* FacebookShare */ = {
+		8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
 			productName = FacebookShare;
 		};
-		8A973E6925801891002422B8 /* LocationPicker */ = {
+		8A973E6925801891002422B8 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */;
+			package = 8A973E6825801891002422B8 /* RemoteSwiftPackageReference */;
 			productName = LocationPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
