@@ -7,5 +7,4 @@ target 'B-more' do
 
   # Pods for Vision
 pod 'ImagePicker'
-pod 'SignalServiceKit', git: 'https://github.com/WhisperSystems/Signal-iOS.git'
 end
