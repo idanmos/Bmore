@@ -11,12 +11,10 @@ class LeadPersonalDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var leadImageView: UIImageView!
     @IBOutlet private weak var stackView: UIStackView!
-    @IBOutlet private weak var leadNameLabel: UILabel!
-    @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var workplaceLabel: UILabel!
-    @IBOutlet private weak var leadPhoneNumberLabel: UILabel!
-    @IBOutlet private weak var leadEmailLabel: UILabel!
+    @IBOutlet private weak var personalDetailsLabel: UILabel!
     @IBOutlet private weak var socialProfilelButton: UIButton!
+    
+    
     
     var contact: DeviceContact? {
         willSet {
@@ -25,12 +23,9 @@ class LeadPersonalDetailsTableViewCell: UITableViewCell {
             self.socialProfilelButton.setTitle("", for: .normal)
             self.socialProfilelButton.isHidden = true
             
-            self.stackView.arrangedSubviews.forEach { (obj: UIView) in
-                if obj is UILabel {
-                    (obj as! UILabel).text = nil
-                    (obj as! UILabel).isHidden = true
-                }
-            }
+            self.personalDetailsLabel.numberOfLines = 0
+            self.personalDetailsLabel.text = nil
+            self.personalDetailsLabel.isHidden = true
             
             guard let contact = newValue else { return }
             
@@ -40,32 +35,42 @@ class LeadPersonalDetailsTableViewCell: UITableViewCell {
                     self.leadImageView.image = image
                 }
                 
+                var personalDetails: String = ""
+                
                 if contact.fullName.count > 0 {
-                    self.leadNameLabel.text = contact.fullName
-                    self.leadNameLabel.isHidden = false
+                    personalDetails += contact.fullName
+                    personalDetails += "\n"
                 }
                 
                 let postalAddress: String = contact.postalAddresses.joined(separator: "\n")
                 if postalAddress.count > 0 {
-                    self.addressLabel.text = postalAddress
-                    self.addressLabel.isHidden = false
+                    personalDetails += postalAddress
+                    personalDetails += "\n"
                 }
                 
                 if let workplace: String = contact.workplace, workplace.count > 0 {
-                    self.workplaceLabel.text = workplace
-                    self.workplaceLabel.isHidden = false
+                    personalDetails += workplace
+                    personalDetails += "\n"
                 }
                 
                 let phoneNumbers: String = contact.phoneNumbers.joined(separator: "\n")
                 if phoneNumbers.count > 0 {
-                    self.leadPhoneNumberLabel.text = phoneNumbers
-                    self.leadPhoneNumberLabel.isHidden = false
+                    personalDetails += phoneNumbers
+                    personalDetails += "\n"
                 }
                 
                 let emailAddresses: String = contact.emailAddresses.joined(separator: "\n")
                 if emailAddresses.count > 0 {
-                    self.leadEmailLabel.text = emailAddresses
-                    self.leadEmailLabel.isHidden = false
+                    personalDetails += emailAddresses
+                }
+                
+                if personalDetails.count > 0 {
+                    self.personalDetailsLabel.text = personalDetails
+                    self.personalDetailsLabel.isHidden = false
+                    
+                    if contact.fullName.count > 0 {
+                        self.personalDetailsLabel.changeFont(ofText: contact.fullName, with: .boldSystemFont(ofSize: 18.0))
+                    }
                 }
                 
                 let socialProfile: String = contact.socialProfiles.joined(separator: "\n")

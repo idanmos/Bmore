@@ -1,5 +1,5 @@
 //
-//  AdvancedViewController.swift
+//  MoreViewController.swift
 //  B-more
 //
 //  Created by Idan Moshe on 11/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdvancedViewController: UIViewController {
+class MoreViewController: UIViewController {
 
     // MARK: - Oytlets
     
@@ -16,7 +16,7 @@ class AdvancedViewController: UIViewController {
     
     // MARK: - Variables
         
-    private let viewModel = AdvancedViewModel()
+    private let viewModel = MoreViewModel()
     
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -30,11 +30,17 @@ class AdvancedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "more".localized
+        
         self.collectionView.collectionViewLayout = self.flowLayout
         self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.showsHorizontalScrollIndicator = false
         
         self.showDisplay(fo: .balance)
+        
+        DispatchMainThreadSafe {
+            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
         
         // TODO: Fix save to defaults
 //        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
@@ -46,12 +52,9 @@ class AdvancedViewController: UIViewController {
 
 // MARK: - General Methods
 
-extension AdvancedViewController {
+extension MoreViewController {
     
-    private func showDisplay(fo category: AdvancedCategory) {
-        // show appropriate title
-        self.navigationItem.title = NSLocalizedString("advanced", comment: "") + " - " + category.title()
-        
+    private func showDisplay(fo category: MoreCategory) {
         // remove all children view controllers
         self.removeAllChildren()
         
@@ -80,7 +83,7 @@ extension AdvancedViewController {
 
 // MARK: - Navigation
 
-extension AdvancedViewController {
+extension MoreViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         debugPrint(#file, #function, segue)
@@ -90,7 +93,7 @@ extension AdvancedViewController {
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
-extension AdvancedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MoreViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.dataSource.count
@@ -104,7 +107,7 @@ extension AdvancedViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let category: AdvancedCategory = self.viewModel.dataSource[indexPath.item]
+        let category: MoreCategory = self.viewModel.dataSource[indexPath.item]
         self.showDisplay(fo: category)
     }
     
@@ -112,4 +115,4 @@ extension AdvancedViewController: UICollectionViewDataSource, UICollectionViewDe
 
 // MARK: - Actions
 
-extension AdvancedViewController {}
+extension MoreViewController {}

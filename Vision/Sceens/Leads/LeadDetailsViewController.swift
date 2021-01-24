@@ -14,7 +14,7 @@ class LeadDetailsViewController: UIViewController {
     // MARK: - Constants
     
     private enum SectionType: Int, CaseIterable {
-        case personalDetails, contactButtons, properties, tasks, transactions, meetings, leadQualification
+        case personalDetails, contactButtons, properties, transactions, meetings, tasks, leadQualification
         
         static let sections: Int = 1
         static let rows: Int = SectionType.allCases.count
@@ -57,9 +57,10 @@ class LeadDetailsViewController: UIViewController {
     var editedLead: Lead?
     
     private lazy var floatButton = Floaty()
-    private let dataSource: [SectionType] = SectionType.allCases
+    private lazy var dataSource: [SectionType] = SectionType.allCases
     private var deviceContact: DeviceContact?
-    private var properties: [Property] = []
+    private lazy var properties: [Property] = []
+    private lazy var propertiesViewModel = PropertiesViewModel()
     
     private lazy var contactPickerViewController: CNContactPickerViewController = {
         let pickerViewController = CNContactPickerViewController()
@@ -69,44 +70,68 @@ class LeadDetailsViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    deinit {
+        debugPrint("dealloc \(self)")
+        self.editedLead = nil
+        self.deviceContact = nil
+        self.properties.removeAll()
+        self.dataSource.removeAll()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        
     }
         
     private func setupUI() {
+        let closeButton = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(self.onPressCloseBarButton(_:))
+        )
+        
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(self.onPressSaveBarButton(_:))
+        )
+        
+        self.customNavigationBar.topItem?.leftBarButtonItem = closeButton
+        self.customNavigationBar.topItem?.rightBarButtonItem = doneButton
+        
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.register(LeadPersonalDetailsTableViewCell.self)
         self.tableView.register(LeadContactTableViewCell.self)
         self.tableView.register(LeadDetailDisclosureTableViewCell.self)
                 
-        self.floatButton.addItem(title: "contact".localized) { [weak self] (item: FloatyItem) in
+        self.floatButton.itemImageColor = .darkGray
+                
+        self.floatButton.addItem("contacts".localized, icon: UIImage(systemName: "person.badge.plus")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
             self.present(self.contactPickerViewController, animated: true, completion: nil)
             self.floatButton.close()
         }
         
-        self.floatButton.addItem(title: "property".localized) { [weak self] (item: FloatyItem) in
+        self.floatButton.addItem("properties".localized, icon: UIImage(systemName: "building.2")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            let propertySelectionController = PropertySelectionViewController(collectionViewLayout: UICollectionViewLayout())
-            propertySelectionController.selectionDelegate = self
-            let navController = UINavigationController(rootViewController: propertySelectionController)
+            let viewController = PropertySelectionViewController(viewModel: self.propertiesViewModel)
+            viewController.selectionDelegate = self
+            let navController = UINavigationController(rootViewController: viewController)
             self.present(navController, animated: true, completion: nil)
             self.floatButton.close()
         }
         
-        self.floatButton.addItem(title: "transaction".localized) { (item: FloatyItem) in
+        self.floatButton.addItem("transactions".localized, icon: UIImage(systemName: "dollarsign.circle")) { (item: FloatyItem) in
             //
             self.floatButton.close()
         }
         
-        self.floatButton.addItem(title: "meeting".localized) { (item: FloatyItem) in
+        self.floatButton.addItem("meetings".localized, icon: UIImage(systemName: "person.2")) { (item: FloatyItem) in
             //
             self.floatButton.close()
         }
         
-        self.floatButton.addItem(title: "task".localized) { (item: FloatyItem) in
+        self.floatButton.addItem("tasks".localized, icon: UIImage(systemName: "list.number")) { (item: FloatyItem) in
             //
             self.floatButton.close()
         }
@@ -176,6 +201,18 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return SectionType(rawValue: indexPath.row)?.height ?? UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let type = SectionType(rawValue: indexPath.row) else { return }
+        
+        if type == .properties {
+            let viewController = PropertiesTableViewController(properties: self.properties)
+            let navController = UINavigationController(rootViewController: viewController)
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 // MARK: - CNContactPickerDelegate
@@ -194,8 +231,6 @@ extension LeadDetailsViewController: CNContactPickerDelegate {
 //            IndexPath(row: SectionType.personalDetails.rawValue, section: 0),
 //            IndexPath(row: SectionType.contactButtons.rawValue, section: 0)
 //        ]
-//        self.tableView.reloadRows(at: rows, with: .automatic)
-        
         self.tableView.reloadData()
     }
     
@@ -209,13 +244,16 @@ extension LeadDetailsViewController: PropertySelectionViewControllerDelegate {
         return true
     }
     
+    var selectedProperties: [Property] {
+        return self.properties
+    }
+    
     func propertyController(_ propertyController: PropertySelectionViewController, didSelect properties: [Property]) {
         propertyController.dismiss(animated: true, completion: nil)
         
         self.properties = properties
-        
+                
         self.tableView.reloadData()
-//        self.tableView.reloadRows(at: [IndexPath(row: SectionType.properties.rawValue, section: 0)], with: .automatic)
     }
     
 }

@@ -15,6 +15,7 @@ class Application {
         enum Government {
             static let israelCityList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=5c78e9fa-c2e2-4771-93ff-7f400a12f7ba")!
             static let israeliStreetList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b")!
+            static let israeliRealEstateAgentsList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=a0f56034-88db-4132-8803-854bcdb01ca1")!
         }
     }
     
@@ -203,3 +204,22 @@ extension Application {
     }
     
 }
+
+//extension Application {
+//    
+//    lazy var <#property name#>: <#type name#> = {
+//        var queryItems: [URLQueryItem] = []
+//        queryItems.append(URLQueryItem(name: "resource_id", value: "a0f56034-88db-4132-8803-854bcdb01ca1"))
+//        // queryItems.append(URLQueryItem(name: "q", value: searchName))
+//        
+//        let components = URLComponents(
+//            scheme: "https",
+//            host: "data.gov.il",
+//            path: "api/3/action/datastore_search",
+//            queryItems: queryItems
+//        )
+//        
+//        return components.url
+//    }()
+//    
+//}

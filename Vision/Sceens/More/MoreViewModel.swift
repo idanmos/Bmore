@@ -1,5 +1,5 @@
 //
-//  AdvancedViewModel.swift
+//  MoreViewModel.swift
 //  B-more
 //
 //  Created by Idan Moshe on 11/01/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum AdvancedCategory: Int, CaseIterable {
+enum MoreCategory: Int, CaseIterable {
     case balance, meetings, transactions, tasks
     
     func image() -> UIImage? {
@@ -30,9 +30,9 @@ enum AdvancedCategory: Int, CaseIterable {
     
 }
 
-class AdvancedViewModel {
+class MoreViewModel {
     
     var presenter: UIViewController?
-    let dataSource: [AdvancedCategory] = AdvancedCategory.allCases
+    let dataSource: [MoreCategory] = MoreCategory.allCases
     
 }

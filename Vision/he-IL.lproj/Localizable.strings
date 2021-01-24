@@ -67,6 +67,7 @@
 "entry_available_immediately" = "כניסה מיידית";
 "out_of" = "מתוך";
 "contact" = "איש קשר";
+"contacts" = "אנשי קשר";
 "photos" = "תמונות";
 "more_info" = "מידע נוסף";
 "delete_photos" = "מחק תמונות";
@@ -85,9 +86,9 @@
 "not_yet_defined" = "עדיין לא הוגדר";
 "time_track_new_day" = "עריכת מעקב שעות";
 
-// MARK: - Advanced
+// MARK: - More
 
-"advanced" = "מתקדם";
+"more" = "עוד";
 "financial_balance" = "מאזן";
 "meetings" = "פגישות";
 "transactions" = "עסקאות";

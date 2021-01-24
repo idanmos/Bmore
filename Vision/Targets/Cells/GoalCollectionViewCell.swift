@@ -12,11 +12,22 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
+    override var isSelected: Bool {
+        willSet {
+            if newValue {
+                self.imageView.layer.borderColor = UIColor.gray.cgColor
+                self.titleLabel.textColor = .gray
+            } else {
+                self.imageView.layer.borderColor = UIColor.black.cgColor
+                self.titleLabel.textColor = .label
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.imageView.layer.borderWidth = 1.5
-        self.imageView.layer.borderColor = UIColor.black.cgColor
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2.0
         self.imageView.clipsToBounds = true
     }
@@ -26,7 +37,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
         self.imageView.image = category.image()
     }
     
-    func configure(_ category: AdvancedCategory) {
+    func configure(_ category: MoreCategory) {
         self.titleLabel.text = category.title()
         self.imageView.image = category.image()
     }

@@ -35,20 +35,6 @@ class PropertyCollectionViewCell: UICollectionViewCell {
     weak var delegate: PropertyCollectionViewCellDelegate?
     var allowsMultipleSelection: Bool = false
     
-    override var isSelected: Bool {
-        didSet {
-            if self.allowsMultipleSelection {
-                if self.isSelected {
-                    self.layer.borderWidth = 1.0
-                    self.layer.borderColor = UIColor.systemGreen.cgColor
-                } else {
-                    self.layer.borderWidth = 0
-                    self.layer.borderColor = nil
-                }
-            }
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -91,6 +77,18 @@ class PropertyCollectionViewCell: UICollectionViewCell {
         }
         
         self.soldImageView.isHidden = !property.isSold
+    }
+    
+    func makeSelected(_ isCellSelected: Bool) {
+        if self.allowsMultipleSelection {
+            if isCellSelected {
+                self.layer.borderWidth = 1.0
+                self.layer.borderColor = UIColor.systemGreen.cgColor
+            } else {
+                self.layer.borderWidth = 0
+                self.layer.borderColor = nil
+            }
+        }
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {

@@ -7,10 +7,16 @@
 
 import UIKit
 
-class PropertiesViewModel {
+class PropertiesViewModel: NSObject {
     
     var properties: [Property] = []
     var filteredProperties: [Property] = []
+    
+    deinit {
+        debugPrint("dealloc \(self)")
+        self.properties.removeAll()
+        self.filteredProperties.removeAll()
+    }
     
     func fetchProperties() {
         self.properties = PersistentStorage.shared.fetchProperties()

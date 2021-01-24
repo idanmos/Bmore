@@ -20,7 +20,7 @@ class TasksViewController: UITableViewController {
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         
-        if let advancedController = parent as? AdvancedViewController {
+        if let advancedController = parent as? MoreViewController {
             if Application.isHebrew() {
                 advancedController.navigationItem.leftBarButtonItem = self.addBarButton
                 advancedController.navigationItem.rightBarButtonItem = self.editButtonItem

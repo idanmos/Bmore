@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var cities: [CityDetails] = []
-    
+        
     class func sharedDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -37,23 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let propertiesViewController = UIStoryboard(name: "Properties", bundle: nil).instantiateInitialViewController()!
         propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
         
-        let contactsViewController = UIStoryboard(name: "Contacts", bundle: nil).instantiateInitialViewController()!
+        let contactsViewController = UIStoryboard(name: "Leads", bundle: nil).instantiateInitialViewController()!
         contactsViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("leads", comment: ""), image: UIImage(systemName: "person.2"), tag: 0)
-        
-        let advancedViewController = UIStoryboard(name: "Advanced", bundle: nil).instantiateInitialViewController()!
-        advancedViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("advanced", comment: ""), image: UIImage(systemName: "chart.bar"), tag: 0)
-        
+                
         let timeTrackingViewController = UIStoryboard(name: "TimeTracking", bundle: nil).instantiateInitialViewController()!
         timeTrackingViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("time_tracking", comment: ""), image: UIImage(systemName: "clock"), tag: 0)
         
         let targetViewController = UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
         targetViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("targets", comment: ""), image: UIImage(systemName: "target"), tag: 0)
         
+        let moreViewController = UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
+        moreViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("more", comment: ""), image: UIImage(systemName: "ellipsis"), tag: 0)
+        
         let viewControllers: [UIViewController] = [propertiesViewController,
                                                    contactsViewController,
                                                    timeTrackingViewController,
-                                                   advancedViewController,
-                                                   targetViewController]
+                                                   targetViewController,
+                                                   moreViewController]
         
         tabBarController.setViewControllers(viewControllers, animated: true)
                 
@@ -80,7 +80,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
+//        self.fetchRealEstateAgentsInIsrael()
+        
+//        NetworkManager.shared.fetchData(url: "https://data.gov.il/dataset/d361f6a6-898c-4e4d-8a80-abc4e8643bf6/resource/a0f56034-88db-4132-8803-854bcdb01ca1/download/metavchim_list_-metavchim.csv")
+        
+//        self.fetchCities(url: Application.AppUrl.Government.israeliRealEstateAgentsList) {
+//            debugPrint("ENDDDDDDDDDD")
+//        }
+        
+//        NetworkManager.shared.fetch()
+        
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
     
     func fetchCities(url: URL, completionHandler: (() -> Void)? = nil) {
@@ -102,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             guard let res = result["records"] as? [[String: Any]] else { return }
                             guard res.count > 0 else {
                                 debugPrint("End")
+                                completionHandler?()
                                 return
                             }
                             
@@ -116,8 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
 
                             if obj2.key == "records" {
-                                /* if let records = obj2.value as? [[String: Any]] {
-                                    records.forEach { (record: [String : Any]) in
+                                if let records = obj2.value as? [[String: Any]] {
+                                    // Cities
+                                    /* records.forEach { (record: [String : Any]) in
                                         let city = CityDetails()
                                         
                                         if var cityName = record["שם_ישוב"] as? String {
@@ -131,11 +147,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         }
                                         
                                         self.cities.append(city)
-                                    }
-                                } */
-                                
-                                if let records = obj2.value as? [[String: Any]] {
-                                    records.forEach { (record: [String : Any]) in
+                                    } */
+                                    
+                                    // Streets
+                                    /* records.forEach { (record: [String : Any]) in
                                         if var cityName = record["שם_ישוב"] as? String {
                                             cityName = cityName.trimmingCharacters(in: .whitespacesAndNewlines)
                                             debugPrint(cityName)
@@ -149,6 +164,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         }
                                         if let streetCode = record["סמל_רחוב"] as? Int {
                                             debugPrint(streetCode)
+                                        }
+                                        
+                                        debugPrint("**********")
+                                    } */
+                                                                        
+                                    records.forEach { (record: [String : Any]) in
+                                        if var city = record["עיר מגורים"] as? String {
+                                            city = city.trimmingCharacters(in: .whitespacesAndNewlines)
+                                            debugPrint(city)
+                                        }
+                                        if var name = record["שם המתווך"] as? String {
+                                            name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+                                            debugPrint(name)
+                                        }
+                                        if let license = record["מס רשיון"] as? Int {
+                                            debugPrint(license)
+                                        }
+                                        if let _id = record["_id"] as? Int {
+                                            debugPrint(_id)
                                         }
                                         
                                         debugPrint("**********")
@@ -177,9 +211,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         task.resume()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return ApplicationDelegate.shared.application(app, open: url, options: options)
+    func realEstateAgentsInIsrael(searchName: String) -> URL? {
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(URLQueryItem(name: "resource_id", value: "a0f56034-88db-4132-8803-854bcdb01ca1"))
+        // queryItems.append(URLQueryItem(name: "q", value: searchName))
+        
+        let components = URLComponents(
+            scheme: "https",
+            host: "data.gov.il",
+            path: "api/3/action/datastore_search",
+            queryItems: queryItems
+        )
+        
+        return components.url
+    }
+    
+    func fetchRealEstateAgentsInIsrael() {
+        // let url = URL(string: "https://data.gov.il/dataset/d361f6a6-898c-4e4d-8a80-abc4e8643bf6/resource/a0f56034-88db-4132-8803-854bcdb01ca1/download/metavchim_list_-metavchim.csv")!
+        
+        let aaa = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=a0f56034-88db-4132-8803-854bcdb01ca1") // self.realEstateAgentsInIsrael(searchName: "idan")
+        guard let url = aaa else { return }
+        debugPrint(url)
+//        let downloadTask = URLSession.shared.downloadTask(with: url) { (downloadedURL: URL?, response: URLResponse?, error: Error?) in
+//            guard error == nil else {
+//                debugPrint(#file, #function, error)
+//                return
+//            }
+//            guard let fileURL: URL = downloadedURL else { return }
+//            debugPrint("downloadedURL", downloadedURL)
+//
+//            do {
+//                    let documentsURL = try
+//                        FileManager.default.url(for: .documentDirectory,
+//                                                in: .userDomainMask,
+//                                                appropriateFor: nil,
+//                                                create: false)
+//                    let savedURL = documentsURL.appendingPathComponent(fileURL.lastPathComponent)
+//                    try FileManager.default.moveItem(at: fileURL, to: savedURL)
+//                } catch {
+//                    print ("file error: \(error)")
+//                }
+//        }
+//        downloadTask.resume()
+        
+        let task = URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            guard error == nil else {
+                debugPrint(#file, #function, error)
+                return
+            }
+            guard let data: Data = data else { return }
+            guard let content = String(data: data, encoding: .utf8) else { return }
+
+            var rows: [String] = content.components(separatedBy: "\n")
+            rows.removeFirst()
+
+            for row: String in rows {
+                let columns: [String] = row.components(separatedBy: ",")
+                if columns.count == 3 {
+
+                }
+            }
+        }
+        task.resume()
     }
     
 }
 
+struct RealEstateAgentData {
+    var licenseNumber: String
+    var name: String
+    var city: String
+}
+
+extension URLComponents {
+    
+    init(scheme: String?, host: String?, path: String, queryItems: [URLQueryItem]?) {
+        self.init()
+        self.scheme = scheme
+        self.host = host
+        self.path = path
+        self.queryItems = queryItems
+    }
+    
+}

@@ -16,7 +16,7 @@ class BalancePageViewController: UIPageViewController, UIPageViewControllerDeleg
     
     private var viewModel = BalanceViewModel()
     private var chartControllers: [ChartViewController] = []
-    private var advancedViewController: AdvancedViewController?
+    private var advancedViewController: MoreViewController?
     
     private lazy var addBarButton: UIBarButtonItem = {
         let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))
@@ -39,7 +39,7 @@ class BalancePageViewController: UIPageViewController, UIPageViewControllerDeleg
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        if let advancedController = parent as? AdvancedViewController {
+        if let advancedController = parent as? MoreViewController {
             if Application.isHebrew() {
                 advancedController.navigationItem.leftBarButtonItem = self.addBarButton
                 advancedController.navigationItem.rightBarButtonItem = self.calendarBarButton
@@ -145,7 +145,7 @@ class BalancePageViewController: UIPageViewController, UIPageViewControllerDeleg
 extension BalancePageViewController {
     
     @objc private func onPressAddButton(_ sender: UIBarButtonItem) {
-        guard let advancedController: AdvancedViewController = self.advancedViewController else { return }
+        guard let advancedController: MoreViewController = self.advancedViewController else { return }
         guard let storyboard: UIStoryboard = advancedController.storyboard else { return }
 
         guard let addTransactionController = storyboard.instantiateViewController(withIdentifier: AddTransactionTableViewController.className())

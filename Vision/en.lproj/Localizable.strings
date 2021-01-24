@@ -66,6 +66,7 @@
 "out_of" = "out of";
 "more_info" = "More info";
 "contact" = "Contact";
+"contacts" = "Contacts";
 "photos" = "Photos";
 "more_info" = "More info";
 "delete_photos" = "Delete photos";
@@ -91,9 +92,9 @@
 "not_yet_defined" = "Not yet defined";
 "time_track_new_day" = "Edit time track";
 
-// MARK: - Advanced
+// MARK: - More
 
-"advanced" = "Advanced";
+"more" = "More";
 "financial_balance" = "Balance";
 "meetings" = "Meetings";
 "transactions" = "Transactions";

@@ -34,7 +34,7 @@ class TasksViewModel {
     }
     
     func showAddScreen(presenter: UIViewController, editedTask: Task? = nil) {
-        guard let advancedController = presenter.parent as? AdvancedViewController else { return }
+        guard let advancedController = presenter.parent as? MoreViewController else { return }
         
         guard let newTaskController = UIStoryboard(name: "Tasks", bundle: nil).instantiateViewController(withIdentifier: NewTaskTableViewController.className())
                 as? NewTaskTableViewController

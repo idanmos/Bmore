@@ -38,9 +38,9 @@ class FactoryController {
         var storyboard: UIStoryboard {
             switch self {
             case .properties: return UIStoryboard(name: "Properties", bundle: nil)
-            case .contacts: return UIStoryboard(name: "Contacts", bundle: nil)
+            case .contacts: return UIStoryboard(name: "Leads", bundle: nil)
             case .timeTracking: return UIStoryboard(name: "TimeTracking", bundle: nil)
-            case .advanced: return UIStoryboard(name: "Advanced", bundle: nil)
+            case .advanced: return UIStoryboard(name: "More", bundle: nil)
             case .targets: return UIStoryboard(name: "Targets", bundle: nil)
             }
         }
