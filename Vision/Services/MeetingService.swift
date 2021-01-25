@@ -1,32 +1,31 @@
 //
-//  MeetingsViewModel.swift
-//  Vision
+//  MeetingService.swift
+//  Bmore
 //
-//  Created by Idan Moshe on 27/12/2020.
+//  Created by Idan Moshe on 25/01/2021.
 //
 
 import UIKit
 import EventKit
 import EventKitUI
 
-class MeetingsViewModel: NSObject {
+class MeetingService: NSObject {
     
-    enum Constants {
+    static let shared = MeetingService()
+    
+    private enum Constants {
         static let oneMonth: TimeInterval = 30*24*3600
     }
     
+    lazy var dataSource: [MeetingEvent] = []
+    var isAccessGranted: Bool = false
+    
     private let eventStore = EKEventStore()
     private var calendar: EKCalendar!
-    var events: [MeetingEvent] = []
-    var eventsObserver: () -> Void = {}
-    
-    override init() {
-        super.init()
-    }
-    
+
     private func createCalendar() {
         let calendar = EKCalendar(for: .event, eventStore: self.eventStore)
-        calendar.title = NSLocalizedString("app_name", comment: "")
+        calendar.title = "app_name".localized
         calendar.source = self.eventStore.defaultCalendarForNewEvents?.source
         
         do {
@@ -51,6 +50,10 @@ class MeetingsViewModel: NSObject {
     
     func requestAccess(completionHandler: ((Bool, Error?) -> Void)? = nil) {
         self.eventStore.requestAccess(to: .event) { (accessGranted: Bool, error: Error?) in
+            debugPrint(#file, #function, "accessGranted", accessGranted, error as Any)
+            
+            self.isAccessGranted = accessGranted
+            
             if let obj: EKCalendar = self.getCalendar() {
                 self.calendar = obj
             } else {
@@ -60,15 +63,14 @@ class MeetingsViewModel: NSObject {
         }
     }
     
-    func create(presenter: UITableViewController) {
+    func create(presenter: UIViewController) {
         let eventViewController = EKEventEditViewController()
-        eventViewController.view.tag = 1234321
         eventViewController.editViewDelegate = self
         eventViewController.eventStore = self.eventStore
         presenter.present(eventViewController, animated: true, completion: nil)
     }
     
-    func edit(presenter: UITableViewController, event: EKEvent) {
+    func edit(presenter: UIViewController, event: EKEvent) {
         let eventViewController = EKEventEditViewController()
         eventViewController.editViewDelegate = self
         eventViewController.eventStore = self.eventStore
@@ -76,7 +78,7 @@ class MeetingsViewModel: NSObject {
         presenter.present(eventViewController, animated: true, completion: nil)
     }
     
-    func show(presenter: UITableViewController, event: EKEvent) {
+    func show(presenter: UIViewController, event: EKEvent) {
         let eventViewController = EKEventViewController()
         eventViewController.event = event
         presenter.present(eventViewController, animated: true, completion: nil)
@@ -85,7 +87,7 @@ class MeetingsViewModel: NSObject {
     func delete(event: EKEvent) {
         do {
             try self.eventStore.remove(event, span: .futureEvents)
-            self.events.removeAll { (obj: MeetingEvent) -> Bool in
+            self.dataSource.removeAll { (obj: MeetingEvent) -> Bool in
                 return obj.event == event
             }
         } catch let error {
@@ -93,32 +95,36 @@ class MeetingsViewModel: NSObject {
         }
     }
     
-    private func getAllEvents() -> [MeetingEvent] {
+    func fetchEvents() -> [MeetingEvent] {
         let startDate = Date().addingTimeInterval(-(Constants.oneMonth*12))
         let endDate = Date().addingTimeInterval(Constants.oneMonth*12)
         
-        let predicate: NSPredicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [self.calendar])
+        let predicate: NSPredicate = self.eventStore.predicateForEvents(
+            withStart: startDate,
+            end: endDate,
+            calendars: [self.calendar]
+        )
+        
         let events: [EKEvent] = self.eventStore.events(matching: predicate)
         
-        let mappedEvents: [MeetingEvent] = events.map { (obj: EKEvent) -> MeetingEvent in
-            return MeetingEvent(event: obj)
-        }
-        
-        return mappedEvents
+        return events.map({ return MeetingEvent(event: $0) })
     }
     
-    func fetchEvents() {
-        self.events = self.getAllEvents()
+    deinit {
+        debugPrint("Deallocating \(self)")
+        NotificationCenter.default.removeObserver(self)
     }
-        
+    
 }
 
 // MARK: - EKEventEditViewDelegate
 
-extension MeetingsViewModel: EKEventEditViewDelegate {
+extension MeetingService: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         controller.dismiss(animated: true, completion: nil)
+        
+        NotificationCenter.default.post(name: .eventEditDidEndNotification, object: action as Any)
         
         if controller.view.tag == 1234321 {
             // add action
@@ -126,12 +132,16 @@ extension MeetingsViewModel: EKEventEditViewDelegate {
         } else {
             debugPrint(#file, #function, "edit action")
         }
-        
-        self.eventsObserver()
     }
     
     func eventEditViewControllerDefaultCalendar(forNewEvents controller: EKEventEditViewController) -> EKCalendar {
         return self.calendar
     }
+    
+}
+
+extension Notification.Name {
+    
+    static let eventEditDidEndNotification = Notification.Name("eventEditDidEndNotification")
     
 }

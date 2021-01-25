@@ -73,6 +73,22 @@ extension UIViewController {
     
 }
 
+extension UIViewController {
+    
+    @objc func closeScreen() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension UIViewController {
+    
+    func wrappedNavigationController() -> UINavigationController {
+        return UINavigationController(rootViewController: self)
+    }
+    
+}
+
 extension UIViewController: MFMessageComposeViewControllerDelegate {
     
     func sendSMS(phoneNumber: String) {

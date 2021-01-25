@@ -29,6 +29,7 @@
 "size" = "Size";
 "rooms" = "Rooms";
 "floor" = "Floor";
+"preview" = "Preview";
 
 // MARK: - Errors
 

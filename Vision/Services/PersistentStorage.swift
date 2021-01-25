@@ -409,3 +409,8 @@ extension PersistentStorage {
     }
     
 }
+
+// MARK: - Meetings
+
+extension PersistentStorage {
+}

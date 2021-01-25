@@ -25,7 +25,7 @@ class PropertiesTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
             target: self,
-            action: #selector(self.closeScreen(_:))
+            action: #selector(self.closeScreen)
         )
         
         self.tableView.backgroundColor = .white
@@ -81,9 +81,5 @@ class PropertiesTableViewController: UITableViewController {
     }
     
     //MARK: - Actions
-    
-    @objc private func closeScreen(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
 }

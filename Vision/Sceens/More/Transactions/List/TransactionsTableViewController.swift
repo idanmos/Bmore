@@ -9,7 +9,10 @@ import UIKit
 
 class TransactionsTableViewController: UITableViewController {
     
+    var isSelectionModeEnabled: Bool = false
+    
     private var viewModel: TransactionsViewModel!
+    private var selectionState: [IndexPath: Bool] = [:]
     
     private lazy var addBarButton: UIBarButtonItem = {
         let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))
@@ -37,6 +40,20 @@ class TransactionsTableViewController: UITableViewController {
         
         self.tableView.register(SingleTransactionTableViewCell.self)
         self.tableView.tableFooterView = UIView(frame: .zero)
+        
+        if self.isSelectionModeEnabled {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .close,
+                target: self,
+                action: #selector(self.closeScreen)
+            )
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .save,
+                target: self,
+                action: #selector(self.saveAndClose(_:))
+            )
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,8 +78,15 @@ class TransactionsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SingleTransactionTableViewCell.self, indexPath: indexPath)
+        cell.isSelectionModeEnabled = self.isSelectionModeEnabled
         let transaction: Transaction = self.viewModel.transactions[indexPath.row]
         cell.configure(transaction)
+        
+        if self.isSelectionModeEnabled {
+            let isSelected: Bool = self.selectionState[indexPath] ?? false
+            cell.isSelected = isSelected
+        }
+        
         return cell
     }
     
@@ -88,8 +112,20 @@ class TransactionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let transaction: Transaction = self.viewModel.transactions[indexPath.row]
-        self.viewModel.showEditScreen(transaction)
+        if self.isSelectionModeEnabled {
+            if var state: Bool = self.selectionState[indexPath] {
+                state.toggle()
+                self.selectionState[indexPath] = state
+            } else {
+                self.selectionState[indexPath] = true
+            }
+            
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        } else {
+            let transaction: Transaction = self.viewModel.transactions[indexPath.row]
+            self.viewModel.showEditScreen(transaction)
+        }
+        
     }
 
     // MARK: - Navigation
@@ -101,7 +137,13 @@ class TransactionsTableViewController: UITableViewController {
 
 // MARK: - General Methods
 
-extension TransactionsTableViewController {}
+extension TransactionsTableViewController {
+    
+    @objc func saveAndClose(_ sender: Any) {
+        //
+    }
+    
+}
 
 // MARK: - Actions
 

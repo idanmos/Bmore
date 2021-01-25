@@ -11,6 +11,44 @@ class Application {
     
     static let shared = Application()
     
+    private let persistentStorage: PersistentStorage
+    
+    init() {
+        self.persistentStorage = PersistentStorage.shared
+    }
+    
+    func configureMainInterface(in window: UIWindow) {
+        window.backgroundColor = .white
+        
+        let tabBarController = UITabBarController()
+        
+        let propertiesViewController = UIStoryboard(name: "Properties", bundle: nil).instantiateInitialViewController()!
+        propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
+        
+        let contactsViewController = UIStoryboard(name: "Leads", bundle: nil).instantiateInitialViewController()!
+        contactsViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("leads", comment: ""), image: UIImage(systemName: "person.2"), tag: 0)
+                
+        let timeTrackingViewController = UIStoryboard(name: "TimeTracking", bundle: nil).instantiateInitialViewController()!
+        timeTrackingViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("time_tracking", comment: ""), image: UIImage(systemName: "clock"), tag: 0)
+        
+        let targetViewController = UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
+        targetViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("targets", comment: ""), image: UIImage(systemName: "target"), tag: 0)
+        
+        let moreViewController = UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
+        moreViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("more", comment: ""), image: UIImage(systemName: "ellipsis"), tag: 0)
+        
+        let viewControllers: [UIViewController] = [propertiesViewController,
+                                                   contactsViewController,
+                                                   timeTrackingViewController,
+                                                   targetViewController,
+                                                   moreViewController]
+        
+        tabBarController.setViewControllers(viewControllers, animated: true)
+                
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+    }
+    
     enum AppUrl {
         enum Government {
             static let israelCityList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=5c78e9fa-c2e2-4771-93ff-7f400a12f7ba")!

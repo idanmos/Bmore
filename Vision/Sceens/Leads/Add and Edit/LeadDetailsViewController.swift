@@ -57,9 +57,13 @@ class LeadDetailsViewController: UIViewController {
     var editedLead: Lead?
     
     private lazy var floatButton = Floaty()
-    private lazy var dataSource: [SectionType] = SectionType.allCases
     private var deviceContact: DeviceContact?
     private lazy var properties: [Property] = []
+    private lazy var transactions: [Transaction] = []
+    private lazy var meetings: [MeetingEvent] = []
+    private lazy var tasks: [Task] = []
+    
+    private lazy var viewModel = LeadAddEditViewModel()
     private lazy var propertiesViewModel = PropertiesViewModel()
     
     private lazy var contactPickerViewController: CNContactPickerViewController = {
@@ -75,19 +79,24 @@ class LeadDetailsViewController: UIViewController {
         self.editedLead = nil
         self.deviceContact = nil
         self.properties.removeAll()
-        self.dataSource.removeAll()
+        self.tasks.removeAll()
+        self.transactions.removeAll()
+        self.meetings.removeAll()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
-    }
         
+        self.setupUI()
+        
+        MeetingService.shared.requestAccess()
+    }
+    
     private func setupUI() {
         let closeButton = UIBarButtonItem(
             barButtonSystemItem: .close,
             target: self,
-            action: #selector(self.onPressCloseBarButton(_:))
+            action: #selector(self.closeScreen)
         )
         
         let doneButton = UIBarButtonItem(
@@ -108,31 +117,31 @@ class LeadDetailsViewController: UIViewController {
                 
         self.floatButton.addItem("contacts".localized, icon: UIImage(systemName: "person.badge.plus")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            self.present(self.contactPickerViewController, animated: true, completion: nil)
+            self.showContactScreen()
             self.floatButton.close()
         }
         
         self.floatButton.addItem("properties".localized, icon: UIImage(systemName: "building.2")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            let viewController = PropertySelectionViewController(viewModel: self.propertiesViewModel)
-            viewController.selectionDelegate = self
-            let navController = UINavigationController(rootViewController: viewController)
-            self.present(navController, animated: true, completion: nil)
+            self.showPropertyScreen()
             self.floatButton.close()
         }
         
-        self.floatButton.addItem("transactions".localized, icon: UIImage(systemName: "dollarsign.circle")) { (item: FloatyItem) in
-            //
+        self.floatButton.addItem("transactions".localized, icon: UIImage(systemName: "dollarsign.circle")) { [weak self] (item: FloatyItem) in
+            guard let self = self else { return }
+            self.showTransactionScreen()
             self.floatButton.close()
         }
         
-        self.floatButton.addItem("meetings".localized, icon: UIImage(systemName: "person.2")) { (item: FloatyItem) in
-            //
+        self.floatButton.addItem("meetings".localized, icon: UIImage(systemName: "person.2")) { [weak self] (item: FloatyItem) in
+            guard let self = self else { return }
+            self.showMeetingScreen()
             self.floatButton.close()
         }
         
-        self.floatButton.addItem("tasks".localized, icon: UIImage(systemName: "list.number")) { (item: FloatyItem) in
-            //
+        self.floatButton.addItem("tasks".localized, icon: UIImage(systemName: "list.number")) { [weak self] (item: FloatyItem) in
+            guard let self = self else { return }
+            self.showTaskScreen()
             self.floatButton.close()
         }
         
@@ -145,15 +154,75 @@ class LeadDetailsViewController: UIViewController {
 
 // MARK: - Navigation
 
-extension LeadDetailsViewController {}
+extension LeadDetailsViewController {
+    
+    private func showContactScreen() {
+        DispatchMainThreadSafe {
+            self.present(self.contactPickerViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func showPropertyScreen() {
+        DispatchMainThreadSafe {
+            let viewController = BaseSelectionTableViewController(
+                dataSource: self.viewModel.getProperties(),
+                leadType: .properties
+            )
+            
+            viewController.delegate = self
+            viewController.title = LeadSelectionType.properties.title()
+            let navController = viewController.wrappedNavigationController()
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    private func showTransactionScreen() {
+        DispatchMainThreadSafe {
+            let viewController = BaseSelectionTableViewController(
+                dataSource: self.viewModel.getTransactions(),
+                leadType: .transactions
+            )
+            
+            viewController.delegate = self
+            viewController.title = LeadSelectionType.transactions.title()
+            let navController = viewController.wrappedNavigationController()
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    private func showMeetingScreen() {
+        DispatchMainThreadSafe {
+            let viewController = BaseSelectionTableViewController(
+                dataSource: self.viewModel.getMeetings(),
+                leadType: .meetings
+            )
+            
+            viewController.delegate = self
+            viewController.title = LeadSelectionType.meetings.title()
+            let navController = viewController.wrappedNavigationController()
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    private func showTaskScreen() {
+        DispatchMainThreadSafe {
+            let viewController = BaseSelectionTableViewController(
+                dataSource: self.viewModel.getTasks(),
+                leadType: .tasks
+            )
+            
+            viewController.delegate = self
+            viewController.title = LeadSelectionType.tasks.title()
+            let navController = viewController.wrappedNavigationController()
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+}
 
 // MARK: - Actions
 
 extension LeadDetailsViewController {
-    
-    @IBAction private func onPressCloseBarButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction private func onPressSaveBarButton(_ sender: UIBarButtonItem) {
         //
@@ -166,7 +235,7 @@ extension LeadDetailsViewController {
 extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataSource.count
+        return SectionType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -186,11 +255,13 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             cell.detailTextLabel?.text = nil
             
             if type == .properties {
-                if self.properties.count > 0 {
-                    cell.detailTextLabel?.text = "\(self.properties.count)"
-                } else {
-                    cell.detailTextLabel?.text = "none".localized
-                }
+                cell.detailTextLabel?.text = self.detailTextLabel(self.properties)
+            } else if type == .transactions {
+                cell.detailTextLabel?.text = self.detailTextLabel(self.transactions)
+            } else if type == .meetings {
+                cell.detailTextLabel?.text = self.detailTextLabel(self.meetings)
+            } else if type == .tasks {
+                cell.detailTextLabel?.text = self.detailTextLabel(self.tasks)
             }
             
             return cell
@@ -206,10 +277,35 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         
         guard let type = SectionType(rawValue: indexPath.row) else { return }
         
-        if type == .properties {
-            let viewController = PropertiesTableViewController(properties: self.properties)
-            let navController = UINavigationController(rootViewController: viewController)
-            self.present(navController, animated: true, completion: nil)
+        switch type {
+        case .personalDetails:
+            break
+        case .contactButtons:
+            break
+        case .properties:
+            break
+        case .transactions:
+            break
+        case .meetings:
+            break
+        case .tasks:
+            break
+        case .leadQualification:
+            break
+        }
+    }
+    
+    // MARK: - Table View Helper Methods
+    
+    private func detailTextLabel(_ array: [Any]) -> String {
+        return array.count > 0 ? "\(array.count)" : "none".localized
+    }
+    
+    private func reloadScreen(animated: Bool) {
+        if animated {
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        } else {
+            self.tableView.reloadData()
         }
     }
     
@@ -225,35 +321,30 @@ extension LeadDetailsViewController: CNContactPickerDelegate {
     
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         self.deviceContact = DeviceContact(contact: contact)
-//        self.viewModel.add(contacts)
-        
-//        let rows: [IndexPath] = [
-//            IndexPath(row: SectionType.personalDetails.rawValue, section: 0),
-//            IndexPath(row: SectionType.contactButtons.rawValue, section: 0)
-//        ]
-        self.tableView.reloadData()
+        self.reloadScreen(animated: true)
     }
     
 }
 
-// MARK: - PropertySelectionViewControllerDelegate
+// MARK: - BaseSelectionTableViewControllerDelegate
 
-extension LeadDetailsViewController: PropertySelectionViewControllerDelegate {
+extension LeadDetailsViewController: BaseSelectionTableViewControllerDelegate {
     
-    var allowsMultipleSelection: Bool {
-        return true
-    }
-    
-    var selectedProperties: [Property] {
-        return self.properties
-    }
-    
-    func propertyController(_ propertyController: PropertySelectionViewController, didSelect properties: [Property]) {
-        propertyController.dismiss(animated: true, completion: nil)
+    func selectionController(_ selectionController: BaseSelectionTableViewController, didSelect objects: [Any], leadType: LeadSelectionType) {
+        switch leadType {
+        case .none:
+            break
+        case .properties:
+            self.properties = objects as! [Property]
+        case .transactions:
+            self.transactions = objects as! [Transaction]
+        case .meetings:
+            self.meetings = objects as! [MeetingEvent]
+        case .tasks:
+            self.tasks = objects as! [Task]
+        }
         
-        self.properties = properties
-                
-        self.tableView.reloadData()
+        self.reloadScreen(animated: true)
     }
     
 }

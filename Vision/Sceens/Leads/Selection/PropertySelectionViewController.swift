@@ -30,7 +30,7 @@ class PropertySelectionViewController: UICollectionViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
             target: self,
-            action: #selector(self.closeScreen(_:))
+            action: #selector(self.closeScreen)
         )
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -124,10 +124,6 @@ class PropertySelectionViewController: UICollectionViewController {
     }
     
     // MARK: - General Methods
-    
-    @objc private func closeScreen(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @objc private func saveAndClose(_ sender: Any) {
         guard self.selectedPropertiesId.count > 0 else { return }

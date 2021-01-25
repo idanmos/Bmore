@@ -30,66 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    private func getTabBarController() -> UITabBarController {
-        let tabBarController = UITabBarController()
-        
-        
-        let propertiesViewController = UIStoryboard(name: "Properties", bundle: nil).instantiateInitialViewController()!
-        propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
-        
-        let contactsViewController = UIStoryboard(name: "Leads", bundle: nil).instantiateInitialViewController()!
-        contactsViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("leads", comment: ""), image: UIImage(systemName: "person.2"), tag: 0)
-                
-        let timeTrackingViewController = UIStoryboard(name: "TimeTracking", bundle: nil).instantiateInitialViewController()!
-        timeTrackingViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("time_tracking", comment: ""), image: UIImage(systemName: "clock"), tag: 0)
-        
-        let targetViewController = UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
-        targetViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("targets", comment: ""), image: UIImage(systemName: "target"), tag: 0)
-        
-        let moreViewController = UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
-        moreViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("more", comment: ""), image: UIImage(systemName: "ellipsis"), tag: 0)
-        
-        let viewControllers: [UIViewController] = [propertiesViewController,
-                                                   contactsViewController,
-                                                   timeTrackingViewController,
-                                                   targetViewController,
-                                                   moreViewController]
-        
-        tabBarController.setViewControllers(viewControllers, animated: true)
-                
-        return tabBarController
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Application.shared.applicationIconBadgeNumber = 0
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = .white
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions: launchOptions
+        )
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        Application.shared.configureMainInterface(in: window)
+        self.window = window
                 
-        // self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        self.window?.rootViewController = self.getTabBarController()
-        self.window?.makeKeyAndVisible()
-        
-//        self.fetchCities(url: Application.AppUrl.Government.israelCityList) {
-//            debugPrint("Finished")
-//        }
-        
-//        self.fetchCities(url: Application.AppUrl.Government.israeliStreetList) {
-//            debugPrint("Finished")
-//        }
-        
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-//        self.fetchRealEstateAgentsInIsrael()
-        
-//        NetworkManager.shared.fetchData(url: "https://data.gov.il/dataset/d361f6a6-898c-4e4d-8a80-abc4e8643bf6/resource/a0f56034-88db-4132-8803-854bcdb01ca1/download/metavchim_list_-metavchim.csv")
-        
-//        self.fetchCities(url: Application.AppUrl.Government.israeliRealEstateAgentsList) {
-//            debugPrint("ENDDDDDDDDDD")
-//        }
-        
-//        NetworkManager.shared.fetch()
-        
         return true
     }
     
