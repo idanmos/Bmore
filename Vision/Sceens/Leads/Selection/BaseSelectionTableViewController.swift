@@ -29,8 +29,9 @@ class BaseSelectionTableViewController: UITableViewController {
     
     weak var delegate: BaseSelectionTableViewControllerDelegate?
     
-    private var dataSource: [Any] = []
+    var isShowOnlyMode: Bool = false
     
+    private var dataSource: [Any] = []
     private var leadType: LeadSelectionType = .none
     
     init(dataSource: [Any], leadType: LeadSelectionType) {
@@ -58,22 +59,34 @@ class BaseSelectionTableViewController: UITableViewController {
             action: #selector(self.closeScreen)
         )
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .save,
-            target: self,
-            action: #selector(self.saveAndClose(_:))
-        )
+        if self.isShowOnlyMode {
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .save,
+                target: self,
+                action: #selector(self.saveAndClose(_:))
+            )
+        }
         
         self.tableView.register(SelectionPropertyTableViewCell.self)
         self.tableView.register(SelectionTransactionTableViewCell.self)
         self.tableView.register(SelectionTaskTableViewCell.self)
         self.tableView.register(SelectionMeetingTableViewCell.self)
         
+        self.tableView.register(ShowMeetingTableViewCell.self)
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: .zero)
-        self.tableView.allowsSelection = true
-        self.tableView.allowsMultipleSelection = true
+        
+        if self.isShowOnlyMode {
+            self.tableView.allowsSelection = false
+            self.tableView.allowsMultipleSelection = false
+        } else {
+            self.tableView.allowsSelection = true
+            self.tableView.allowsMultipleSelection = true
+        }
     }
     
     @objc private func saveAndClose(_ sender: Any) {
@@ -113,9 +126,15 @@ class BaseSelectionTableViewController: UITableViewController {
             cell.transaction = obj
             return cell
         } else if let obj = self.dataSource[indexPath.row] as? MeetingEvent {
-            let cell = tableView.dequeue(SelectionMeetingTableViewCell.self, indexPath: indexPath)
-            cell.meeting = obj
-            return cell
+            if self.isShowOnlyMode {
+                let cell = tableView.dequeue(ShowMeetingTableViewCell.self, indexPath: indexPath)
+                cell.meeting = obj
+                return cell
+            } else {
+                let cell = tableView.dequeue(SelectionMeetingTableViewCell.self, indexPath: indexPath)
+                cell.meeting = obj
+                return cell
+            }
         } else if let obj = self.dataSource[indexPath.row] as? Task {
             let cell = tableView.dequeue(SelectionTaskTableViewCell.self, indexPath: indexPath)
             cell.task = obj
@@ -124,7 +143,19 @@ class BaseSelectionTableViewController: UITableViewController {
         
         return UITableViewCell()
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard self.isShowOnlyMode else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let obj = self.dataSource[indexPath.row] as? Property {
+        } else if let obj = self.dataSource[indexPath.row] as? Transaction {
+        } else if let obj = self.dataSource[indexPath.row] as? MeetingEvent {
+            MeetingService.shared.show(presenter: self, event: obj.event)
+        } else if let obj = self.dataSource[indexPath.row] as? Task {
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

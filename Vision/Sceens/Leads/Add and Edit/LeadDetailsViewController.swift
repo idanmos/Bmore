@@ -123,25 +123,25 @@ class LeadDetailsViewController: UIViewController {
         
         self.floatButton.addItem("properties".localized, icon: UIImage(systemName: "building.2")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            self.showPropertyScreen()
+            self.showPropertyScreen(isShowOnlyMode: false)
             self.floatButton.close()
         }
         
         self.floatButton.addItem("transactions".localized, icon: UIImage(systemName: "dollarsign.circle")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            self.showTransactionScreen()
+            self.showTransactionScreen(isShowOnlyMode: false)
             self.floatButton.close()
         }
         
         self.floatButton.addItem("meetings".localized, icon: UIImage(systemName: "person.2")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            self.showMeetingScreen()
+            self.showMeetingScreen(isShowOnlyMode: false)
             self.floatButton.close()
         }
         
         self.floatButton.addItem("tasks".localized, icon: UIImage(systemName: "list.number")) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
-            self.showTaskScreen()
+            self.showTaskScreen(isShowOnlyMode: false)
             self.floatButton.close()
         }
         
@@ -162,7 +162,7 @@ extension LeadDetailsViewController {
         }
     }
     
-    private func showPropertyScreen() {
+    private func showPropertyScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
             let viewController = BaseSelectionTableViewController(
                 dataSource: self.viewModel.getProperties(),
@@ -171,12 +171,13 @@ extension LeadDetailsViewController {
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.properties.title()
+            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
     }
     
-    private func showTransactionScreen() {
+    private func showTransactionScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
             let viewController = BaseSelectionTableViewController(
                 dataSource: self.viewModel.getTransactions(),
@@ -185,12 +186,13 @@ extension LeadDetailsViewController {
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.transactions.title()
+            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
     }
     
-    private func showMeetingScreen() {
+    private func showMeetingScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
             let viewController = BaseSelectionTableViewController(
                 dataSource: self.viewModel.getMeetings(),
@@ -199,12 +201,13 @@ extension LeadDetailsViewController {
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.meetings.title()
+            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
     }
     
-    private func showTaskScreen() {
+    private func showTaskScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
             let viewController = BaseSelectionTableViewController(
                 dataSource: self.viewModel.getTasks(),
@@ -213,6 +216,7 @@ extension LeadDetailsViewController {
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.tasks.title()
+            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
@@ -286,10 +290,8 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             break
         case .transactions:
             break
-        case .meetings:
-            break
-        case .tasks:
-            break
+        case .meetings: self.showMeetingScreen(isShowOnlyMode: true)
+        case .tasks: self.showTaskScreen(isShowOnlyMode: true)
         case .leadQualification:
             break
         }

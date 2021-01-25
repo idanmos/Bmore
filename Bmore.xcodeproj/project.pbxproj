@@ -200,6 +200,8 @@
 		8ABA8F0525BF080B008517C1 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0425BF080B008517C1 /* MeetingService.swift */; };
 		8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */; };
 		8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */; };
+		8ABA8F1A25BF6267008517C1 /* ShowMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */; };
+		8ABA8F1D25BF62B9008517C1 /* ShowMeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */; };
 		8ADDB02E259CFEAC00E12C37 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */; };
 		8ADDB02F259CFEAC00E12C37 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */; };
 		8ADDB033259CFECA00E12C37 /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */; };
@@ -404,6 +406,8 @@
 		8ABA8F0425BF080B008517C1 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMeetingTableViewCell.swift; sourceTree = "<group>"; };
 		8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionMeetingTableViewCell.xib; sourceTree = "<group>"; };
+		8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMeetingTableViewCell.swift; sourceTree = "<group>"; };
+		8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMeetingTableViewCell.xib; sourceTree = "<group>"; };
 		8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
 		8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
@@ -659,24 +663,8 @@
 				8A74704D25BEABE700EC0676 /* BaseSelectionTableViewController.swift */,
 				8A1FA7A225B782FD00722A40 /* PropertySelectionViewController.swift */,
 				8A74702D25BE121A00EC0676 /* PropertiesTableViewController.swift */,
-				8A74705125BEBBAE00EC0676 /* Cells */,
 			);
 			path = Selection;
-			sourceTree = "<group>";
-		};
-		8A74705125BEBBAE00EC0676 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8A74705D25BEC77100EC0676 /* SelectionPropertyTableViewCell.swift */,
-				8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */,
-				8A74704825BEA96300EC0676 /* SelectionTransactionTableViewCell.swift */,
-				8A74704925BEA96300EC0676 /* SelectionTransactionTableViewCell.xib */,
-				8A74705825BEBBE700EC0676 /* SelectionTaskTableViewCell.swift */,
-				8A74705925BEBBE700EC0676 /* SelectionTaskTableViewCell.xib */,
-				8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */,
-				8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		8A81CAA325A58EC2002BC2D8 /* Targets */ = {
@@ -1103,6 +1091,16 @@
 				8A9A439A25B449270064994C /* LeadContactTableViewCell.xib */,
 				8A9A439E25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift */,
 				8A9A439F25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib */,
+				8A74705D25BEC77100EC0676 /* SelectionPropertyTableViewCell.swift */,
+				8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */,
+				8A74704825BEA96300EC0676 /* SelectionTransactionTableViewCell.swift */,
+				8A74704925BEA96300EC0676 /* SelectionTransactionTableViewCell.xib */,
+				8A74705825BEBBE700EC0676 /* SelectionTaskTableViewCell.swift */,
+				8A74705925BEBBE700EC0676 /* SelectionTaskTableViewCell.xib */,
+				8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */,
+				8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */,
+				8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */,
+				8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1256,6 +1254,7 @@
 				8A973DF5257EC223002422B8 /* PropertyDetailsTitleAndSubtitleTableViewCell.xib in Resources */,
 				8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */,
 				8A060855258691D8000765D8 /* MultipleSelectionTableViewCell.xib in Resources */,
+				8ABA8F1D25BF62B9008517C1 /* ShowMeetingTableViewCell.xib in Resources */,
 				8A9A422525AB71020064994C /* PropertyDetailsTableViewCell.xib in Resources */,
 				8A0608E42587EDB5000765D8 /* Properties.storyboard in Resources */,
 				8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */,
@@ -1388,6 +1387,7 @@
 				8A46F8AC258AB6B900021679 /* CalendarEventTableViewCell.swift in Sources */,
 				8A74705A25BEBBE700EC0676 /* SelectionTaskTableViewCell.swift in Sources */,
 				8A973EA62582B2F3002422B8 /* AddPropertyTableViewController.swift in Sources */,
+				8ABA8F1A25BF6267008517C1 /* ShowMeetingTableViewCell.swift in Sources */,
 				8A881EDD25B52C5B008F4D96 /* LoginViewController.swift in Sources */,
 				8A973D62257C12AD002422B8 /* AppDelegate.swift in Sources */,
 				8A9A428825ADAA000064994C /* ChartViewController.swift in Sources */,
