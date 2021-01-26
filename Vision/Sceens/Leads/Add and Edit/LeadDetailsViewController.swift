@@ -164,14 +164,23 @@ extension LeadDetailsViewController {
     
     private func showPropertyScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
-            let viewController = BaseSelectionTableViewController(
-                dataSource: self.viewModel.getProperties(),
-                leadType: .properties
-            )
+            let viewController: BaseSelectionTableViewController
+            if isShowOnlyMode {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.selectedProperties,
+                    leadType: .properties,
+                    isShowOnlyMode: true
+                )
+            } else {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.getProperties(),
+                    leadType: .properties,
+                    isShowOnlyMode: false
+                )
+            }
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.properties.title()
-            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
@@ -179,14 +188,24 @@ extension LeadDetailsViewController {
     
     private func showTransactionScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
-            let viewController = BaseSelectionTableViewController(
-                dataSource: self.viewModel.getTransactions(),
-                leadType: .transactions
-            )
+            let viewController: BaseSelectionTableViewController
+            
+            if isShowOnlyMode {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.selectedTransactions,
+                    leadType: .transactions,
+                    isShowOnlyMode: true
+                )
+            } else {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.getTransactions(),
+                    leadType: .transactions,
+                    isShowOnlyMode: false
+                )
+            }
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.transactions.title()
-            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
@@ -194,14 +213,24 @@ extension LeadDetailsViewController {
     
     private func showMeetingScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
-            let viewController = BaseSelectionTableViewController(
-                dataSource: self.viewModel.getMeetings(),
-                leadType: .meetings
-            )
+            let viewController: BaseSelectionTableViewController
+            
+            if isShowOnlyMode {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.selectedMeetings,
+                    leadType: .meetings,
+                    isShowOnlyMode: true
+                )
+            } else {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.getMeetings(),
+                    leadType: .meetings,
+                    isShowOnlyMode: false
+                )
+            }
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.meetings.title()
-            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
@@ -209,14 +238,24 @@ extension LeadDetailsViewController {
     
     private func showTaskScreen(isShowOnlyMode: Bool) {
         DispatchMainThreadSafe {
-            let viewController = BaseSelectionTableViewController(
-                dataSource: self.viewModel.getTasks(),
-                leadType: .tasks
-            )
+            let viewController: BaseSelectionTableViewController
+            
+            if isShowOnlyMode {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.selectedTasks,
+                    leadType: .tasks,
+                    isShowOnlyMode: true
+                )
+            } else {
+                viewController = BaseSelectionTableViewController(
+                    dataSource: self.viewModel.getTasks(),
+                    leadType: .tasks,
+                    isShowOnlyMode: false
+                )
+            }
             
             viewController.delegate = self
             viewController.title = LeadSelectionType.tasks.title()
-            viewController.isShowOnlyMode = isShowOnlyMode
             let navController = viewController.wrappedNavigationController()
             self.present(navController, animated: true, completion: nil)
         }
@@ -229,7 +268,20 @@ extension LeadDetailsViewController {
 extension LeadDetailsViewController {
     
     @IBAction private func onPressSaveBarButton(_ sender: UIBarButtonItem) {
-        //
+        let lead = Lead(context: PersistentStorage.shared.mainContext())
+        lead.leadId = UUID()
+        lead.timestamp = Date()
+        lead.contactId = self.deviceContact?.identifier
+        lead.properties = NSSet(array: self.viewModel.selectedProperties)
+        lead.tasks = NSSet(array: self.viewModel.selectedTasks)
+        lead.transactions = NSSet(array: self.viewModel.selectedTransactions)
+        
+        let meetingsId: [String] = self.meetings.map({ $0.eventIdentifier() })
+        lead.meetings = NSSet(array: meetingsId)
+        
+        PersistentStorage.shared.saveContext()
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -259,13 +311,13 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             cell.detailTextLabel?.text = nil
             
             if type == .properties {
-                cell.detailTextLabel?.text = self.detailTextLabel(self.properties)
+                cell.detailTextLabel?.text = self.detailTextLabel(self.viewModel.selectedProperties)
             } else if type == .transactions {
-                cell.detailTextLabel?.text = self.detailTextLabel(self.transactions)
+                cell.detailTextLabel?.text = self.detailTextLabel(self.viewModel.selectedTransactions)
             } else if type == .meetings {
-                cell.detailTextLabel?.text = self.detailTextLabel(self.meetings)
+                cell.detailTextLabel?.text = self.detailTextLabel(self.viewModel.selectedMeetings)
             } else if type == .tasks {
-                cell.detailTextLabel?.text = self.detailTextLabel(self.tasks)
+                cell.detailTextLabel?.text = self.detailTextLabel(self.viewModel.selectedTasks)
             }
             
             return cell
@@ -286,10 +338,8 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             break
         case .contactButtons:
             break
-        case .properties:
-            break
-        case .transactions:
-            break
+        case .properties: self.showPropertyScreen(isShowOnlyMode: true)
+        case .transactions: self.showTransactionScreen(isShowOnlyMode: true)
         case .meetings: self.showMeetingScreen(isShowOnlyMode: true)
         case .tasks: self.showTaskScreen(isShowOnlyMode: true)
         case .leadQualification:
@@ -337,13 +387,13 @@ extension LeadDetailsViewController: BaseSelectionTableViewControllerDelegate {
         case .none:
             break
         case .properties:
-            self.properties = objects as! [Property]
+            self.viewModel.selectedProperties = objects as! [Property]
         case .transactions:
-            self.transactions = objects as! [Transaction]
+            self.viewModel.selectedTransactions = objects as! [Transaction]
         case .meetings:
-            self.meetings = objects as! [MeetingEvent]
+            self.viewModel.selectedMeetings = objects as! [MeetingEvent]
         case .tasks:
-            self.tasks = objects as! [Task]
+            self.viewModel.selectedTasks = objects as! [Task]
         }
         
         self.reloadScreen(animated: true)

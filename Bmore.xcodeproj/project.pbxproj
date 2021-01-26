@@ -201,7 +201,7 @@
 		8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */; };
 		8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */; };
 		8ABA8F1A25BF6267008517C1 /* ShowMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */; };
-		8ABA8F1D25BF62B9008517C1 /* ShowMeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */; };
+		8ABA8F2725BFF34A008517C1 /* ShowTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F2625BFF34A008517C1 /* ShowTaskTableViewCell.swift */; };
 		8ADDB02E259CFEAC00E12C37 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */; };
 		8ADDB02F259CFEAC00E12C37 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */; };
 		8ADDB033259CFECA00E12C37 /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */; };
@@ -407,7 +407,7 @@
 		8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMeetingTableViewCell.swift; sourceTree = "<group>"; };
 		8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionMeetingTableViewCell.xib; sourceTree = "<group>"; };
 		8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMeetingTableViewCell.swift; sourceTree = "<group>"; };
-		8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMeetingTableViewCell.xib; sourceTree = "<group>"; };
+		8ABA8F2625BFF34A008517C1 /* ShowTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTaskTableViewCell.swift; sourceTree = "<group>"; };
 		8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 		8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
 		8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
@@ -1085,22 +1085,9 @@
 		8A9A439625B449050064994C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8A9A439125B449000064994C /* LeadPersonalDetailsTableViewCell.swift */,
-				8A9A439225B449000064994C /* LeadPersonalDetailsTableViewCell.xib */,
-				8A9A439925B449270064994C /* LeadContactTableViewCell.swift */,
-				8A9A439A25B449270064994C /* LeadContactTableViewCell.xib */,
-				8A9A439E25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift */,
-				8A9A439F25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib */,
-				8A74705D25BEC77100EC0676 /* SelectionPropertyTableViewCell.swift */,
-				8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */,
-				8A74704825BEA96300EC0676 /* SelectionTransactionTableViewCell.swift */,
-				8A74704925BEA96300EC0676 /* SelectionTransactionTableViewCell.xib */,
-				8A74705825BEBBE700EC0676 /* SelectionTaskTableViewCell.swift */,
-				8A74705925BEBBE700EC0676 /* SelectionTaskTableViewCell.xib */,
-				8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */,
-				8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */,
-				8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */,
-				8ABA8F1C25BF62B9008517C1 /* ShowMeetingTableViewCell.xib */,
+				8ABA8F2325BFF22C008517C1 /* List */,
+				8ABA8F2025BFF217008517C1 /* Selection */,
+				8ABA8F2125BFF224008517C1 /* Show */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1118,6 +1105,43 @@
 			isa = PBXGroup;
 			children = (
 				8A973D93257CC895002422B8 /* LeadsTableViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		8ABA8F2025BFF217008517C1 /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+				8A74705D25BEC77100EC0676 /* SelectionPropertyTableViewCell.swift */,
+				8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */,
+				8A74704825BEA96300EC0676 /* SelectionTransactionTableViewCell.swift */,
+				8A74704925BEA96300EC0676 /* SelectionTransactionTableViewCell.xib */,
+				8A74705825BEBBE700EC0676 /* SelectionTaskTableViewCell.swift */,
+				8A74705925BEBBE700EC0676 /* SelectionTaskTableViewCell.xib */,
+				8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */,
+				8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */,
+			);
+			path = Selection;
+			sourceTree = "<group>";
+		};
+		8ABA8F2125BFF224008517C1 /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				8ABA8F2625BFF34A008517C1 /* ShowTaskTableViewCell.swift */,
+				8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		8ABA8F2325BFF22C008517C1 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8A9A439125B449000064994C /* LeadPersonalDetailsTableViewCell.swift */,
+				8A9A439225B449000064994C /* LeadPersonalDetailsTableViewCell.xib */,
+				8A9A439925B449270064994C /* LeadContactTableViewCell.swift */,
+				8A9A439A25B449270064994C /* LeadContactTableViewCell.xib */,
+				8A9A439E25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift */,
+				8A9A439F25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1254,7 +1278,6 @@
 				8A973DF5257EC223002422B8 /* PropertyDetailsTitleAndSubtitleTableViewCell.xib in Resources */,
 				8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */,
 				8A060855258691D8000765D8 /* MultipleSelectionTableViewCell.xib in Resources */,
-				8ABA8F1D25BF62B9008517C1 /* ShowMeetingTableViewCell.xib in Resources */,
 				8A9A422525AB71020064994C /* PropertyDetailsTableViewCell.xib in Resources */,
 				8A0608E42587EDB5000765D8 /* Properties.storyboard in Resources */,
 				8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */,
@@ -1363,6 +1386,7 @@
 				8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */,
 				8A881EE425B52F52008F4D96 /* FacebookManager.swift in Sources */,
 				8A973DE0257E7810002422B8 /* StoryboardCustomXibView.swift in Sources */,
+				8ABA8F2725BFF34A008517C1 /* ShowTaskTableViewCell.swift in Sources */,
 				8A742A4025947C970014848A /* BalanceCollectionViewCell.swift in Sources */,
 				8A9A424625ABC9820064994C /* InstagramNewsFeedToastView.swift in Sources */,
 				8A973E3D257FDF45002422B8 /* URL+Extensions.swift in Sources */,
@@ -1648,7 +1672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N3N3LX399B;
 				INFOPLIST_FILE = Vision/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1673,7 +1697,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N3N3LX399B;
 				INFOPLIST_FILE = Vision/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -29,16 +29,16 @@ class BaseSelectionTableViewController: UITableViewController {
     
     weak var delegate: BaseSelectionTableViewControllerDelegate?
     
-    var isShowOnlyMode: Bool = false
-    
     private var dataSource: [Any] = []
     private var leadType: LeadSelectionType = .none
+    private var isShowOnlyMode: Bool = false
     
-    init(dataSource: [Any], leadType: LeadSelectionType) {
+    init(dataSource: [Any], leadType: LeadSelectionType, isShowOnlyMode: Bool) {
         super.init(style: .plain)
         self.view.frame = UIScreen.main.bounds
         self.dataSource = dataSource
         self.leadType = leadType
+        self.isShowOnlyMode = isShowOnlyMode
     }
     
     required init?(coder: NSCoder) {
@@ -58,27 +58,25 @@ class BaseSelectionTableViewController: UITableViewController {
             target: self,
             action: #selector(self.closeScreen)
         )
-        
-        if self.isShowOnlyMode {
-            self.navigationItem.rightBarButtonItem = nil
-        } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .save,
-                target: self,
-                action: #selector(self.saveAndClose(_:))
-            )
-        }
-        
+                        
+        // register cells
         self.tableView.register(SelectionPropertyTableViewCell.self)
         self.tableView.register(SelectionTransactionTableViewCell.self)
         self.tableView.register(SelectionTaskTableViewCell.self)
         self.tableView.register(SelectionMeetingTableViewCell.self)
         
+        self.tableView.register(PropertyTableViewCell.self)
+        self.tableView.register(SingleTransactionTableViewCell.self)
         self.tableView.register(ShowMeetingTableViewCell.self)
+        self.tableView.register(ShowTaskTableViewCell.self)
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if self.isShowOnlyMode {
             self.tableView.allowsSelection = false
@@ -86,6 +84,16 @@ class BaseSelectionTableViewController: UITableViewController {
         } else {
             self.tableView.allowsSelection = true
             self.tableView.allowsMultipleSelection = true
+        }
+        
+        if self.isShowOnlyMode {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIView(frame: .zero))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .save,
+                target: self,
+                action: #selector(self.saveAndClose(_:))
+            )
         }
     }
     
@@ -118,13 +126,25 @@ class BaseSelectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let obj = self.dataSource[indexPath.row] as? Property {
-            let cell = tableView.dequeue(SelectionPropertyTableViewCell.self, indexPath: indexPath)
-            cell.property = obj
-            return cell
+            if self.isShowOnlyMode {
+                let cell = tableView.dequeue(PropertyTableViewCell.self, indexPath: indexPath)
+                cell.configure(obj)
+                return cell
+            } else {
+                let cell = tableView.dequeue(SelectionPropertyTableViewCell.self, indexPath: indexPath)
+                cell.property = obj
+                return cell
+            }
         } else if let obj = self.dataSource[indexPath.row] as? Transaction {
-            let cell = tableView.dequeue(SelectionTransactionTableViewCell.self, indexPath: indexPath)
-            cell.transaction = obj
-            return cell
+            if self.isShowOnlyMode {
+                let cell = tableView.dequeue(SingleTransactionTableViewCell.self, indexPath: indexPath)
+                cell.configure(obj)
+                return cell
+            } else {
+                let cell = tableView.dequeue(SelectionTransactionTableViewCell.self, indexPath: indexPath)
+                cell.transaction = obj
+                return cell
+            }
         } else if let obj = self.dataSource[indexPath.row] as? MeetingEvent {
             if self.isShowOnlyMode {
                 let cell = tableView.dequeue(ShowMeetingTableViewCell.self, indexPath: indexPath)
@@ -136,9 +156,15 @@ class BaseSelectionTableViewController: UITableViewController {
                 return cell
             }
         } else if let obj = self.dataSource[indexPath.row] as? Task {
-            let cell = tableView.dequeue(SelectionTaskTableViewCell.self, indexPath: indexPath)
-            cell.task = obj
-            return cell
+            if self.isShowOnlyMode {
+                let cell = tableView.dequeue(ShowTaskTableViewCell.self, indexPath: indexPath)
+                cell.task = obj
+                return cell
+            } else {
+                let cell = tableView.dequeue(SelectionTaskTableViewCell.self, indexPath: indexPath)
+                cell.task = obj
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -149,56 +175,50 @@ class BaseSelectionTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if let obj = self.dataSource[indexPath.row] as? Property {
+            self.showPropertyScreen(obj)
         } else if let obj = self.dataSource[indexPath.row] as? Transaction {
+            self.showTransactionScreen(obj)
         } else if let obj = self.dataSource[indexPath.row] as? MeetingEvent {
             MeetingService.shared.show(presenter: self, event: obj.event)
         } else if let obj = self.dataSource[indexPath.row] as? Task {
+            self.showTaskScreen(obj)
+        }
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        debugPrint(#function, segue, sender as Any)
+    }
+    
+    private func showPropertyScreen(_ property: Property) {
+        let propertyStoryboard = FactoryController.Screen.properties.storyboard
+        guard let propertyDetailsController = propertyStoryboard
+                .instantiateViewController(withIdentifier: PropertyDetailsViewController.className())
+                as? PropertyDetailsViewController
+        else { return }
+        propertyDetailsController.property = property
+        self.navigationController?.pushViewController(propertyDetailsController, animated: true)
+    }
+    
+    private func showTransactionScreen(_ transaction: Transaction) {
+        if let addTransactionController = UIStoryboard(name: "More", bundle: nil)
+            .instantiateViewController(withIdentifier: AddTransactionTableViewController.className())
+            as? AddTransactionTableViewController {
+            addTransactionController.editedTransaction = transaction
+            self.navigationController?.pushViewController(addTransactionController, animated: true)
         }
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    private func showTaskScreen(_ task: Task) {
+        guard let newTaskController = UIStoryboard(name: "Tasks", bundle: nil)
+                .instantiateViewController(withIdentifier: NewTaskTableViewController.className())
+                as? NewTaskTableViewController
+        else { return }
+        
+        newTaskController.editedTask = task
+        
+        self.navigationController?.pushViewController(newTaskController, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

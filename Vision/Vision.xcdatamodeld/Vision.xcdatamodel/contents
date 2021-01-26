@@ -5,6 +5,7 @@
     </entity>
     <entity name="Lead" representedClassName="Lead" syncable="YES" codeGenerationType="class">
         <attribute name="contactId" optional="YES" attributeType="String"/>
+        <attribute name="leadId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="meetings" optional="YES" attributeType="Transformable" customClassName="NSSet"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="properties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Property"/>
@@ -66,7 +67,7 @@
     </entity>
     <elements>
         <element name="Goal" positionX="-73.02984619140625" positionY="281.6868286132812" width="128" height="44"/>
-        <element name="Lead" positionX="-580.5774536132812" positionY="136.8040466308594" width="128" height="119"/>
+        <element name="Lead" positionX="-580.5774536132812" positionY="136.8040466308594" width="128" height="134"/>
         <element name="Property" positionX="-412.6793823242188" positionY="18.23146057128906" width="128" height="344"/>
         <element name="Task" positionX="-211.7861328125" positionY="268.6566772460938" width="128" height="164"/>
         <element name="TimeTrack" positionX="309.9432373046875" positionY="259.7081298828125" width="128" height="59"/>

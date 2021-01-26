@@ -9,7 +9,6 @@ import UIKit
 
 class SingleTransactionTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var selectionImageView: UIImageView!
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var dateTitleLabel: UILabel!
     @IBOutlet private weak var dateValueLabel: UILabel!
@@ -17,18 +16,6 @@ class SingleTransactionTableViewCell: UITableViewCell {
     @IBOutlet private weak var priceValueLabel: UILabel!
     @IBOutlet private weak var commisionTitleLabel: UILabel!
     @IBOutlet private weak var commisionValueLabel: UILabel!
-    
-    var isSelectionModeEnabled: Bool = false
-    
-    override var isSelected: Bool {
-        willSet {
-            if self.isSelectionModeEnabled {
-                self.selectionImageView.isHidden = !newValue
-            } else {
-                self.selectionImageView.isHidden = true
-            }
-        }
-    }
     
     deinit {
         debugPrint("Deallocating \(self)")

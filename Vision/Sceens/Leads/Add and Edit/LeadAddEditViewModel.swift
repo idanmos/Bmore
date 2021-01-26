@@ -13,13 +13,23 @@ class LeadAddEditViewModel {
     private lazy var transactions: [Transaction] = PersistentStorage.shared.fetchTransactions()
     private lazy var tasks: [Task] = PersistentStorage.shared.fetchTasks()
     private lazy var meetings: [MeetingEvent] = MeetingService.shared.fetchEvents()
-
+    
+    var selectedProperties: [Property] = []
+    var selectedTransactions: [Transaction] = []
+    var selectedTasks: [Task] = []
+    var selectedMeetings: [MeetingEvent] = []
+    
     deinit {
         debugPrint("Deallocating \(self)")
         self.properties.removeAll()
         self.transactions.removeAll()
         self.tasks.removeAll()
         self.meetings.removeAll()
+        
+        self.selectedProperties.removeAll()
+        self.selectedTransactions.removeAll()
+        self.selectedTasks.removeAll()
+        self.selectedMeetings.removeAll()
     }
     
     func getProperties() -> [Property] {

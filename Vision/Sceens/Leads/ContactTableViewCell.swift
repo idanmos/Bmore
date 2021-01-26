@@ -42,6 +42,10 @@ class ContactTableViewCell: UITableViewCell {
         //
     }
     
+    func configure(_ lead: Lead) {
+        //
+    }
+    
     func configure(_ contact: CNContact) {
         self.contactNameLabel.text = "\(contact.givenName) \(contact.familyName)"
         self.contactNoteLabel.text = contact.phoneNumbers.first?.value.stringValue

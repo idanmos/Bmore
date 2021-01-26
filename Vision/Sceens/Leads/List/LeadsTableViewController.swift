@@ -46,6 +46,8 @@ class LeadsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ContactTableViewCell.className(), for: indexPath) as! ContactTableViewCell
+        let lead: Lead = self.viewModel.dataSource[indexPath.row]
+        
         return cell
     }
     
