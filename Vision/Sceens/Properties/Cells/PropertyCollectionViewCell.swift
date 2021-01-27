@@ -72,7 +72,7 @@ class PropertyCollectionViewCell: UICollectionViewCell {
         self.floorLabel.text = "\(property.floorNumber)"
         self.balconyLabel.text = "\(property.balcony)"
         
-        if let firstImage = ImageStorage.shared.loadFirstImage(propertyId: property.propertyId) {
+        if let firstImage = ImageStorage.shared.loadFirstImage(propertyId: property.uuid) {
             self.imageView.image = firstImage
         }
         

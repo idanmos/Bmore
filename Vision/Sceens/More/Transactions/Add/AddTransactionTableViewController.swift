@@ -468,7 +468,7 @@ extension AddTransactionTableViewController {
 extension AddTransactionTableViewController: AddTransactionPropertyViewControllerDelegate {
     
     func addTransactionPropertyController(_ addTransactionPropertyController: AddTransactionPropertyViewController, didSelect property: Property) {
-        self.propertyId = property.propertyId
+        self.propertyId = property.uuid
         
         var completeString: String = ""
         

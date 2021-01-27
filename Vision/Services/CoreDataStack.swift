@@ -242,11 +242,90 @@ extension Notification.Name {
 // MARK: - Persistent history processing
 
 extension CoreDataStack {
-    
+    /**
+     Process persistent history, posting any relevant transactions to the current view.
+     */
     func processPersistentHistory() {
+        let taskContext = self.persistentContainer.newBackgroundContext()
+        taskContext.performAndWait {
+            // Fetch history received from outside the app since the last token
+            let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
+            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
+            
+            let request = NSPersistentHistoryChangeRequest.fetchHistory(after: self.lastHistoryToken)
+            request.fetchRequest = historyFetchRequest
+            
+            let result = (try? taskContext.execute(request)) as? NSPersistentHistoryResult
+            guard let transactions = result?.result as? [NSPersistentHistoryTransaction],
+                  !transactions.isEmpty
+            else { return }
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(
+                    name: .didFindRelevantTransactions,
+                    object: self,
+                    userInfo: ["transactions": transactions]
+                )
+            }
+            
+            // Deduplicate the new tags.
+            var newLeadObjectIDs: [NSManagedObjectID] = []
+            let leadEntiryName = Lead.entity().name
+            
+            for transaction in transactions where transaction.changes != nil {
+                for change in transaction.changes!
+                where change.changedObjectID.entity.name == leadEntiryName && change.changeType == .insert {
+                    newLeadObjectIDs.append(change.changedObjectID)
+                }
+            }
+            if !newLeadObjectIDs.isEmpty {
+                self.deduplicateAndWait(leadObjectIDs: newLeadObjectIDs)
+            }
+            
+            // Update the history token using the last transaction.
+            self.lastHistoryToken = transactions.last!.token
+        }
+    }
+}
+
+// MARK: - Deduplicate tags
+
+extension CoreDataStack {
+    /**
+     Deduplicate tags with the same name by processing the persistent history, one tag at a time, on the historyQueue.
+     
+     All peers should eventually reach the same result with no coordination or communication.
+     */
+    private func deduplicateAndWait(leadObjectIDs: [NSManagedObjectID]) {
+        // Make any store changes on a background context
+        let taskContext = self.persistentContainer.backgroundContext()
+        
+        // Use performAndWait because each step relies on the sequence. Since historyQueue runs in the background, waiting won’t block the main queue.
+        taskContext.performAndWait {
+            leadObjectIDs.forEach { (leadObjectId: NSManagedObjectID) in
+                self.deduplicate(leadObjectId: leadObjectId, performingContext: taskContext)
+            }
+            // Save the background context to trigger a notification and merge the result into the viewContext.
+            taskContext.save(with: .deduplicate)
+        }
+    }
+    
+    /**
+     Deduplicate a single lead.
+     */
+    private func deduplicate(leadObjectId: NSManagedObjectID, performingContext: NSManagedObjectContext) {
         //
     }
     
+    /**
+     Remove duplicate leads from their respective posts, replacing them with the winner.
+     */
+    private func remove(deduplicatedLeads: [Lead], winner: Lead, performingContext: NSManagedObjectContext) {
+        deduplicatedLeads.forEach { (lead: Lead) in
+            defer { performingContext.delete(lead) }
+            //
+        }
+    }
 }
 
 // MARK: - Properties
@@ -306,7 +385,7 @@ extension CoreDataStack {
             property.longitude = longitude
         }
         if let propertyUUID = info[.uuid] as? UUID {
-            property.propertyId = propertyUUID
+            property.uuid = propertyUUID
         }
         if let enterDate = info[.enterDate] as? Date {
             property.entryDate = enterDate
@@ -355,7 +434,7 @@ extension CoreDataStack {
     }
     
     func delete(_ property: Property) {
-        ImageStorage.shared.delete(propertyId: property.propertyId)
+        ImageStorage.shared.delete(propertyId: property.uuid)
         
         self.mainContext().delete(property)
         self.saveContext()
@@ -442,7 +521,7 @@ extension CoreDataStack {
     
     func save(_ configuration: TransactionConfiguration) {
         let transaction = Transaction(context: self.mainContext())
-        transaction.transactionId = UUID()
+        transaction.uuid = UUID()
         self.saveOrEdit(transaction, configuration: configuration)
     }
     
@@ -492,7 +571,7 @@ extension CoreDataStack {
     
     func save(_ configuration: TaskConfiguration) {
         let task = Task(context: self.mainContext())
-        task.taskId = UUID().uuidString
+        task.uuid = UUID()
         self.saveOrEdit(task, configuration: configuration)
     }
     

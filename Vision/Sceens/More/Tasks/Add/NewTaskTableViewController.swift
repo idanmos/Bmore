@@ -245,7 +245,7 @@ extension NewTaskTableViewController {
         
         var configuration: TaskConfiguration
         if let _ = self.editedTask {
-            configuration = TaskConfiguration(taskId: self.editedTask!.taskId!)
+            configuration = TaskConfiguration(taskId: self.editedTask!.uuid!.uuidString)
         } else {
             configuration = TaskConfiguration(taskId: UUID().uuidString)
         }

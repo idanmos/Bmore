@@ -52,7 +52,7 @@ class PropertyDetailsViewController: UITableViewController {
         
         self.cellsType.append(.map)
         
-        if let propertyId: UUID = self.property.propertyId {
+        if let propertyId: UUID = self.property.uuid {
             self.images = ImageStorage.shared.load(propertyId: propertyId)
         }
         

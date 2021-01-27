@@ -29,6 +29,7 @@ enum ContextSaveContextualInfo: String {
     case deleteContact = "deleting a contact"
     case timeTrack = "adding start/end work time"
     case deleteTimeTrack = "deleting a time track"
+    case deduplicate = "deduplicating leads"
 }
 
 extension NSManagedObjectContext {

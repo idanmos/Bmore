@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D5029f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D5029f" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Goal" representedClassName="Goal" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Lead" representedClassName="Lead" syncable="YES" codeGenerationType="class">
         <attribute name="contactId" optional="YES" attributeType="String"/>
-        <attribute name="leadId" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="meetings" optional="YES" attributeType="Transformable" customClassName="Set&lt;String&gt;"/>
+        <attribute name="meetings" attributeType="String" defaultValueString="" customClassName="Set&lt;String&gt;"/>
+        <attribute name="properties" attributeType="String" defaultValueString=""/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="properties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Property"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task"/>
-        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction"/>
+        <attribute name="tasks" attributeType="String" defaultValueString=""/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="transactions" attributeType="String" defaultValueString=""/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="Property" representedClassName="Property" syncable="YES" codeGenerationType="class">
-        <attribute name="address" attributeType="String"/>
+        <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="balcony" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="contactIdentifier" optional="YES" attributeType="String"/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="enterDateIsNow" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="entryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="exclusivityEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="extraInfo" attributeType="String"/>
+        <attribute name="extraInfo" optional="YES" attributeType="String"/>
         <attribute name="floorNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isExclusivity" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isSold" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="parking" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="price" attributeType="String"/>
-        <attribute name="propertyId" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
         <attribute name="rooms" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sellOrRent" optional="YES" attributeType="String"/>
         <attribute name="size" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalFloorNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
         <attribute name="comments" optional="YES" attributeType="String"/>
@@ -42,10 +42,10 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isPushEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="taskId" attributeType="String"/>
-        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="TimeTrack" representedClassName="TimeTrack" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -63,8 +63,8 @@
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="propertyId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="transactionId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
         <element name="Goal" positionX="-73.02984619140625" positionY="281.6868286132812" width="128" height="44"/>

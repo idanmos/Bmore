@@ -78,7 +78,9 @@ class TasksViewController: UITableViewController {
             let task: Task = self.viewModel.dataSource[indexPath.row]
             
             // remove push task
-            TaskEvent.perform(.remove(taskId: task.taskId!))
+            if let uuid = task.uuid {
+                TaskEvent.perform(.remove(taskId: uuid.uuidString))
+            }
             
             // remove from core data
             AppDelegate.sharedDelegate().coreDataStack.delete(task)

@@ -42,7 +42,7 @@ class PropertyDetailsTableViewCell: UITableViewCell {
     
     func configure(_ property: Property) {
         /// - Tag: Image
-        if let firstImage = ImageStorage.shared.loadFirstImage(propertyId: property.propertyId) {
+        if let firstImage = ImageStorage.shared.loadFirstImage(propertyId: property.uuid) {
             self.propertyImageView.image = firstImage
         }
         

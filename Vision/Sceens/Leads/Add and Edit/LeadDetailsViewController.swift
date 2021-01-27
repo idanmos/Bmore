@@ -163,21 +163,21 @@ class LeadDetailsViewController: UIViewController {
     }
     
     private func loadEditMode(lead: Lead) {
+        // show spinner
+        
         self.viewModel.selectedRating = lead.rating
         
-        if let properties = lead.properties?.allObjects as? [Property] {
-            self.viewModel.selectedProperties = properties
+        if let propertyIDs: [String] = lead.properties?.components(separatedBy: ",") {
+            self.viewModel.selectedProperties = self.viewModel.getProperties().filter({ propertyIDs.contains($0.uuid!.uuidString) })
         }
-        if let transactions = lead.transactions?.allObjects as? [Transaction] {
-            self.viewModel.selectedTransactions = transactions
+        if let transactionIDs: [String] = lead.transactions?.components(separatedBy: ",") {
+            self.viewModel.selectedTransactions = self.viewModel.getTransactions().filter({ transactionIDs.contains($0.uuid!.uuidString) })
         }
-        if let tasks = lead.tasks?.allObjects as? [Task] {
-            self.viewModel.selectedTasks = tasks
+        if let taskIDs: [String] = lead.tasks?.components(separatedBy: ",") {
+            self.viewModel.selectedTasks = self.viewModel.getTasks().filter({ taskIDs.contains($0.uuid!.uuidString) })
         }
-        
-        if let meetings: Set<String> = lead.meetings, meetings.count > 0 {
-            let events: [MeetingEvent] = MeetingService.shared.fetchEvents().filter({ meetings.contains($0.eventIdentifier()) })
-            self.viewModel.selectedMeetings = events
+        if let meetingIDs: [String] = lead.meetings?.components(separatedBy: ","), meetingIDs.count > 0 {
+            self.viewModel.selectedMeetings = MeetingService.shared.fetchEvents().filter({ meetingIDs.contains($0.eventIdentifier()) })
         }
         
         if let contactId: String = lead.contactId {
@@ -188,6 +188,8 @@ class LeadDetailsViewController: UIViewController {
         }
         
         self.reloadScreen(animated: true)
+        
+        // hide spinner
     }
     
 }
@@ -311,20 +313,18 @@ extension LeadDetailsViewController {
         var lead: Lead
         if self.editedLead == nil {
             lead = Lead(context: AppDelegate.sharedDelegate().coreDataStack.mainContext())
+            lead.uuid = UUID()
         } else {
             lead = self.editedLead!
         }
         
-        lead.leadId = UUID()
         lead.timestamp = Date()
         lead.rating = self.viewModel.selectedRating
         lead.contactId = self.deviceContact?.identifier
-        lead.properties = NSSet(array: self.viewModel.selectedProperties)
-        lead.tasks = NSSet(array: self.viewModel.selectedTasks)
-        lead.transactions = NSSet(array: self.viewModel.selectedTransactions)
-        
-        let meetingsId: [String] = self.viewModel.selectedMeetings.map({ $0.eventIdentifier() })
-        lead.meetings = Set<String>(meetingsId)
+        lead.properties = self.viewModel.selectedProperties.map({ $0.uuid!.uuidString }).joined(separator: ",")
+        lead.tasks = self.viewModel.selectedTasks.map({ $0.uuid!.uuidString }).joined(separator: ",")
+        lead.transactions = self.viewModel.selectedTransactions.map({ $0.uuid!.uuidString }).joined(separator: ",")
+        lead.meetings = self.viewModel.selectedMeetings.map({ $0.eventIdentifier() }).joined(separator: ",")
         
         AppDelegate.sharedDelegate().coreDataStack.saveContext()
         
