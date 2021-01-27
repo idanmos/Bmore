@@ -1,5 +1,5 @@
 //
-//  PersistentStorage.swift
+//  CoreDataStack.swift
 //  Vision
 //
 //  Created by Idan Moshe on 08/12/2020.
@@ -9,12 +9,18 @@ import Foundation
 import CoreData
 import Contacts
 
-class PersistentStorage {
-    
-    static let shared = PersistentStorage()
-    
+// MARK: - Core Data Stack
+
+/**
+ Core Data stack setup including history processing.
+ */
+class CoreDataStack {
+        
     // MARK: - Core Data
     
+    /**
+     A persistent container that can load cloud-backed and non-cloud stores.
+     */
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Vision")
         
@@ -23,6 +29,7 @@ class PersistentStorage {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("Failed to retrieve a persistent store description.")
             }
+            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         }
         
@@ -32,20 +39,82 @@ class PersistentStorage {
             }
         }
         
-        container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.transactionAuthor = appTransactionAuthorName
+        container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.undoManager = nil
         container.viewContext.shouldDeleteInaccessibleFaults = true
+        
+        // Pin the viewContext to the current generation token and set it to keep itself up to date with local changes.
+        do {
+            try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+            fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        }
         
         if #available(iOS 13, *) {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(type(of: self).storeRemoteChange(_:)),
                                                    name: .NSPersistentStoreRemoteChange,
-                                                   object: nil)
+                                                   object: container)
         }
         
         return container
     }()
+    
+    /**
+     Track the last history token processed for a store, and write its value to file.
+     
+     The historyQueue reads the token when executing operations, and updates it after processing is complete.
+     */
+    private var lastHistoryToken: NSPersistentHistoryToken? = nil {
+        didSet(newValue) {
+            guard let token = newValue,
+                  let data = try? NSKeyedArchiver.archivedData(withRootObject: token, requiringSecureCoding: true) else { return }
+            
+            do {
+                try data.write(to: self.tokenFile)
+            } catch {
+                debugPrint("###\(#function): Failed to write token data. Error = \(error)")
+            }
+        }
+    }
+    
+    /**
+     The file URL for persisting the persistent history token.
+    */
+    private lazy var tokenFile: URL = {
+        let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("Vision", isDirectory: true)
+        if !FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                debugPrint("###\(#function): Failed to create persistent container URL. Error = \(error)")
+            }
+        }
+        return url.appendingPathComponent("token.data", isDirectory: false)
+    }()
+    
+    /**
+     An operation queue for handling history processing tasks: watching changes, deduplicating tags, and triggering UI updates if needed.
+     */
+    lazy var historyQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.name = "History Queue (CoreDataStack)"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    init() {
+        // Load the last token from the token file.
+        if let tokenData = try? Data(contentsOf: self.tokenFile) {
+            do {
+                self.lastHistoryToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSPersistentHistoryToken.self, from: tokenData)
+            } catch {
+                debugPrint("###\(#function): Failed to unarchive NSPersistentHistoryToken. Error = \(error)")
+            }
+        }
+    }
     
     func mainContext() -> NSManagedObjectContext {
         return self.persistentContainer.viewContext
@@ -70,13 +139,7 @@ class PersistentStorage {
             }
         }
     }
-    
-    // MARK: - NSPersistentStoreRemoteChange handler
-    
-    @objc func storeRemoteChange(_ notification: Notification) {
-        debugPrint("\(#function): Got a persistent store remote change notification!", notification)
-    }
-    
+        
     // MARK: - NSFetchedResultsController
     
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
@@ -153,9 +216,42 @@ class PersistentStorage {
     
 }
 
+// MARK: - Notifications
+
+extension CoreDataStack {
+    /**
+     Handle remote store change notifications (.NSPersistentStoreRemoteChange).
+     */
+    @objc func storeRemoteChange(_ notification: Notification) {
+        debugPrint("###\(#function): Merging changes from the other persistent store coordinator.")
+        
+        // Process persistent history to merge changes from other coordinators.
+        self.historyQueue.addOperation {
+            self.processPersistentHistory()
+        }
+    }
+}
+
+/**
+ Custom notifications in this sample.
+ */
+extension Notification.Name {
+    static let didFindRelevantTransactions = Notification.Name("didFindRelevantTransactions")
+}
+
+// MARK: - Persistent history processing
+
+extension CoreDataStack {
+    
+    func processPersistentHistory() {
+        //
+    }
+    
+}
+
 // MARK: - Properties
 
-extension PersistentStorage {
+extension CoreDataStack {
     
     func fetchProperties(fetchLimit: Int? = nil) -> [Property] {
                 
@@ -269,7 +365,7 @@ extension PersistentStorage {
 
 // MARK: - Leads
 
-extension PersistentStorage {
+extension CoreDataStack {
     
     
     
@@ -277,7 +373,7 @@ extension PersistentStorage {
 
 // MARK: - Time Tracking
 
-extension PersistentStorage {
+extension CoreDataStack {
     
     func fetchTimeTrack(fetchLimit: Int? = nil) -> [TimeTrack] {
         let request: NSFetchRequest<TimeTrack> = TimeTrack.fetchRequest()
@@ -299,7 +395,7 @@ extension PersistentStorage {
 
 // MARK: - Transactions
 
-extension PersistentStorage {
+extension CoreDataStack {
     
     func fetchTransactions(fetchLimit: Int? = nil) -> [Transaction] {
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
@@ -363,7 +459,7 @@ extension PersistentStorage {
 
 // MARK: - Tasks
 
-extension PersistentStorage {
+extension CoreDataStack {
     
     func fetchTasks(fetchLimit: Int? = nil) -> [Task] {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
@@ -413,5 +509,5 @@ extension PersistentStorage {
 
 // MARK: - Meetings
 
-extension PersistentStorage {
+extension CoreDataStack {
 }

@@ -33,7 +33,7 @@ class LeadsViewModel: NSObject {
         
         let controller = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: PersistentStorage.shared.mainContext(),
+            managedObjectContext: AppDelegate.sharedDelegate().coreDataStack.mainContext(),
             sectionNameKeyPath: nil,
             cacheName: nil
         )

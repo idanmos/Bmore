@@ -81,7 +81,7 @@ class TasksViewController: UITableViewController {
             TaskEvent.perform(.remove(taskId: task.taskId!))
             
             // remove from core data
-            PersistentStorage.shared.delete(task)
+            AppDelegate.sharedDelegate().coreDataStack.delete(task)
             
             // remove from data source
             self.viewModel.dataSource.remove(at: indexPath.row)

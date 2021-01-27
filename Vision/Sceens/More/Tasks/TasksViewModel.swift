@@ -30,7 +30,7 @@ class TasksViewModel {
     var dataSource: [Task] = []
     
     func fetchData() {
-        self.dataSource = PersistentStorage.shared.fetchTasks()
+        self.dataSource = AppDelegate.sharedDelegate().coreDataStack.fetchTasks()
     }
     
     func showAddScreen(presenter: UIViewController, editedTask: Task? = nil) {

@@ -19,12 +19,12 @@ class LoginViewController: UIViewController {
         loginButton.center = view.center
         view.addSubview(loginButton)
         
-        if self.facebookManager.isUserLoggedIn() {
-            self.facebookManager.perform(graphPath: .me(.feed), parameters: ["fields": ""]) { (result: [String : Any]?, error: Error?) in
+        if FacebookManager.shared.isUserLoggedIn() {
+            FacebookManager.shared.perform(graphPath: .me(.feed), parameters: ["fields": ""]) { (result: [String : Any]?, error: Error?) in
                 //
             }
         } else {
-            self.facebookManager.performLogIn()
+            FacebookManager.shared.performLogIn()
         }
     }
 

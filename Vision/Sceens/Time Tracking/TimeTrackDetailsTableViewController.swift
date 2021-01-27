@@ -153,7 +153,7 @@ extension TimeTrackDetailsTableViewController {
         if let timeTrack: TimeTrack = self.timeTrack {
             timeTrack.startDate = self.startDate
             timeTrack.endDate = self.endDate
-            PersistentStorage.shared.saveContext()
+            AppDelegate.sharedDelegate().coreDataStack.saveContext()
         }
         self.navigationController?.popViewController(animated: true)
     }    

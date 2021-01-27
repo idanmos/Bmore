@@ -310,7 +310,7 @@ extension LeadDetailsViewController {
     @IBAction private func onPressSaveBarButton(_ sender: UIBarButtonItem) {
         var lead: Lead
         if self.editedLead == nil {
-            lead = Lead(context: PersistentStorage.shared.mainContext())
+            lead = Lead(context: AppDelegate.sharedDelegate().coreDataStack.mainContext())
         } else {
             lead = self.editedLead!
         }
@@ -326,7 +326,7 @@ extension LeadDetailsViewController {
         let meetingsId: [String] = self.viewModel.selectedMeetings.map({ $0.eventIdentifier() })
         lead.meetings = Set<String>(meetingsId)
         
-        PersistentStorage.shared.saveContext()
+        AppDelegate.sharedDelegate().coreDataStack.saveContext()
         
         self.dismiss(animated: true, completion: nil)
     }

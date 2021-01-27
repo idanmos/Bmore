@@ -19,7 +19,7 @@ class PropertiesViewModel: NSObject {
     }
     
     func fetchProperties() {
-        self.properties = PersistentStorage.shared.fetchProperties()
+        self.properties = AppDelegate.sharedDelegate().coreDataStack.fetchProperties()
     }
     
     func searchBarCancelButtonClicked(collectionView: UICollectionView, view: UIView) {
@@ -35,7 +35,7 @@ class PropertiesViewModel: NSObject {
         let alertController = UIAlertController(title: "מחיקה", message: "האם למחוק?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "אישור", style: .destructive) { [weak self] (action: UIAlertAction) in
             guard let self = self else { return }
-            PersistentStorage.shared.delete(self.properties[index])
+            AppDelegate.sharedDelegate().coreDataStack.delete(self.properties[index])
             self.properties.remove(at: index)
             collectionView.reloadData()
         }

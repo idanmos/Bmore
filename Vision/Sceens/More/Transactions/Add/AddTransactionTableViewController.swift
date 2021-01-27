@@ -316,9 +316,9 @@ extension AddTransactionTableViewController {
                                                      contactId: self.contactId)
         
         if let obj: Transaction = self.editedTransaction {
-            PersistentStorage.shared.edit(obj, configuration: configuration)
+            AppDelegate.sharedDelegate().coreDataStack.edit(obj, configuration: configuration)
         } else {
-            PersistentStorage.shared.save(configuration)
+            AppDelegate.sharedDelegate().coreDataStack.save(configuration)
         }
         
         self.navigationController?.popViewController(animated: true)
@@ -364,7 +364,7 @@ extension AddTransactionTableViewController {
     
     @IBAction private func onPressPropertyInfo(_ sender: Any) {
         guard let propertyId: UUID = self.propertyId else { return }
-        guard let obj: Property = PersistentStorage.shared.fetchProperty(by: propertyId) else { return }
+        guard let obj: Property = AppDelegate.sharedDelegate().coreDataStack.fetchProperty(by: propertyId) else { return }
         
         let propertiesStoryboard = UIStoryboard(name: "Properties", bundle: nil)
         guard let detailsViewController = propertiesStoryboard.instantiateViewController(withIdentifier: PropertyDetailsViewController.className())

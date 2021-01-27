@@ -66,7 +66,7 @@ class BalanceViewModel {
         self.quarterBalance = FinancialBalance()
         self.yearBalance = FinancialBalance()
         
-        let transactions: [Transaction] = PersistentStorage.shared.fetchTransactions().sorted { (lhs: Transaction, rhs: Transaction) -> Bool in
+        let transactions: [Transaction] = AppDelegate.sharedDelegate().coreDataStack.fetchTransactions().sorted { (lhs: Transaction, rhs: Transaction) -> Bool in
             let firstDate: Date = lhs.date ?? Date.distantPast
             let secondDate: Date = rhs.date ?? Date.distantPast
             return firstDate < secondDate

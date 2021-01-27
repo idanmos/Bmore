@@ -31,7 +31,7 @@ class SelectionTransactionTableViewCell: UITableViewCell {
                     switch locationType {
                     case .property:
                         if let propertyId: UUID = newValue.propertyId,
-                           let property: Property = PersistentStorage.shared.fetchProperty(by: propertyId) {
+                           let property: Property = AppDelegate.sharedDelegate().coreDataStack.fetchProperty(by: propertyId) {
                             self.addressLabel.text = property.address
                         }
                     case .address:

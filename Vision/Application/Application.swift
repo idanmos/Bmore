@@ -11,12 +11,6 @@ class Application {
     
     static let shared = Application()
     
-    private let persistentStorage: PersistentStorage
-    
-    init() {
-        self.persistentStorage = PersistentStorage.shared
-    }
-    
     func configureMainInterface(in window: UIWindow) {
         window.backgroundColor = .white
         

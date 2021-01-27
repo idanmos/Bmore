@@ -21,7 +21,7 @@ class TransactionsViewModel {
     }
     
     func fetchTransactions() {
-        self.transactions = PersistentStorage.shared.fetchTransactions()
+        self.transactions = AppDelegate.sharedDelegate().coreDataStack.fetchTransactions()
     }
     
     func showAddScreen() {        

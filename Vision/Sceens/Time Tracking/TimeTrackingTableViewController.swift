@@ -28,7 +28,7 @@ class TimeTrackingTableViewController: UITableViewController {
     }()
     
     private lazy var dataProvider: TimeTrackingProvider = {
-        return TimeTrackingProvider(with: PersistentStorage.shared.persistentContainer,
+        return TimeTrackingProvider(with: AppDelegate.sharedDelegate().coreDataStack.persistentContainer,
                                     fetchedResultsControllerDelegate: self)
     }()
     

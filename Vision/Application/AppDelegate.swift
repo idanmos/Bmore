@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var cities: [CityDetails] = []
+    lazy var coreDataStack: CoreDataStack = { return CoreDataStack() }()
+    
+//    var cities: [CityDetails] = []
         
     class func sharedDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate

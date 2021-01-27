@@ -79,7 +79,7 @@ class TransactionsTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             let transaction: Transaction = self.viewModel.transactions[indexPath.row]
-            PersistentStorage.shared.delete(transaction)
+            AppDelegate.sharedDelegate().coreDataStack.delete(transaction)
             self.viewModel.transactions.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {

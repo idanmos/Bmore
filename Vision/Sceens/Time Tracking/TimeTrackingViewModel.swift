@@ -14,7 +14,7 @@ class TimeTrackingViewModel {
     var timeTracking: [TimeTrack] = []
     
     func fetchTimeTrack() {
-        self.timeTracking = PersistentStorage.shared.fetchTimeTrack()
+        self.timeTracking = AppDelegate.sharedDelegate().coreDataStack.fetchTimeTrack()
     }
     
     func showStartOrEnd(presenter: UIViewController,
