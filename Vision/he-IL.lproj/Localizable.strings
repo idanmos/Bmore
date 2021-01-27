@@ -30,6 +30,10 @@
 "rooms" = "חדרים";
 "floor" = "קומה";
 "preview" = "תצוגה מקדימה";
+"rating" = "דירוג";
+"edit_lead" = "עריכת ליד";
+"add_lead" = "ליד חדש";
+"last_edit_date" = "תאריך עריכה אחרון";
 
 // MARK: - Errors
 

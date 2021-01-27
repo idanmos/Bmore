@@ -78,13 +78,8 @@ class BaseSelectionTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.isShowOnlyMode {
-            self.tableView.allowsSelection = false
-            self.tableView.allowsMultipleSelection = false
-        } else {
-            self.tableView.allowsSelection = true
-            self.tableView.allowsMultipleSelection = true
-        }
+        self.tableView.allowsSelection = true
+        self.tableView.allowsMultipleSelection = !self.isShowOnlyMode
         
         if self.isShowOnlyMode {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIView(frame: .zero))

@@ -26,9 +26,7 @@ enum LeadAction {
 }
 
 class LeadsViewModel: NSObject {
-    
-    var dataSource: [Lead] = []
-    
+        
     private lazy var fetchedResultsController: NSFetchedResultsController<Lead> = {
         let fetchRequest: NSFetchRequest<Lead> = Lead.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
@@ -45,19 +43,70 @@ class LeadsViewModel: NSObject {
     }()
     
     func fetchData() {
+        self.fetchedResultsController.managedObjectContext.reset()
+        
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
             debugPrint(#file, #function, error)
         }
-        
-        self.dataSource = self.fetchedResultsController.fetchedObjects ?? []
     }
     
+    /* var leads: [Lead] {
+        return self.fetchedResultsController.fetchedObjects ?? []
+    } */
     
+    var numberOfSections: Int {
+        return self.fetchedResultsController.sections?.count ?? 0
+    }
     
+    var numberOfObjects: Int {
+        return self.fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    }
+    
+    func object(at indexPath: IndexPath) -> Lead {
+        return self.fetchedResultsController.object(at: indexPath)
+    }
+    
+    func indexPath(forObject object: Lead) -> IndexPath? {
+        return self.fetchedResultsController.indexPath(forObject: object)
+    }
+    
+    func delete(_ lead: Lead, shouldSave: Bool = true, handler: (() -> Void)? = nil) {
+        debugPrint(#file, #function, lead)
+        
+        guard let context = lead.managedObjectContext else {
+            debugPrint("###\(#function): Failed to retrieve the context from: \(lead)")
+            return
+        }
+        
+        context.perform {
+            context.delete(lead)
+            
+            if shouldSave {
+                context.save(with: .deleteContact)
+            }
+            handler?()
+        }
+    }
+        
+}
+
+extension Notification.Name {
+    static let leadsDidChangeContent = Notification.Name("leadsDidChangeContent")
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
 
-extension LeadsViewModel: NSFetchedResultsControllerDelegate {}
+extension LeadsViewModel: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        debugPrint(#file, #function)
+        
+        NotificationCenter.default.post(
+            name: .leadsDidChangeContent,
+            object: nil
+        )
+    }
+    
+}

@@ -75,7 +75,7 @@ class LeadDetailsViewController: UIViewController {
     // MARK: - Lifecycle
     
     deinit {
-        debugPrint("dealloc \(self)")
+        debugPrint("Deallocating \(self)")
         self.editedLead = nil
         self.deviceContact = nil
         self.properties.removeAll()
@@ -86,10 +86,11 @@ class LeadDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         self.setupUI()
-        
-        MeetingService.shared.requestAccess()
+        if let lead: Lead = self.editedLead {
+            self.loadEditMode(lead: lead)
+        }
     }
     
     private func setupUI() {
@@ -100,10 +101,20 @@ class LeadDetailsViewController: UIViewController {
         )
         
         let doneButton = UIBarButtonItem(
-            barButtonSystemItem: .done,
+            barButtonSystemItem: .save,
             target: self,
             action: #selector(self.onPressSaveBarButton(_:))
         )
+        
+        if self.editedLead == nil {
+            self.customNavigationBar.topItem?.title = "add_lead".localized
+        } else {
+            self.customNavigationBar.topItem?.title = "edit_lead".localized
+        }
+        
+        if let modifyDate: Date = self.editedLead?.timestamp {
+            self.customNavigationBar.topItem?.prompt = "\("last_edit_date".localized): \(DateFormatter.shortFormatter.string(from: modifyDate))"
+        }
         
         self.customNavigationBar.topItem?.leftBarButtonItem = closeButton
         self.customNavigationBar.topItem?.rightBarButtonItem = doneButton
@@ -112,6 +123,7 @@ class LeadDetailsViewController: UIViewController {
         self.tableView.register(LeadPersonalDetailsTableViewCell.self)
         self.tableView.register(LeadContactTableViewCell.self)
         self.tableView.register(LeadDetailDisclosureTableViewCell.self)
+        self.tableView.register(LeadQualityTableViewCell.self)
                 
         self.floatButton.itemImageColor = .darkGray
                 
@@ -148,6 +160,34 @@ class LeadDetailsViewController: UIViewController {
         self.floatButton.sticky = true
         self.floatButton.paddingX = self.view.frame.width/2 - self.floatButton.frame.width/2
         self.view.addSubview(self.floatButton)
+    }
+    
+    private func loadEditMode(lead: Lead) {
+        self.viewModel.selectedRating = lead.rating
+        
+        if let properties = lead.properties?.allObjects as? [Property] {
+            self.viewModel.selectedProperties = properties
+        }
+        if let transactions = lead.transactions?.allObjects as? [Transaction] {
+            self.viewModel.selectedTransactions = transactions
+        }
+        if let tasks = lead.tasks?.allObjects as? [Task] {
+            self.viewModel.selectedTasks = tasks
+        }
+        
+        if let meetings: Set<String> = lead.meetings, meetings.count > 0 {
+            let events: [MeetingEvent] = MeetingService.shared.fetchEvents().filter({ meetings.contains($0.eventIdentifier()) })
+            self.viewModel.selectedMeetings = events
+        }
+        
+        if let contactId: String = lead.contactId {
+            let contacts = ContactsService.shared.findContacts([contactId])
+            if contacts.count > 0 {
+                self.deviceContact = DeviceContact(contact: contacts.first!)
+            }
+        }
+        
+        self.reloadScreen(animated: true)
     }
     
 }
@@ -268,16 +308,23 @@ extension LeadDetailsViewController {
 extension LeadDetailsViewController {
     
     @IBAction private func onPressSaveBarButton(_ sender: UIBarButtonItem) {
-        let lead = Lead(context: PersistentStorage.shared.mainContext())
+        var lead: Lead
+        if self.editedLead == nil {
+            lead = Lead(context: PersistentStorage.shared.mainContext())
+        } else {
+            lead = self.editedLead!
+        }
+        
         lead.leadId = UUID()
         lead.timestamp = Date()
+        lead.rating = self.viewModel.selectedRating
         lead.contactId = self.deviceContact?.identifier
         lead.properties = NSSet(array: self.viewModel.selectedProperties)
         lead.tasks = NSSet(array: self.viewModel.selectedTasks)
         lead.transactions = NSSet(array: self.viewModel.selectedTransactions)
         
-        let meetingsId: [String] = self.meetings.map({ $0.eventIdentifier() })
-        lead.meetings = NSSet(array: meetingsId)
+        let meetingsId: [String] = self.viewModel.selectedMeetings.map({ $0.eventIdentifier() })
+        lead.meetings = Set<String>(meetingsId)
         
         PersistentStorage.shared.saveContext()
         
@@ -304,6 +351,11 @@ extension LeadDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         } else if type == .contactButtons {
             let cell = tableView.dequeue(LeadContactTableViewCell.self, indexPath: indexPath)
             cell.deviceContact = self.deviceContact
+            return cell
+        } else if type == .leadQualification {
+            let cell = tableView.dequeue(LeadQualityTableViewCell.self, indexPath: indexPath)
+            cell.delegate = self
+            cell.rating = self.viewModel.selectedRating
             return cell
         } else {
             let cell = tableView.dequeue(LeadDetailDisclosureTableViewCell.self, indexPath: indexPath)
@@ -397,6 +449,16 @@ extension LeadDetailsViewController: BaseSelectionTableViewControllerDelegate {
         }
         
         self.reloadScreen(animated: true)
+    }
+    
+}
+
+// MARK: - LeadQualityTableViewCellDelegate
+
+extension LeadDetailsViewController: LeadQualityTableViewCellDelegate {
+    
+    func leadQualityCell(_ leadQualityCell: LeadQualityTableViewCell, didUpdate rating: Double) {
+        self.viewModel.selectedRating = rating
     }
     
 }

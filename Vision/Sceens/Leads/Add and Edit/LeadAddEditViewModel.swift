@@ -18,6 +18,7 @@ class LeadAddEditViewModel {
     var selectedTransactions: [Transaction] = []
     var selectedTasks: [Task] = []
     var selectedMeetings: [MeetingEvent] = []
+    var selectedRating: Double = 0
     
     deinit {
         debugPrint("Deallocating \(self)")

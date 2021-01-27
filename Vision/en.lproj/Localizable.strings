@@ -30,6 +30,10 @@
 "rooms" = "Rooms";
 "floor" = "Floor";
 "preview" = "Preview";
+"rating" = "Rating";
+"edit_lead" = "Edit Lead";
+"add_lead" = "Add Lead";
+"last_edit_date" = "Last edit date";
 
 // MARK: - Errors
 
