@@ -16,22 +16,21 @@ import Contacts
  */
 class CoreDataStack {
         
-    // MARK: - Core Data
+    // MARK: - Initialize Core Data
+    
+    private lazy var storeURL: URL = {
+        let urls: [URL] = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        guard let documentURL: URL = urls.last else {
+            fatalError("\(#file), \(#function), Error fetching document directory")
+        }
+        return documentURL.appendingPathComponent("Vision.sqlite")
+    }()
     
     /**
      A persistent container that can load cloud-backed and non-cloud stores.
      */
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Vision")
-        
-        if #available(iOS 13, *) {
-            // Enable remote notifications
-            guard let description = container.persistentStoreDescriptions.first else {
-                fatalError("Failed to retrieve a persistent store description.")
-            }
-            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-            description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        }
+        let container = NSPersistentCloudKitContainer(name: "Vision")
         
         container.loadPersistentStores { (storeDescription: NSPersistentStoreDescription, error: Error?) in
             guard error == nil else {
@@ -45,75 +44,11 @@ class CoreDataStack {
         container.viewContext.undoManager = nil
         container.viewContext.shouldDeleteInaccessibleFaults = true
         
-        // Pin the viewContext to the current generation token and set it to keep itself up to date with local changes.
-        do {
-            try container.viewContext.setQueryGenerationFrom(.current)
-        } catch {
-            fatalError("###\(#function): Failed to pin viewContext to the current generation:\(error)")
-        }
-        
-        if #available(iOS 13, *) {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(type(of: self).storeRemoteChange(_:)),
-                                                   name: .NSPersistentStoreRemoteChange,
-                                                   object: container)
-        }
-        
         return container
     }()
     
-    /**
-     Track the last history token processed for a store, and write its value to file.
-     
-     The historyQueue reads the token when executing operations, and updates it after processing is complete.
-     */
-    private var lastHistoryToken: NSPersistentHistoryToken? = nil {
-        didSet(newValue) {
-            guard let token = newValue,
-                  let data = try? NSKeyedArchiver.archivedData(withRootObject: token, requiringSecureCoding: true) else { return }
-            
-            do {
-                try data.write(to: self.tokenFile)
-            } catch {
-                debugPrint("###\(#function): Failed to write token data. Error = \(error)")
-            }
-        }
-    }
-    
-    /**
-     The file URL for persisting the persistent history token.
-    */
-    private lazy var tokenFile: URL = {
-        let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("Vision", isDirectory: true)
-        if !FileManager.default.fileExists(atPath: url.path) {
-            do {
-                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                debugPrint("###\(#function): Failed to create persistent container URL. Error = \(error)")
-            }
-        }
-        return url.appendingPathComponent("token.data", isDirectory: false)
-    }()
-    
-    /**
-     An operation queue for handling history processing tasks: watching changes, deduplicating tags, and triggering UI updates if needed.
-     */
-    lazy var historyQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.name = "History Queue (CoreDataStack)"
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    
     init() {
-        // Load the last token from the token file.
-        if let tokenData = try? Data(contentsOf: self.tokenFile) {
-            do {
-                self.lastHistoryToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSPersistentHistoryToken.self, from: tokenData)
-            } catch {
-                debugPrint("###\(#function): Failed to unarchive NSPersistentHistoryToken. Error = \(error)")
-            }
-        }
+        //
     }
     
     func mainContext() -> NSManagedObjectContext {
@@ -162,28 +97,6 @@ class CoreDataStack {
         return controller
     }()
     
-    private lazy var leadsFetchedResultsController: NSFetchedResultsController<Lead> = {
-        let fetchRequest = NSFetchRequest<Lead>(entityName: "Leads")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        
-        let controller = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: self.mainContext(),
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        
-        controller.delegate = self.fetchedResultsControllerDelegate
-        
-        do {
-            try controller.performFetch()
-        } catch {
-            debugPrint(#file, #function, error)
-        }
-        
-        return controller
-    }()
-    
     func resetAndRefetch() {
         self.mainContext().reset()
         
@@ -214,118 +127,6 @@ class CoreDataStack {
         }
     }
     
-}
-
-// MARK: - Notifications
-
-extension CoreDataStack {
-    /**
-     Handle remote store change notifications (.NSPersistentStoreRemoteChange).
-     */
-    @objc func storeRemoteChange(_ notification: Notification) {
-        debugPrint("###\(#function): Merging changes from the other persistent store coordinator.")
-        
-        // Process persistent history to merge changes from other coordinators.
-        self.historyQueue.addOperation {
-            self.processPersistentHistory()
-        }
-    }
-}
-
-/**
- Custom notifications in this sample.
- */
-extension Notification.Name {
-    static let didFindRelevantTransactions = Notification.Name("didFindRelevantTransactions")
-}
-
-// MARK: - Persistent history processing
-
-extension CoreDataStack {
-    /**
-     Process persistent history, posting any relevant transactions to the current view.
-     */
-    func processPersistentHistory() {
-        let taskContext = self.persistentContainer.newBackgroundContext()
-        taskContext.performAndWait {
-            // Fetch history received from outside the app since the last token
-            let historyFetchRequest = NSPersistentHistoryTransaction.fetchRequest!
-            historyFetchRequest.predicate = NSPredicate(format: "author != %@", appTransactionAuthorName)
-            
-            let request = NSPersistentHistoryChangeRequest.fetchHistory(after: self.lastHistoryToken)
-            request.fetchRequest = historyFetchRequest
-            
-            let result = (try? taskContext.execute(request)) as? NSPersistentHistoryResult
-            guard let transactions = result?.result as? [NSPersistentHistoryTransaction],
-                  !transactions.isEmpty
-            else { return }
-            
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: .didFindRelevantTransactions,
-                    object: self,
-                    userInfo: ["transactions": transactions]
-                )
-            }
-            
-            // Deduplicate the new tags.
-            var newLeadObjectIDs: [NSManagedObjectID] = []
-            let leadEntiryName = Lead.entity().name
-            
-            for transaction in transactions where transaction.changes != nil {
-                for change in transaction.changes!
-                where change.changedObjectID.entity.name == leadEntiryName && change.changeType == .insert {
-                    newLeadObjectIDs.append(change.changedObjectID)
-                }
-            }
-            if !newLeadObjectIDs.isEmpty {
-                self.deduplicateAndWait(leadObjectIDs: newLeadObjectIDs)
-            }
-            
-            // Update the history token using the last transaction.
-            self.lastHistoryToken = transactions.last!.token
-        }
-    }
-}
-
-// MARK: - Deduplicate tags
-
-extension CoreDataStack {
-    /**
-     Deduplicate tags with the same name by processing the persistent history, one tag at a time, on the historyQueue.
-     
-     All peers should eventually reach the same result with no coordination or communication.
-     */
-    private func deduplicateAndWait(leadObjectIDs: [NSManagedObjectID]) {
-        // Make any store changes on a background context
-        let taskContext = self.persistentContainer.backgroundContext()
-        
-        // Use performAndWait because each step relies on the sequence. Since historyQueue runs in the background, waiting won’t block the main queue.
-        taskContext.performAndWait {
-            leadObjectIDs.forEach { (leadObjectId: NSManagedObjectID) in
-                self.deduplicate(leadObjectId: leadObjectId, performingContext: taskContext)
-            }
-            // Save the background context to trigger a notification and merge the result into the viewContext.
-            taskContext.save(with: .deduplicate)
-        }
-    }
-    
-    /**
-     Deduplicate a single lead.
-     */
-    private func deduplicate(leadObjectId: NSManagedObjectID, performingContext: NSManagedObjectContext) {
-        //
-    }
-    
-    /**
-     Remove duplicate leads from their respective posts, replacing them with the winner.
-     */
-    private func remove(deduplicatedLeads: [Lead], winner: Lead, performingContext: NSManagedObjectContext) {
-        deduplicatedLeads.forEach { (lead: Lead) in
-            defer { performingContext.delete(lead) }
-            //
-        }
-    }
 }
 
 // MARK: - Properties
