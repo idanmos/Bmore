@@ -198,7 +198,6 @@ class NewTaskTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // guard let type = SectionType(rawValue: indexPath.section) else { return }
     }
 
 }
@@ -236,8 +235,8 @@ extension NewTaskTableViewController {
         }
         
         var configuration: TaskConfiguration
-        if let _ = self.editedTask {
-            configuration = TaskConfiguration(taskId: self.editedTask!.uuid!.uuidString)
+        if let task: Task = self.editedTask {
+            configuration = TaskConfiguration(taskId: task.uuid?.uuidString ?? UUID().uuidString)
         } else {
             configuration = TaskConfiguration(taskId: UUID().uuidString)
         }

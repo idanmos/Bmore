@@ -11,7 +11,8 @@ import Photos
 // MARK: - ImagePickerProviderDelegate
 
 protocol ImagePickerProviderDelegate: class {
-    func imagePicker(_ picker: ImagePickerProvider, didFinishPicking images: [UIImage])
+    var targetImageSize: CGSize { get }
+    func imagePicker(_ picker: ImagePickerProvider, didFinishPicking images: Set<UIImage>)
 }
 
 // MARK: - ImagePickerProvider
@@ -22,7 +23,15 @@ class ImagePickerProvider: NSObject {
         case camera, photoLibrary
     }
     
-    var presenter: UIViewController!
+    var presenter: UIViewController! {
+        willSet {
+            guard newValue != nil else { return }
+            
+            if #available(iOS 14.0, *) {
+                self.photoPicker.presenter = newValue
+            }
+        }
+    }
     
     weak var delegate: ImagePickerProviderDelegate?
     
@@ -42,6 +51,7 @@ class ImagePickerProvider: NSObject {
         
         if #available(iOS 14.0, *) {
             self.photoPicker.delegate = self
+            self.photoPicker.presenter = presenter
         }
     }
     
@@ -110,8 +120,14 @@ extension ImagePickerProvider: UIImagePickerControllerDelegate, UINavigationCont
 // MARK: - PhotoPickerProviderDelegate
 
 extension ImagePickerProvider: PhotoPickerProviderDelegate {
+    
+    var targetImageSize: CGSize {
+        return self.delegate?.targetImageSize ?? CGSize(width: 300, height: 300)
+    }
+    
     @available(iOS 14, *)
-    func photoPicker(_ picker: PhotoPickerProvider, didFinishPicking images: [UIImage]) {
+    func photoPicker(_ picker: PhotoPickerProvider, didFinishPicking images: Set<UIImage>) {
         self.delegate?.imagePicker(self, didFinishPicking: images)
     }
+    
 }

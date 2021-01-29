@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ImagePicker
 import LocationPicker
 
 fileprivate enum DatePickerType: Int {
@@ -135,6 +134,8 @@ class AddPropertyTableViewController: BaseTableViewController {
     
     var dataProvider: PropertyProvider?
     
+    private let imageProvider = ImagePickerProvider(presenter: UIApplication.shared.topMostController() ?? UIViewController())
+    
     private lazy var locationPicker: LocationPickerViewController = {
         let locationPicker = LocationPickerViewController()
         locationPicker.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeLocationController))
@@ -146,15 +147,6 @@ class AddPropertyTableViewController: BaseTableViewController {
         return locationPicker
     }()
     
-    private lazy var imagePicker: ImagePickerController = {
-        let imagePickerController = ImagePickerController()
-        imagePickerController.delegate = self
-        // imagePickerController.imageLimit = 5
-        imagePickerController.modalPresentationStyle = .fullScreen
-        return imagePickerController
-    }()
-    
-        
     private lazy var cameraImage: UIImage? = {
         return UIImage(systemName: "camera", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))
     }()
@@ -178,6 +170,9 @@ class AddPropertyTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.imageProvider.delegate = self
+        self.imageProvider.presenter = self
         
         self.setupUI()
     }
@@ -446,30 +441,24 @@ extension AddPropertyTableViewController {
     
 }
 
-// MARK: - ImagePickerDelegate
+// MARK: - ImagePickerProviderDelegate
 
-extension AddPropertyTableViewController: ImagePickerDelegate {
+extension AddPropertyTableViewController: ImagePickerProviderDelegate {
     
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismiss(animated: true, completion: nil)
+    var targetImageSize: CGSize {
+        return CGSize(width: 1000, height: 1000)
     }
     
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismiss(animated: true, completion: nil)
-        
+    func imagePicker(_ picker: ImagePickerProvider, didFinishPicking images: Set<UIImage>) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            self.images = images
+            
+            self.images = Array(images)
             DispatchQueue.main.async {
                 self.galleryCollectionView.reloadData()
             }
         }
     }
-    
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        imagePicker.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 // MARK: - Action Handlers
@@ -537,14 +526,13 @@ extension AddPropertyTableViewController {
     }
     
     @IBAction func onAddImageButton(_ sender: Any) {
-        self.present(self.imagePicker, animated: true, completion: nil)
+        self.imageProvider.showPicker(sourceType: .photoLibrary)
     }
     
     @IBAction func onPressClearImagesButton(_ sender: Any) {
         self.images.removeAll()
         self.galleryCollectionView.reloadData()
     }
-    
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

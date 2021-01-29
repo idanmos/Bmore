@@ -6,5 +6,4 @@ target 'Bmore' do
   use_frameworks!
 
   # Pods for Vision
-pod 'ImagePicker'
 end
