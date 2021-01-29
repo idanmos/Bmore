@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +11,7 @@
         <!--New Task-->
         <scene sceneID="Bs1-Pb-0ET">
             <objects>
-                <tableViewController storyboardIdentifier="NewTaskTableViewController" id="6IF-AE-bii" customClass="NewTaskTableViewController" customModule="B_more" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewTaskTableViewController" id="6IF-AE-bii" customClass="NewTaskTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="JXN-rq-ugS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,73 +169,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Contact" id="Hiw-uT-Lhq">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kWL-jF-xNy">
-                                        <rect key="frame" x="0.0" y="681.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kWL-jF-xNy" id="TYP-z1-vfc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2E-uY-xrz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-5s-azb">
-                                                            <rect key="frame" x="369" y="9.5" width="25" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="aTA-5s-azb" secondAttribute="height" multiplier="1:1" id="SJb-B7-uwd"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="onAddContact:" destination="6IF-AE-bii" eventType="touchUpInside" id="xYI-3E-mEx"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvF-25-3hI">
-                                                            <rect key="frame" x="335" y="9" width="26" height="26"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="dvF-25-3hI" secondAttribute="height" multiplier="1:1" id="ccd-uW-8r1"/>
-                                                            </constraints>
-                                                            <state key="normal">
-                                                                <imageReference key="image" image="trash" catalog="system" symbolScale="large" renderingMode="template"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="onDeleteContact:" destination="6IF-AE-bii" eventType="touchUpInside" id="ruY-2x-0Jj"/>
-                                                            </connections>
-                                                        </button>
-                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ms5-F1-8YA">
-                                                            <rect key="frame" x="20" y="5" width="307" height="34"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="aTA-5s-azb" firstAttribute="centerY" secondItem="s2E-uY-xrz" secondAttribute="centerY" id="2Tr-6T-DnF"/>
-                                                        <constraint firstAttribute="trailing" secondItem="aTA-5s-azb" secondAttribute="trailing" constant="20" symbolic="YES" id="51q-W3-EaY"/>
-                                                        <constraint firstItem="ms5-F1-8YA" firstAttribute="top" secondItem="s2E-uY-xrz" secondAttribute="top" constant="5" id="Koh-hj-m8d"/>
-                                                        <constraint firstItem="dvF-25-3hI" firstAttribute="leading" secondItem="ms5-F1-8YA" secondAttribute="trailing" constant="8" symbolic="YES" id="LLg-yZ-2ss"/>
-                                                        <constraint firstItem="dvF-25-3hI" firstAttribute="width" secondItem="dvF-25-3hI" secondAttribute="height" multiplier="1:1" id="PEq-f9-i07"/>
-                                                        <constraint firstItem="ms5-F1-8YA" firstAttribute="leading" secondItem="s2E-uY-xrz" secondAttribute="leading" constant="20" symbolic="YES" id="UbE-JA-FNG"/>
-                                                        <constraint firstItem="dvF-25-3hI" firstAttribute="centerY" secondItem="ms5-F1-8YA" secondAttribute="centerY" id="d4g-mU-MhJ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="ms5-F1-8YA" secondAttribute="bottom" constant="5" id="iJk-kf-uKf"/>
-                                                        <constraint firstItem="aTA-5s-azb" firstAttribute="leading" secondItem="dvF-25-3hI" secondAttribute="trailing" constant="8" symbolic="YES" id="ib5-lV-Sbf"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="s2E-uY-xrz" firstAttribute="top" secondItem="TYP-z1-vfc" secondAttribute="top" id="2mG-Sh-Nwb"/>
-                                                <constraint firstAttribute="trailing" secondItem="s2E-uY-xrz" secondAttribute="trailing" id="3YR-ab-DVk"/>
-                                                <constraint firstItem="s2E-uY-xrz" firstAttribute="leading" secondItem="TYP-z1-vfc" secondAttribute="leading" id="kb0-Y5-yh4"/>
-                                                <constraint firstAttribute="bottom" secondItem="s2E-uY-xrz" secondAttribute="bottom" id="ygU-27-Sf6"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Comments" id="hqx-IV-b0B">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="HDK-j3-zvf">
-                                        <rect key="frame" x="0.0" y="781" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="681.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HDK-j3-zvf" id="HMw-F7-kDg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -264,7 +200,7 @@
                             <tableViewSection headerTitle="Alerts" id="sbe-Du-ZNl">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="fJg-hA-hlW">
-                                        <rect key="frame" x="0.0" y="957" width="414" height="55"/>
+                                        <rect key="frame" x="0.0" y="857.5" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fJg-hA-hlW" id="1cX-wb-wsR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
@@ -316,9 +252,6 @@
                         <outlet property="alertSwitch" destination="SSu-eJ-s1Q" id="fbH-11-ra3"/>
                         <outlet property="alertTitleLabel" destination="0Ee-ca-uAE" id="DHl-IO-3gN"/>
                         <outlet property="commentsTextView" destination="vwv-db-P6m" id="qxQ-c0-wwH"/>
-                        <outlet property="contactAddButton" destination="aTA-5s-azb" id="upb-Bm-M97"/>
-                        <outlet property="contactDeleteButton" destination="dvF-25-3hI" id="2SO-0O-uQp"/>
-                        <outlet property="contactTextField" destination="ms5-F1-8YA" id="YON-Gp-ijy"/>
                         <outlet property="datePicker" destination="cd6-sn-6kU" id="ab9-gk-VMh"/>
                         <outlet property="dateSwitch" destination="lL1-4l-92G" id="TAI-Tk-4Ee"/>
                         <outlet property="dateTitleLabel" destination="74T-Ww-KAs" id="AyV-Qb-MGv"/>
@@ -336,7 +269,6 @@
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ContactsUI
 
 class NewTaskTableViewController: UITableViewController {
     
@@ -15,9 +14,8 @@ class NewTaskTableViewController: UITableViewController {
         case status = 1
         case type = 2
         case date = 3
-        case contact = 4
-        case comments = 5
-        case alerts = 6
+        case comments = 4
+        case alerts = 5
         
         func title() -> String {
             switch self {
@@ -25,7 +23,6 @@ class NewTaskTableViewController: UITableViewController {
             case .status: return NSLocalizedString("status", comment: "")
             case .type: return NSLocalizedString("type", comment: "")
             case .date: return NSLocalizedString("due_date", comment: "")
-            case .contact: return NSLocalizedString("contact", comment: "")
             case .comments: return NSLocalizedString("comments", comment: "")
             case .alerts: return NSLocalizedString("alerts", comment: "")
             }
@@ -41,7 +38,6 @@ class NewTaskTableViewController: UITableViewController {
             case .status: return 1
             case .type: return 1
             case .date: return 2
-            case .contact: return 1
             case .comments: return 1
             case .alerts: return 1
             }
@@ -49,7 +45,7 @@ class NewTaskTableViewController: UITableViewController {
         
         func height(indexPath: IndexPath, isExpanded: Bool? = nil) -> CGFloat {
             switch self {
-            case .title, .contact, .alerts, .type, .status: return 44.0
+            case .title, .alerts, .type, .status: return 44.0
             case .date:
                 if indexPath.row == 0 {
                     return 55.0
@@ -84,11 +80,6 @@ class NewTaskTableViewController: UITableViewController {
     @IBOutlet private weak var dateValueLabel: UILabel!
     @IBOutlet private weak var dateSwitch: UISwitch!
     @IBOutlet private weak var datePicker: UIDatePicker!
-    
-    /// - Tag: Contact
-    @IBOutlet private weak var contactTextField: UITextField!
-    @IBOutlet private weak var contactAddButton: UIButton!
-    @IBOutlet private weak var contactDeleteButton: UIButton!
     
     /// - Tag: Comments
     @IBOutlet weak var commentsTextView: UITextView!
@@ -148,9 +139,6 @@ class NewTaskTableViewController: UITableViewController {
         self.datePicker.isHidden = true
         self.datePicker.translatesAutoresizingMaskIntoConstraints = false
         self.dateValueLabel.isHidden = true
-        
-        /// - Tag: Contact
-        self.contactTextField.placeholder = "contact_details".localized
         
         /// - Tag: Comments
         self.commentsTextView.text = nil
@@ -321,15 +309,6 @@ extension NewTaskTableViewController {
     @IBAction func onDatePickerValueChange(_ sender: UIDatePicker) {
         self.dateValueLabel.text = DateFormatter.dayFormatter.string(from: sender.date)
     }
-        
-    /// - Tag: Contacts
-    @IBAction private func onAddContact(_ sender: Any) {
-        ContactsService.shared.showContactsPicker(delegate: self, presenter: self)
-    }
-    
-    @IBAction private func onDeleteContact(_ sender: Any) {
-        self.contactTextField.text = nil
-    }
     
     /// - Tag: Alerts
     @IBAction func OnPressAlertsDatePickerSwitch(_ sender: UISwitch) {
@@ -337,31 +316,5 @@ extension NewTaskTableViewController {
     }
     
     /// - Tag: Reminders
-    
-}
-
-// MARK: - CNContactPickerDelegate
-
-extension NewTaskTableViewController: CNContactPickerDelegate {
-    
-    private func saveAndShow(_ contact: CNContact) {
-        self.contactId = contact.identifier
-        
-        var text: String = "\(contact.givenName) \(contact.familyName)"
-        if let phoneNumber: String = contact.phoneNumbers.first?.value.stringValue {
-            text += ", "
-            text += phoneNumber
-        }
-        self.contactTextField.text = text
-    }
-    
-    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        debugPrint(#function)
-    }
-    
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        debugPrint(#function, contact)
-        self.saveAndShow(contact)
-    }
     
 }
