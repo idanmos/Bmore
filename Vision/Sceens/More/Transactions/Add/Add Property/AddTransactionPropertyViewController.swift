@@ -16,7 +16,7 @@ class AddTransactionPropertyViewController: UIViewController, UITableViewDelegat
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var navBar: UINavigationBar!
     
-    private var viewModel = PropertyViewModel()
+    private var viewModel = PropertiesViewModel()
     
     weak var delegate: AddTransactionPropertyViewControllerDelegate?
     

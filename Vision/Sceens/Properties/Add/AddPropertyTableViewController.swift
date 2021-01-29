@@ -141,7 +141,9 @@ class AddPropertyTableViewController: BaseTableViewController {
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     
     // MARK: - Variables
-        
+    
+    var dataProvider: PropertyProvider?
+    
     private lazy var locationPicker: LocationPickerViewController = {
         let locationPicker = LocationPickerViewController()
         locationPicker.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeLocationController))
@@ -177,6 +179,11 @@ class AddPropertyTableViewController: BaseTableViewController {
     private var exclusivityEndDate: Date?
     
     // MARK: - Lifecycle
+    
+    override func loadView() {
+        super.loadView()
+        assert(self.dataProvider != nil, "self.dataProvider cannot be nil")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -324,74 +331,54 @@ extension AddPropertyTableViewController {
     
     @objc func saveAndClose() {
         // save to core data
-        var info: [Application.PropertySaveKeys: Any] = [:]
-        info[.uuid] = self.propertyUUID
-        info[.enterDate] = self.enterDate
-        info[.type] = self.selectedAssetType
-        
+        var configuration = PropertyConfiguration(uuid: self.propertyUUID,
+                                                  date: Date(),
+                                                  enterDateIsNow: self.enterNowSwitch.isOn,
+                                                  entryDate: self.enterDate,
+                                                  type: Int16(self.selectedAssetType),
+                                                  address: self.addressTextField.text,
+                                                  price: self.priceTextField.text,
+                                                  extraInfo: self.extraInfoTextView.text,
+                                                  contactIdentifier: self.contactIdentifier,
+                                                  isExclusivity: self.exclusivitySwitch.isOn,
+                                                  exclusivityEndDate: self.exclusivityEndDate)
+                
         if let location: Location = self.location {
-            info[.latitude] = location.coordinate.latitude
-            info[.longitude] = location.coordinate.longitude
+            configuration.latitude = location.coordinate.latitude
+            configuration.longitude = location.coordinate.longitude
         }
-        
-        if let address: String = self.addressTextField.text, !address.isEmpty {
-            info[.address] = address
-        } else {
-            self.addressTextField.becomeFirstResponder()
-            return
-        }
-        
-        if let price: String = self.priceTextField.text, !price.isEmpty {
-            info[.price] = price
-        } else {
-            self.priceTextField.becomeFirstResponder()
-            return
-        }
-        
-        info[.dateIsNow] = self.enterNowSwitch.isOn
-        
-        if let saleOrRent: String = self.sellOrRentSegmentedControl.titleForSegment(at: self.sellOrRentSegmentedControl.selectedSegmentIndex) {
-            info[.sellOrRent] = saleOrRent
+        if let sellOrRent: String = self.sellOrRentSegmentedControl.titleForSegment(at: self.sellOrRentSegmentedControl.selectedSegmentIndex) {
+            configuration.sellOrRent = sellOrRent
         }
         if let size: String = self.sizeTextField.text {
-            info[.size] = size
+            configuration.size = Double(size)
         }
         if let rooms: String = self.roomsTextField.text, rooms != "0", rooms != "0.0" {
-            info[.rooms] = rooms
+            configuration.rooms = Double(rooms)
         }
         if let balcony: String = self.balconyTextField.text, balcony != "0", balcony != "0.0" {
-            info[.balcony] = balcony
+            configuration.balcony = Int16(balcony)
         }
         if let parking: String = self.parkingTextField.text, parking != "0", parking != "0.0" {
-            info[.parking] = parking
+            configuration.parking = Int16(parking)
         }
         if let floorNumber: String = self.floorNumberTextField.text {
-            info[.floorNumber] = floorNumber
+            configuration.floorNumber = Int16(floorNumber)
         }
         if let totalFloorNumber: String = self.totalFloorNumberTextField.text {
-            info[.totalFloorsNumber] = totalFloorNumber
-        }
-        if let extraInfo: String = self.extraInfoTextView.text {
-            info[.extraInfo] = extraInfo
-        }
-        if let contactIdentifier: String = self.contactIdentifier {
-            info[.contactIdentifier] = contactIdentifier
-        }
-        
-        info[.isExclusivity] = self.exclusivitySwitch.isOn
-        
-        if let exclusiveEndDate: Date = self.exclusivityEndDate {
-            info[.exclusivityEndDate] = exclusiveEndDate
+            configuration.totalFloorNumber = Int16(totalFloorNumber)
         }
         
         self.showSpinner()
         
-        PropertyViewModel.save(info)
         ImageStorage.shared.save(images: self.images, propertyId: self.propertyUUID)
         
-        self.hideSpinner()
-        
-        self.navigationController?.popViewController(animated: true)
+        self.dataProvider?.addProperty(configuration: configuration) { [weak self] in
+            guard let self = self else { return }
+            // self.didUpdatePost(post)
+            self.hideSpinner()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc private func closeKeyboard() {
@@ -495,7 +482,7 @@ extension AddPropertyTableViewController: ImagePickerDelegate {
     
 }
 
-// MARK: - Actions
+// MARK: - Action Handlers
 
 extension AddPropertyTableViewController {
     
@@ -577,6 +564,8 @@ extension AddPropertyTableViewController {
     }
     
 }
+
+// MARK: - CNContactPickerDelegate
 
 extension AddPropertyTableViewController: CNContactPickerDelegate {
     

@@ -364,7 +364,7 @@ extension AddTransactionTableViewController {
     
     @IBAction private func onPressPropertyInfo(_ sender: Any) {
         guard let propertyId: UUID = self.propertyId else { return }
-        guard let obj: Property = PropertyViewModel.fetchProperty(by: propertyId) else { return }
+        guard let obj: Property = PropertiesViewModel.fetchProperty(by: propertyId) else { return }
         
         let propertiesStoryboard = UIStoryboard(name: "Properties", bundle: nil)
         guard let detailsViewController = propertiesStoryboard.instantiateViewController(withIdentifier: PropertyDetailsViewController.className())

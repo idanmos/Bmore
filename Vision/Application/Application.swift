@@ -161,28 +161,6 @@ class Application {
         }
     }
     
-    enum PropertySaveKeys: String, CaseIterable {
-        case uuid
-        case type
-        case enterDate
-        case dateIsNow
-        case address
-        case size
-        case rooms
-        case balcony
-        case parking
-        case floorNumber
-        case totalFloorsNumber
-        case extraInfo
-        case price
-        case latitude
-        case longitude
-        case sellOrRent
-        case contactIdentifier
-        case isExclusivity
-        case exclusivityEndDate
-    }
-    
     enum PropertyExclusivity: Int {
         case oneMonth = 30
         case threeMonths = 90

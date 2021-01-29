@@ -78,7 +78,7 @@ extension TransactionsViewModel {
         if let type = Application.TransactionType(rawValue: Int16(configuration.type)) {
             if type == .revenue {
                 if let propertyId: UUID = configuration.propertyId,
-                   let property: Property = PropertyViewModel.fetchProperty(by: propertyId) {
+                   let property: Property = PropertiesViewModel.fetchProperty(by: propertyId) {
                     property.isSold = true
                 }
             }

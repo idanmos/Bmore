@@ -43,7 +43,7 @@ class SingleTransactionTableViewCell: UITableViewCell {
                 switch locationType {
                 case .property:
                     if let propertyId: UUID = transaction.propertyId,
-                       let property: Property = PropertyViewModel.fetchProperty(by: propertyId) {
+                       let property: Property = PropertiesViewModel.fetchProperty(by: propertyId) {
                         self.addressLabel.text = property.address
                     }
                 case .address:

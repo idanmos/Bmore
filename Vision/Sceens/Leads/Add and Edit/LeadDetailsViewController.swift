@@ -64,7 +64,7 @@ class LeadDetailsViewController: UIViewController {
     private lazy var tasks: [Task] = []
     
     private lazy var viewModel = LeadAddEditViewModel()
-    private lazy var propertiesViewModel = PropertyViewModel()
+    private lazy var propertiesViewModel = PropertiesViewModel()
     
     private lazy var contactPickerViewController: CNContactPickerViewController = {
         let pickerViewController = CNContactPickerViewController()

@@ -9,16 +9,29 @@ import UIKit
 
 class PropertiesViewController: BaseViewController {
     
+    // MARK: - Constants
+    
     private enum Constants {
         static let segueToAdd: String = "SegueToAdd"
         static let segueToDetails: String = "SegueToDetails"
         static let itemsPerRow: Int = 2
     }
     
+    // MARK: - Outlets
+    
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    private var viewModel = PropertyViewModel()
+    // MARK: - Variables
+    
+    private lazy var dataProvider: PropertyProvider = {
+        return PropertyProvider(
+            with: AppDelegate.sharedDelegate().coreDataStack.persistentContainer,
+            fetchedResultsControllerDelegate: nil
+        )
+    }()
+    
+    private var viewModel = PropertiesViewModel()
     
     private lazy var searchController: UISearchController = {
         let controller = UISearchController()
@@ -35,6 +48,8 @@ class PropertiesViewController: BaseViewController {
         
         return controller
     }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,9 +136,15 @@ extension PropertiesViewController {
 extension PropertiesViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == PropertiesViewController.Constants.segueToDetails,
-           let viewController = segue.destination as? PropertyDetailsViewController, let property = sender as? Property {
-            viewController.property = property
+        if segue.identifier == PropertiesViewController.Constants.segueToDetails {
+            if let viewController = segue.destination as? PropertyDetailsViewController,
+               let property = sender as? Property {
+                viewController.property = property
+            }
+        } else if segue.identifier == PropertiesViewController.Constants.segueToAdd {
+            if let viewController = segue.destination as? AddPropertyTableViewController {
+                viewController.dataProvider = self.dataProvider
+            }
         }
     }
     
@@ -144,7 +165,17 @@ extension PropertiesViewController {
 extension PropertiesViewController: PropertyCollectionViewCellDelegate {
     
     func propertyCell(_ propertyCell: PropertyCollectionViewCell, didTapOnDeleteAt index: Int) {
-        self.viewModel.delete(index: index, collectionView: self.collectionView, presenter: self)
+        var property: Property
+        if self.searchController.isActive {
+            property = self.viewModel.filteredProperties[index]
+        } else {
+            property = self.viewModel.properties[index]
+        }
+        
+        self.dataProvider.delete(property: property) { [weak self] in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+        }
     }
 }
 
