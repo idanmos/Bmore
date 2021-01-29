@@ -259,9 +259,9 @@ extension NewTaskTableViewController {
         configuration.isPushEnabled = self.alertSwitch.isOn
         
         if let _ = self.editedTask {
-            AppDelegate.sharedDelegate().coreDataStack.edit(self.editedTask!, configuration: configuration)
+            TasksViewModel.edit(self.editedTask!, configuration: configuration)
         } else {
-            AppDelegate.sharedDelegate().coreDataStack.save(configuration)
+            TasksViewModel.save(configuration)
         }
         
         if configuration.isPushEnabled {

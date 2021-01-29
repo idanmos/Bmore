@@ -9,9 +9,9 @@ import Foundation
 
 class LeadAddEditViewModel {
     
-    private lazy var properties: [Property] = AppDelegate.sharedDelegate().coreDataStack.fetchProperties()
-    private lazy var transactions: [Transaction] = AppDelegate.sharedDelegate().coreDataStack.fetchTransactions()
-    private lazy var tasks: [Task] = AppDelegate.sharedDelegate().coreDataStack.fetchTasks()
+    private lazy var properties: [Property] = PropertyViewModel.fetchProperties()
+    private lazy var transactions: [Transaction] = TransactionsViewModel.fetchTransactions()
+    private lazy var tasks: [Task] = TasksViewModel.fetchTasks()
     private lazy var meetings: [MeetingEvent] = MeetingService.shared.fetchEvents()
     
     var selectedProperties: [Property] = []

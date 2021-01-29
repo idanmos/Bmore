@@ -84,7 +84,7 @@ class LeadsViewModel: NSObject {
             context.delete(lead)
             
             if shouldSave {
-                context.save(with: .deleteContact)
+                context.save(with: .deleteLead)
             }
             handler?()
         }

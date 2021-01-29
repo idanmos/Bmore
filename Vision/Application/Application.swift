@@ -12,6 +12,26 @@ class Application {
     static let shared = Application()
     
     func configureMainInterface(in window: UIWindow) {
+        let target: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        debugPrint(#file, #function, target)
+        
+        switch target {
+        case .unspecified:
+            break
+        case .phone:
+            self.configureIphoneInterface(in: window)
+        case .pad, .mac:
+            self.configureIpadInterface(in: window)
+        case .tv:
+            break
+        case .carPlay:
+            break
+        @unknown default:
+            break
+        }
+    }
+    
+    private func configureIphoneInterface(in window: UIWindow) {
         window.backgroundColor = .white
         
         let tabBarController = UITabBarController()
@@ -40,6 +60,31 @@ class Application {
         tabBarController.setViewControllers(viewControllers, animated: true)
                 
         window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+    }
+    
+    private func configureIpadInterface(in window: UIWindow) {
+        let splitViewController: UISplitViewController
+        if #available(iOS 14, *) {
+            splitViewController = UISplitViewController(style: .doubleColumn)
+        } else {
+            splitViewController = UISplitViewController()
+        }
+                        
+        let masterViewController = MasterTableViewController(nibName: MasterTableViewController.className(), bundle: nil)
+        
+        let detailViewController = UIViewController()
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        
+        splitViewController.viewControllers = [
+            UINavigationController(rootViewController: masterViewController),
+            UINavigationController(rootViewController: detailViewController)
+        ]
+        
+        splitViewController.delegate = self
+        splitViewController.preferredDisplayMode = .allVisible
+                
+        window.rootViewController = splitViewController
         window.makeKeyAndVisible()
     }
     
@@ -255,3 +300,21 @@ extension Application {
 //    }()
 //    
 //}
+
+// MARK: - UISplitViewControllerDelegate
+
+extension Application: UISplitViewControllerDelegate {
+    
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+        // The SplitViewController is about to collapse and only the master view will be shown, so clear any selection.
+        if let navController = splitViewController.viewControllers[0] as? UINavigationController,
+           let masterViewController = navController.viewControllers[0] as? MasterTableViewController,
+           let selectedRow = masterViewController.tableView.indexPathForSelectedRow {
+            masterViewController.tableView.deselectRow(at: selectedRow, animated: true)
+        }
+        return true // Return true to always show the master view.
+    }
+    
+}

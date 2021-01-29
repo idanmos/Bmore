@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
-class TimeTrackingViewModel {
+class TimeTrackingViewModel: BaseViewModel {
     
     typealias AlertActionHandler = ((UIAlertAction) -> Void)
     
     var timeTracking: [TimeTrack] = []
     
     func fetchTimeTrack() {
-        self.timeTracking = AppDelegate.sharedDelegate().coreDataStack.fetchTimeTrack()
+        self.timeTracking = TimeTrackingViewModel.fetchTimeTrack()
     }
     
     func showStartOrEnd(presenter: UIViewController,
@@ -45,4 +46,26 @@ class TimeTrackingViewModel {
         presenter.present(picker, animated: true, completion: nil)
     }
     
+}
+
+// MARK: - Time Tracking
+
+extension TimeTrackingViewModel {
+    
+    class func fetchTimeTrack(fetchLimit: Int? = nil) -> [TimeTrack] {
+        let request: NSFetchRequest<TimeTrack> = TimeTrack.fetchRequest()
+        
+        if let limit: Int = fetchLimit {
+            request.fetchLimit = limit
+        }
+                
+        do {
+            let results: [TimeTrack] = try TimeTrackingViewModel.mainContext().fetch(request)
+            return results
+        } catch let error {
+            debugPrint(#function, error)
+        }
+        
+        return []
+    }
 }

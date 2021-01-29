@@ -386,7 +386,7 @@ extension AddPropertyTableViewController {
         
         self.showSpinner()
         
-        AppDelegate.sharedDelegate().coreDataStack.save(info)
+        PropertyViewModel.save(info)
         ImageStorage.shared.save(images: self.images, propertyId: self.propertyUUID)
         
         self.hideSpinner()

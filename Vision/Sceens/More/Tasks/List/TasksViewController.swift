@@ -83,7 +83,7 @@ class TasksViewController: UITableViewController {
             }
             
             // remove from core data
-            AppDelegate.sharedDelegate().coreDataStack.delete(task)
+            TasksViewModel.delete(task)
             
             // remove from data source
             self.viewModel.dataSource.remove(at: indexPath.row)

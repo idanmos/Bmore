@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PropertiesViewController: UIViewController {
+class PropertiesViewController: BaseViewController {
     
     private enum Constants {
         static let segueToAdd: String = "SegueToAdd"
@@ -18,7 +18,7 @@ class PropertiesViewController: UIViewController {
     @IBOutlet private weak var searchContainerView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    private var viewModel = PropertiesViewModel()
+    private var viewModel = PropertyViewModel()
     
     private lazy var searchController: UISearchController = {
         let controller = UISearchController()

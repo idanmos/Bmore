@@ -23,13 +23,30 @@ extension NSPersistentContainer {
 // MARK: - Saving Contexts
 
 enum ContextSaveContextualInfo: String {
-    case properties = "adding a property"
-    case deleteProperty = "deleting a property"
-    case contacts = "adding contact identifier"
-    case deleteContact = "deleting a contact"
+//    case properties = "adding a property"
+//    case deleteProperty = "deleting a property"
+    
+    /// - Tag: Leads
+    case leads = "adding contact identifier"
+    case deleteLead = "deleting a contact"
+    
+    /// - Tag: Time Tracking
     case timeTrack = "adding start/end work time"
     case deleteTimeTrack = "deleting a time track"
-    case deduplicate = "deduplicating leads"
+    
+    /// - Tag: Properties
+    case addProperty = "adding a property"
+    case deleteProperty = "deleting a property"
+    case batchAddProperties = "adding a batch of properties"
+    case deduplicate = "deduplicating tags"
+    case updateProperty = "saving property details"
+//    case addTag = "adding a tag"
+//    case deleteTag = "deleting a tag"
+    
+    /// - Tag: Attachments & Images
+    case addAttachment = "adding an attachment"
+    case deleteAttachment = "deleting an attachment"
+    case saveFullImage = "saving a full image"
 }
 
 extension NSManagedObjectContext {

@@ -1,13 +1,13 @@
 //
 //  BaseViewController.swift
-//  B-more
+//  Bmore
 //
-//  Created by Idan Moshe on 18/01/2021.
+//  Created by Idan Moshe on 29/01/2021.
 //
 
 import UIKit
 
-class BaseTableViewController: UITableViewController {
+class BaseViewController: UIViewController {
     
     lazy var spinner: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -18,8 +18,9 @@ class BaseTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard self.spinner.superview == nil, let superView = self.tableView.superview else { return }
-        
+                
+        guard self.spinner.superview == nil, let superView = self.view.superview else { return }
+
         superView.addSubview(self.spinner)
         superView.bringSubviewToFront(self.spinner)
         self.spinner.center = CGPoint(x: superView.frame.size.width / 2, y: superView.frame.size.height / 2)

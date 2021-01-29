@@ -12,7 +12,7 @@ import ContactsUI
 class LeadsTableViewController: UITableViewController {
     
     private var viewModel = LeadsViewModel()
-    
+        
     deinit {
         debugPrint("Deallocating \(self)")
         NotificationCenter.default.removeObserver(self)
@@ -47,7 +47,7 @@ class LeadsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.viewModel.fetchData()
-        self.tableView.reloadData()
+        self.tableView.reloadData()        
     }
     
     // MARK: - Table view data source
