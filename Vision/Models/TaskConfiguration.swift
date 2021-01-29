@@ -13,7 +13,6 @@ struct TaskConfiguration {
     var status: Application.TaskStatus = .pending
     var type: Application.TaskType = .call
     var date: Date?
-    var contactId: String?
     var comments: String?
     var isPushEnabled: Bool = false
 }

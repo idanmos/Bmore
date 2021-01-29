@@ -62,7 +62,7 @@ class TransactionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SingleTransactionTableViewCell.self, indexPath: indexPath)
         let transaction: Transaction = self.viewModel.transactions[indexPath.row]
-        cell.configure(transaction)
+        cell.transaction = transaction
         return cell
     }
     

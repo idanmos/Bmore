@@ -12,36 +12,37 @@ class PropertiesViewModel: BaseViewModel {
     
     // MARK: - Variables
     
-    var properties: [Property] = []
-    var filteredProperties: [Property] = []
-    
+    private lazy var dataProvider: PropertyProvider = {
+        return PropertyProvider(
+            with: AppDelegate.sharedDelegate().coreDataStack.persistentContainer,
+            fetchedResultsControllerDelegate: nil
+        )
+    }()
+        
     deinit {
-        debugPrint("dealloc \(self)")
-        self.properties.removeAll()
-        self.filteredProperties.removeAll()
+        debugPrint("Deallocating \(self)")
     }
     
     // MARK: - General Methods
     
-    func fetchProperties() {
-        self.properties = PropertiesViewModel.fetchProperties()
+    func getDataProvider() -> PropertyProvider {
+        return self.dataProvider
     }
     
-    func searchBarCancelButtonClicked(collectionView: UICollectionView, view: UIView) {
-        self.filteredProperties.removeAll()
-        
-        DispatchQueue.main.async {
-            view.endEditing(true)
-            collectionView.reloadData()
-        }
+    var fetchedObjects: [Property] {
+        return self.dataProvider.fetchedResultsController.fetchedObjects ?? []
     }
     
-    func filter(searchText: String, collectionView: UICollectionView) {
-        self.filteredProperties = self.properties.filter({ (obj: Property) -> Bool in
-            return (obj.address?.contains(searchText) ?? false) || ((obj.extraInfo?.contains(searchText) ?? false))
-        })
-        
-        collectionView.reloadData()
+    func object(at indexPath: IndexPath) -> Property {
+        return self.dataProvider.fetchedResultsController.object(at: indexPath)
+    }
+    
+    func indexPath(forObject object: Property) -> IndexPath? {
+        return self.dataProvider.fetchedResultsController.indexPath(forObject: object)
+    }
+    
+    func resetAndReload() {
+        self.dataProvider.resetAndReload()
     }
     
 }

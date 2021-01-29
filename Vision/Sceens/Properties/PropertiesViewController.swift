@@ -23,31 +23,8 @@ class PropertiesViewController: BaseViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     // MARK: - Variables
-    
-    private lazy var dataProvider: PropertyProvider = {
-        return PropertyProvider(
-            with: AppDelegate.sharedDelegate().coreDataStack.persistentContainer,
-            fetchedResultsControllerDelegate: nil
-        )
-    }()
-    
+        
     private var viewModel = PropertiesViewModel()
-    
-    private lazy var searchController: UISearchController = {
-        let controller = UISearchController()
-        controller.searchResultsUpdater = self
-        controller.hidesNavigationBarDuringPresentation = false
-        controller.searchBar.sizeToFit()
-        controller.searchBar.delegate = self
-        
-        if #available(iOS 12, *) {
-            controller.obscuresBackgroundDuringPresentation = false
-        } else {
-            controller.dimsBackgroundDuringPresentation = false
-        }
-        
-        return controller
-    }()
     
     // MARK: - Lifecycle
     
@@ -55,9 +32,7 @@ class PropertiesViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = "properties".localized
-        
-        self.searchContainerView.addSubview(self.searchController.searchBar)
-        
+                
         self.collectionView.register(className: PropertyCollectionViewCell.self)
         
         let columnLayout = FlowLayout(
@@ -73,11 +48,8 @@ class PropertiesViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
-            self.viewModel.fetchProperties()
-            self.collectionView.reloadData()
-        }
+        self.viewModel.resetAndReload()
+        self.collectionView.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -92,36 +64,26 @@ class PropertiesViewController: BaseViewController {
 extension PropertiesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.searchController.isActive ? self.viewModel.filteredProperties.count : self.viewModel.properties.count
+        return self.viewModel.fetchedObjects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(className: PropertyCollectionViewCell.self, indexPath: indexPath)
         cell.tag = indexPath.item
         cell.delegate = self
-        
-        var property: Property
-        if self.searchController.isActive {
-            property = self.viewModel.filteredProperties[indexPath.row]
-        } else {
-            property = self.viewModel.properties[indexPath.row]
-        }
-        
+        let property: Property = self.viewModel.object(at: indexPath)
         cell.configure(property)
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let property: Property = self.viewModel.object(at: indexPath)
         
-        var property: Property
-        if self.searchController.isActive {
-            property = self.viewModel.filteredProperties[indexPath.row]
-        } else {
-            property = self.viewModel.properties[indexPath.row]
-        }
-        self.performSegue(withIdentifier: PropertiesViewController.Constants.segueToDetails, sender: property)
+        self.performSegue(
+            withIdentifier: Constants.segueToDetails,
+            sender: property
+        )
     }
     
 }
@@ -136,26 +98,32 @@ extension PropertiesViewController {
 extension PropertiesViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == PropertiesViewController.Constants.segueToDetails {
-            if let viewController = segue.destination as? PropertyDetailsViewController,
-               let property = sender as? Property {
-                viewController.property = property
+        if segue.identifier == Constants.segueToDetails {
+            if let viewController = segue.destination as? PropertyDetailsViewController {
+                if let property = sender as? Property {
+                    viewController.property = property
+                }
             }
-        } else if segue.identifier == PropertiesViewController.Constants.segueToAdd {
+        } else if segue.identifier == Constants.segueToAdd {
             if let viewController = segue.destination as? AddPropertyTableViewController {
-                viewController.dataProvider = self.dataProvider
+                if let provider = sender as? PropertyProvider {
+                    viewController.dataProvider = provider
+                }
             }
         }
     }
     
 }
 
-// MARK: - Actions
+// MARK: - Action Handlers
 
 extension PropertiesViewController {
     
     @IBAction private func onPressAdd(_ sender: Any) {
-        self.performSegue(withIdentifier: Constants.segueToAdd, sender: self)
+        self.performSegue(
+            withIdentifier: Constants.segueToAdd,
+            sender: self.viewModel.getDataProvider()
+        )
     }
     
 }
@@ -165,37 +133,11 @@ extension PropertiesViewController {
 extension PropertiesViewController: PropertyCollectionViewCellDelegate {
     
     func propertyCell(_ propertyCell: PropertyCollectionViewCell, didTapOnDeleteAt index: Int) {
-        var property: Property
-        if self.searchController.isActive {
-            property = self.viewModel.filteredProperties[index]
-        } else {
-            property = self.viewModel.properties[index]
-        }
+        let property: Property = self.viewModel.fetchedObjects[index]
         
-        self.dataProvider.delete(property: property) { [weak self] in
+        self.viewModel.getDataProvider().delete(property) { [weak self] in
             guard let self = self else { return }
             self.collectionView.reloadData()
         }
     }
-}
-
-// MARK: - UISearchResultsUpdating
-
-extension PropertiesViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText: String = searchController.searchBar.text, searchController.isActive else { return }
-        self.viewModel.filter(searchText: searchText, collectionView: self.collectionView)
-    }
-    
-}
-
-// MARK: - UISearchBarDelegate
-
-extension PropertiesViewController: UISearchBarDelegate {
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.viewModel.searchBarCancelButtonClicked(collectionView: self.collectionView, view: self.view)
-    }
-    
 }

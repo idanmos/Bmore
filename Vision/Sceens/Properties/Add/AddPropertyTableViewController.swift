@@ -8,7 +8,6 @@
 import UIKit
 import ImagePicker
 import LocationPicker
-import ContactsUI
 
 fileprivate enum DatePickerType: Int {
     case exclusivity, enterDate
@@ -34,8 +33,7 @@ class AddPropertyTableViewController: BaseTableViewController {
         case roomsBalconyParking = 6
         case extraInfo = 7
         case price = 8
-        case contact = 9
-        case photos = 10
+        case photos = 9
         
         func numberOfRows() -> Int {
             switch self {
@@ -48,7 +46,6 @@ class AddPropertyTableViewController: BaseTableViewController {
             case .roomsBalconyParking: return 3
             case .extraInfo: return 1
             case .price: return 1
-            case .contact: return 1
             case .photos: return 2
             }
         }
@@ -64,7 +61,6 @@ class AddPropertyTableViewController: BaseTableViewController {
             case .roomsBalconyParking: return Constants.defaultCellHeight
             case .extraInfo: return Constants.moreInfoCellHeight
             case .price: return Constants.defaultCellHeight
-            case .contact: return Constants.defaultCellHeight
             case .photos: return indexPath.item == 0 ? Constants.defaultCellHeight : Constants.photosCellHeight
             }
         }
@@ -129,11 +125,6 @@ class AddPropertyTableViewController: BaseTableViewController {
     @IBOutlet weak var priceTitleLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var currencySignLabel: UILabel!
-    
-    /// - Tag: Contact
-    @IBOutlet weak var contactTitleLabel: UILabel!
-    @IBOutlet weak var contactTextField: UITextField!
-    @IBOutlet weak var contactButton: UIButton!
     
     /// - Tag: Images
     @IBOutlet weak var deletePhotosButton: UIButton!
@@ -214,7 +205,6 @@ class AddPropertyTableViewController: BaseTableViewController {
         self.parkingTitleLabel.text = NSLocalizedString("parking", comment: "")
         self.extraInfoTitleLabel.text = NSLocalizedString("more_info", comment: "")
         self.priceTitleLabel.text = NSLocalizedString("price", comment: "")
-        self.contactTitleLabel.text = NSLocalizedString("contact", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("save", comment: ""),
                                                                  style: .done,
@@ -521,14 +511,6 @@ extension AddPropertyTableViewController {
         self.enterDateValueLabel.text = DateFormatter.dayFormatter.string(from: picker.date)
     }
     
-    @IBAction func onPressAddContact(_ sender: Any) {
-        ContactsService.shared.showContactsPicker(delegate: self, presenter: self)
-    }
-    
-    @IBAction func onPressDeleteContact(_ sender: Any) {
-        self.contactTextField.text = nil
-    }
-    
     @IBAction func onPressRooms(_ sender: Any) {
         guard let stepper = sender as? UIStepper else { return }
         self.roomsTextField.text = "\(stepper.value)"
@@ -561,29 +543,6 @@ extension AddPropertyTableViewController {
     @IBAction func onPressClearImagesButton(_ sender: Any) {
         self.images.removeAll()
         self.galleryCollectionView.reloadData()
-    }
-    
-}
-
-// MARK: - CNContactPickerDelegate
-
-extension AddPropertyTableViewController: CNContactPickerDelegate {
-    
-    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        debugPrint(#function)
-    }
-    
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        debugPrint(#function, contact)
-        
-        self.contactIdentifier = contact.identifier
-        
-        var text: String = "\(contact.givenName) \(contact.familyName)"
-        if let phoneNumber: String = contact.phoneNumbers.first?.value.stringValue {
-            text += ", "
-            text += phoneNumber
-        }
-        self.contactTextField.text = text
     }
     
 }

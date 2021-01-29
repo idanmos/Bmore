@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import LocationPicker
-import ContactsUI
 
 class AddTransactionTableViewController: UITableViewController {
     
@@ -25,38 +23,24 @@ class AddTransactionTableViewController: UITableViewController {
     private enum SectionType: Int, CaseIterable {
         case statusAndType = 0
         case date = 1
-        case location = 2
-        case price = 3
-        case commision = 4
-        case contact = 5
+        case price = 2
+        case commision = 3
         
         func rows() -> Int {
             switch self {
             case .statusAndType: return 2
             case .date: return 2
-            case .location: return 3
             case .price: return 1
             case .commision: return 2
-            case .contact: return 1
             }
         }
         
-        func height(indexPath: IndexPath, isLocationProperty: Bool) -> CGFloat {
+        func height(indexPath: IndexPath) -> CGFloat {
             switch self {
             case .statusAndType: return 44.0
             case .date: return indexPath.row == 0 ? 55.0 : 216.0
-            case .location:
-                if indexPath.row == 0 {
-                    return 44.0
-                } else if indexPath.row == 1 && isLocationProperty {
-                    return 55.0
-                } else if indexPath.row == 2 && !isLocationProperty {
-                    return 44.0
-                }
-                return 0
             case .price: return 55.0
             case .commision: return 44.0
-            case .contact: return 44.0
             }
         }
     }
@@ -77,13 +61,6 @@ class AddTransactionTableViewController: UITableViewController {
     @IBOutlet private weak var dateSwitch: UISwitch!
     @IBOutlet private weak var datePicker: UIDatePicker!
     
-    /// - Tag: Property
-    @IBOutlet private weak var locationTitleLabel: UILabel!
-    @IBOutlet private weak var locationSegmentControl: UISegmentedControl!
-    @IBOutlet private weak var propertyTitleLabel: UILabel!
-    @IBOutlet private weak var propertyValueLabel: UILabel!
-    @IBOutlet private weak var addressTextField: UITextField!
-    
     /// - Tag: Price
     @IBOutlet private weak var priceTitleLabel: UILabel!
     @IBOutlet private weak var priceTextField: UITextField!
@@ -93,37 +70,9 @@ class AddTransactionTableViewController: UITableViewController {
     @IBOutlet private weak var commisionSegmentControl: UISegmentedControl!
     @IBOutlet private weak var commisionTextField: UITextField!
     
-    /// - Tag: Contact
-    @IBOutlet private weak var contactTitleLabel: UILabel!
-    @IBOutlet private weak var contactTextField: UITextField!
-    @IBOutlet private weak var addContactButton: UIButton!
-    @IBOutlet private weak var deleteContactButton: UIButton!
-    
     // MARK: - Variables
-    
-    private var location: Location?
-    
-    var editedTransaction: Transaction? {
-        didSet(newValue) {
-            if let _ = newValue {
-                self.propertyId = newValue!.propertyId
-            }
-        }
-    }
-    
-    var propertyId: UUID?
-    private var contactId: String?
-    
-    private lazy var locationPicker: LocationPickerViewController = {
-        let locationPicker = LocationPickerViewController()
-        locationPicker.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeLocationController))
-        locationPicker.title = NSLocalizedString("place", comment: "")
-        locationPicker.modalPresentationStyle = .fullScreen
-        locationPicker.showCurrentLocationButton = true
-        locationPicker.useCurrentLocationAsHint = true
-        locationPicker.selectCurrentLocationInitially = true
-        return locationPicker
-    }()
+        
+    var editedTransaction: Transaction?
     
     // MARK: - Class Lifecycle
     
@@ -161,15 +110,6 @@ class AddTransactionTableViewController: UITableViewController {
         self.datePicker.translatesAutoresizingMaskIntoConstraints = false
         self.dateValueLabel.isHidden = true
         
-        /// - Tag: Location
-        self.locationTitleLabel.text = NSLocalizedString("location", comment: "")
-        self.locationSegmentControl.setTitle(NSLocalizedString("property", comment: ""), forSegmentAt: 0)
-        self.locationSegmentControl.setTitle(NSLocalizedString("address", comment: ""), forSegmentAt: 1)
-        self.propertyTitleLabel.text = NSLocalizedString("property", comment: "")
-        self.propertyValueLabel.text = nil
-        self.addressTextField.placeholder = NSLocalizedString("address", comment: "")
-        self.addressTextField.addMapTollbar(target: self, action: #selector(self.showLocationPicker))
-        
         /// - Tag: Price
         self.priceTitleLabel.text = NSLocalizedString("total_price", comment: "")
         self.priceTextField.placeholder = NSLocalizedString("price", comment: "")
@@ -183,11 +123,6 @@ class AddTransactionTableViewController: UITableViewController {
         self.onCommisionChange(self.commisionSegmentControl as Any)
         self.commisionTextField.keyboardType = .decimalPad
         self.commisionTextField.addTollbar(target: self, action: #selector(self.closeKeyboard))
-        
-        /// - Tag: Contact
-        self.contactTitleLabel.text = NSLocalizedString("contact", comment: "")
-        self.contactTextField.placeholder = NSLocalizedString("contact_details", comment: "")
-        self.contactTextField.isUserInteractionEnabled = false
         
         /// - Tag: Edit Mode
         if let obj: Transaction = self.editedTransaction {
@@ -224,22 +159,6 @@ class AddTransactionTableViewController: UITableViewController {
                 self.showPickerView()
             }
             
-            /// - Tag: Location
-            if let locationType = Application.TransactionLocationType(rawValue: obj.locationType) {
-                switch locationType {
-                case .property:
-                    self.locationSegmentControl.selectedSegmentIndex = 0
-                case .address:
-                    self.locationSegmentControl.selectedSegmentIndex = 1
-                }
-            }
-            
-            if let _ = obj.placemark {
-                let locationObject = Location(name: obj.address, location: obj.location, placemark: obj.placemark!)
-                self.location = locationObject
-                self.addressTextField.text = locationObject.title
-            }
-            
             /// - Tag: Price
             if let _ = obj.price {
                 self.priceTextField.text = obj.price!.stringValue
@@ -256,14 +175,6 @@ class AddTransactionTableViewController: UITableViewController {
                     case .amount:
                         self.commisionSegmentControl.selectedSegmentIndex = 1
                     }
-                }
-            }
-            
-            /// - Tag: Contact
-            if let _ = obj.contactId {
-                let contacts: [CNContact] = ContactsService.shared.findContacts([obj.contactId!])
-                if let contact: CNContact = contacts.first {
-                    self.saveAndShow(contact)
                 }
             }
         }
@@ -286,9 +197,7 @@ class AddTransactionTableViewController: UITableViewController {
         if section == .date && indexPath.row == Constants.pickerCellRow {
             return self.dateSwitch.isOn ? Constants.pickerCellExpandedHeight : Constants.pickerCellCollapsedHeight
         }
-        
-        let isLocationProperty: Bool = (self.locationSegmentControl.selectedSegmentIndex == 0)
-        return section.height(indexPath: indexPath, isLocationProperty: isLocationProperty)
+        return section.height(indexPath: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -305,15 +214,9 @@ extension AddTransactionTableViewController {
         let configuration = TransactionConfiguration(status: self.statusSegmentControl.selectedSegmentIndex,
                                                      type: self.typeSegmentControl.selectedSegmentIndex,
                                                      date: self.datePicker.date,
-                                                     locationType: self.locationSegmentControl.selectedSegmentIndex,
-                                                     propertyId: self.propertyId,
-                                                     address: self.location?.title,
-                                                     location: self.location?.location,
-                                                     placemark: self.location?.placemark,
                                                      price: self.priceTextField.text,
                                                      commisionType: self.commisionSegmentControl.selectedSegmentIndex,
-                                                     commision: self.commisionTextField.text,
-                                                     contactId: self.contactId)
+                                                     commision: self.commisionTextField.text)
         
         if let obj: Transaction = self.editedTransaction {
             TransactionsViewModel.edit(obj, configuration: configuration)
@@ -355,37 +258,6 @@ extension AddTransactionTableViewController {
         self.dateValueLabel.text = DateFormatter.dayFormatter.string(from: picker.date)
     }
     
-    ///  - Tag: Location
-    
-    @IBAction private func onLocationChange(_ sender: Any) {
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
-    }
-    
-    @IBAction private func onPressPropertyInfo(_ sender: Any) {
-        guard let propertyId: UUID = self.propertyId else { return }
-        guard let obj: Property = PropertiesViewModel.fetchProperty(by: propertyId) else { return }
-        
-        let propertiesStoryboard = UIStoryboard(name: "Properties", bundle: nil)
-        guard let detailsViewController = propertiesStoryboard.instantiateViewController(withIdentifier: PropertyDetailsViewController.className())
-                as? PropertyDetailsViewController
-        else { return }
-        
-        detailsViewController.property = obj
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
-    }
-    
-    @IBAction private func onPressAddProperty(_ sender: Any) {
-        let viewController = AddTransactionPropertyViewController(nibName: AddTransactionPropertyViewController.className(), bundle: nil)
-        viewController.delegate = self
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func onPressDeleteProperty(_ sender: Any) {
-        self.propertyId = nil
-        self.propertyValueLabel.text = nil
-    }
-    
     /// - Tag: Commision
     
     @IBAction private func onCommisionChange(_ sender: Any) {
@@ -397,17 +269,6 @@ extension AddTransactionTableViewController {
             self.commisionTextField.placeholder = NSLocalizedString("amount", comment: "")
         }
     }
-    
-    /// - Tag: Contact
-    
-    @IBAction private func onAddContact(_ sender: Any) {
-        ContactsService.shared.showContactsPicker(delegate: self, presenter: self)
-    }
-    
-    @IBAction private func onDeleteContact(_ sender: Any) {
-        self.contactTextField.text = nil
-    }
-    
 }
 
 // MARK: - General Methods
@@ -446,85 +307,4 @@ extension AddTransactionTableViewController {
             self.dateValueLabel.isHidden = true
         }
     }
-    
-    @objc private func showLocationPicker() {
-        self.view.endEditing(true)
-        
-        self.locationPicker.completion = { location in
-            guard let location = location else { return }
-            self.location = location
-            self.addressTextField.text = location.title
-        }
-
-        let navController = UINavigationController(rootViewController: self.locationPicker)
-        navController.modalPresentationStyle = .fullScreen
-        self.present(navController, animated: true, completion: nil)
-    }
-    
-}
-
-// MARK: - AddTransactionPropertyTableViewControllerDelegate
-
-extension AddTransactionTableViewController: AddTransactionPropertyViewControllerDelegate {
-    
-    func addTransactionPropertyController(_ addTransactionPropertyController: AddTransactionPropertyViewController, didSelect property: Property) {
-        self.propertyId = property.uuid
-        
-        var completeString: String = ""
-        
-        if let address: String = property.address {
-            completeString += address
-        } else {
-            let type: String = Application.AssetType(rawValue: Int(property.type))!.localized()
-            completeString += type
-            
-            if let priceString = property.price, let priceInt = Int(priceString) {
-                let priceNumber = NSNumber(integerLiteral: priceInt)
-                
-                if let result = Application.priceFormatter.string(from: priceNumber) {
-                    completeString += ", "
-                    completeString += result
-                }
-            }
-        }
-        
-        self.propertyValueLabel.text = completeString
-    }
-    
-}
-
-// MARK: - Location Picker
-
-extension AddTransactionTableViewController {
-    
-    @objc private func closeLocationController() {
-        self.locationPicker.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-// MARK: - CNContactPickerDelegate
-
-extension AddTransactionTableViewController: CNContactPickerDelegate {
-    
-    private func saveAndShow(_ contact: CNContact) {
-        self.contactId = contact.identifier
-        
-        var text: String = "\(contact.givenName) \(contact.familyName)"
-        if let phoneNumber: String = contact.phoneNumbers.first?.value.stringValue {
-            text += ", "
-            text += phoneNumber
-        }
-        self.contactTextField.text = text
-    }
-    
-    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        debugPrint(#function)
-    }
-    
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        debugPrint(#function, contact)
-        self.saveAndShow(contact)
-    }
-    
 }

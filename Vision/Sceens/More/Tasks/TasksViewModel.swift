@@ -119,7 +119,6 @@ extension TasksViewModel {
         task.status = configuration.status.rawValue
         task.type = configuration.type.rawValue
         task.date = configuration.date
-        task.contactId = configuration.contactId
         task.comments = configuration.comments
         task.isPushEnabled = configuration.isPushEnabled
         TasksViewModel.saveContext()

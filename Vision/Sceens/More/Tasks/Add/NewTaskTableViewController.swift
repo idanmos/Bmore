@@ -218,14 +218,6 @@ extension NewTaskTableViewController {
             self.showDatePicker()
         }
         
-        self.contactId = editedTask.contactId
-        if let _ = self.contactId {
-            let contacts: [CNContact] = ContactsService.shared.findContacts([self.contactId!])
-            if let contact: CNContact = contacts.first {
-                self.saveAndShow(contact)
-            }
-        }
-        
         self.commentsTextView.text = editedTask.comments
         self.alertSwitch.isOn = editedTask.isPushEnabled
     }
@@ -254,7 +246,6 @@ extension NewTaskTableViewController {
         configuration.status = Application.TaskStatus(rawValue: Int16(self.statusSegmentControl.selectedSegmentIndex))!
         configuration.type = Application.TaskType(rawValue: Int16(self.typeSegmentControl.selectedSegmentIndex))!
         configuration.date = self.dateSwitch.isOn ? self.datePicker.date : nil
-        configuration.contactId = self.contactId
         configuration.comments = self.commentsTextView.text
         configuration.isPushEnabled = self.alertSwitch.isOn
         

@@ -67,7 +67,6 @@ class PropertyProvider {
             property.totalFloorNumber = configuration.totalFloorNumber ?? 0
             property.parking = configuration.parking ?? 0
             property.extraInfo = configuration.extraInfo
-            property.contactIdentifier = configuration.contactIdentifier
             property.isExclusivity = configuration.isExclusivity
             property.exclusivityEndDate = configuration.exclusivityEndDate
             
@@ -78,7 +77,7 @@ class PropertyProvider {
         }
     }
     
-    func delete(property: Property,
+    func delete(_ property: Property,
                 shouldSave: Bool = true,
                 handler: @escaping () -> Void) {
         guard let context = property.managedObjectContext else {
@@ -91,6 +90,15 @@ class PropertyProvider {
                 context.save(with: .deleteProperty)
             }
             DispatchMainThreadSafe { handler() }
+        }
+    }
+    
+    func resetAndReload() {
+        self.persistentContainer.viewContext.reset()
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            fatalError("###\(#file)#\(#function): Failed to performFetch: \(error)")
         }
     }
     

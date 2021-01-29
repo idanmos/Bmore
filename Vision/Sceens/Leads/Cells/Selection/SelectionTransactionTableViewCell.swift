@@ -10,11 +10,15 @@ import UIKit
 class SelectionTransactionTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var selectionImageView: UIImageView!
-    @IBOutlet private weak var addressLabel: UILabel!
+    
+    @IBOutlet private weak var priceValueLabel: UILabel!
+    
     @IBOutlet private weak var dateTitleLabel: UILabel!
     @IBOutlet private weak var dateValueLabel: UILabel!
-    @IBOutlet private weak var priceTitleLabel: UILabel!
-    @IBOutlet private weak var priceValueLabel: UILabel!
+    
+    @IBOutlet private weak var typeTitleLabel: UILabel!
+    @IBOutlet private weak var typeValueLabel: UILabel!
+    
     @IBOutlet private weak var commisionTitleLabel: UILabel!
     @IBOutlet private weak var commisionValueLabel: UILabel!
     
@@ -22,36 +26,28 @@ class SelectionTransactionTableViewCell: UITableViewCell {
         willSet {
             guard let newValue = newValue else { return }
             
-            self.addressLabel.text = "\(NSLocalizedString("address", comment: "")) - \(NSLocalizedString("not_available", comment: ""))"
-            
-            if let address: String = newValue.address {
-                self.addressLabel.text = address
+            /// - Tag: Price
+            if let price: NSDecimalNumber = newValue.price {
+                self.priceValueLabel.text = Application.priceFormatter.string(from: price)
             } else {
-                if let locationType = Application.TransactionLocationType(rawValue: newValue.locationType) {
-                    switch locationType {
-                    case .property:
-                        if let propertyId: UUID = newValue.propertyId,
-                           let property: Property = PropertiesViewModel.fetchProperty(by: propertyId) {
-                            self.addressLabel.text = property.address
-                        }
-                    case .address:
-                        break
-                    }
-                }
+                self.priceValueLabel.text = "\("price".localized) - \("not_available".localized)"
             }
-                    
+            
+            /// - Tag: Date
             if let date: Date = newValue.date {
                 self.dateValueLabel.text = DateFormatter.dayFormatter.string(from: date)
             } else {
                 self.dateValueLabel.text = NSLocalizedString("not_available", comment: "")
             }
             
-            if let price: NSDecimalNumber = newValue.price {
-                self.priceValueLabel.text = Application.priceFormatter.string(from: price)
+            /// - Tag: Type
+            if let type = Application.TransactionType(rawValue: newValue.type) {
+                self.typeValueLabel.text = type.title
             } else {
-                self.priceValueLabel.text = NSLocalizedString("not_available", comment: "")
+                self.typeValueLabel.text = "not_available".localized
             }
             
+            /// - Tag: Commisiion
             if let commision: NSDecimalNumber = newValue.commission, NSDecimalNumber.notANumber != commision {
                 if let commisionType = Application.TransactionCommisionType(rawValue: newValue.commisionType) {
                     switch commisionType {
@@ -88,7 +84,7 @@ class SelectionTransactionTableViewCell: UITableViewCell {
         self.setSelected(false, animated: true)
         
         self.dateTitleLabel.text = "date".localized
-        self.priceTitleLabel.text = "price".localized
+        self.typeTitleLabel.text = "type".localized
         self.commisionTitleLabel.text = "commision".localized
     }
 

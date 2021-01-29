@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ep1-M2-UTX">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ep1-M2-UTX">
                         <rect key="frame" x="20" y="40" width="280" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -60,8 +60,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wle-rw-uGk">
-                                <rect key="frame" x="0.0" y="0.0" width="35" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wle-rw-uGk">
+                                <rect key="frame" x="0.0" y="0.0" width="34" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -132,14 +132,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="zLA-pt-3qW"/>
             <connections>
-                <outlet property="addressLabel" destination="ep1-M2-UTX" id="3QS-Ft-DVC"/>
                 <outlet property="commisionTitleLabel" destination="akl-8d-K7m" id="ZzK-rv-dDG"/>
                 <outlet property="commisionValueLabel" destination="RYK-n0-SK4" id="1IJ-Jm-hNO"/>
                 <outlet property="dateTitleLabel" destination="P8v-Ew-R25" id="OeJ-2Z-1du"/>
                 <outlet property="dateValueLabel" destination="DuN-K4-LAx" id="QAi-VG-96K"/>
-                <outlet property="priceTitleLabel" destination="Wle-rw-uGk" id="iXJ-xe-CvU"/>
-                <outlet property="priceValueLabel" destination="czk-rP-CE3" id="SAd-bm-iZt"/>
+                <outlet property="priceValueLabel" destination="ep1-M2-UTX" id="zqi-wK-rTd"/>
                 <outlet property="selectionImageView" destination="gg9-a7-IEH" id="m1X-Jm-x3n"/>
+                <outlet property="typeTitleLabel" destination="Wle-rw-uGk" id="8Ww-HQ-75X"/>
+                <outlet property="typeValueLabel" destination="czk-rP-CE3" id="wYc-Ku-ktE"/>
             </connections>
             <point key="canvasLocation" x="-1142" y="-38"/>
         </tableViewCell>

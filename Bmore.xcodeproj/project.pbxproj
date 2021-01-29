@@ -155,10 +155,6 @@
 		8A9A420725A9AFFF0064994C /* SingleTransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A420525A9AFFF0064994C /* SingleTransactionTableViewCell.swift */; };
 		8A9A420825A9AFFF0064994C /* SingleTransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A420625A9AFFF0064994C /* SingleTransactionTableViewCell.xib */; };
 		8A9A421825AA59610064994C /* TransactionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A421725AA59610064994C /* TransactionConfiguration.swift */; };
-		8A9A421F25AB70E40064994C /* AddTransactionPropertyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A421D25AB70E40064994C /* AddTransactionPropertyViewController.swift */; };
-		8A9A422025AB70E40064994C /* AddTransactionPropertyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A421E25AB70E40064994C /* AddTransactionPropertyViewController.xib */; };
-		8A9A422425AB71020064994C /* PropertyDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A422225AB71020064994C /* PropertyDetailsTableViewCell.swift */; };
-		8A9A422525AB71020064994C /* PropertyDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A422325AB71020064994C /* PropertyDetailsTableViewCell.xib */; };
 		8A9A422F25AB8F250064994C /* InstagramStoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A422E25AB8F250064994C /* InstagramStoryView.xib */; };
 		8A9A423225AB8F900064994C /* InstagramStoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A423125AB8F900064994C /* InstagramStoryCollectionViewCell.xib */; };
 		8A9A423525AB96990064994C /* InstagramStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A423425AB96990064994C /* InstagramStoryView.swift */; };
@@ -379,10 +375,6 @@
 		8A9A420525A9AFFF0064994C /* SingleTransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTransactionTableViewCell.swift; sourceTree = "<group>"; };
 		8A9A420625A9AFFF0064994C /* SingleTransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleTransactionTableViewCell.xib; sourceTree = "<group>"; };
 		8A9A421725AA59610064994C /* TransactionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConfiguration.swift; sourceTree = "<group>"; };
-		8A9A421D25AB70E40064994C /* AddTransactionPropertyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPropertyViewController.swift; sourceTree = "<group>"; };
-		8A9A421E25AB70E40064994C /* AddTransactionPropertyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTransactionPropertyViewController.xib; sourceTree = "<group>"; };
-		8A9A422225AB71020064994C /* PropertyDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsTableViewCell.swift; sourceTree = "<group>"; };
-		8A9A422325AB71020064994C /* PropertyDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		8A9A422E25AB8F250064994C /* InstagramStoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstagramStoryView.xib; sourceTree = "<group>"; };
 		8A9A423125AB8F900064994C /* InstagramStoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstagramStoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8A9A423425AB96990064994C /* InstagramStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramStoryView.swift; sourceTree = "<group>"; };
@@ -1028,15 +1020,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		8A9A422725AB71080064994C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8A9A422225AB71020064994C /* PropertyDetailsTableViewCell.swift */,
-				8A9A422325AB71020064994C /* PropertyDetailsTableViewCell.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		8A9A423A25AB97410064994C /* Instagram Clone */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,7 +1229,6 @@
 			isa = PBXGroup;
 			children = (
 				8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */,
-				8ADDB0BA259F1FCE00E12C37 /* Add Property */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -1259,16 +1241,6 @@
 				8A9A420A25A9B0040064994C /* Cells */,
 			);
 			path = List;
-			sourceTree = "<group>";
-		};
-		8ADDB0BA259F1FCE00E12C37 /* Add Property */ = {
-			isa = PBXGroup;
-			children = (
-				8A9A421D25AB70E40064994C /* AddTransactionPropertyViewController.swift */,
-				8A9A421E25AB70E40064994C /* AddTransactionPropertyViewController.xib */,
-				8A9A422725AB71080064994C /* Cells */,
-			);
-			path = "Add Property";
 			sourceTree = "<group>";
 		};
 		BDD6F82053A45ABAAE603B23 /* Pods */ = {
@@ -1366,13 +1338,11 @@
 				8A973DF5257EC223002422B8 /* PropertyDetailsTitleAndSubtitleTableViewCell.xib in Resources */,
 				8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */,
 				8A060855258691D8000765D8 /* MultipleSelectionTableViewCell.xib in Resources */,
-				8A9A422525AB71020064994C /* PropertyDetailsTableViewCell.xib in Resources */,
 				8A0608E42587EDB5000765D8 /* Properties.storyboard in Resources */,
 				8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */,
 				8A0608F92587F267000765D8 /* More.storyboard in Resources */,
 				8A1A249225C0D6250027A45D /* LeadQualityTableViewCell.xib in Resources */,
 				8A1FA75525B63C5F00722A40 /* Profile.storyboard in Resources */,
-				8A9A422025AB70E40064994C /* AddTransactionPropertyViewController.xib in Resources */,
 				8A9A436B25B1C8F70064994C /* TaskTableViewCell.xib in Resources */,
 				8A973EB82583E3EB002422B8 /* Properties_AirBnB.storyboard in Resources */,
 				8A81CAA125A58EBF002BC2D8 /* Targets.storyboard in Resources */,
@@ -1514,7 +1484,6 @@
 				8A9A42D725B03D9A0064994C /* String+Extensions.swift in Sources */,
 				8AAC9C0325C2A87000FF5D7E /* MasterTableViewController.swift in Sources */,
 				8A8CD2BE25B9000000A91104 /* FloatyViewController.swift in Sources */,
-				8A9A421F25AB70E40064994C /* AddTransactionPropertyViewController.swift in Sources */,
 				8A973E0C257ED703002422B8 /* AssetDetailsMapTableViewCell.swift in Sources */,
 				8A973E2C257FA7E5002422B8 /* UICollectionView+Extensions.swift in Sources */,
 				8A81CAB425A6FC26002BC2D8 /* GoalsPageViewController.swift in Sources */,
@@ -1561,7 +1530,6 @@
 				8A973E11257EF043002422B8 /* AssetDetailsExtraInfoTableViewCell.swift in Sources */,
 				8A973E952582986B002422B8 /* TwoTextFieldsTableViewCell.swift in Sources */,
 				8A8CD2BD25B9000000A91104 /* FloatyWindow.swift in Sources */,
-				8A9A422425AB71020064994C /* PropertyDetailsTableViewCell.swift in Sources */,
 				8A9A435E25B193590064994C /* PushNotificationService.swift in Sources */,
 				8A46F88B2589226900021679 /* TimeTrackingProvider.swift in Sources */,
 				8A060847258652BC000765D8 /* MultipleSelectionTableViewController.swift in Sources */,

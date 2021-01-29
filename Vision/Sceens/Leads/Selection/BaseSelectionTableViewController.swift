@@ -133,7 +133,7 @@ class BaseSelectionTableViewController: UITableViewController {
         } else if let obj = self.dataSource[indexPath.row] as? Transaction {
             if self.isShowOnlyMode {
                 let cell = tableView.dequeue(SingleTransactionTableViewCell.self, indexPath: indexPath)
-                cell.configure(obj)
+                cell.transaction = obj
                 return cell
             } else {
                 let cell = tableView.dequeue(SelectionTransactionTableViewCell.self, indexPath: indexPath)

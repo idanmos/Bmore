@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import Contacts
 
 class PropertyDetailsViewController: UITableViewController {
     
     enum CellType {
-        case gallery, titleAndSubtitle, map, extraInfo, contact
+        case gallery, titleAndSubtitle, map, extraInfo
     }
         
     @IBOutlet private weak var shareBarButton: UIBarButtonItem!
@@ -20,7 +19,6 @@ class PropertyDetailsViewController: UITableViewController {
     
     private var images: [UIImage] = []
     private var cellsType: [CellType] = []
-    private var contact: CNContact?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -44,18 +42,11 @@ class PropertyDetailsViewController: UITableViewController {
         self.cellsType.append(.gallery)
         self.cellsType.append(.titleAndSubtitle)
         self.cellsType.append(.extraInfo)
-        
-        self.contact = getContact()
-        if let _ = self.contact {
-            self.cellsType.append(.contact)
-        }
-        
         self.cellsType.append(.map)
         
         if let propertyId: UUID = self.property.uuid {
             self.images = ImageStorage.shared.load(propertyId: propertyId)
         }
-        
     }
     
     // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -90,14 +81,6 @@ class PropertyDetailsViewController: UITableViewController {
             cell.configure(self.property)
             cell.selectionStyle = .none
             return cell
-        }  else if self.cellsType[indexPath.row] == .contact {
-            let cell = tableView.dequeue(PropertyDetailsHeadTopBottomTableViewCell.self, indexPath: indexPath)
-            cell.headlineLabel.text = NSLocalizedString("contact_info", comment: "")
-            if let contact: CNContact = self.contact {
-                cell.topLabel.text = "\(contact.givenName) \(contact.familyName)"
-                cell.bottomLabel.text = contact.phoneNumbers.first?.value.stringValue
-            }
-            return cell
         }
         
         return UITableViewCell(frame: .zero)
@@ -112,8 +95,6 @@ class PropertyDetailsViewController: UITableViewController {
             return UITableView.automaticDimension
         } else if self.cellsType[indexPath.row] == .extraInfo {
             return UITableView.automaticDimension
-        } else if self.cellsType[indexPath.row] == .contact {
-            return UITableView.automaticDimension
         }
         
         return 0
@@ -121,13 +102,6 @@ class PropertyDetailsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if self.cellsType[indexPath.row] == .contact {
-            if let contact: CNContact = self.contact {
-                ContactsService.shared.showContact(contact, navigationController: self.navigationController)
-//                ContactsService.shared.showContact(contact, presenter: self)
-            }
-        }
     }
     
 }
@@ -159,32 +133,9 @@ extension PropertyDetailsViewController {
             message += Application.priceFormatter.string(from: priceNumber) ?? priceString
         }
         
-        if let contact: CNContact = self.contact {
-            message += "\n\n"
-            message += NSLocalizedString("contact_info", comment: "") + ":\n"
-            
-            message += "\(contact.givenName) \(contact.familyName)"
-            
-            if let phoneNumber = contact.phoneNumbers.first {
-                message += "\n"
-                message += phoneNumber.value.stringValue
-            }
-        }
-        
         let activityController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         
         self.present(activityController, animated: true, completion: nil)
-    }
-    
-}
-
-// MARK: - General Methods
-
-extension PropertyDetailsViewController {
-    
-    private func getContact() -> CNContact? {
-        guard let contactIdentifier: String = self.property.contactIdentifier else { return nil }
-        return ContactsService.shared.findContacts([contactIdentifier]).first
     }
     
 }

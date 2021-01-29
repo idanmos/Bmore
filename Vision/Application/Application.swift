@@ -185,16 +185,19 @@ class Application {
         case none = 0
         case expense = 1
         case revenue = 2
+        
+        var title: String {
+            switch self {
+            case .none: return "none".localized
+            case .expense: return "expense".localized
+            case .revenue: return "revenue".localized
+            }
+        }
     }
     
     enum TransactionCommisionType: Int16 {
         case percent = 0
         case amount = 1
-    }
-    
-    enum TransactionLocationType: Int16 {
-        case property = 0
-        case address = 1
     }
 
     enum TaskStatus: Int16 {

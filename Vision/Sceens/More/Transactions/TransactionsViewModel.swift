@@ -65,26 +65,11 @@ extension TransactionsViewModel {
         transaction.status = Int16(configuration.status)
         transaction.type = Int16(configuration.type)
         transaction.date = configuration.date
-        transaction.locationType = Int16(configuration.locationType)
-        transaction.propertyId = configuration.propertyId
-        transaction.address = configuration.address
-        transaction.location = configuration.location
-        transaction.placemark = configuration.placemark
         transaction.price = NSDecimalNumber(string: configuration.price)
         transaction.commisionType = Int16(configuration.commisionType)
         transaction.commission = NSDecimalNumber(string: configuration.commision)
-        transaction.contactId = configuration.contactId
         
-        if let type = Application.TransactionType(rawValue: Int16(configuration.type)) {
-            if type == .revenue {
-                if let propertyId: UUID = configuration.propertyId,
-                   let property: Property = PropertiesViewModel.fetchProperty(by: propertyId) {
-                    property.isSold = true
-                }
-            }
-        }
-        
-        self.saveContext()
+        TransactionsViewModel.saveContext()
     }
     
     class func save(_ configuration: TransactionConfiguration) {
