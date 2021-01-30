@@ -11,7 +11,6 @@ import Photos
 // MARK: - ImagePickerProviderDelegate
 
 protocol ImagePickerProviderDelegate: class {
-    var targetImageSize: CGSize { get }
     func imagePicker(_ picker: ImagePickerProvider, didFinishPicking images: Set<UIImage>)
 }
 
@@ -120,10 +119,6 @@ extension ImagePickerProvider: UIImagePickerControllerDelegate, UINavigationCont
 // MARK: - PhotoPickerProviderDelegate
 
 extension ImagePickerProvider: PhotoPickerProviderDelegate {
-    
-    var targetImageSize: CGSize {
-        return self.delegate?.targetImageSize ?? CGSize(width: 300, height: 300)
-    }
     
     @available(iOS 14, *)
     func photoPicker(_ picker: PhotoPickerProvider, didFinishPicking images: Set<UIImage>) {

@@ -549,8 +549,10 @@ extension AddPropertyTableViewController: UICollectionViewDelegate, UICollection
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let previewViewController = ImagePreviewViewController(image: self.images[indexPath.item])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
+        let previewViewController = ImagePreviewViewController(nibName: ImagePreviewViewController.className(), bundle: nil)
+        previewViewController.image = self.images[indexPath.item]
+        
         let navController = UINavigationController(rootViewController: previewViewController)
         navController.modalPresentationStyle = .fullScreen
         

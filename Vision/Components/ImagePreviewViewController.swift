@@ -9,29 +9,21 @@ import UIKit
 
 class ImagePreviewViewController: UIViewController {
     
-    private var image: UIImage
+    @IBOutlet weak var imageView: UIImageView!
     
-    init(image: UIImage) {
-        self.image = image
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        let imageView = UIImageView(frame: UIScreen.main.bounds)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = self.image
-        self.view = imageView
-    }
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "preview".localized
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeScreen))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(self.closeScreen)
+        )
+        
+        self.imageView.image = self.image
     }
     
 }

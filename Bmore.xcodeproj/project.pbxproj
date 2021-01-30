@@ -48,7 +48,7 @@
 		8A4901632598AEFF00CFA2A1 /* MeetingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901622598AEFF00CFA2A1 /* MeetingEvent.swift */; };
 		8A4901672599D04300CFA2A1 /* MeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901652599D04300CFA2A1 /* MeetingTableViewCell.swift */; };
 		8A4901682599D04300CFA2A1 /* MeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4901662599D04300CFA2A1 /* MeetingTableViewCell.xib */; };
-		8A742A372593A50F0014848A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A742A362593A50F0014848A /* SwiftPackageProductDependency */; };
+		8A742A372593A50F0014848A /* AAInfographics in Frameworks */ = {isa = PBXBuildFile; productRef = 8A742A362593A50F0014848A /* AAInfographics */; };
 		8A742A3A2593A5490014848A /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A392593A5490014848A /* GraphView.swift */; };
 		8A742A4025947C970014848A /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A3E25947C970014848A /* BalanceCollectionViewCell.swift */; };
 		8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A742A3F25947C970014848A /* BalanceCollectionViewCell.xib */; };
@@ -56,7 +56,7 @@
 		8A742A4E25948D900014848A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A4D25948D900014848A /* Date+Extension.swift */; };
 		8A742A542594913B0014848A /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A532594913B0014848A /* Calendar+Extension.swift */; };
 		8A742A5E25949B430014848A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A5D25949B430014848A /* UIColor+Extensions.swift */; };
-		8A74701925BB6CDA00EC0676 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A74701825BB6CDA00EC0676 /* SwiftPackageProductDependency */; };
+		8A74701925BB6CDA00EC0676 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8A74701825BB6CDA00EC0676 /* Alamofire */; };
 		8A74701C25BB6F7C00EC0676 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74701B25BB6F7C00EC0676 /* NetworkManager.swift */; };
 		8A74701F25BC4B2A00EC0676 /* ExternalApplicationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74701E25BC4B2A00EC0676 /* ExternalApplicationProvider.swift */; };
 		8A74702A25BD3F5B00EC0676 /* PropertyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74702825BD3F5B00EC0676 /* PropertyTableViewCell.swift */; };
@@ -78,9 +78,9 @@
 		8A83D5E725C1CD9800E2C00A /* LeadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83D5E525C1CD9800E2C00A /* LeadTableViewCell.swift */; };
 		8A83D5E825C1CD9800E2C00A /* LeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A83D5E625C1CD9800E2C00A /* LeadTableViewCell.xib */; };
 		8A83D5EF25C1F29C00E2C00A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A83D5EE25C1F29C00E2C00A /* CloudKit.framework */; };
-		8A881ED525B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */; };
-		8A881ED725B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */; };
-		8A881ED925B52A3A008F4D96 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */; };
+		8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED425B52A3A008F4D96 /* FacebookCore */; };
+		8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED625B52A3A008F4D96 /* FacebookLogin */; };
+		8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED825B52A3A008F4D96 /* FacebookShare */; };
 		8A881EDD25B52C5B008F4D96 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EDB25B52C5B008F4D96 /* LoginViewController.swift */; };
 		8A881EDE25B52C5B008F4D96 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A881EDC25B52C5B008F4D96 /* LoginViewController.xib */; };
 		8A881EE425B52F52008F4D96 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EE325B52F52008F4D96 /* FacebookManager.swift */; };
@@ -126,7 +126,7 @@
 		8A973E36257FD2E1002422B8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E35257FD2E1002422B8 /* CoreDataStack.swift */; };
 		8A973E3A257FD8E9002422B8 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E39257FD8E9002422B8 /* ImageStorage.swift */; };
 		8A973E3D257FDF45002422B8 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E3C257FDF45002422B8 /* URL+Extensions.swift */; };
-		8A973E6A25801891002422B8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8A973E6925801891002422B8 /* SwiftPackageProductDependency */; };
+		8A973E6A25801891002422B8 /* LocationPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8A973E6925801891002422B8 /* LocationPicker */; };
 		8A973E6E25814D09002422B8 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E6D25814D09002422B8 /* ImagePreviewViewController.swift */; };
 		8A973E7425816AD0002422B8 /* MiniTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973E7225816AD0002422B8 /* MiniTableViewController.swift */; };
 		8A973E7525816AD0002422B8 /* MiniTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A973E7325816AD0002422B8 /* MiniTableViewController.xib */; };
@@ -208,6 +208,7 @@
 		8AAC9C5625C448D600FF5D7E /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9C5525C448D600FF5D7E /* Schema.swift */; };
 		8AAC9C5925C4589100FF5D7E /* PropertyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9C5825C4589100FF5D7E /* PropertyConfiguration.swift */; };
 		8AAC9C5C25C45B2600FF5D7E /* PropertyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9C5B25C45B2600FF5D7E /* PropertyProvider.swift */; };
+		8AAC9C6425C4DAB200FF5D7E /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AAC9C6325C4DAB200FF5D7E /* ImagePreviewViewController.xib */; };
 		8ABA8F0225BEE1DB008517C1 /* LeadAddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0125BEE1DB008517C1 /* LeadAddEditViewModel.swift */; };
 		8ABA8F0525BF080B008517C1 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0425BF080B008517C1 /* MeetingService.swift */; };
 		8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */; };
@@ -428,6 +429,7 @@
 		8AAC9C5525C448D600FF5D7E /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
 		8AAC9C5825C4589100FF5D7E /* PropertyConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyConfiguration.swift; sourceTree = "<group>"; };
 		8AAC9C5B25C45B2600FF5D7E /* PropertyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyProvider.swift; sourceTree = "<group>"; };
+		8AAC9C6325C4DAB200FF5D7E /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePreviewViewController.xib; sourceTree = "<group>"; };
 		8ABA8F0125BEE1DB008517C1 /* LeadAddEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadAddEditViewModel.swift; sourceTree = "<group>"; };
 		8ABA8F0425BF080B008517C1 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMeetingTableViewCell.swift; sourceTree = "<group>"; };
@@ -449,13 +451,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A881ED725B52A3A008F4D96 /* BuildFile in Frameworks */,
-				8A74701925BB6CDA00EC0676 /* BuildFile in Frameworks */,
-				8A742A372593A50F0014848A /* BuildFile in Frameworks */,
-				8A881ED925B52A3A008F4D96 /* BuildFile in Frameworks */,
-				8A973E6A25801891002422B8 /* BuildFile in Frameworks */,
+				8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */,
+				8A74701925BB6CDA00EC0676 /* Alamofire in Frameworks */,
+				8A742A372593A50F0014848A /* AAInfographics in Frameworks */,
+				8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */,
+				8A973E6A25801891002422B8 /* LocationPicker in Frameworks */,
 				8A83D5EF25C1F29C00E2C00A /* CloudKit.framework in Frameworks */,
-				8A881ED525B52A3A008F4D96 /* BuildFile in Frameworks */,
+				8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */,
 				C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -943,6 +945,7 @@
 				8A81CA5425A31774002BC2D8 /* CheckboxTableViewController.swift */,
 				8A06084525865253000765D8 /* Multiple Selection */,
 				8A973E6D25814D09002422B8 /* ImagePreviewViewController.swift */,
+				8AAC9C6325C4DAB200FF5D7E /* ImagePreviewViewController.xib */,
 				8A973EB22582CE0A002422B8 /* Date Picker */,
 				8A973E7825816AD6002422B8 /* Mini Table */,
 				8A973E7F25823C98002422B8 /* Cells */,
@@ -1270,12 +1273,12 @@
 			);
 			name = Bmore;
 			packageProductDependencies = (
-				8A973E6925801891002422B8 /* SwiftPackageProductDependency */,
-				8A742A362593A50F0014848A /* SwiftPackageProductDependency */,
-				8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */,
-				8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */,
-				8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */,
-				8A74701825BB6CDA00EC0676 /* SwiftPackageProductDependency */,
+				8A973E6925801891002422B8 /* LocationPicker */,
+				8A742A362593A50F0014848A /* AAInfographics */,
+				8A881ED425B52A3A008F4D96 /* FacebookCore */,
+				8A881ED625B52A3A008F4D96 /* FacebookLogin */,
+				8A881ED825B52A3A008F4D96 /* FacebookShare */,
+				8A74701825BB6CDA00EC0676 /* Alamofire */,
 			);
 			productName = Vision;
 			productReference = 8A973D5E257C12AD002422B8 /* Bmore.app */;
@@ -1308,10 +1311,10 @@
 			);
 			mainGroup = 8A973D55257C12AD002422B8;
 			packageReferences = (
-				8A973E6825801891002422B8 /* RemoteSwiftPackageReference */,
-				8A742A352593A50F0014848A /* RemoteSwiftPackageReference */,
-				8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */,
-				8A74701725BB6CDA00EC0676 /* RemoteSwiftPackageReference */,
+				8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */,
+				8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */,
+				8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				8A74701725BB6CDA00EC0676 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8A973D5F257C12AD002422B8 /* Products */;
 			projectDirPath = "";
@@ -1359,6 +1362,7 @@
 				8A973EA025829B4C002422B8 /* SegmentControlTableViewCell.xib in Resources */,
 				8A9A41FD25A872AB0064994C /* HelpGestureViewController.xib in Resources */,
 				8A973EB02582CBC0002422B8 /* DatePickerViewController.xib in Resources */,
+				8AAC9C6425C4DAB200FF5D7E /* ImagePreviewViewController.xib in Resources */,
 				8A973E7525816AD0002422B8 /* MiniTableViewController.xib in Resources */,
 				8A973E2F257FA9C0002422B8 /* PropertyCollectionViewCell.xib in Resources */,
 				8A9A439C25B449270064994C /* LeadContactTableViewCell.xib in Resources */,
@@ -1793,7 +1797,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8A742A352593A50F0014848A /* RemoteSwiftPackageReference */ = {
+		8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AAChartModel/AAChartKit-Swift.git";
 			requirement = {
@@ -1801,7 +1805,7 @@
 				minimumVersion = 5.0.4;
 			};
 		};
-		8A74701725BB6CDA00EC0676 /* RemoteSwiftPackageReference */ = {
+		8A74701725BB6CDA00EC0676 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1809,7 +1813,7 @@
 				minimumVersion = 5.4.1;
 			};
 		};
-		8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */ = {
+		8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
@@ -1817,7 +1821,7 @@
 				minimumVersion = 8.2.0;
 			};
 		};
-		8A973E6825801891002422B8 /* RemoteSwiftPackageReference */ = {
+		8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/almassapargali/LocationPicker.git";
 			requirement = {
@@ -1828,34 +1832,34 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8A742A362593A50F0014848A /* SwiftPackageProductDependency */ = {
+		8A742A362593A50F0014848A /* AAInfographics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A742A352593A50F0014848A /* RemoteSwiftPackageReference */;
+			package = 8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */;
 			productName = AAInfographics;
 		};
-		8A74701825BB6CDA00EC0676 /* SwiftPackageProductDependency */ = {
+		8A74701825BB6CDA00EC0676 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A74701725BB6CDA00EC0676 /* RemoteSwiftPackageReference */;
+			package = 8A74701725BB6CDA00EC0676 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		8A881ED425B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
+		8A881ED425B52A3A008F4D96 /* FacebookCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
+			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookCore;
 		};
-		8A881ED625B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
+		8A881ED625B52A3A008F4D96 /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
+			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
 		};
-		8A881ED825B52A3A008F4D96 /* SwiftPackageProductDependency */ = {
+		8A881ED825B52A3A008F4D96 /* FacebookShare */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* RemoteSwiftPackageReference */;
+			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookShare;
 		};
-		8A973E6925801891002422B8 /* SwiftPackageProductDependency */ = {
+		8A973E6925801891002422B8 /* LocationPicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A973E6825801891002422B8 /* RemoteSwiftPackageReference */;
+			package = 8A973E6825801891002422B8 /* XCRemoteSwiftPackageReference "LocationPicker" */;
 			productName = LocationPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
