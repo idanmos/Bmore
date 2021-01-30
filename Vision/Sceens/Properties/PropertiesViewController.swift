@@ -137,6 +137,7 @@ extension PropertiesViewController: PropertyCollectionViewCellDelegate {
         
         self.viewModel.getDataProvider().delete(property) { [weak self] in
             guard let self = self else { return }
+            self.viewModel.resetAndReload()
             self.collectionView.reloadData()
         }
     }

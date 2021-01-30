@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LocationPicker
 
 fileprivate enum DatePickerType: Int {
     case exclusivity, enterDate
@@ -137,14 +136,10 @@ class AddPropertyTableViewController: BaseTableViewController {
     private let imageProvider = ImagePickerProvider(presenter: UIApplication.shared.topMostController() ?? UIViewController())
     
     private lazy var locationPicker: LocationPickerViewController = {
-        let locationPicker = LocationPickerViewController()
-        locationPicker.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.closeLocationController))
-        locationPicker.title = NSLocalizedString("place", comment: "")
-        locationPicker.modalPresentationStyle = .fullScreen
-        locationPicker.showCurrentLocationButton = true
-        locationPicker.useCurrentLocationAsHint = true
-        locationPicker.selectCurrentLocationInitially = true
-        return locationPicker
+        let pickerController = LocationPickerViewController()
+        pickerController.delegate = self
+        pickerController.modalPresentationStyle = .fullScreen
+        return pickerController
     }()
     
     private lazy var cameraImage: UIImage? = {
@@ -156,7 +151,7 @@ class AddPropertyTableViewController: BaseTableViewController {
     private var enterDate: Date?
     private var images: [UIImage] = []
     private let propertyUUID = UUID()
-    private var location: Location?
+    private var location: LocationMapItem?
     private var contactIdentifier: String?
     private var isExclusivity: Bool = false
     private var exclusivityEndDate: Date?
@@ -242,14 +237,6 @@ class AddPropertyTableViewController: BaseTableViewController {
     }
 
     @objc private func showLocationPicker() {
-        self.view.endEditing(true)
-        
-        self.locationPicker.completion = { location in
-            guard let location = location else { return }
-            self.location = location
-            self.addressTextField.text = location.title
-        }
-
         let navController = UINavigationController(rootViewController: self.locationPicker)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
@@ -328,7 +315,7 @@ extension AddPropertyTableViewController {
                                                   isExclusivity: self.exclusivitySwitch.isOn,
                                                   exclusivityEndDate: self.exclusivityEndDate)
                 
-        if let location: Location = self.location {
+        if let location: LocationMapItem = self.location {
             configuration.latitude = location.coordinate.latitude
             configuration.longitude = location.coordinate.longitude
         }
@@ -431,12 +418,27 @@ extension AddPropertyTableViewController: CheckboxTableViewControllerDelegate {
     
 }
 
-// MARK: - Location Picker
+// MARK: - LocationPickerViewControllerDelegate
 
-extension AddPropertyTableViewController {
+extension AddPropertyTableViewController: LocationPickerViewControllerDelegate {
     
-    @objc private func closeLocationController() {
-        self.locationPicker.dismiss(animated: true, completion: nil)
+    func locationPickerOnPressCloseButtonItem(_ locationPicker: LocationPickerViewController) {
+        locationPicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func locationPickerOnPressRefreshButtonItem(_ locationPicker: LocationPickerViewController) {
+        debugPrint(#function)
+    }
+    
+    func locationPicker(_ locationPicker: LocationPickerViewController, didFailWithError error: Error) {
+        debugPrint(#function)
+    }
+    
+    func locationPicker(_ locationPicker: LocationPickerViewController, didSelect mapItem: LocationMapItem) {        
+        locationPicker.dismiss(animated: true, completion: nil)
+        
+        self.location = mapItem
+        self.addressTextField.text = mapItem.title
     }
     
 }
