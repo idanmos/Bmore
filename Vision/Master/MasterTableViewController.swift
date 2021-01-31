@@ -100,6 +100,41 @@ class MasterTableViewController: UITableViewController {
         return 44.0
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let type = SectionType(rawValue: indexPath.row) else { return }
+        
+        switch type {
+        case .profile:
+            self.splitViewController?.showDetailViewController(UIViewController(), sender: nil)
+        case .properties:
+            let viewController = FactoryController.Screen.properties.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .leads:
+            let viewController = FactoryController.Screen.leads.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .timeTracking:
+            let viewController = FactoryController.Screen.timeTracking.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .targets:
+            let viewController = FactoryController.Screen.targets.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .balance:
+            let viewController = FactoryController.Screen.balance.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .meetings:
+            let viewController = FactoryController.Screen.meetings.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .transactions:
+            let viewController = FactoryController.Screen.transactions.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        case .tasks:
+            let viewController = FactoryController.Screen.tasks.viewController
+            self.splitViewController?.showDetailViewController(viewController, sender: nil)
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

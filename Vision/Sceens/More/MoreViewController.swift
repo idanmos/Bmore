@@ -61,13 +61,13 @@ extension MoreViewController {
         // get appropriate view controller
         var viewController: UIViewController
         if category == .balance {
-            viewController = FactoryController.Screen.AdvancedScreen.balance.viewController
+            viewController = FactoryController.Screen.balance.viewController
         } else if category == .meetings {
-            viewController = FactoryController.Screen.AdvancedScreen.meetings.viewController
+            viewController = FactoryController.Screen.meetings.viewController
         } else if category == .transactions {
-            viewController = FactoryController.Screen.AdvancedScreen.transactions.viewController
+            viewController = FactoryController.Screen.transactions.viewController
         } else {
-            viewController = FactoryController.Screen.AdvancedScreen.tasks.viewController
+            viewController = FactoryController.Screen.tasks.viewController
         }
         
         // set correct frame

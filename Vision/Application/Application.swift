@@ -12,23 +12,23 @@ class Application {
     static let shared = Application()
     
     func configureMainInterface(in window: UIWindow) {
-        let target: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
-        debugPrint(#file, #function, target)
-        
-        switch target {
-        case .unspecified:
-            break
-        case .phone:
+//        let target: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+//        debugPrint(#file, #function, target)
+//
+//        switch target {
+//        case .unspecified:
+//            break
+//        case .phone:
             self.configureIphoneInterface(in: window)
-        case .pad, .mac:
-            self.configureIpadInterface(in: window)
-        case .tv:
-            break
-        case .carPlay:
-            break
-        @unknown default:
-            break
-        }
+//        case .pad, .mac:
+//            self.configureIpadInterface(in: window)
+//        case .tv:
+//            break
+//        case .carPlay:
+//            break
+//        @unknown default:
+//            break
+//        }
     }
     
     private func configureIphoneInterface(in window: UIWindow) {
@@ -36,19 +36,19 @@ class Application {
         
         let tabBarController = UITabBarController()
         
-        let propertiesViewController = UIStoryboard(name: "Properties", bundle: nil).instantiateInitialViewController()!
+        let propertiesViewController = FactoryController.Screen.properties.viewController
         propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
         
-        let contactsViewController = UIStoryboard(name: "Leads", bundle: nil).instantiateInitialViewController()!
+        let contactsViewController = FactoryController.Screen.leads.viewController
         contactsViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("leads", comment: ""), image: UIImage(systemName: "person.2"), tag: 0)
                 
-        let timeTrackingViewController = UIStoryboard(name: "TimeTracking", bundle: nil).instantiateInitialViewController()!
+        let timeTrackingViewController = FactoryController.Screen.timeTracking.viewController
         timeTrackingViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("time_tracking", comment: ""), image: UIImage(systemName: "clock"), tag: 0)
         
-        let targetViewController = UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
+        let targetViewController = FactoryController.Screen.targets.viewController
         targetViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("targets", comment: ""), image: UIImage(systemName: "target"), tag: 0)
         
-        let moreViewController = UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
+        let moreViewController = FactoryController.Screen.advanced.viewController
         moreViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("more", comment: ""), image: UIImage(systemName: "ellipsis"), tag: 0)
         
         let viewControllers: [UIViewController] = [propertiesViewController,
