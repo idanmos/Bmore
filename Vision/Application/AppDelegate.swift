@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FBSDKCoreKit
 
 class CityDetails: Codable {
     var code: Int = 0
@@ -35,20 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Application.shared.applicationIconBadgeNumber = 0
         
-        ApplicationDelegate.shared.application(
-            application,
-            didFinishLaunchingWithOptions: launchOptions
-        )
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
         Application.shared.configureMainInterface(in: window)
         self.window = window
                 
         return true
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return ApplicationDelegate.shared.application(app, open: url, options: options)
     }
     
     func fetchCities(url: URL, completionHandler: (() -> Void)? = nil) {

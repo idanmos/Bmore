@@ -78,12 +78,8 @@
 		8A83D5E725C1CD9800E2C00A /* LeadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83D5E525C1CD9800E2C00A /* LeadTableViewCell.swift */; };
 		8A83D5E825C1CD9800E2C00A /* LeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A83D5E625C1CD9800E2C00A /* LeadTableViewCell.xib */; };
 		8A83D5EF25C1F29C00E2C00A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A83D5EE25C1F29C00E2C00A /* CloudKit.framework */; };
-		8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED425B52A3A008F4D96 /* FacebookCore */; };
-		8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED625B52A3A008F4D96 /* FacebookLogin */; };
-		8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 8A881ED825B52A3A008F4D96 /* FacebookShare */; };
 		8A881EDD25B52C5B008F4D96 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EDB25B52C5B008F4D96 /* LoginViewController.swift */; };
 		8A881EDE25B52C5B008F4D96 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A881EDC25B52C5B008F4D96 /* LoginViewController.xib */; };
-		8A881EE425B52F52008F4D96 /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A881EE325B52F52008F4D96 /* FacebookManager.swift */; };
 		8A8CD2B825B9000000A91104 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B125B8FFFF00A91104 /* UIView+Draggable.swift */; };
 		8A8CD2B925B9000000A91104 /* FloatyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B225B8FFFF00A91104 /* FloatyManager.swift */; };
 		8A8CD2BA25B9000000A91104 /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B325B8FFFF00A91104 /* FloatyItem.swift */; };
@@ -308,7 +304,6 @@
 		8A83D5F025C1F2E400E2C00A /* Bmore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bmore.entitlements; sourceTree = "<group>"; };
 		8A881EDB25B52C5B008F4D96 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8A881EDC25B52C5B008F4D96 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		8A881EE325B52F52008F4D96 /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		8A8CD2B125B8FFFF00A91104 /* UIView+Draggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Draggable.swift"; sourceTree = "<group>"; };
 		8A8CD2B225B8FFFF00A91104 /* FloatyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyManager.swift; sourceTree = "<group>"; };
 		8A8CD2B325B8FFFF00A91104 /* FloatyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyItem.swift; sourceTree = "<group>"; };
@@ -462,12 +457,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A881ED725B52A3A008F4D96 /* FacebookLogin in Frameworks */,
 				8A74701925BB6CDA00EC0676 /* Alamofire in Frameworks */,
 				8A742A372593A50F0014848A /* AAInfographics in Frameworks */,
-				8A881ED925B52A3A008F4D96 /* FacebookShare in Frameworks */,
 				8A83D5EF25C1F29C00E2C00A /* CloudKit.framework in Frameworks */,
-				8A881ED525B52A3A008F4D96 /* FacebookCore in Frameworks */,
 				C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,7 +732,6 @@
 			children = (
 				8A881EDB25B52C5B008F4D96 /* LoginViewController.swift */,
 				8A881EDC25B52C5B008F4D96 /* LoginViewController.xib */,
-				8A881EE325B52F52008F4D96 /* FacebookManager.swift */,
 				8A1FA75125B631A200722A40 /* LoginStep1ViewController.xib */,
 			);
 			path = Login;
@@ -1338,9 +1329,6 @@
 			name = Bmore;
 			packageProductDependencies = (
 				8A742A362593A50F0014848A /* AAInfographics */,
-				8A881ED425B52A3A008F4D96 /* FacebookCore */,
-				8A881ED625B52A3A008F4D96 /* FacebookLogin */,
-				8A881ED825B52A3A008F4D96 /* FacebookShare */,
 				8A74701825BB6CDA00EC0676 /* Alamofire */,
 			);
 			productName = Vision;
@@ -1375,7 +1363,6 @@
 			mainGroup = 8A973D55257C12AD002422B8;
 			packageReferences = (
 				8A742A352593A50F0014848A /* XCRemoteSwiftPackageReference "AAChartKit-Swift" */,
-				8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				8A74701725BB6CDA00EC0676 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8A973D5F257C12AD002422B8 /* Products */;
@@ -1493,7 +1480,6 @@
 				8A9A425B25AC7CC40064994C /* TasksViewController.swift in Sources */,
 				8ADDB02E259CFEAC00E12C37 /* TransactionsTableViewController.swift in Sources */,
 				8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */,
-				8A881EE425B52F52008F4D96 /* FacebookManager.swift in Sources */,
 				8A973DE0257E7810002422B8 /* StoryboardCustomXibView.swift in Sources */,
 				8ABA8F2725BFF34A008517C1 /* ShowTaskTableViewCell.swift in Sources */,
 				8A742A4025947C970014848A /* BalanceCollectionViewCell.swift in Sources */,
@@ -1881,14 +1867,6 @@
 				minimumVersion = 5.4.1;
 			};
 		};
-		8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.2.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1901,21 +1879,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A74701725BB6CDA00EC0676 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		8A881ED425B52A3A008F4D96 /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
-		};
-		8A881ED625B52A3A008F4D96 /* FacebookLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookLogin;
-		};
-		8A881ED825B52A3A008F4D96 /* FacebookShare */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8A881ED325B52A3A008F4D96 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookShare;
 		};
 /* End XCSwiftPackageProductDependency section */
 
