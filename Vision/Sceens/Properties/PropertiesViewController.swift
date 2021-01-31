@@ -54,7 +54,9 @@ class PropertiesViewController: BaseViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.collectionView.collectionViewLayout.invalidateLayout()
+        if self.collectionView != nil {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
         super.viewWillTransition(to: size, with: coordinator)
     }
 
