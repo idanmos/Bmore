@@ -11,11 +11,44 @@ import CoreLocation
 
 class AssetsMapViewController: UIViewController {
     
+    // MARK: - Outlets
+    
     @IBOutlet private weak var mapView: MKMapView!
+    
+    // MARK: - Variables
+    
+    var propertiesViewModel: PropertiesViewModel? {
+        didSet(newValue) {
+            guard let newValue: PropertiesViewModel = newValue else { return }
+            newValue.resetAndReload()
+            
+            newValue.fetchedObjects.forEach { (property: Property) in
+                let coordinate = CLLocationCoordinate2D(
+                    latitude: property.latitude,
+                    longitude: property.longitude
+                )
+                
+                if CLLocationCoordinate2DIsValid(coordinate) {
+                    for annotation: MKAnnotation in self.mapView.annotations {
+                        if annotation is MKUserLocation { continue }
+                        
+                        
+                    }
+                }
+            }
+        }
+    }
     
     /// - Tag: Map
     private var userTrackingButton: MKUserTrackingButton!
     private var scaleView: MKScaleView!
+    
+    // MARK: - Lifecycle
+    
+    deinit {
+        debugPrint("Deallocating \(self)")
+        self.propertiesViewModel = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

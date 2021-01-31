@@ -77,6 +77,9 @@
 "more_info" = "מידע נוסף";
 "delete_photos" = "מחק תמונות";
 "share" = "היי,\nאני משתמש באפליקציית B-more ורציתי לחלוק איתך נכס זה:\n";
+"choose_location" = "בחר מיקום";
+"nearby_places" = "מקומות קרובים";
+
 
 "time_tracking" = "שעות עבודה";
 "start" = "התחלה";

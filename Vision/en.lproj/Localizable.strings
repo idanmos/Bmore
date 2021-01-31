@@ -75,6 +75,8 @@
 "photos" = "Photos";
 "more_info" = "More info";
 "delete_photos" = "Delete photos";
+"choose_location" = "Choose Location";
+"nearby_places" = "Nearby Places";
 
 // MARK: - Contacts
 
