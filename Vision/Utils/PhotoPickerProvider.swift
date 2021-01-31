@@ -48,18 +48,19 @@ class PhotoPickerProvider: NSObject, PHPickerViewControllerDelegate {
         self.presenter?.dismiss(animated: true)
         
         var images: Set<UIImage> = []
-        
-        defer {
-            DispatchMainThreadSafe {
-                self.delegate?.photoPicker(self, didFinishPicking: images)
-            }
-        }
-        
+
         for result: PHPickerResult in results {
             if result.itemProvider.canLoadObject(ofClass: UIImage.self) {
                 result.itemProvider.loadObject(ofClass: UIImage.self) { (object, error) in
                     if let image = object as? UIImage {
                         images.insert(image)
+                        
+                        if images.count == results.count {
+                            // finished
+                            DispatchMainThreadSafe {
+                                self.delegate?.photoPicker(self, didFinishPicking: images)
+                            }
+                        }
                     }
                 }
             }

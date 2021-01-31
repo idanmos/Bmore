@@ -36,7 +36,7 @@ class LocationPickerSearchResultsTableViewController: UITableViewController {
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(LocationPickerTableViewCell.self, forCellReuseIdentifier: "LocationPickerTableViewCell")
+        self.tableView.register(LocationPickerTableViewCell.self)
         self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
@@ -51,7 +51,7 @@ class LocationPickerSearchResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationPickerTableViewCell", for: indexPath) as! LocationPickerTableViewCell
+        let cell = tableView.dequeue(LocationPickerTableViewCell.self, indexPath: indexPath)
         let mapItem: MKMapItem = self.dataSource[indexPath.row]
         cell.textLabel?.text = mapItem.placemark.name
         cell.detailTextLabel?.text = "\(mapItem.placemark.thoroughfare ?? "") \(mapItem.placemark.subThoroughfare ?? ""), \(mapItem.placemark.locality ?? "")"

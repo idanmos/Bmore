@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" title="נכסים" id="nbd-9J-Xbd">
                         <barButtonItem key="leftBarButtonItem" image="map" catalog="system" id="1Ub-5f-HsI">
                             <connections>
-                                <segue destination="lTV-2Y-Dg0" kind="show" id="2TC-le-pAk"/>
+                                <segue destination="lTV-2Y-Dg0" kind="show" identifier="SegueToMap" id="2TC-le-pAk"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZLY-58-6Uv">

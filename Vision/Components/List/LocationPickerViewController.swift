@@ -127,7 +127,7 @@ class LocationPickerViewController: UIViewController {
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(LocationPickerTableViewCell.self, forCellReuseIdentifier: "LocationPickerTableViewCell")
+        self.tableView.register(LocationPickerTableViewCell.self)
         self.tableView.tableFooterView = UIView(frame: .zero)
         
         self.mapView.delegate = self
@@ -392,7 +392,7 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationPickerTableViewCell", for: indexPath) as! LocationPickerTableViewCell
+        let cell = tableView.dequeue(LocationPickerTableViewCell.self, indexPath: indexPath)
         let mapItem: LocationMapItem = self.dataSource[indexPath.row]
         cell.textLabel?.text = mapItem.name
         cell.detailTextLabel?.text = mapItem.title

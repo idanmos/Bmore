@@ -213,6 +213,7 @@
 		8AAC9CCE25C604D400FF5D7E /* LocationPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9CCB25C604D400FF5D7E /* LocationPickerTableViewCell.swift */; };
 		8AAC9CD225C604DF00FF5D7E /* LocationPicker+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9CD125C604DF00FF5D7E /* LocationPicker+Extensions.swift */; };
 		8AAC9CD625C604EF00FF5D7E /* LocationMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9CD525C604EF00FF5D7E /* LocationMapItem.swift */; };
+		8AAC9CD925C6A84400FF5D7E /* LocationPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AAC9CD825C6A84400FF5D7E /* LocationPickerTableViewCell.xib */; };
 		8ABA8F0225BEE1DB008517C1 /* LeadAddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0125BEE1DB008517C1 /* LeadAddEditViewModel.swift */; };
 		8ABA8F0525BF080B008517C1 /* MeetingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0425BF080B008517C1 /* MeetingService.swift */; };
 		8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */; };
@@ -439,6 +440,7 @@
 		8AAC9CCB25C604D400FF5D7E /* LocationPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerTableViewCell.swift; sourceTree = "<group>"; };
 		8AAC9CD125C604DF00FF5D7E /* LocationPicker+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LocationPicker+Extensions.swift"; sourceTree = "<group>"; };
 		8AAC9CD525C604EF00FF5D7E /* LocationMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapItem.swift; sourceTree = "<group>"; };
+		8AAC9CD825C6A84400FF5D7E /* LocationPickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationPickerTableViewCell.xib; sourceTree = "<group>"; };
 		8ABA8F0125BEE1DB008517C1 /* LeadAddEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadAddEditViewModel.swift; sourceTree = "<group>"; };
 		8ABA8F0425BF080B008517C1 /* MeetingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingService.swift; sourceTree = "<group>"; };
 		8ABA8F0B25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionMeetingTableViewCell.swift; sourceTree = "<group>"; };
@@ -1202,6 +1204,7 @@
 			isa = PBXGroup;
 			children = (
 				8AAC9CCB25C604D400FF5D7E /* LocationPickerTableViewCell.swift */,
+				8AAC9CD825C6A84400FF5D7E /* LocationPickerTableViewCell.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1401,6 +1404,7 @@
 				8A060855258691D8000765D8 /* MultipleSelectionTableViewCell.xib in Resources */,
 				8A0608E42587EDB5000765D8 /* Properties.storyboard in Resources */,
 				8A742A4125947C970014848A /* BalanceCollectionViewCell.xib in Resources */,
+				8AAC9CD925C6A84400FF5D7E /* LocationPickerTableViewCell.xib in Resources */,
 				8A0608F92587F267000765D8 /* More.storyboard in Resources */,
 				8A1A249225C0D6250027A45D /* LeadQualityTableViewCell.xib in Resources */,
 				8A1FA75525B63C5F00722A40 /* Profile.storyboard in Resources */,

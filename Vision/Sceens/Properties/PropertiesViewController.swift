@@ -14,6 +14,7 @@ class PropertiesViewController: BaseViewController {
     private enum Constants {
         static let segueToAdd: String = "SegueToAdd"
         static let segueToDetails: String = "SegueToDetails"
+        static let segueToMap: String = "SegueToMap"
         static let itemsPerRow: Int = 2
     }
     
@@ -109,6 +110,10 @@ extension PropertiesViewController {
                 if let provider = sender as? PropertyProvider {
                     viewController.dataProvider = provider
                 }
+            }
+        } else if segue.identifier == Constants.segueToMap {
+            if let viewController = segue.destination as? AssetsMapViewController {
+                viewController.viewModel = self.viewModel
             }
         }
     }

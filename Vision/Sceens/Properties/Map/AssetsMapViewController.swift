@@ -17,27 +17,7 @@ class AssetsMapViewController: UIViewController {
     
     // MARK: - Variables
     
-    var propertiesViewModel: PropertiesViewModel? {
-        didSet(newValue) {
-            guard let newValue: PropertiesViewModel = newValue else { return }
-            newValue.resetAndReload()
-            
-            newValue.fetchedObjects.forEach { (property: Property) in
-                let coordinate = CLLocationCoordinate2D(
-                    latitude: property.latitude,
-                    longitude: property.longitude
-                )
-                
-                if CLLocationCoordinate2DIsValid(coordinate) {
-                    for annotation: MKAnnotation in self.mapView.annotations {
-                        if annotation is MKUserLocation { continue }
-                        
-                        
-                    }
-                }
-            }
-        }
-    }
+    var viewModel: PropertiesViewModel?
     
     /// - Tag: Map
     private var userTrackingButton: MKUserTrackingButton!
@@ -47,7 +27,7 @@ class AssetsMapViewController: UIViewController {
     
     deinit {
         debugPrint("Deallocating \(self)")
-        self.propertiesViewModel = nil
+        self.viewModel = nil
     }
     
     override func viewDidLoad() {
@@ -73,6 +53,38 @@ class AssetsMapViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
             manager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        for annotation: MKAnnotation in self.mapView.annotations {
+            if annotation is MKUserLocation { continue }
+            self.mapView.removeAnnotation(annotation)
+        }
+        
+        if let viewModel: PropertiesViewModel = self.viewModel {
+            var annotations: [MKAnnotation] = []
+            
+            viewModel.resetAndReload()
+            viewModel.fetchedObjects.forEach { (property: Property) in
+                let coordinate = CLLocationCoordinate2D(
+                    latitude: property.latitude,
+                    longitude: property.longitude
+                )
+                
+                if CLLocationCoordinate2DIsValid(coordinate) {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.title = property.address
+                    // annotation.subtitle = ""
+                    annotations.append(annotation)
+                }
+            }
+            
+            self.mapView.addAnnotations(annotations)
+            self.mapView.showAnnotations(annotations, animated: true)
         }
     }
     
