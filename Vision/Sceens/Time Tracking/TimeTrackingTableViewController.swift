@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class TimeTrackingTableViewController: UITableViewController {
+class TimeTrackingTableViewController: BaseTableViewController {
     
     enum Constants {
         static let segueToDetails: String = "SegueToDetails"
@@ -44,7 +44,6 @@ class TimeTrackingTableViewController: UITableViewController {
                 
         self.title = NSLocalizedString("time_tracking", comment: "")
         
-        self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.register(CalendarEventTableViewCell.self)
         
         // self.viewModel.fetchTimeTrack()
@@ -70,13 +69,7 @@ class TimeTrackingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rows: Int = self.dataProvider.fetchedResultsController.fetchedObjects?.count ?? 0
-        
-//        if rows == 0 {
-//            NoDataView.show(on: self.view)
-//        } else {
-//            NoDataView.hide(from: self.view)
-//        }
-        
+        self.showNoDataView(show: rows<=0)
         return rows
     }
 

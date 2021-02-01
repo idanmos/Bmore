@@ -9,7 +9,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class LeadsTableViewController: UITableViewController {
+class LeadsTableViewController: BaseTableViewController {
     
     private var viewModel = LeadsViewModel()
         
@@ -39,11 +39,9 @@ class LeadsTableViewController: UITableViewController {
         )
         
         self.tableView.register(LeadTableViewCell.self)
-        self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = true // self.splitViewController?.isCollapsed
         super.viewWillAppear(animated)
         
         self.viewModel.fetchData()
@@ -57,7 +55,9 @@ class LeadsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.numberOfObjects
+        let rows: Int = self.viewModel.numberOfObjects
+        self.showNoDataView(show: rows<=0)
+        return rows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
