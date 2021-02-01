@@ -11,27 +11,12 @@ class Application {
     
     static let shared = Application()
     
-    func configureMainInterface(in window: UIWindow) {
-//        let target: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
-//        debugPrint(#file, #function, target)
-//
-//        switch target {
-//        case .unspecified:
-//            break
-//        case .phone:
-            self.configureIphoneInterface(in: window)
-//        case .pad, .mac:
-//            self.configureIpadInterface(in: window)
-//        case .tv:
-//            break
-//        case .carPlay:
-//            break
-//        @unknown default:
-//            break
-//        }
+    deinit {
+        debugPrint("Deallocating \(self)")
+        NotificationCenter.default.removeObserver(self)
     }
     
-    private func configureIphoneInterface(in window: UIWindow) {
+    func configureMainInterface(in window: UIWindow) {
         window.backgroundColor = .white
         
         let tabBarController = UITabBarController()
@@ -62,32 +47,7 @@ class Application {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
     }
-    
-    private func configureIpadInterface(in window: UIWindow) {
-        let splitViewController: UISplitViewController
-        if #available(iOS 14, *) {
-            splitViewController = UISplitViewController(style: .doubleColumn)
-        } else {
-            splitViewController = UISplitViewController()
-        }
-                        
-        let masterViewController = MasterTableViewController(nibName: MasterTableViewController.className(), bundle: nil)
         
-        let detailViewController = UIViewController()
-        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        
-        splitViewController.viewControllers = [
-            UINavigationController(rootViewController: masterViewController),
-            UINavigationController(rootViewController: detailViewController)
-        ]
-        
-        splitViewController.delegate = self
-        splitViewController.preferredDisplayMode = .allVisible
-                
-        window.rootViewController = splitViewController
-        window.makeKeyAndVisible()
-    }
-    
     enum AppUrl {
         enum Government {
             static let israelCityList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=5c78e9fa-c2e2-4771-93ff-7f400a12f7ba")!
@@ -259,43 +219,6 @@ extension Application {
         set {
             UIApplication.shared.applicationIconBadgeNumber = newValue
         }
-    }
-    
-}
-
-//extension Application {
-//    
-//    lazy var <#property name#>: <#type name#> = {
-//        var queryItems: [URLQueryItem] = []
-//        queryItems.append(URLQueryItem(name: "resource_id", value: "a0f56034-88db-4132-8803-854bcdb01ca1"))
-//        // queryItems.append(URLQueryItem(name: "q", value: searchName))
-//        
-//        let components = URLComponents(
-//            scheme: "https",
-//            host: "data.gov.il",
-//            path: "api/3/action/datastore_search",
-//            queryItems: queryItems
-//        )
-//        
-//        return components.url
-//    }()
-//    
-//}
-
-// MARK: - UISplitViewControllerDelegate
-
-extension Application: UISplitViewControllerDelegate {
-    
-    func splitViewController(_ splitViewController: UISplitViewController,
-                             collapseSecondary secondaryViewController: UIViewController,
-                             onto primaryViewController: UIViewController) -> Bool {
-        // The SplitViewController is about to collapse and only the master view will be shown, so clear any selection.
-        if let navController = splitViewController.viewControllers[0] as? UINavigationController,
-           let masterViewController = navController.viewControllers[0] as? MasterTableViewController,
-           let selectedRow = masterViewController.tableView.indexPathForSelectedRow {
-            masterViewController.tableView.deselectRow(at: selectedRow, animated: true)
-        }
-        return true // Return true to always show the master view.
     }
     
 }

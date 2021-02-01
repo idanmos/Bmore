@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class func sharedDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-    
+        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        SetCurrentAppContext(MainAppContext())
+        
         Application.shared.applicationIconBadgeNumber = 0
         
         let window = UIWindow(frame: UIScreen.main.bounds)

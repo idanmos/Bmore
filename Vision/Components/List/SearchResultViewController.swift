@@ -55,8 +55,8 @@ class LocationPickerViewController: UIViewController {
         return UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.onPressRefreshButtonItem(_:)))
     }()
     
-    private lazy var searchResultsController: LocationPickerSearchResultsTableViewController = {
-        let controller = LocationPickerSearchResultsTableViewController(style: .plain)
+    private lazy var searchResultsController: LocationSuggestionsTableViewController = {
+        let controller = LocationSuggestionsTableViewController(style: .plain)
         controller.searchDelegate = self
         return controller
     }()
@@ -411,10 +411,10 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
     
 }
 
-// MARK: - LocationSearchResultsControllerDelegate
+// MARK: - LocationSuggestionsTableViewControllerDelegate
 
-extension LocationPickerViewController: LocationSearchResultsControllerDelegate {
-    func locationSearchController(_ locationSearchController: LocationPickerSearchResultsTableViewController, didSelect mapItem: LocationMapItem) {
+extension LocationPickerViewController: LocationSuggestionsTableViewControllerDelegate {
+    func locationSearchController(_ locationSearchController: LocationSuggestionsTableViewController, didSelect mapItem: LocationMapItem) {
         locationSearchController.dismiss(animated: true, completion: nil)
         self.selectMapItem(mapItem, addToList: true)
     }

@@ -1,5 +1,5 @@
 //
-//  LocationPickerSearchResultsTableViewController.swift
+//  LocationSuggestionsTableViewController.swift
 //  LocationPicker
 //
 //  Created by Idan Moshe on 30/01/2021.
@@ -8,11 +8,11 @@
 import UIKit
 import MapKit
 
-protocol LocationSearchResultsControllerDelegate: class {
-    func locationSearchController(_ locationSearchController: LocationPickerSearchResultsTableViewController, didSelect mapItem: LocationMapItem)
+protocol LocationSuggestionsTableViewControllerDelegate: class {
+    func locationSearchController(_ locationSearchController: LocationSuggestionsTableViewController, didSelect mapItem: LocationMapItem)
 }
 
-class LocationPickerSearchResultsTableViewController: UITableViewController {
+class LocationSuggestionsTableViewController: UITableViewController {
     
     override init(style: UITableView.Style) {
         super.init(style: style)
@@ -23,7 +23,7 @@ class LocationPickerSearchResultsTableViewController: UITableViewController {
         super.init(coder: coder)
     }
     
-    weak var searchDelegate: LocationSearchResultsControllerDelegate?
+    weak var searchDelegate: LocationSuggestionsTableViewControllerDelegate?
     var dataSource: [MKMapItem] = []
     
     deinit {
