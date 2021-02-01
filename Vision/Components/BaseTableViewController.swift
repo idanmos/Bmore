@@ -15,7 +15,22 @@ class BaseTableViewController: UITableViewController {
         indicator.hidesWhenStopped = true
         return indicator
     }()
-
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationController?.navigationBar.barTintColor = .white
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard self.spinner.superview == nil, let superView = self.tableView.superview else { return }

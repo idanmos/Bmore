@@ -93,7 +93,7 @@
 		8A973D71257C12AF002422B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A973D6F257C12AF002422B8 /* LaunchScreen.storyboard */; };
 		8A973D7C257C3473002422B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A973D7B257C3473002422B8 /* Main.storyboard */; };
 		8A973D7F257C37EE002422B8 /* Tasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A973D7E257C37EE002422B8 /* Tasks.storyboard */; };
-		8A973D86257CC59A002422B8 /* AssetsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D85257CC59A002422B8 /* AssetsMapViewController.swift */; };
+		8A973D86257CC59A002422B8 /* PropertiesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D85257CC59A002422B8 /* PropertiesMapViewController.swift */; };
 		8A973D89257CC5B7002422B8 /* PropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D88257CC5B7002422B8 /* PropertiesViewController.swift */; };
 		8A973D94257CC895002422B8 /* LeadsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D93257CC895002422B8 /* LeadsTableViewController.swift */; };
 		8A973D99257CCBEE002422B8 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D98257CCBEE002422B8 /* ContactTableViewCell.swift */; };
@@ -324,7 +324,7 @@
 		8A973D72257C12AF002422B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A973D7B257C3473002422B8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8A973D7E257C37EE002422B8 /* Tasks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tasks.storyboard; sourceTree = "<group>"; };
-		8A973D85257CC59A002422B8 /* AssetsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsMapViewController.swift; sourceTree = "<group>"; };
+		8A973D85257CC59A002422B8 /* PropertiesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesMapViewController.swift; sourceTree = "<group>"; };
 		8A973D88257CC5B7002422B8 /* PropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewController.swift; sourceTree = "<group>"; };
 		8A973D93257CC895002422B8 /* LeadsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableViewController.swift; sourceTree = "<group>"; };
 		8A973D98257CCBEE002422B8 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -677,6 +677,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8A55024125C8A2E600AE127D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8A973DDC257E7810002422B8 /* Base View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		8A742A4325947F1A0014848A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,7 +813,7 @@
 				8A1FA76125B65D5F00722A40 /* Utils */,
 				8A0608ED2587EEA0000765D8 /* Services */,
 				8A973E7025816AA6002422B8 /* Components */,
-				8A973DDC257E7810002422B8 /* Base View */,
+				8A55024125C8A2E600AE127D /* Base */,
 				8A973DA5257CCF3B002422B8 /* Models */,
 				8A973D90257CC883002422B8 /* Sceens */,
 				8A81CAA325A58EC2002BC2D8 /* Targets */,
@@ -934,7 +942,7 @@
 		8A973E22257F88DA002422B8 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				8A973D85257CC59A002422B8 /* AssetsMapViewController.swift */,
+				8A973D85257CC59A002422B8 /* PropertiesMapViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1625,7 +1633,7 @@
 				8A81CAB825A6FD4C002BC2D8 /* GraphViewController.swift in Sources */,
 				8A8CD2BB25B9000000A91104 /* Floaty.swift in Sources */,
 				8A9A429625ADFB250064994C /* DatePickerPopOverController.swift in Sources */,
-				8A973D86257CC59A002422B8 /* AssetsMapViewController.swift in Sources */,
+				8A973D86257CC59A002422B8 /* PropertiesMapViewController.swift in Sources */,
 				8A74704A25BEA96300EC0676 /* SelectionTransactionTableViewCell.swift in Sources */,
 				8ABA8F0225BEE1DB008517C1 /* LeadAddEditViewModel.swift in Sources */,
 				8A74704E25BEABE700EC0676 /* BaseSelectionTableViewController.swift in Sources */,

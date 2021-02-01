@@ -1,5 +1,5 @@
 //
-//  AssetsMapViewController.swift
+//  PropertiesMapViewController.swift
 //  Vision
 //
 //  Created by Idan Moshe on 06/12/2020.
@@ -9,15 +9,22 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AssetsMapViewController: UIViewController {
-    
-    // MARK: - Outlets
-    
-    @IBOutlet private weak var mapView: MKMapView!
-    
+class PropertiesMapViewController: UIViewController {
+            
     // MARK: - Variables
     
-    var viewModel: PropertiesViewModel?
+    private var viewModel: PropertiesViewModel!
+    
+    private lazy var mapView: MKMapView = {
+        let map = MKMapView(frame: .zero)
+        map.delegate = self
+        map.showsScale = true
+        map.showsCompass = true
+        map.showsTraffic = true
+        map.showsBuildings = true
+        map.showsUserLocation = true
+        return map
+    }()
     
     /// - Tag: Map
     private var userTrackingButton: MKUserTrackingButton!
@@ -25,9 +32,24 @@ class AssetsMapViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    init(viewModel: PropertiesViewModel) {
+        super.init(nibName: nil, bundle: nil)
+//        self.view.frame = UIScreen.main.bounds
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     deinit {
         debugPrint("Deallocating \(self)")
-        self.viewModel = nil
+    }
+    
+    override func loadView() {
+        super.loadView()
+                
+        self.mapView.embed(in: self.view)
     }
     
     override func viewDidLoad() {
@@ -64,28 +86,26 @@ class AssetsMapViewController: UIViewController {
             self.mapView.removeAnnotation(annotation)
         }
         
-        if let viewModel: PropertiesViewModel = self.viewModel {
-            var annotations: [MKAnnotation] = []
+        var annotations: [MKAnnotation] = []
+        
+        viewModel.resetAndReload()
+        viewModel.fetchedObjects.forEach { (property: Property) in
+            let coordinate = CLLocationCoordinate2D(
+                latitude: property.latitude,
+                longitude: property.longitude
+            )
             
-            viewModel.resetAndReload()
-            viewModel.fetchedObjects.forEach { (property: Property) in
-                let coordinate = CLLocationCoordinate2D(
-                    latitude: property.latitude,
-                    longitude: property.longitude
-                )
-                
-                if CLLocationCoordinate2DIsValid(coordinate) {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.title = property.address
-                    // annotation.subtitle = ""
-                    annotations.append(annotation)
-                }
+            if CLLocationCoordinate2DIsValid(coordinate) {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = property.address
+                // annotation.subtitle = ""
+                annotations.append(annotation)
             }
-            
-            self.mapView.addAnnotations(annotations)
-            self.mapView.showAnnotations(annotations, animated: true)
         }
+        
+        self.mapView.addAnnotations(annotations)
+        self.mapView.showAnnotations(annotations, animated: true)
     }
     
     // MARK: - Setup
@@ -136,7 +156,7 @@ class AssetsMapViewController: UIViewController {
     }
 }
 
-extension AssetsMapViewController: MKMapViewDelegate {
+extension PropertiesMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         //
@@ -144,7 +164,7 @@ extension AssetsMapViewController: MKMapViewDelegate {
     
 }
 
-extension AssetsMapViewController: CLLocationManagerDelegate {
+extension PropertiesMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .notDetermined {

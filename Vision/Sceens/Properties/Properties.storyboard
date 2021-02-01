@@ -1,114 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKg-Nd-ML5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--נכסים-->
-        <scene sceneID="j7y-Me-wck">
-            <objects>
-                <viewController storyboardIdentifier="AssetsListViewController" id="aoR-7s-6EQ" customClass="PropertiesViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QPl-yi-9Kw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fb2-fk-9bo">
-                                <rect key="frame" x="0.0" y="140" width="414" height="56"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="9uu-dS-7PQ"/>
-                                </constraints>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QKz-0W-cD4">
-                                <rect key="frame" x="0.0" y="196" width="414" height="700"/>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cXp-E7-RM4">
-                                    <size key="itemSize" width="190" height="202"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="aoR-7s-6EQ" id="W7P-Gg-fyF"/>
-                                    <outlet property="delegate" destination="aoR-7s-6EQ" id="qfE-Rb-Vfm"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="52N-sp-bYe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="QKz-0W-cD4" firstAttribute="leading" secondItem="QPl-yi-9Kw" secondAttribute="leading" id="eHI-Zr-wtF"/>
-                            <constraint firstAttribute="trailing" secondItem="QKz-0W-cD4" secondAttribute="trailing" id="gdp-MO-0qC"/>
-                            <constraint firstItem="fb2-fk-9bo" firstAttribute="trailing" secondItem="52N-sp-bYe" secondAttribute="trailing" id="gtK-xy-i94"/>
-                            <constraint firstItem="fb2-fk-9bo" firstAttribute="top" secondItem="52N-sp-bYe" secondAttribute="top" id="kJM-ef-RSs"/>
-                            <constraint firstItem="fb2-fk-9bo" firstAttribute="leading" secondItem="52N-sp-bYe" secondAttribute="leading" id="nBD-8i-O2W"/>
-                            <constraint firstItem="QKz-0W-cD4" firstAttribute="top" secondItem="fb2-fk-9bo" secondAttribute="bottom" id="oHR-VA-J8F"/>
-                            <constraint firstAttribute="bottom" secondItem="QKz-0W-cD4" secondAttribute="bottom" id="p5a-Wv-lga"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="נכסים" id="nbd-9J-Xbd">
-                        <barButtonItem key="leftBarButtonItem" image="map" catalog="system" id="1Ub-5f-HsI">
-                            <connections>
-                                <segue destination="lTV-2Y-Dg0" kind="show" identifier="SegueToMap" id="2TC-le-pAk"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZLY-58-6Uv">
-                            <connections>
-                                <action selector="onPressAdd:" destination="aoR-7s-6EQ" id="K7S-u8-SMZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="collectionView" destination="QKz-0W-cD4" id="iuq-J4-8Te"/>
-                        <outlet property="searchContainerView" destination="fb2-fk-9bo" id="BQW-hS-F6m"/>
-                        <segue destination="L0k-Eq-ahB" kind="show" identifier="SegueToDetails" id="uKK-0n-z7B"/>
-                        <segue destination="K81-tl-jFr" kind="show" identifier="SegueToAdd" id="YZX-SX-ARi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BUk-Jt-sjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1500.0000000000002" y="56.919642857142854"/>
-        </scene>
-        <!--Property Details View Controller-->
-        <scene sceneID="qcx-wh-fvb">
-            <objects>
-                <tableViewController storyboardIdentifier="PropertyDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L0k-Eq-ahB" customClass="PropertyDetailsViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="S46-sx-OVX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="L0k-Eq-ahB" id="fk9-Z1-u8H"/>
-                            <outlet property="delegate" destination="L0k-Eq-ahB" id="wEQ-Ch-ShD"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="Z7y-YE-2RH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="EQV-3W-c1d">
-                            <connections>
-                                <action selector="onPressShareBarButton:" destination="L0k-Eq-ahB" id="deT-Vz-yCm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="shareBarButton" destination="EQV-3W-c1d" id="8XI-OU-Qjk"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qFS-vU-IV7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2258" y="748"/>
-        </scene>
         <!--Add Property Table View Controller-->
         <scene sceneID="Kh5-hv-vfE">
             <objects>
-                <tableViewController id="K81-tl-jFr" customClass="AddPropertyTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddPropertyTableViewController" id="K81-tl-jFr" customClass="AddPropertyTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="IY1-iy-Mlq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -939,64 +844,10 @@
             </objects>
             <point key="canvasLocation" x="2257.971014492754" y="-627.45535714285711"/>
         </scene>
-        <!--נכסים-->
-        <scene sceneID="p3T-2h-dIL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HKg-Nd-ML5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="נכסים" image="building.2" catalog="system" id="rgt-Ri-eGH"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="OoM-ko-W8C">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="aoR-7s-6EQ" kind="relationship" relationship="rootViewController" id="q5W-Em-h6Z"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AVB-Bs-ree" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="698.55072463768124" y="56.919642857142854"/>
-        </scene>
-        <!--מפה-->
-        <scene sceneID="IKi-fF-sLQ">
-            <objects>
-                <viewController id="lTV-2Y-Dg0" customClass="AssetsMapViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ugm-Oh-o7h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNX-QJ-hqd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <connections>
-                                    <outlet property="delegate" destination="lTV-2Y-Dg0" id="zjR-Ar-x6d"/>
-                                </connections>
-                            </mapView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="N5w-zT-2ql"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DNX-QJ-hqd" secondAttribute="bottom" id="3Hn-TT-ZZk"/>
-                            <constraint firstItem="DNX-QJ-hqd" firstAttribute="top" secondItem="ugm-Oh-o7h" secondAttribute="top" id="avw-Na-ISw"/>
-                            <constraint firstAttribute="trailing" secondItem="DNX-QJ-hqd" secondAttribute="trailing" id="uIX-W8-voP"/>
-                            <constraint firstItem="DNX-QJ-hqd" firstAttribute="leading" secondItem="ugm-Oh-o7h" secondAttribute="leading" id="wu8-qp-Bda"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="מפה" id="Vt4-Md-gsa"/>
-                    <connections>
-                        <outlet property="mapView" destination="DNX-QJ-hqd" id="WHH-I8-xqC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NVX-Kf-Mv5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2258" y="57"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="building.2" catalog="system" width="128" height="106"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="camera" catalog="system" width="128" height="94"/>
-        <image name="map" catalog="system" width="128" height="110"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1009,9 +860,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

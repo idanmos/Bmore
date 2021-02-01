@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PropertyDetailsViewController: UITableViewController {
+class PropertyDetailsViewController: BaseTableViewController {
     
     enum CellType {
         case gallery, titleAndSubtitle, map, extraInfo
@@ -15,13 +15,31 @@ class PropertyDetailsViewController: UITableViewController {
         
     @IBOutlet private weak var shareBarButton: UIBarButtonItem!
     
-    var property: Property!
+    private var property: Property!
     
     private var images: [UIImage] = []
     private var cellsType: [CellType] = []
     
+    private lazy var shareButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.onPressShareBarButton(_:)))
+        return button
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    init(property: Property) {
+        super.init(style: .plain)
+        self.property = property
+    }
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -29,7 +47,6 @@ class PropertyDetailsViewController: UITableViewController {
         
         self.title = NSLocalizedString("property_details", comment: "")
         
-        self.tableView.tableFooterView = UIView(frame: .zero)
         // self.tableView.contentInset = UIEdgeInsets(top: -self.view.statusBarFrame(), left: 0, bottom: 0, right: 0)
         self.tableView.separatorStyle = .none
         

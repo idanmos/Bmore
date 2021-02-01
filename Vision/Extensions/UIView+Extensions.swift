@@ -9,6 +9,18 @@ import UIKit
 
 extension UIView {
     
+    func embed(in view: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self)
+        
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+    }
+    
     func constraints(to view: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
         

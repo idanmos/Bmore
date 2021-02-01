@@ -187,8 +187,7 @@ class BaseSelectionTableViewController: UITableViewController {
     }
     
     private func showPropertyScreen(_ property: Property) {
-        let propertyDetailsController = FactoryController.Screen.propertyDetails.viewController as! PropertyDetailsViewController
-        propertyDetailsController.property = property
+        let propertyDetailsController = FactoryController.Screen.propertyDetails(property: property).viewController
         self.navigationController?.pushViewController(propertyDetailsController, animated: true)
     }
     

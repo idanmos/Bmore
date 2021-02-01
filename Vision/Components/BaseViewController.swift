@@ -9,13 +9,26 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+//    lazy var menuButtonItem: UIBarButtonItem = {
+//        let button = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(self.onPressMenu(_:)))
+//        return button
+//    }()
+    
     lazy var spinner: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = .gray
         indicator.hidesWhenStopped = true
         return indicator
     }()
-
+    
+    override func loadView() {
+        super.loadView()
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
                 

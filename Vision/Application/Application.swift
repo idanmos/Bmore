@@ -21,7 +21,7 @@ class Application {
         
         let tabBarController = UITabBarController()
         
-        let propertiesViewController = FactoryController.Screen.properties.viewController
+        let propertiesViewController = FactoryController.Screen.properties.viewController.wrappedNavigationController()
         propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
         
         let contactsViewController = FactoryController.Screen.leads.viewController

@@ -103,7 +103,7 @@
         <!--מפה-->
         <scene sceneID="uup-rX-iZT">
             <objects>
-                <viewController id="kdc-gV-H3G" customClass="AssetsMapViewController" customModule="B_more" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kdc-gV-H3G" customClass="PropertiesMapViewController" customModule="B_more" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zfu-TM-Dgk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
