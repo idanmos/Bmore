@@ -35,7 +35,7 @@ class PropertiesViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()        
-        
+                
         self.title = "properties".localized
         
         self.navigationItem.rightBarButtonItems = [self.addButtonItem, self.mapButtonItem]
@@ -61,7 +61,9 @@ extension PropertiesViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.fetchedObjects.count
+        let rows: Int = self.viewModel.fetchedObjects.count
+        self.showNoDataView(show: rows<=0)
+        return rows
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

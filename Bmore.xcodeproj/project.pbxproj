@@ -48,6 +48,7 @@
 		8A4901632598AEFF00CFA2A1 /* MeetingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901622598AEFF00CFA2A1 /* MeetingEvent.swift */; };
 		8A4901672599D04300CFA2A1 /* MeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4901652599D04300CFA2A1 /* MeetingTableViewCell.swift */; };
 		8A4901682599D04300CFA2A1 /* MeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4901662599D04300CFA2A1 /* MeetingTableViewCell.xib */; };
+		8A55024925C8BDF700AE127D /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A55024825C8BDF700AE127D /* NoDataView.xib */; };
 		8A742A372593A50F0014848A /* AAInfographics in Frameworks */ = {isa = PBXBuildFile; productRef = 8A742A362593A50F0014848A /* AAInfographics */; };
 		8A742A3A2593A5490014848A /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A392593A5490014848A /* GraphView.swift */; };
 		8A742A4025947C970014848A /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A742A3E25947C970014848A /* BalanceCollectionViewCell.swift */; };
@@ -278,6 +279,7 @@
 		8A4901622598AEFF00CFA2A1 /* MeetingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingEvent.swift; sourceTree = "<group>"; };
 		8A4901652599D04300CFA2A1 /* MeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingTableViewCell.swift; sourceTree = "<group>"; };
 		8A4901662599D04300CFA2A1 /* MeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingTableViewCell.xib; sourceTree = "<group>"; };
+		8A55024825C8BDF700AE127D /* NoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
 		8A742A392593A5490014848A /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		8A742A3E25947C970014848A /* BalanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8A742A3F25947C970014848A /* BalanceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -977,6 +979,7 @@
 				8A742A392593A5490014848A /* GraphView.swift */,
 				8A9A41FF25A8763C0064994C /* Help */,
 				8A9A42A325AEFAEB0064994C /* NoDataView.swift */,
+				8A55024825C8BDF700AE127D /* NoDataView.xib */,
 				8A9A437225B1ED3E0064994C /* UILabel - ColorfulLabel */,
 				8AEE754425C149B900CA2D48 /* FloatRatingView.swift */,
 			);
@@ -1450,6 +1453,7 @@
 				8A9A425525AC72EB0064994C /* MiniGalleryCollectionViewCell.xib in Resources */,
 				8A9A423225AB8F900064994C /* InstagramStoryCollectionViewCell.xib in Resources */,
 				8A46F82A2588D1A500021679 /* PropertyDetailsHeadTopBottomTableViewCell.xib in Resources */,
+				8A55024925C8BDF700AE127D /* NoDataView.xib in Resources */,
 				8A0608432586524A000765D8 /* MultipleSelectionCollectionViewController.xib in Resources */,
 				8A973D7C257C3473002422B8 /* Main.storyboard in Resources */,
 				8A9A424925ABC9920064994C /* InstagramNewsFeedToastView.xib in Resources */,

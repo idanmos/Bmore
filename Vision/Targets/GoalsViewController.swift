@@ -36,9 +36,9 @@ class GoalsViewController: UIViewController {
                 
         self.navigationItem.title = NSLocalizedString("goals", comment: "") + " - " + self.viewModel.dataSource[0].title()
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            HelpGestureViewController.show(presenter: self)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+//            HelpGestureViewController.show(presenter: self)
+//        }
     }
 
 }
