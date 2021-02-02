@@ -1,5 +1,5 @@
 //
-//  BalancePageViewController.swift
+//  ReportsPageViewController.swift
 //  B-more
 //
 //  Created by Idan Moshe on 11/01/2021.
@@ -7,14 +7,9 @@
 
 import UIKit
 
-class BalancePageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class ReportsPageViewController: BasePageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    class func build() -> BalancePageViewController {
-        let viewController = BalancePageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        return viewController
-    }
-    
-    private var viewModel = BalanceViewModel()
+    private var viewModel = ReportsViewModel()
     private var chartControllers: [ChartViewController] = []
     private var advancedViewController: MoreViewController?
     
@@ -36,29 +31,18 @@ class BalancePageViewController: UIPageViewController, UIPageViewControllerDeleg
         super.init(coder: coder)
     }
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-
-        if let advancedController = parent as? MoreViewController {
-            if Application.isHebrew() {
-                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
-                advancedController.navigationItem.rightBarButtonItem = self.calendarBarButton
-            } else {
-                advancedController.navigationItem.leftBarButtonItem = self.calendarBarButton
-                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
-            }
-            
-            self.advancedViewController = advancedController
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "reports".localized
+        
+        self.navigationItem.leftBarButtonItem = self.calendarBarButton
+        self.navigationItem.rightBarButtonItem = self.addBarButton
         
         self.delegate = self
         self.dataSource = self
         
-        let pageControl = UIPageControl.appearance(whenContainedInInstancesOf: [BalancePageViewController.self])
+        let pageControl = UIPageControl.appearance(whenContainedInInstancesOf: [ReportsPageViewController.self])
         pageControl.currentPageIndicatorTintColor = .black
         pageControl.pageIndicatorTintColor = .gray
         
@@ -142,17 +126,10 @@ class BalancePageViewController: UIPageViewController, UIPageViewControllerDeleg
 
 // MARK: - Actions
 
-extension BalancePageViewController {
+extension ReportsPageViewController {
     
     @objc private func onPressAddButton(_ sender: UIBarButtonItem) {
-        guard let advancedController: MoreViewController = self.advancedViewController else { return }
-        guard let storyboard: UIStoryboard = advancedController.storyboard else { return }
-
-        guard let addTransactionController = storyboard.instantiateViewController(withIdentifier: AddTransactionTableViewController.className())
-                as? AddTransactionTableViewController
-        else { return }
-
-        advancedController.navigationController?.pushViewController(addTransactionController, animated: true)
+        self.navigationController?.pushViewController(FactoryController.Screen.addTransaction.viewController, animated: true)
     }
     
     @objc private func onPressCalendarButton(_ sender: UIBarButtonItem) {
@@ -180,7 +157,7 @@ extension BalancePageViewController {
     
 }
 
-extension BalancePageViewController: UIPopoverPresentationControllerDelegate {
+extension ReportsPageViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }

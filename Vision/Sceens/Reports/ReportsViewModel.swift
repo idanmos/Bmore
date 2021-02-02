@@ -1,5 +1,5 @@
 //
-//  BalanceViewModel.swift
+//  ReportsViewModel.swift
 //  B-more
 //
 //  Created by Idan Moshe on 02/01/2021.
@@ -34,7 +34,7 @@ enum BalanceType: Int, CaseIterable {
     }
 }
 
-class BalanceViewModel {
+class ReportsViewModel {
     
     private var dayBalance = FinancialBalance()
     private var weekBalance = FinancialBalance()

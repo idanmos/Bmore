@@ -165,7 +165,7 @@
 		8A9A425E25AC7CD30064994C /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A425D25AC7CD30064994C /* TasksViewModel.swift */; };
 		8A9A426125AC7EC20064994C /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426025AC7EC20064994C /* MoreViewController.swift */; };
 		8A9A426525AC7F140064994C /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426425AC7F140064994C /* MoreViewModel.swift */; };
-		8A9A426D25AC80DC0064994C /* BalancePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426C25AC80DC0064994C /* BalancePageViewController.swift */; };
+		8A9A426D25AC80DC0064994C /* ReportsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426C25AC80DC0064994C /* ReportsPageViewController.swift */; };
 		8A9A427225ACE1ED0064994C /* FinancialBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A427125ACE1ED0064994C /* FinancialBalance.swift */; };
 		8A9A427F25ACEDE80064994C /* GraphConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A427E25ACEDE80064994C /* GraphConfiguration.swift */; };
 		8A9A428525ACFB750064994C /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A428425ACFB750064994C /* UIViewController+Extensions.swift */; };
@@ -191,6 +191,7 @@
 		8A9A439C25B449270064994C /* LeadContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A439A25B449270064994C /* LeadContactTableViewCell.xib */; };
 		8A9A43A025B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A439E25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift */; };
 		8A9A43A125B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A439F25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib */; };
+		8A9E223125C97C6500EBFC1F /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E223025C97C6500EBFC1F /* BasePageViewController.swift */; };
 		8AAC9C0325C2A87000FF5D7E /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9C0225C2A87000FF5D7E /* MasterTableViewController.swift */; };
 		8AAC9C0A25C2BAD700FF5D7E /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAC9C0825C2BAD700FF5D7E /* MasterTableViewCell.swift */; };
 		8AAC9C0B25C2BAD700FF5D7E /* MasterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AAC9C0925C2BAD700FF5D7E /* MasterTableViewCell.xib */; };
@@ -227,7 +228,7 @@
 		8ADDB033259CFECA00E12C37 /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */; };
 		8ADDB037259DA57400E12C37 /* AddTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */; };
 		8ADDB0CA259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */; };
-		8ADDB0D325A0894900E12C37 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0D225A0894900E12C37 /* BalanceViewModel.swift */; };
+		8ADDB0D325A0894900E12C37 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */; };
 		8AEE754525C149B900CA2D48 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE754425C149B900CA2D48 /* FloatRatingView.swift */; };
 		C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFF1331E6124D15B9CB334C /* Pods_Bmore.framework */; };
 /* End PBXBuildFile section */
@@ -397,7 +398,7 @@
 		8A9A425D25AC7CD30064994C /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
 		8A9A426025AC7EC20064994C /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8A9A426425AC7F140064994C /* MoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewModel.swift; sourceTree = "<group>"; };
-		8A9A426C25AC80DC0064994C /* BalancePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancePageViewController.swift; sourceTree = "<group>"; };
+		8A9A426C25AC80DC0064994C /* ReportsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsPageViewController.swift; sourceTree = "<group>"; };
 		8A9A427125ACE1ED0064994C /* FinancialBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialBalance.swift; sourceTree = "<group>"; };
 		8A9A427E25ACEDE80064994C /* GraphConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConfiguration.swift; sourceTree = "<group>"; };
 		8A9A428425ACFB750064994C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -423,6 +424,7 @@
 		8A9A439A25B449270064994C /* LeadContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadContactTableViewCell.xib; sourceTree = "<group>"; };
 		8A9A439E25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailDisclosureTableViewCell.swift; sourceTree = "<group>"; };
 		8A9A439F25B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadDetailDisclosureTableViewCell.xib; sourceTree = "<group>"; };
+		8A9E223025C97C6500EBFC1F /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		8AAC9C0225C2A87000FF5D7E /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		8AAC9C0825C2BAD700FF5D7E /* MasterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
 		8AAC9C0925C2BAD700FF5D7E /* MasterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasterTableViewCell.xib; sourceTree = "<group>"; };
@@ -459,7 +461,7 @@
 		8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
 		8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewController.swift; sourceTree = "<group>"; };
 		8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
-		8ADDB0D225A0894900E12C37 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
+		8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		8AEE754425C149B900CA2D48 /* FloatRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../../../Downloads/FloatRatingView.swift; sourceTree = "<group>"; };
 		8E1238A401BB85D601047A47 /* Pods-Bmore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bmore.release.xcconfig"; path = "Target Support Files/Pods-Bmore/Pods-Bmore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -582,10 +584,8 @@
 				8A9A426425AC7F140064994C /* MoreViewModel.swift */,
 				8A9A426025AC7EC20064994C /* MoreViewController.swift */,
 				8A0608F82587F267000765D8 /* More.storyboard */,
-				8A742A4625947F2A0014848A /* Balance */,
 				8A49015825987D7800CFA2A1 /* Meetings */,
 				8ADDB021259CEFBE00E12C37 /* Transactions */,
-				8A9A425925AC7CAA0064994C /* Tasks */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -696,14 +696,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		8A742A4625947F2A0014848A /* Balance */ = {
+		8A742A4625947F2A0014848A /* Reports */ = {
 			isa = PBXGroup;
 			children = (
-				8ADDB0D225A0894900E12C37 /* BalanceViewModel.swift */,
-				8A9A426C25AC80DC0064994C /* BalancePageViewController.swift */,
+				8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */,
+				8A9A426C25AC80DC0064994C /* ReportsPageViewController.swift */,
 				8A742A4325947F1A0014848A /* Cells */,
 			);
-			path = Balance;
+			path = Reports;
 			sourceTree = "<group>";
 		};
 		8A74702125BC4B3100EC0676 /* Providers */ = {
@@ -853,6 +853,8 @@
 				8A46F8332588FDA300021679 /* Time Tracking */,
 				8A973D8E257CC879002422B8 /* Properties */,
 				8A973D96257CC898002422B8 /* Leads */,
+				8A742A4625947F2A0014848A /* Reports */,
+				8A9A425925AC7CAA0064994C /* Tasks */,
 				8A0608FB2587F26B000765D8 /* More */,
 			);
 			path = Sceens;
@@ -963,8 +965,9 @@
 			children = (
 				8AAC9CC525C604BD00FF5D7E /* LocationPicker */,
 				8A8CD2C025B9000700A91104 /* KCFloatingActionButton */,
-				8A7ABBF625B5974E0090AB6D /* BaseTableViewController.swift */,
 				8AAC9C4025C4319A00FF5D7E /* BaseViewController.swift */,
+				8A9E223025C97C6500EBFC1F /* BasePageViewController.swift */,
+				8A7ABBF625B5974E0090AB6D /* BaseTableViewController.swift */,
 				8A9A428725ADAA000064994C /* ChartViewController.swift */,
 				8A9A426F25AC81C60064994C /* Graph Controller */,
 				8A81CA5425A31774002BC2D8 /* CheckboxTableViewController.swift */,
@@ -1580,7 +1583,7 @@
 				8A1FA75E25B65CC100722A40 /* Threading.swift in Sources */,
 				8A8CD2B825B9000000A91104 /* UIView+Draggable.swift in Sources */,
 				8A9A428525ACFB750064994C /* UIViewController+Extensions.swift in Sources */,
-				8A9A426D25AC80DC0064994C /* BalancePageViewController.swift in Sources */,
+				8A9A426D25AC80DC0064994C /* ReportsPageViewController.swift in Sources */,
 				8AAC9CD625C604EF00FF5D7E /* LocationMapItem.swift in Sources */,
 				8A9A423525AB96990064994C /* InstagramStoryView.swift in Sources */,
 				8A9A424225AB9DCF0064994C /* InstagramFeedTableViewCell.swift in Sources */,
@@ -1616,7 +1619,7 @@
 				8A973E8425823E45002422B8 /* LabelAndTextFieldTableViewCell.swift in Sources */,
 				8A8CD2BC25B9000000A91104 /* FloatyDelegate.swift in Sources */,
 				8A973DD0257E7621002422B8 /* GalleryViewController.swift in Sources */,
-				8ADDB0D325A0894900E12C37 /* BalanceViewModel.swift in Sources */,
+				8ADDB0D325A0894900E12C37 /* ReportsViewModel.swift in Sources */,
 				8A973E36257FD2E1002422B8 /* CoreDataStack.swift in Sources */,
 				8A46F88E258924D200021679 /* CoreData+Convenience.swift in Sources */,
 				8AAC9D1925C765D500FF5D7E /* UIVIewController+Permissions.swift in Sources */,
@@ -1659,6 +1662,7 @@
 				8A1A249125C0D6250027A45D /* LeadQualityTableViewCell.swift in Sources */,
 				8A973E9F25829B4C002422B8 /* SegmentControlTableViewCell.swift in Sources */,
 				8A742A4B259488E80014848A /* DateFormatter+Extensions.swift in Sources */,
+				8A9E223125C97C6500EBFC1F /* BasePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

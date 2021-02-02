@@ -21,7 +21,7 @@ enum MoreCategory: Int, CaseIterable {
     
     func title() -> String {
         switch self {
-        case .balance: return NSLocalizedString("financial_balance", comment: "")
+        case .balance: return NSLocalizedString("reports", comment: "")
         case .meetings: return NSLocalizedString("meetings", comment: "")
         case .transactions: return NSLocalizedString("transactions", comment: "")
         case .tasks: return NSLocalizedString("tasks", comment: "")

@@ -57,15 +57,10 @@ class TasksViewModel: BaseViewModel {
     }
     
     func showAddScreen(presenter: UIViewController, editedTask: Task? = nil) {
-        guard let advancedController = presenter.parent as? MoreViewController else { return }
-        
-        guard let newTaskController = UIStoryboard(name: "Tasks", bundle: nil).instantiateViewController(withIdentifier: NewTaskTableViewController.className())
-                as? NewTaskTableViewController
-        else { return }
-        
-        newTaskController.editedTask = editedTask
-        
-        advancedController.navigationController?.pushViewController(newTaskController, animated: true)
+        if let newTaskController = FactoryController.Screen.newTask.viewController as? NewTaskTableViewController {
+            newTaskController.editedTask = editedTask
+            presenter.navigationController?.pushViewController(newTaskController, animated: true)
+        }
     }
     
 }

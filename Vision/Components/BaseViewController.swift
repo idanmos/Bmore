@@ -25,7 +25,8 @@ class BaseViewController: UIViewController {
         super.loadView()
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.barTintColor = .white
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     

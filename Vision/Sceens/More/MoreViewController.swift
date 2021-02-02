@@ -61,7 +61,7 @@ extension MoreViewController {
         // get appropriate view controller
         var viewController: UIViewController
         if category == .balance {
-            viewController = FactoryController.Screen.balance.viewController
+            viewController = FactoryController.Screen.reports.viewController
         } else if category == .meetings {
             viewController = FactoryController.Screen.meetings.viewController
         } else if category == .transactions {

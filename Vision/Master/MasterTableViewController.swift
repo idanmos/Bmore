@@ -27,7 +27,7 @@ class MasterTableViewController: UITableViewController {
             case .leads: return "leads".localized
             case .timeTracking: return "".localized
             case .targets: return "targets".localized
-            case .balance: return "balance".localized
+            case .balance: return "reports".localized
             case .meetings: return "meetings".localized
             case .transactions: return "transactions".localized
             case .tasks: return "tasks".localized
@@ -121,7 +121,7 @@ class MasterTableViewController: UITableViewController {
             let viewController = FactoryController.Screen.targets.viewController
             self.splitViewController?.showDetailViewController(viewController, sender: nil)
         case .balance:
-            let viewController = FactoryController.Screen.balance.viewController
+            let viewController = FactoryController.Screen.reports.viewController
             self.splitViewController?.showDetailViewController(viewController, sender: nil)
         case .meetings:
             let viewController = FactoryController.Screen.meetings.viewController

@@ -7,6 +7,12 @@
 
 import UIKit
 
+private extension UITabBarItem {
+    static func build(title: String, systemImageName: String) -> UITabBarItem {
+        UITabBarItem(title: title, image: UIImage(systemName: systemImageName), tag: 0)
+    }
+}
+
 class Application {
     
     static let shared = Application()
@@ -22,25 +28,27 @@ class Application {
         let tabBarController = UITabBarController()
         
         let propertiesViewController = FactoryController.Screen.properties.viewController.wrappedNavigationController()
-        propertiesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("properties", comment: ""), image: UIImage(systemName: "building.2"), tag: 0)
+        propertiesViewController.tabBarItem = UITabBarItem.build(title: "properties".localized, systemImageName: "building.2")
         
-        let contactsViewController = FactoryController.Screen.leads.viewController
-        contactsViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("leads", comment: ""), image: UIImage(systemName: "person.2"), tag: 0)
+        let leadsViewController = FactoryController.Screen.leads.viewController
+        leadsViewController.tabBarItem = UITabBarItem.build(title: "leads".localized, systemImageName: "person.2")
+        
+        let tasksViewController = FactoryController.Screen.tasks.viewController.wrappedNavigationController()
+        tasksViewController.tabBarItem = UITabBarItem.build(title: "tasks".localized, systemImageName: "list.number")
+        
+        let reportsViewController = FactoryController.Screen.reports.viewController.wrappedNavigationController()
+        reportsViewController.tabBarItem = UITabBarItem.build(title: "reports".localized, systemImageName: "chart.pie")
                 
-        let timeTrackingViewController = FactoryController.Screen.timeTracking.viewController
-        timeTrackingViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("time_tracking", comment: ""), image: UIImage(systemName: "clock"), tag: 0)
-        
-        let targetViewController = FactoryController.Screen.targets.viewController
-        targetViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("targets", comment: ""), image: UIImage(systemName: "target"), tag: 0)
-        
         let moreViewController = FactoryController.Screen.advanced.viewController
-        moreViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("more", comment: ""), image: UIImage(systemName: "ellipsis"), tag: 0)
+        moreViewController.tabBarItem = UITabBarItem.build(title: "more".localized, systemImageName: "ellipsis")
         
-        let viewControllers: [UIViewController] = [propertiesViewController,
-                                                   contactsViewController,
-                                                   timeTrackingViewController,
-                                                   targetViewController,
-                                                   moreViewController]
+        let viewControllers: [UIViewController] = [
+            propertiesViewController,
+            leadsViewController,
+            tasksViewController,
+            reportsViewController,
+            moreViewController
+        ]
         
         tabBarController.setViewControllers(viewControllers, animated: true)
                 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksViewController: UITableViewController {
+class TasksViewController: BaseTableViewController {
         
     private let viewModel = TasksViewModel()
     
@@ -15,25 +15,16 @@ class TasksViewController: UITableViewController {
         let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))
         return control
     }()
-
-    
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        
-        if let advancedController = parent as? MoreViewController {
-            if Application.isHebrew() {
-                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
-                advancedController.navigationItem.rightBarButtonItem = self.editButtonItem
-            } else {
-                advancedController.navigationItem.leftBarButtonItem = self.editButtonItem
-                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        
+        self.title = "tasks".localized
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.addBarButton
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className())
+        self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,11 +34,6 @@ class TasksViewController: UITableViewController {
         
         self.tableView.register(TaskTableViewCell.self)
         self.tableView.reloadData()
-    }
-    
-    private func setupUI() {
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className())
-        self.tableView.tableFooterView = UIView(frame: .zero)
     }
 
     // MARK: - UITableViewDelegate, UITableViewDataSource
