@@ -160,7 +160,7 @@
                 <outlet property="sizeLabel" destination="hYU-IC-w4D" id="5XK-bL-7LM"/>
                 <outlet property="typeLabel" destination="ySP-Ae-z5S" id="rvz-TE-6Bh"/>
             </connections>
-            <point key="canvasLocation" x="-904.34782608695662" y="-30.803571428571427"/>
+            <point key="canvasLocation" x="-904" y="-117"/>
         </tableViewCell>
     </objects>
     <resources>

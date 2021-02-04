@@ -19,6 +19,7 @@ class FactoryController {
         case meetings
         case transactions
         case addTransaction
+        case more
         
         case targets
         case propertyDetails(property: Property)
@@ -36,6 +37,7 @@ class FactoryController {
             case .advanced: return UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
             case .targets: return UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
             case .addTransaction: return UIStoryboard(name: "More", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className())
+            case .more: return MoreTableViewController(style: .plain)
                 
             case .propertyDetails(property: let property):
                 return PropertyDetailsViewController(property: property)

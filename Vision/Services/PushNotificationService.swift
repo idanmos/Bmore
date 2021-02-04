@@ -60,7 +60,14 @@ class PushNotificationService {
         content.title = taskConfiguration.title ?? ""
         content.body = taskConfiguration.comments ?? ""
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: date.timeIntervalSinceNow, repeats: false)
+        let interval: TimeInterval
+        if date.timeIntervalSinceNow <= 0 {
+            interval = 1
+        } else {
+            interval = date.timeIntervalSinceNow
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(identifier: taskConfiguration.taskId, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)

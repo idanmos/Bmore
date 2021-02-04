@@ -32,7 +32,7 @@ class TasksViewController: BaseTableViewController {
         
         self.viewModel.fetchData()
         
-        self.tableView.register(TaskTableViewCell.self)
+        self.tableView.register(TaskCheckboxTableViewCell.self)
         self.tableView.reloadData()
     }
 
@@ -47,9 +47,8 @@ class TasksViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(TaskTableViewCell.self, indexPath: indexPath)
-        let task: Task = self.viewModel.dataSource[indexPath.row]
-        cell.configure(task)
+        let cell = tableView.dequeue(TaskCheckboxTableViewCell.self, indexPath: indexPath)
+        cell.task = self.viewModel.dataSource[indexPath.row]
         return cell
     }
     

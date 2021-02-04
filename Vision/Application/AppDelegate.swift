@@ -26,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var coreDataStack: CoreDataStack = { return CoreDataStack() }()
     
 //    var cities: [CityDetails] = []
-        
+    
+    var cloudData: iCloudData?
+    
     class func sharedDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -39,7 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         Application.shared.configureMainInterface(in: window)
         self.window = window
-                
+        
+        iCloudService.fetchData { (data: iCloudData?, error: Error?) in
+            if let error = error {
+                debugPrint("iCloudService.fetchData", error)
+            }
+            if let data = data {
+                self.cloudData = data
+                debugPrint("iCloudService.fetchData", data)
+            }
+        }
+        
         return true
     }
     

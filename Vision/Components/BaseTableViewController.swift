@@ -19,7 +19,7 @@ class BaseTableViewController: UITableViewController {
     private lazy var noDataView: NoDataView = {
         let view = NoDataView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = false
+        view.isHidden = true
         return view
     }()
         
@@ -77,14 +77,14 @@ class BaseTableViewController: UITableViewController {
     }
     
     func showNoDataView(show: Bool) {
-        if show {
-            self.noDataView.isHidden = false
-            if let superView = self.tableView.superview {
-                superView.bringSubviewToFront(self.noDataView)
-            }
-        } else {
-            self.noDataView.isHidden = true
-        }
+//        if show {
+//            self.noDataView.isHidden = false
+//            if let superView = self.tableView.superview {
+//                superView.bringSubviewToFront(self.noDataView)
+//            }
+//        } else {
+//            self.noDataView.isHidden = true
+//        }
     }
 
 }

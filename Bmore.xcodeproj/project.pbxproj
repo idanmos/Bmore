@@ -88,6 +88,8 @@
 		8A8CD2BC25B9000000A91104 /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B525B9000000A91104 /* FloatyDelegate.swift */; };
 		8A8CD2BD25B9000000A91104 /* FloatyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B625B9000000A91104 /* FloatyWindow.swift */; };
 		8A8CD2BE25B9000000A91104 /* FloatyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8CD2B725B9000000A91104 /* FloatyViewController.swift */; };
+		8A8F0A1425CBE8FA00287C46 /* TaskCheckboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F0A1225CBE8FA00287C46 /* TaskCheckboxTableViewCell.swift */; };
+		8A8F0A1525CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F0A1325CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib */; };
 		8A973D62257C12AD002422B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D61257C12AD002422B8 /* AppDelegate.swift */; };
 		8A973D6C257C12AD002422B8 /* Vision.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A973D6A257C12AD002422B8 /* Vision.xcdatamodeld */; };
 		8A973D6E257C12AF002422B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A973D6D257C12AF002422B8 /* Assets.xcassets */; };
@@ -143,6 +145,14 @@
 		8A973EB02582CBC0002422B8 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A973EAE2582CBC0002422B8 /* DatePickerViewController.xib */; };
 		8A973EB525833B08002422B8 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A973EB425833B08002422B8 /* UITextField+Extensions.swift */; };
 		8A973EB82583E3EB002422B8 /* Properties_AirBnB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A973EB72583E3E9002422B8 /* Properties_AirBnB.storyboard */; };
+		8A99232325C9C8990021B3E9 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99232225C9C8990021B3E9 /* MoreTableViewController.swift */; };
+		8A99232B25C9DA420021B3E9 /* iCloudData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99232A25C9DA420021B3E9 /* iCloudData.swift */; };
+		8A99232F25CA7A760021B3E9 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */; };
+		8A99233025CA7A760021B3E9 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */; };
+		8A99233325CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */; };
+		8A99233625CA89600021B3E9 /* DocumentsPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233525CA89600021B3E9 /* DocumentsPickerProvider.swift */; };
+		8A99233B25CABADE0021B3E9 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */; };
+		8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233E25CABCF20021B3E9 /* KeychainItem.swift */; };
 		8A9A41F125A768DD0064994C /* GraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A41F025A768DD0064994C /* GraphViewController.xib */; };
 		8A9A41F725A86E480064994C /* TargetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A41F625A86E480064994C /* TargetsViewModel.swift */; };
 		8A9A41FC25A872AB0064994C /* HelpGestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A41FA25A872AB0064994C /* HelpGestureViewController.swift */; };
@@ -180,8 +190,6 @@
 		8A9A42DB25B064930064994C /* TaskConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A42DA25B064930064994C /* TaskConfiguration.swift */; };
 		8A9A435E25B193590064994C /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A435D25B193590064994C /* PushNotificationService.swift */; };
 		8A9A436125B1A8510064994C /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A436025B1A8510064994C /* AlertViewModel.swift */; };
-		8A9A436A25B1C8F70064994C /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A436825B1C8F60064994C /* TaskTableViewCell.swift */; };
-		8A9A436B25B1C8F70064994C /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A436925B1C8F60064994C /* TaskTableViewCell.xib */; };
 		8A9A437025B1ED390064994C /* ColorfulLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A436F25B1ED380064994C /* ColorfulLabel.swift */; };
 		8A9A437C25B22F9B0064994C /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A437B25B22F9B0064994C /* CoreDataOperation.swift */; };
 		8A9A438E25B4450A0064994C /* LeadDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A438D25B4450A0064994C /* LeadDetailsViewController.swift */; };
@@ -319,6 +327,8 @@
 		8A8CD2B525B9000000A91104 /* FloatyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyDelegate.swift; sourceTree = "<group>"; };
 		8A8CD2B625B9000000A91104 /* FloatyWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyWindow.swift; sourceTree = "<group>"; };
 		8A8CD2B725B9000000A91104 /* FloatyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyViewController.swift; sourceTree = "<group>"; };
+		8A8F0A1225CBE8FA00287C46 /* TaskCheckboxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCheckboxTableViewCell.swift; sourceTree = "<group>"; };
+		8A8F0A1325CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCheckboxTableViewCell.xib; sourceTree = "<group>"; };
 		8A973D5E257C12AD002422B8 /* Bmore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bmore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A973D61257C12AD002422B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A973D6B257C12AD002422B8 /* Vision.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vision.xcdatamodel; sourceTree = "<group>"; };
@@ -376,6 +386,14 @@
 		8A973EAE2582CBC0002422B8 /* DatePickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 		8A973EB425833B08002422B8 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		8A973EB72583E3E9002422B8 /* Properties_AirBnB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Properties_AirBnB.storyboard; sourceTree = "<group>"; };
+		8A99232225C9C8990021B3E9 /* MoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		8A99232A25C9DA420021B3E9 /* iCloudData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudData.swift; sourceTree = "<group>"; };
+		8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2021-02-03 at 8.39.40.png"; sourceTree = "<group>"; };
+		8A99233525CA89600021B3E9 /* DocumentsPickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPickerProvider.swift; sourceTree = "<group>"; };
+		8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
+		8A99233E25CABCF20021B3E9 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		8A9A41F025A768DD0064994C /* GraphViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GraphViewController.xib; sourceTree = "<group>"; };
 		8A9A41F625A86E480064994C /* TargetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsViewModel.swift; sourceTree = "<group>"; };
 		8A9A41FA25A872AB0064994C /* HelpGestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGestureViewController.swift; sourceTree = "<group>"; };
@@ -413,8 +431,6 @@
 		8A9A42DA25B064930064994C /* TaskConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskConfiguration.swift; sourceTree = "<group>"; };
 		8A9A435D25B193590064994C /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		8A9A436025B1A8510064994C /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
-		8A9A436825B1C8F60064994C /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
-		8A9A436925B1C8F60064994C /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		8A9A436F25B1ED380064994C /* ColorfulLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulLabel.swift; sourceTree = "<group>"; };
 		8A9A437B25B22F9B0064994C /* CoreDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataOperation.swift; sourceTree = "<group>"; };
 		8A9A438D25B4450A0064994C /* LeadDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailsViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +582,7 @@
 		8A0608ED2587EEA0000765D8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8A99234125CABCF70021B3E9 /* AuthenticationServices */,
 				8A9A42CE25AF9BAE0064994C /* FactoryController.swift */,
 				8A973E39257FD8E9002422B8 /* ImageStorage.swift */,
 				8A0608D825874FC6000765D8 /* ContactsService.swift */,
@@ -582,10 +599,12 @@
 			isa = PBXGroup;
 			children = (
 				8A9A426425AC7F140064994C /* MoreViewModel.swift */,
+				8A99232225C9C8990021B3E9 /* MoreTableViewController.swift */,
 				8A9A426025AC7EC20064994C /* MoreViewController.swift */,
 				8A0608F82587F267000765D8 /* More.storyboard */,
 				8A49015825987D7800CFA2A1 /* Meetings */,
 				8ADDB021259CEFBE00E12C37 /* Transactions */,
+				8A81CAA325A58EC2002BC2D8 /* Targets */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -603,7 +622,10 @@
 		8A1FA75725B63C6500722A40 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */,
 				8A1FA75425B63C5F00722A40 /* Profile.storyboard */,
+				8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */,
+				8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -710,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				8A74702225BC4B3700EC0676 /* External Applications */,
+				8A99233525CA89600021B3E9 /* DocumentsPickerProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -818,7 +841,6 @@
 				8A55024125C8A2E600AE127D /* Base */,
 				8A973DA5257CCF3B002422B8 /* Models */,
 				8A973D90257CC883002422B8 /* Sceens */,
-				8A81CAA325A58EC2002BC2D8 /* Targets */,
 				8A0608E72587EE8F000765D8 /* Extensions */,
 				8A973D6D257C12AF002422B8 /* Assets.xcassets */,
 				8A973D6F257C12AF002422B8 /* LaunchScreen.storyboard */,
@@ -884,6 +906,7 @@
 				8A9A437B25B22F9B0064994C /* CoreDataOperation.swift */,
 				8A1FA79F25B77CBC00722A40 /* DeviceContact.swift */,
 				8AAC9C5825C4589100FF5D7E /* PropertyConfiguration.swift */,
+				8A99232A25C9DA420021B3E9 /* iCloudData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1026,6 +1049,15 @@
 			path = "Date Picker";
 			sourceTree = "<group>";
 		};
+		8A99234125CABCF70021B3E9 /* AuthenticationServices */ = {
+			isa = PBXGroup;
+			children = (
+				8A99233E25CABCF20021B3E9 /* KeychainItem.swift */,
+				8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */,
+			);
+			path = AuthenticationServices;
+			sourceTree = "<group>";
+		};
 		8A9A41F325A86E1E0064994C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,8 +1165,8 @@
 		8A9A436D25B1C9330064994C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8A9A436825B1C8F60064994C /* TaskTableViewCell.swift */,
-				8A9A436925B1C8F60064994C /* TaskTableViewCell.xib */,
+				8A8F0A1225CBE8FA00287C46 /* TaskCheckboxTableViewCell.swift */,
+				8A8F0A1325CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1423,8 +1455,8 @@
 				8AAC9CD925C6A84400FF5D7E /* LocationPickerTableViewCell.xib in Resources */,
 				8A0608F92587F267000765D8 /* More.storyboard in Resources */,
 				8A1A249225C0D6250027A45D /* LeadQualityTableViewCell.xib in Resources */,
+				8A8F0A1525CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib in Resources */,
 				8A1FA75525B63C5F00722A40 /* Profile.storyboard in Resources */,
-				8A9A436B25B1C8F70064994C /* TaskTableViewCell.xib in Resources */,
 				8A973EB82583E3EB002422B8 /* Properties_AirBnB.storyboard in Resources */,
 				8A81CAA125A58EBF002BC2D8 /* Targets.storyboard in Resources */,
 				8A46F89D258A356A00021679 /* DatePickerTableViewCell.xib in Resources */,
@@ -1437,6 +1469,7 @@
 				8ADDB02F259CFEAC00E12C37 /* TransactionsTableViewController.xib in Resources */,
 				8A0608F22587F154000765D8 /* Localizable.strings in Resources */,
 				8A973DC8257E6E86002422B8 /* GalleryTableViewCell.xib in Resources */,
+				8A99233025CA7A760021B3E9 /* ProfileTableViewCell.xib in Resources */,
 				8A881EDE25B52C5B008F4D96 /* LoginViewController.xib in Resources */,
 				8A973EA025829B4C002422B8 /* SegmentControlTableViewCell.xib in Resources */,
 				8A9A41FD25A872AB0064994C /* HelpGestureViewController.xib in Resources */,
@@ -1452,6 +1485,7 @@
 				8A973E962582986B002422B8 /* TwoTextFieldsTableViewCell.xib in Resources */,
 				8A973D71257C12AF002422B8 /* LaunchScreen.storyboard in Resources */,
 				8A973D6E257C12AF002422B8 /* Assets.xcassets in Resources */,
+				8A99233325CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png in Resources */,
 				8A9A43A125B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib in Resources */,
 				8A9A425525AC72EB0064994C /* MiniGalleryCollectionViewCell.xib in Resources */,
 				8A9A423225AB8F900064994C /* InstagramStoryCollectionViewCell.xib in Resources */,
@@ -1519,11 +1553,14 @@
 				8A973EB525833B08002422B8 /* UITextField+Extensions.swift in Sources */,
 				8A4901632598AEFF00CFA2A1 /* MeetingEvent.swift in Sources */,
 				8AAC9C4125C4319A00FF5D7E /* BaseViewController.swift in Sources */,
+				8A99233B25CABADE0021B3E9 /* AuthenticationServices.swift in Sources */,
 				8A9A437025B1ED390064994C /* ColorfulLabel.swift in Sources */,
 				8A06084B25865410000765D8 /* MultipleSelectionTableViewCell.swift in Sources */,
 				8A4901672599D04300CFA2A1 /* MeetingTableViewCell.swift in Sources */,
 				8A973DC7257E6E86002422B8 /* GalleryTableViewCell.swift in Sources */,
+				8A99233625CA89600021B3E9 /* DocumentsPickerProvider.swift in Sources */,
 				8A9A41F725A86E480064994C /* TargetsViewModel.swift in Sources */,
+				8A99232325C9C8990021B3E9 /* MoreTableViewController.swift in Sources */,
 				8A973E6E25814D09002422B8 /* ImagePreviewViewController.swift in Sources */,
 				8A06084F25865542000765D8 /* MultipleSelectionCollectionViewCell.swift in Sources */,
 				8AAC9CD225C604DF00FF5D7E /* LocationPicker+Extensions.swift in Sources */,
@@ -1578,6 +1615,8 @@
 				8A1FA78D25B76F4300722A40 /* ApplicationFeature.swift in Sources */,
 				8A7ABBF725B5974E0090AB6D /* BaseTableViewController.swift in Sources */,
 				8A1FA77125B7170000722A40 /* UINavigationController+Extensions.swift in Sources */,
+				8A8F0A1425CBE8FA00287C46 /* TaskCheckboxTableViewCell.swift in Sources */,
+				8A99232F25CA7A760021B3E9 /* ProfileTableViewCell.swift in Sources */,
 				8A973E7C25823C90002422B8 /* TopAndBottomLabelsTableViewCell.swift in Sources */,
 				8A46F8292588D1A500021679 /* PropertyDetailsHeadTopBottomTableViewCell.swift in Sources */,
 				8A1FA75E25B65CC100722A40 /* Threading.swift in Sources */,
@@ -1591,6 +1630,7 @@
 				8A9A43A025B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift in Sources */,
 				8A0608422586524A000765D8 /* MultipleSelectionCollectionViewController.swift in Sources */,
 				8A81CAA625A6EB51002BC2D8 /* GoalCollectionViewCell.swift in Sources */,
+				8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */,
 				8A9A425E25AC7CD30064994C /* TasksViewModel.swift in Sources */,
 				8A83D5E725C1CD9800E2C00A /* LeadTableViewCell.swift in Sources */,
 				8AAC9C5225C43C9D00FF5D7E /* BaseViewModel.swift in Sources */,
@@ -1635,6 +1675,7 @@
 				8AAC9CCD25C604D400FF5D7E /* LocationSuggestionsTableViewController.swift in Sources */,
 				8ABA8F0525BF080B008517C1 /* MeetingService.swift in Sources */,
 				8A9A421825AA59610064994C /* TransactionConfiguration.swift in Sources */,
+				8A99232B25C9DA420021B3E9 /* iCloudData.swift in Sources */,
 				8A973DF0257EBDCE002422B8 /* UITableView+Extensions.swift in Sources */,
 				8A9A420725A9AFFF0064994C /* SingleTransactionTableViewCell.swift in Sources */,
 				8A81CAB825A6FD4C002BC2D8 /* GraphViewController.swift in Sources */,
@@ -1658,7 +1699,6 @@
 				8A9A423825AB971F0064994C /* InstagramStoryCollectionViewCell.swift in Sources */,
 				8AAC9D2125C77B5800FF5D7E /* MainAppContext.swift in Sources */,
 				8AAC9C0A25C2BAD700FF5D7E /* MasterTableViewCell.swift in Sources */,
-				8A9A436A25B1C8F70064994C /* TaskTableViewCell.swift in Sources */,
 				8A1A249125C0D6250027A45D /* LeadQualityTableViewCell.swift in Sources */,
 				8A973E9F25829B4C002422B8 /* SegmentControlTableViewCell.swift in Sources */,
 				8A742A4B259488E80014848A /* DateFormatter+Extensions.swift in Sources */,

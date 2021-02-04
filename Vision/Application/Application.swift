@@ -39,7 +39,7 @@ class Application {
         let reportsViewController = FactoryController.Screen.reports.viewController.wrappedNavigationController()
         reportsViewController.tabBarItem = UITabBarItem.build(title: "reports".localized, systemImageName: "chart.pie")
                 
-        let moreViewController = FactoryController.Screen.advanced.viewController
+        let moreViewController = FactoryController.Screen.more.viewController.wrappedNavigationController()
         moreViewController.tabBarItem = UITabBarItem.build(title: "more".localized, systemImageName: "ellipsis")
         
         let viewControllers: [UIViewController] = [
@@ -54,6 +54,13 @@ class Application {
                 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
+    }
+    
+    func showLoginViewController() {
+        let loginViewController = LoginViewController(nibName: LoginViewController.className(), bundle: nil)
+        loginViewController.modalPresentationStyle = .overCurrentContext
+        loginViewController.isModalInPresentation = true
+        AppDelegate.sharedDelegate().window?.rootViewController?.present(loginViewController, animated: true, completion: nil)
     }
         
     enum AppUrl {
@@ -177,6 +184,15 @@ class Application {
             case .inProgress: return "in_progress".localized
             case .closed: return "closed".localized
             case .canceled: return "canceled".localized
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .pending: return .systemRed
+            case .inProgress: return .systemYellow
+            case .closed: return .systemGreen
+            case .canceled: return .systemOrange
             }
         }
     }

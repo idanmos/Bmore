@@ -165,6 +165,13 @@ class BaseSelectionTableViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.dataSource[indexPath.row] is MeetingEvent && !self.isShowOnlyMode {
+            return 50.0
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard self.isShowOnlyMode else { return }
         tableView.deselectRow(at: indexPath, animated: true)
