@@ -32,8 +32,8 @@ class FactoryController {
             case .newTask: return UIStoryboard(name: "Tasks", bundle: nil).instantiateViewController(withIdentifier: NewTaskTableViewController.className())
             case .reports: return ReportsPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
             case .meetings: return MeetingsTableViewController(nibName: MeetingsTableViewController.className(), bundle: nil)
-            case .transactions: return TransactionsTableViewController(nibName: TransactionsTableViewController.className(), bundle: nil)
-            case .timeTracking: return UIStoryboard(name: "TimeTracking", bundle: nil).instantiateInitialViewController()!
+            case .transactions: return TransactionsTableViewController(style: .plain)
+            case .timeTracking: return UIStoryboard(name: "TimeTracking", bundle: nil).instantiateViewController(withIdentifier: TimeTrackingTableViewController.className())
             case .advanced: return UIStoryboard(name: "More", bundle: nil).instantiateInitialViewController()!
             case .targets: return UIStoryboard(name: "Targets", bundle: nil).instantiateInitialViewController()!
             case .addTransaction: return UIStoryboard(name: "More", bundle: nil).instantiateViewController(withIdentifier: AddTransactionTableViewController.className())

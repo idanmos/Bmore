@@ -40,6 +40,7 @@
 "error" = "Error";
 "title_cannot_be_empty" = "Title cannot be empty";
 "need_push_and_date" = "When 'Push Notification' is enabled 'Due Date' option must be enabled";
+"must_enter_amount" = "The \"Amount\" field is required";
 
 // MARK: - Properties
 

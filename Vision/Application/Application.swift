@@ -26,6 +26,9 @@ class Application {
         window.backgroundColor = .white
         
         let tabBarController = UITabBarController()
+                
+        let dashboardViewController = UIViewController()
+        dashboardViewController.tabBarItem = UITabBarItem.build(title: "dashboard".localized, systemImageName: "square.grid.2x2")
         
         let propertiesViewController = FactoryController.Screen.properties.viewController.wrappedNavigationController()
         propertiesViewController.tabBarItem = UITabBarItem.build(title: "properties".localized, systemImageName: "building.2")
@@ -33,8 +36,8 @@ class Application {
         let leadsViewController = FactoryController.Screen.leads.viewController
         leadsViewController.tabBarItem = UITabBarItem.build(title: "leads".localized, systemImageName: "person.2")
         
-        let tasksViewController = FactoryController.Screen.tasks.viewController.wrappedNavigationController()
-        tasksViewController.tabBarItem = UITabBarItem.build(title: "tasks".localized, systemImageName: "list.number")
+//        let tasksViewController = FactoryController.Screen.tasks.viewController.wrappedNavigationController()
+//        tasksViewController.tabBarItem = UITabBarItem.build(title: "tasks".localized, systemImageName: "list.number")
         
         let reportsViewController = FactoryController.Screen.reports.viewController.wrappedNavigationController()
         reportsViewController.tabBarItem = UITabBarItem.build(title: "reports".localized, systemImageName: "chart.pie")
@@ -43,9 +46,9 @@ class Application {
         moreViewController.tabBarItem = UITabBarItem.build(title: "more".localized, systemImageName: "ellipsis")
         
         let viewControllers: [UIViewController] = [
+            dashboardViewController,
             propertiesViewController,
             leadsViewController,
-            tasksViewController,
             reportsViewController,
             moreViewController
         ]
@@ -154,6 +157,14 @@ class Application {
         case pending = 0
         case closed = 1
         case canceled = 2
+        
+        var title: String {
+            switch self {
+            case .pending: return "pending".localized
+            case .closed: return "closed".localized
+            case .canceled: return "canceled".localized
+            }
+        }
     }
 
     enum TransactionType: Int16 {

@@ -16,34 +16,15 @@ class MeetingsTableViewController: UITableViewController {
         return control
     }()
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        
-        if let advancedController = parent as? MoreViewController {
-            if Application.isHebrew() {
-                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
-                advancedController.navigationItem.rightBarButtonItem = self.editButtonItem
-            } else {
-                advancedController.navigationItem.leftBarButtonItem = self.editButtonItem
-                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "meetings".localized
+        
+        self.navigationItem.rightBarButtonItems = [self.addBarButton, self.editButtonItem]
+        
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.register(MeetingTableViewCell.self)
-        
-        self.viewModel.requestAccess { [weak self] (accessGranted: Bool, error: Error?) in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.viewModel.fetchEvents()
-                self.tableView.reloadData()
-            }
-        }
         
         self.viewModel.eventsObserver = {
             DispatchQueue.main.async {
@@ -53,7 +34,21 @@ class MeetingsTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.viewModel.requestAccess { [weak self] (accessGranted: Bool, error: Error?) in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.viewModel.fetchEvents()
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     deinit {
+        debugPrint("Deallocating \(self)")
     }
 
     // MARK: - Table view data source

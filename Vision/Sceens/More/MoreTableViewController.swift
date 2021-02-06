@@ -8,7 +8,7 @@
 import UIKit
 
 private enum SectionType: Int, CaseIterable {
-    case profile, settings, meetings, transactions, timeTracking
+    case profile, settings, meetings, transactions, timeTracking, goals
     
     var title: String {
         switch self {
@@ -17,6 +17,7 @@ private enum SectionType: Int, CaseIterable {
         case .meetings: return "meetings".localized
         case .transactions: return "transactions".localized
         case .timeTracking: return "time_tracking".localized
+        case .goals: return "goals".localized
         }
     }
     
@@ -27,21 +28,19 @@ private enum SectionType: Int, CaseIterable {
         case .meetings: return UIImage(systemName: "person.3")
         case .transactions: return UIImage(systemName: "dollarsign.circle")
         case .timeTracking: return UIImage(systemName: "clock")
+        case .goals: return UIImage(systemName: "target")
         }
     }
     
     
     var imageBackgroundColor: UIColor {
         switch self {
-        case .profile: return .turqoise
-        case .settings: return .peterRiver
+        case .profile: return .wetAsphalt
+        case .settings: return .concrete
         case .meetings: return .alizarin
-        case .transactions: return .wisteria
-        case .timeTracking: return .carrot
-//        case .balance: return .wisteria
-//        case .meetings: return .emerald
-//        case .transactions: return .pumpkin
-//        case .tasks: return .sunFlower
+        case .transactions: return .emerald
+        case .timeTracking: return .peterRiver
+        case .goals: return .wisteria
         }
     }
 }
@@ -56,6 +55,8 @@ class MoreTableViewController: BaseTableViewController {
         super.init(coder: coder)
     }
     
+    private var dataSource: [SectionType] = [.settings, .meetings, .transactions, .timeTracking, .goals]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +64,12 @@ class MoreTableViewController: BaseTableViewController {
         
         self.tableView.register(ProfileTableViewCell.self)
         self.tableView.register(MasterTableViewCell.self)
+        
+        if let cloudData: iCloudData = AppDelegate.sharedDelegate().cloudData, cloudData.hasiCloudAccount {
+            self.dataSource.insert(.profile, at: 0)
+        }
+        
+        self.tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -72,18 +79,19 @@ class MoreTableViewController: BaseTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SectionType.allCases.count
+        return self.dataSource.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let type = SectionType(rawValue: indexPath.row)!
+        let type = self.dataSource[indexPath.row]
+        
         if type == .profile {
             let cell = tableView.dequeue(ProfileTableViewCell.self, indexPath: indexPath)
             cell.profileImageView.image = type.image
             
             if let cloudData: iCloudData = AppDelegate.sharedDelegate().cloudData {
                 if cloudData.hasiCloudAccount {
-                    cell.profileAccountLabel.text = "icloud_account".localized
+                    cell.profileAccountLabel.text = "iCloud"
                 }
                 if let nameComponents: PersonNameComponents = cloudData.nameComponents {
                     cell.profileNameLabel.text = "\(nameComponents.givenName ?? "") \(nameComponents.familyName ?? "")"
@@ -103,11 +111,11 @@ class MoreTableViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let type = SectionType(rawValue: indexPath.row) else { return }
+        let type = self.dataSource[indexPath.row]
         
         switch type {
         case .profile:
-            self.navigationController?.pushViewController(UIViewController(), animated: true)
+            break
         case .settings:
             self.navigationController?.pushViewController(UIViewController(), animated: true)
         case .meetings:
@@ -119,6 +127,8 @@ class MoreTableViewController: BaseTableViewController {
         case .timeTracking:
             let viewController = FactoryController.Screen.timeTracking.viewController
             self.navigationController?.pushViewController(viewController, animated: true)
+        case .goals:
+            break
         }
     }
 

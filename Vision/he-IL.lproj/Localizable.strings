@@ -40,6 +40,7 @@
 "error" = "שגיאה";
 "title_cannot_be_empty" = "הכותרת לא יכולה להיות ריקה";
 "need_push_and_date" = "כאשר האפשרות 'הודעת פוש' מופעלת - יש להפעיל את האפשרות 'תאריך יעד'";
+"must_enter_amount" = "שדה ״סכום״ הינו חובה";
 
 // MARK: - Properties
 

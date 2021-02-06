@@ -149,7 +149,6 @@
 		8A99232B25C9DA420021B3E9 /* iCloudData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99232A25C9DA420021B3E9 /* iCloudData.swift */; };
 		8A99232F25CA7A760021B3E9 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */; };
 		8A99233025CA7A760021B3E9 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */; };
-		8A99233325CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */; };
 		8A99233625CA89600021B3E9 /* DocumentsPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233525CA89600021B3E9 /* DocumentsPickerProvider.swift */; };
 		8A99233B25CABADE0021B3E9 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */; };
 		8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233E25CABCF20021B3E9 /* KeychainItem.swift */; };
@@ -231,12 +230,19 @@
 		8ABA8F0E25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */; };
 		8ABA8F1A25BF6267008517C1 /* ShowMeetingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */; };
 		8ABA8F2725BFF34A008517C1 /* ShowTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8F2625BFF34A008517C1 /* ShowTaskTableViewCell.swift */; };
+		8ADB6B2625CC4485000724B7 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB6B2525CC4485000724B7 /* DashboardViewController.swift */; };
+		8ADB6B2D25CC4703000724B7 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB6B2B25CC4703000724B7 /* TransactionTableViewCell.swift */; };
+		8ADB6B2E25CC4703000724B7 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADB6B2C25CC4703000724B7 /* TransactionTableViewCell.xib */; };
+		8ADB6B3125CC4A4A000724B7 /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADB6B3025CC4A4A000724B7 /* TransactionHeaderView.swift */; };
+		8ADB6B3525CC4A59000724B7 /* TransactionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADB6B3425CC4A59000724B7 /* TransactionHeaderView.xib */; };
+		8ADB6B3A25CD5C2E000724B7 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADB6B3925CD5C2E000724B7 /* Dashboard.storyboard */; };
 		8ADDB02E259CFEAC00E12C37 /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */; };
-		8ADDB02F259CFEAC00E12C37 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */; };
 		8ADDB033259CFECA00E12C37 /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */; };
 		8ADDB037259DA57400E12C37 /* AddTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */; };
 		8ADDB0CA259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */; };
 		8ADDB0D325A0894900E12C37 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */; };
+		8AE66EDD25CE82E50020CB21 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE66EDC25CE82E50020CB21 /* ActivityManager.swift */; };
+		8AE66EE025CE99790020CB21 /* ActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE66EDF25CE99790020CB21 /* ActivitiesTableViewController.swift */; };
 		8AEE754525C149B900CA2D48 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE754425C149B900CA2D48 /* FloatRatingView.swift */; };
 		C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFF1331E6124D15B9CB334C /* Pods_Bmore.framework */; };
 /* End PBXBuildFile section */
@@ -390,7 +396,6 @@
 		8A99232A25C9DA420021B3E9 /* iCloudData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudData.swift; sourceTree = "<group>"; };
 		8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
-		8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2021-02-03 at 8.39.40.png"; sourceTree = "<group>"; };
 		8A99233525CA89600021B3E9 /* DocumentsPickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPickerProvider.swift; sourceTree = "<group>"; };
 		8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
 		8A99233E25CABCF20021B3E9 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
@@ -472,12 +477,19 @@
 		8ABA8F0C25BF58EF008517C1 /* SelectionMeetingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionMeetingTableViewCell.xib; sourceTree = "<group>"; };
 		8ABA8F1925BF6267008517C1 /* ShowMeetingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMeetingTableViewCell.swift; sourceTree = "<group>"; };
 		8ABA8F2625BFF34A008517C1 /* ShowTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTaskTableViewCell.swift; sourceTree = "<group>"; };
+		8ADB6B2525CC4485000724B7 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		8ADB6B2B25CC4703000724B7 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		8ADB6B2C25CC4703000724B7 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
+		8ADB6B3025CC4A4A000724B7 /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
+		8ADB6B3425CC4A59000724B7 /* TransactionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHeaderView.xib; sourceTree = "<group>"; };
+		8ADB6B3925CD5C2E000724B7 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
-		8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
 		8ADDB032259CFECA00E12C37 /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
 		8ADDB036259DA57400E12C37 /* AddTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionTableViewController.swift; sourceTree = "<group>"; };
 		8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
+		8AE66EDC25CE82E50020CB21 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
+		8AE66EDF25CE99790020CB21 /* ActivitiesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		8AEE754425C149B900CA2D48 /* FloatRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../../../Downloads/FloatRatingView.swift; sourceTree = "<group>"; };
 		8E1238A401BB85D601047A47 /* Pods-Bmore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bmore.release.xcconfig"; path = "Target Support Files/Pods-Bmore/Pods-Bmore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -622,7 +634,6 @@
 		8A1FA75725B63C6500722A40 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				8A99233225CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png */,
 				8A1FA75425B63C5F00722A40 /* Profile.storyboard */,
 				8A99232D25CA7A760021B3E9 /* ProfileTableViewCell.swift */,
 				8A99232E25CA7A760021B3E9 /* ProfileTableViewCell.xib */,
@@ -868,6 +879,7 @@
 		8A973D90257CC883002422B8 /* Sceens */ = {
 			isa = PBXGroup;
 			children = (
+				8ADB6B2925CC448E000724B7 /* Dashboard */,
 				8A1FA75725B63C6500722A40 /* Profile */,
 				8A881EE025B52C60008F4D96 /* Login */,
 				8A881EE125B52C6D008F4D96 /* Popovers */,
@@ -878,6 +890,7 @@
 				8A742A4625947F2A0014848A /* Reports */,
 				8A9A425925AC7CAA0064994C /* Tasks */,
 				8A0608FB2587F26B000765D8 /* More */,
+				8AE66EDF25CE99790020CB21 /* ActivitiesTableViewController.swift */,
 			);
 			path = Sceens;
 			sourceTree = "<group>";
@@ -1078,8 +1091,12 @@
 		8A9A420A25A9B0040064994C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8ADB6B3025CC4A4A000724B7 /* TransactionHeaderView.swift */,
+				8ADB6B3425CC4A59000724B7 /* TransactionHeaderView.xib */,
 				8A9A420525A9AFFF0064994C /* SingleTransactionTableViewCell.swift */,
 				8A9A420625A9AFFF0064994C /* SingleTransactionTableViewCell.xib */,
+				8ADB6B2B25CC4703000724B7 /* TransactionTableViewCell.swift */,
+				8ADB6B2C25CC4703000724B7 /* TransactionTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1210,6 +1227,7 @@
 				8AAC9C5B25C45B2600FF5D7E /* PropertyProvider.swift */,
 				8AAC9C4425C4331B00FF5D7E /* AttachmentProvider.swift */,
 				8AAC9C4D25C434A100FF5D7E /* Attachment+Image.swift */,
+				8AE66EDC25CE82E50020CB21 /* ActivityManager.swift */,
 			);
 			name = "Data Providers";
 			sourceTree = "<group>";
@@ -1334,6 +1352,15 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		8ADB6B2925CC448E000724B7 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				8ADB6B2525CC4485000724B7 /* DashboardViewController.swift */,
+				8ADB6B3925CD5C2E000724B7 /* Dashboard.storyboard */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		8ADDB021259CEFBE00E12C37 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1356,7 +1383,6 @@
 			isa = PBXGroup;
 			children = (
 				8ADDB02C259CFEAC00E12C37 /* TransactionsTableViewController.swift */,
-				8ADDB02D259CFEAC00E12C37 /* TransactionsTableViewController.xib */,
 				8A9A420A25A9B0040064994C /* Cells */,
 			);
 			path = List;
@@ -1445,6 +1471,7 @@
 				8A973D7F257C37EE002422B8 /* Tasks.storyboard in Resources */,
 				8AAC9C0B25C2BAD700FF5D7E /* MasterTableViewCell.xib in Resources */,
 				8A973E0D257ED703002422B8 /* AssetDetailsMapTableViewCell.xib in Resources */,
+				8ADB6B3525CC4A59000724B7 /* TransactionHeaderView.xib in Resources */,
 				8AAC9C0E25C2C21500FF5D7E /* MasterTableViewController.xib in Resources */,
 				8A9A429725ADFB250064994C /* Popovers.storyboard in Resources */,
 				8A973DF5257EC223002422B8 /* PropertyDetailsTitleAndSubtitleTableViewCell.xib in Resources */,
@@ -1464,9 +1491,9 @@
 				8A74705B25BEBBE700EC0676 /* SelectionTaskTableViewCell.xib in Resources */,
 				8A1FA75225B631A200722A40 /* LoginStep1ViewController.xib in Resources */,
 				8A973E8A25823EDC002422B8 /* LabelAndAccessoryTableViewCell.xib in Resources */,
+				8ADB6B3A25CD5C2E000724B7 /* Dashboard.storyboard in Resources */,
 				8A83D5E825C1CD9800E2C00A /* LeadTableViewCell.xib in Resources */,
 				8A9A41F125A768DD0064994C /* GraphViewController.xib in Resources */,
-				8ADDB02F259CFEAC00E12C37 /* TransactionsTableViewController.xib in Resources */,
 				8A0608F22587F154000765D8 /* Localizable.strings in Resources */,
 				8A973DC8257E6E86002422B8 /* GalleryTableViewCell.xib in Resources */,
 				8A99233025CA7A760021B3E9 /* ProfileTableViewCell.xib in Resources */,
@@ -1485,7 +1512,7 @@
 				8A973E962582986B002422B8 /* TwoTextFieldsTableViewCell.xib in Resources */,
 				8A973D71257C12AF002422B8 /* LaunchScreen.storyboard in Resources */,
 				8A973D6E257C12AF002422B8 /* Assets.xcassets in Resources */,
-				8A99233325CA7EE10021B3E9 /* Screen Shot 2021-02-03 at 8.39.40.png in Resources */,
+				8ADB6B2E25CC4703000724B7 /* TransactionTableViewCell.xib in Resources */,
 				8A9A43A125B44D2A0064994C /* LeadDetailDisclosureTableViewCell.xib in Resources */,
 				8A9A425525AC72EB0064994C /* MiniGalleryCollectionViewCell.xib in Resources */,
 				8A9A423225AB8F900064994C /* InstagramStoryCollectionViewCell.xib in Resources */,
@@ -1541,6 +1568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ADDB0CA259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift in Sources */,
+				8ADB6B2D25CC4703000724B7 /* TransactionTableViewCell.swift in Sources */,
 				8A9A425B25AC7CC40064994C /* TasksViewController.swift in Sources */,
 				8ADDB02E259CFEAC00E12C37 /* TransactionsTableViewController.swift in Sources */,
 				8ABA8F0D25BF58EF008517C1 /* SelectionMeetingTableViewCell.swift in Sources */,
@@ -1551,6 +1579,7 @@
 				8A973E3D257FDF45002422B8 /* URL+Extensions.swift in Sources */,
 				8A973DCB257E733B002422B8 /* UIView+Extensions.swift in Sources */,
 				8A973EB525833B08002422B8 /* UITextField+Extensions.swift in Sources */,
+				8ADB6B2625CC4485000724B7 /* DashboardViewController.swift in Sources */,
 				8A4901632598AEFF00CFA2A1 /* MeetingEvent.swift in Sources */,
 				8AAC9C4125C4319A00FF5D7E /* BaseViewController.swift in Sources */,
 				8A99233B25CABADE0021B3E9 /* AuthenticationServices.swift in Sources */,
@@ -1580,6 +1609,7 @@
 				8ABA8F1A25BF6267008517C1 /* ShowMeetingTableViewCell.swift in Sources */,
 				8A881EDD25B52C5B008F4D96 /* LoginViewController.swift in Sources */,
 				8A973D62257C12AD002422B8 /* AppDelegate.swift in Sources */,
+				8AE66EE025CE99790020CB21 /* ActivitiesTableViewController.swift in Sources */,
 				8A9A428825ADAA000064994C /* ChartViewController.swift in Sources */,
 				8A973D6C257C12AD002422B8 /* Vision.xcdatamodeld in Sources */,
 				8A973DE2257E7810002422B8 /* UIViewConstraintsExtension.swift in Sources */,
@@ -1651,6 +1681,7 @@
 				8A973E3A257FD8E9002422B8 /* ImageStorage.swift in Sources */,
 				8A973D9F257CCD2F002422B8 /* LeadsViewModel.swift in Sources */,
 				8A81CA5525A31774002BC2D8 /* CheckboxTableViewController.swift in Sources */,
+				8AE66EDD25CE82E50020CB21 /* ActivityManager.swift in Sources */,
 				8A742A5E25949B430014848A /* UIColor+Extensions.swift in Sources */,
 				8ADDB037259DA57400E12C37 /* AddTransactionTableViewController.swift in Sources */,
 				8A742A3A2593A5490014848A /* GraphView.swift in Sources */,
@@ -1668,6 +1699,7 @@
 				8A9A439B25B449270064994C /* LeadContactTableViewCell.swift in Sources */,
 				8A9A42A425AEFAEB0064994C /* NoDataView.swift in Sources */,
 				8A742A4E25948D900014848A /* Date+Extension.swift in Sources */,
+				8ADB6B3125CC4A4A000724B7 /* TransactionHeaderView.swift in Sources */,
 				8A9A426125AC7EC20064994C /* MoreViewController.swift in Sources */,
 				8A9A438E25B4450A0064994C /* LeadDetailsViewController.swift in Sources */,
 				8A973E32257FCBF6002422B8 /* FlowLayout.swift in Sources */,

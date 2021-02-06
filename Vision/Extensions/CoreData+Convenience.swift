@@ -47,6 +47,10 @@ enum ContextSaveContextualInfo: String {
     case addAttachment = "adding an attachment"
     case deleteAttachment = "deleting an attachment"
     case saveFullImage = "saving a full image"
+    
+    /// - Tag: Activities
+    case addActivity = "add an activity"
+    case deleteActivity = "deleting an activity"
 }
 
 extension NSManagedObjectContext {

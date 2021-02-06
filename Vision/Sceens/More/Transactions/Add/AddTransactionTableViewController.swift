@@ -211,10 +211,22 @@ class AddTransactionTableViewController: UITableViewController {
 extension AddTransactionTableViewController {
     
     @IBAction private func onPressSave(_ sender: Any) {
+        guard let price: String = self.priceTextField.text, price.count > 0 else {
+            let alertController = UIAlertController(title: "error".localized, message: "must_enter_amount".localized, preferredStyle: .alert)
+                        
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: { [weak self] (action: UIAlertAction) in
+                self?.priceTextField.becomeFirstResponder()
+            }))
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
         let configuration = TransactionConfiguration(status: self.statusSegmentControl.selectedSegmentIndex,
                                                      type: self.typeSegmentControl.selectedSegmentIndex,
                                                      date: self.datePicker.date,
-                                                     price: self.priceTextField.text,
+                                                     price: price,
                                                      commisionType: self.commisionSegmentControl.selectedSegmentIndex,
                                                      commision: self.commisionTextField.text)
         

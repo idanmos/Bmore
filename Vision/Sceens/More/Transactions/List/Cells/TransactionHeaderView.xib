@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionHeaderView" customModule="Bmore" customModuleProvider="target">
+            <connections>
+                <outlet property="amountLabel" destination="aUV-1c-k9Q" id="Mle-Qo-WJl"/>
+                <outlet property="dateLabel" destination="3il-sr-UHU" id="i5r-Ab-Dxe"/>
+                <outlet property="statusLabel" destination="ItB-dM-qn5" id="Jqr-l1-XfI"/>
+                <outlet property="typeLabel" destination="Ttf-q4-Da2" id="Rb8-mC-M2D"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bte-vi-KIu">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw5-bY-hTE">
+                            <rect key="frame" x="0.0" y="0.0" width="103.5" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3il-sr-UHU">
+                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="44"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="3il-sr-UHU" firstAttribute="top" secondItem="xw5-bY-hTE" secondAttribute="top" id="RwH-HO-YnQ"/>
+                                <constraint firstItem="3il-sr-UHU" firstAttribute="leading" secondItem="xw5-bY-hTE" secondAttribute="leading" id="UbD-7a-cGJ"/>
+                                <constraint firstAttribute="bottom" secondItem="3il-sr-UHU" secondAttribute="bottom" id="f9E-1e-Y25"/>
+                                <constraint firstAttribute="trailing" secondItem="3il-sr-UHU" secondAttribute="trailing" id="xHH-Cw-p1G"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oi0-Jj-78g">
+                            <rect key="frame" x="103.5" y="0.0" width="103.5" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItB-dM-qn5">
+                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="44"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="ItB-dM-qn5" firstAttribute="leading" secondItem="Oi0-Jj-78g" secondAttribute="leading" id="NcW-zI-xPU"/>
+                                <constraint firstAttribute="trailing" secondItem="ItB-dM-qn5" secondAttribute="trailing" id="Np4-Cu-4Hh"/>
+                                <constraint firstItem="ItB-dM-qn5" firstAttribute="top" secondItem="Oi0-Jj-78g" secondAttribute="top" id="p5N-df-6xM"/>
+                                <constraint firstAttribute="bottom" secondItem="ItB-dM-qn5" secondAttribute="bottom" id="zwm-bs-fWb"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFy-j6-G2l">
+                            <rect key="frame" x="207" y="0.0" width="103.5" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttf-q4-Da2">
+                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="44"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Ttf-q4-Da2" firstAttribute="top" secondItem="SFy-j6-G2l" secondAttribute="top" id="76c-5Z-9yl"/>
+                                <constraint firstItem="Ttf-q4-Da2" firstAttribute="leading" secondItem="SFy-j6-G2l" secondAttribute="leading" id="QNU-4F-qLp"/>
+                                <constraint firstAttribute="bottom" secondItem="Ttf-q4-Da2" secondAttribute="bottom" id="mHj-uw-pGX"/>
+                                <constraint firstAttribute="trailing" secondItem="Ttf-q4-Da2" secondAttribute="trailing" id="rF0-Tv-tZm"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANH-z0-pHM">
+                            <rect key="frame" x="310.5" y="0.0" width="103.5" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUV-1c-k9Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="103.5" height="44"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="aUV-1c-k9Q" firstAttribute="leading" secondItem="ANH-z0-pHM" secondAttribute="leading" id="k3q-Fi-7tz"/>
+                                <constraint firstItem="aUV-1c-k9Q" firstAttribute="top" secondItem="ANH-z0-pHM" secondAttribute="top" id="r9x-gJ-Hbx"/>
+                                <constraint firstAttribute="trailing" secondItem="aUV-1c-k9Q" secondAttribute="trailing" id="uVh-os-BHq"/>
+                                <constraint firstAttribute="bottom" secondItem="aUV-1c-k9Q" secondAttribute="bottom" id="yzR-pc-4kX"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="bte-vi-KIu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K5d-vI-5y9"/>
+                <constraint firstItem="bte-vi-KIu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M6a-zb-VmE"/>
+                <constraint firstAttribute="bottom" secondItem="bte-vi-KIu" secondAttribute="bottom" id="agG-2X-u5Y"/>
+                <constraint firstAttribute="trailing" secondItem="bte-vi-KIu" secondAttribute="trailing" id="g3v-50-rv2"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-233" y="-6"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

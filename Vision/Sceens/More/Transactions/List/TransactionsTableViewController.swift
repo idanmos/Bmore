@@ -16,26 +16,24 @@ class TransactionsTableViewController: UITableViewController {
         return control
     }()
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        
-        if let advancedController = parent as? MoreViewController {
-            if Application.isHebrew() {
-                advancedController.navigationItem.leftBarButtonItem = self.addBarButton
-                advancedController.navigationItem.rightBarButtonItem = self.editButtonItem
-            } else {
-                advancedController.navigationItem.leftBarButtonItem = self.editButtonItem
-                advancedController.navigationItem.rightBarButtonItem = self.addBarButton
-            }
-        }
-    }
+    private lazy var headerView: TransactionHeaderView = {
+        let header = TransactionHeaderView()
+        header.translatesAutoresizingMaskIntoConstraints = false
+        return header
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
+        self.navigationItem.rightBarButtonItems = [self.addBarButton, self.editButtonItem]
+        
         self.viewModel = TransactionsViewModel(presenter: self)
         
-        self.tableView.register(SingleTransactionTableViewCell.self)
+        self.tableView.register(TransactionTableViewCell.self)
+        self.tableView.tableHeaderView = self.headerView
+        
+        self.headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        self.headerView.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
         self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
@@ -48,7 +46,7 @@ class TransactionsTableViewController: UITableViewController {
     
     deinit {
     }
-    
+        
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,14 +58,14 @@ class TransactionsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(SingleTransactionTableViewCell.self, indexPath: indexPath)
+        let cell = tableView.dequeue(TransactionTableViewCell.self, indexPath: indexPath)
         let transaction: Transaction = self.viewModel.transactions[indexPath.row]
         cell.transaction = transaction
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 172.0
+        return 44.0
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

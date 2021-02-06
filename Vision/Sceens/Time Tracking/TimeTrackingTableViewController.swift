@@ -47,13 +47,6 @@ class TimeTrackingTableViewController: BaseTableViewController {
         self.tableView.register(CalendarEventTableViewCell.self)
         
         // self.viewModel.fetchTimeTrack()
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,10 +147,6 @@ class TimeTrackingTableViewController: BaseTableViewController {
 // MARK: - Actions
 
 extension TimeTrackingTableViewController {
-    
-    @IBAction private func onPressEdit(_ sender: Any) {
-        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-    }
     
     @IBAction private func onPressAdd(_ sender: Any) {
         self.viewModel.showStartOrEnd(presenter: self) { (startAction: UIAlertAction) in

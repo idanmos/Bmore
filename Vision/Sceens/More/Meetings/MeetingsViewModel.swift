@@ -91,6 +91,8 @@ class MeetingsViewModel: NSObject {
         } catch let error {
             debugPrint(#file, #function, error)
         }
+        
+        ActivityManager.shared.save(.deleteMeeting)
     }
     
     private func getAllEvents() -> [MeetingEvent] {
@@ -123,8 +125,10 @@ extension MeetingsViewModel: EKEventEditViewDelegate {
         if controller.view.tag == 1234321 {
             // add action
             debugPrint(#file, #function, "add action")
+            ActivityManager.shared.save(.addMeeting)
         } else {
             debugPrint(#file, #function, "edit action")
+            ActivityManager.shared.save(.editMeeting)
         }
         
         self.eventsObserver()

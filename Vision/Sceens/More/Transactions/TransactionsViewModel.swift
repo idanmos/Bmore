@@ -76,15 +76,21 @@ extension TransactionsViewModel {
         let transaction = Transaction(context: TransactionsViewModel.mainContext())
         transaction.uuid = UUID()
         self.saveOrEdit(transaction, configuration: configuration)
+        
+        ActivityManager.shared.save(.addTransaction)
     }
     
     class func edit(_ transaction: Transaction, configuration: TransactionConfiguration) {
         self.saveOrEdit(transaction, configuration: configuration)
+        
+        ActivityManager.shared.save(.editTransaction)
     }
         
     class func delete(_ transaction: Transaction) {
         TransactionsViewModel.mainContext().delete(transaction)
         TransactionsViewModel.saveContext()
+        
+        ActivityManager.shared.save(.deleteTransaction)
     }
     
 }

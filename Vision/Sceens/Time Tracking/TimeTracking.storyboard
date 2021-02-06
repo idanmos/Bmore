@@ -11,7 +11,7 @@
         <!--Time Track-->
         <scene sceneID="A1U-Bj-6G8">
             <objects>
-                <tableViewController id="cq3-QD-P52" customClass="TimeTrackingTableViewController" customModule="Vision" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TimeTrackingTableViewController" id="cq3-QD-P52" customClass="TimeTrackingTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mqO-Pc-mwN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,16 +22,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Time Track" id="Q95-c8-aLC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="dn4-2U-5XZ">
-                            <connections>
-                                <action selector="onPressEdit:" destination="cq3-QD-P52" id="bIK-vS-zxN"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="51A-lk-DEG">
-                            <connections>
-                                <action selector="onPressAdd:" destination="cq3-QD-P52" id="z5b-0t-uDL"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="51A-lk-DEG">
+                                <connections>
+                                    <action selector="onPressAdd:" destination="cq3-QD-P52" id="z5b-0t-uDL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="dn4-2U-5XZ">
+                                <connections>
+                                    <action selector="onPressEdit:" destination="cq3-QD-P52" id="bIK-vS-zxN"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="znX-6n-ecX" kind="show" identifier="SegueToDetails" id="X5f-K0-mWm"/>
@@ -44,7 +46,7 @@
         <!--Time Track Details Table View Controller-->
         <scene sceneID="J9Q-qL-z7M">
             <objects>
-                <tableViewController id="znX-6n-ecX" customClass="TimeTrackDetailsTableViewController" customModule="Vision" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="znX-6n-ecX" customClass="TimeTrackDetailsTableViewController" customModule="Bmore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Zmb-kS-b3I">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -123,15 +123,21 @@ extension TasksViewModel {
         let task = Task(context: TasksViewModel.mainContext())
         task.uuid = UUID()
         TasksViewModel.saveOrEdit(task, configuration: configuration)
+        
+        ActivityManager.shared.save(.addTask)
     }
     
     class func edit(_ task: Task, configuration: TaskConfiguration) {
         TasksViewModel.saveOrEdit(task, configuration: configuration)
+        
+        ActivityManager.shared.save(.editTask)
     }
         
     class func delete(_ task: Task) {
         self.mainContext().delete(task)
         self.saveContext()
+        
+        ActivityManager.shared.save(.deleteTask)
     }
     
 }
