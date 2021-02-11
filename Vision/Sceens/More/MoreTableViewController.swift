@@ -28,7 +28,13 @@ private enum SectionType: Int, CaseIterable {
         case .meetings: return UIImage(systemName: "person.3")
         case .transactions: return UIImage(systemName: "dollarsign.circle")
         case .timeTracking: return UIImage(systemName: "clock")
-        case .goals: return UIImage(systemName: "target")
+            
+        case .goals:
+            if #available(iOS 14, *) {
+                return UIImage(systemName: "target")
+            } else {
+                return UIImage(systemName: "arrow.up.forward")
+            }
         }
     }
     

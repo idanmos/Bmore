@@ -27,11 +27,16 @@ class Application {
         
         let tabBarController = UITabBarController()
                 
-        let dashboardViewController = UIViewController()
+        let dashboardViewController = FactoryController.Screen.dashboard.viewController.wrappedNavigationController()
         dashboardViewController.tabBarItem = UITabBarItem.build(title: "dashboard".localized, systemImageName: "square.grid.2x2")
-        
+    
         let propertiesViewController = FactoryController.Screen.properties.viewController.wrappedNavigationController()
-        propertiesViewController.tabBarItem = UITabBarItem.build(title: "properties".localized, systemImageName: "building.2")
+        
+        if #available(iOS 14, *) {
+            propertiesViewController.tabBarItem = UITabBarItem.build(title: "properties".localized, systemImageName: "building.2")
+        } else {
+            propertiesViewController.tabBarItem = UITabBarItem.build(title: "properties".localized, systemImageName: "house")
+        }
         
         let leadsViewController = FactoryController.Screen.leads.viewController
         leadsViewController.tabBarItem = UITabBarItem.build(title: "leads".localized, systemImageName: "person.2")
@@ -65,7 +70,9 @@ class Application {
         loginViewController.isModalInPresentation = true
         AppDelegate.sharedDelegate().window?.rootViewController?.present(loginViewController, animated: true, completion: nil)
     }
-        
+    
+    static let bundleIdentifier: String = Bundle.main.bundleIdentifier ?? ""
+    
     enum AppUrl {
         enum Government {
             static let israelCityList = URL(string: "https://data.gov.il/api/3/action/datastore_search?resource_id=5c78e9fa-c2e2-4771-93ff-7f400a12f7ba")!
@@ -254,6 +261,21 @@ extension Application {
         set {
             UIApplication.shared.applicationIconBadgeNumber = newValue
         }
+    }
+    
+}
+
+// MARK: - Methods
+
+extension Application {
+    
+    func resetAppData() {
+        AppDelegate.sharedDelegate().coreDataStack.resetAllStorage()
+        
+        UserDefaults.standard.removePersistentDomain(forName: Application.bundleIdentifier)
+        UserDefaults.standard.synchronize()
+        
+        exit(0)
     }
     
 }

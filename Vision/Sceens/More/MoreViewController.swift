@@ -27,6 +27,11 @@ class MoreViewController: UIViewController {
     
     // MARK: - Class Lifecycle
     
+    deinit {
+        debugPrint("Deallocating \(self)")
+        self.removeAllChildren()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +81,7 @@ extension MoreViewController {
         viewController.view.frame = frame
                 
         // add child view controller to screen
-        self.add(viewController, containerView: self.containerView)
+        self.addChildController(viewController, containerView: self.containerView)
     }
     
 }

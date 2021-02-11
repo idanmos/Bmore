@@ -7,17 +7,17 @@
 
 import Foundation
 
+// MARK: Calculations
+
 extension Date {
+        
+    var startOfDay: Date { return Calendar.localizedCurrent.startOfDay(for: self) }
     
-    func startOfWeek(using calendar: Calendar = .localizedCurrent) -> Date {
-        calendar.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date!
-    }
+    var startOfWeek: Date { return Calendar.localizedCurrent.dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self).date! }
     
-    func endOfWeek(using calendar: Calendar = .localizedCurrent) -> Date {
-        return calendar.date(byAdding: .day, value: 6, to: self.startOfWeek())!
-    }
+    var endOfWeek: Date { Calendar.localizedCurrent.date(byAdding: .day, value: 6, to: self.startOfWeek)! }
     
-    func quarterSymbols() -> [String] {
+    var quarterSymbols: [String] {
         let symbols: [String] = Calendar.localizedCurrent.monthSymbols
         let month: Int = Calendar.localizedCurrent.component(.month, from: self)
         
@@ -43,11 +43,55 @@ extension Date {
         return DateFormatter.monthOnlyFormatter.string(from: self)
     }
     
-    func monthValue() -> Int {
-        Calendar.localizedCurrent.component(.month, from: self)
+    func adding(years: Int? = 0, months: Int? = 0, days: Int? = 0, hours: Int? = 0, minutes: Int? = 0, seconds: Int? = 0) -> Date {
+        return Calendar.current.date(byAdding: DateComponents(year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds), to: self) ?? self
+    }
+    
+    func days(until date: Date, timeZone: TimeZone? = nil) -> Int {
+        var calendar = Calendar.current
+        if let timeZone = timeZone {
+            calendar.timeZone = timeZone
+        }
+        let firstMidnightDate = calendar.startOfDay(for: self)
+        let secondMidnightDate = calendar.startOfDay(for: date)
+        return calendar.dateComponents([.day], from: firstMidnightDate, to: secondMidnightDate).day ?? 0
     }
     
 }
+
+// MARK: - Components
+extension Date {
+    /// The `year` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var year: Int {
+        return Calendar.localizedCurrent.component(.year, from: self)
+    }
+
+    /// The `month` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var month: Int {
+        return Calendar.localizedCurrent.component(.month, from: self)
+    }
+
+    /// The `day` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var day: Int {
+        return Calendar.localizedCurrent.component(.day, from: self)
+    }
+
+    /// The `hour` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var hour: Int {
+        return Calendar.localizedCurrent.component(.hour, from: self)
+    }
+
+    /// The `minute` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var minute: Int {
+        return Calendar.localizedCurrent.component(.minute, from: self)
+    }
+
+    /// The `second` date component of `self`. The time zone used is equal to the `Calendar.current.timeZone`.
+    var second: Int {
+        return Calendar.localizedCurrent.component(.second, from: self)
+    }
+}
+
 
 extension Date {
 

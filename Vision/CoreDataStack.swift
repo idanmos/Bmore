@@ -95,4 +95,16 @@ class CoreDataStack {
         }
     }
     
+    func resetAllStorage() {
+        guard let url = self.persistentContainer.persistentStoreDescriptions.first?.url else { return }
+        let persistentStoreCoordinator = self.persistentContainer.persistentStoreCoordinator
+
+        do {
+            try persistentStoreCoordinator.destroyPersistentStore(at:url, ofType: NSSQLiteStoreType, options: nil)
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+        } catch let error {
+                print("Attempted to clear persistent store: " + error.localizedDescription)
+        }
+    }
+    
 }

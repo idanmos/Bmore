@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -154,6 +156,92 @@
             </objects>
             <point key="canvasLocation" x="563.768115942029" y="197.54464285714286"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="x6B-wD-Nzp">
+            <objects>
+                <viewController id="kyg-lj-v21" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EeA-xP-5y4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsB-kv-GY3">
+                                <rect key="frame" x="359" y="0.0" width="55" height="896"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49X-9c-Gq3">
+                                        <rect key="frame" x="12.5" y="52" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="MQy-Pz-Xk2"/>
+                                            <constraint firstAttribute="width" constant="30" id="UG4-lc-bC4"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <imageReference key="image" image="person.circle" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jww-bO-XrH">
+                                        <rect key="frame" x="12.5" y="90" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="dKr-AS-cmB"/>
+                                            <constraint firstAttribute="height" constant="30" id="ffc-Cm-1Mg"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <imageReference key="image" image="house.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5v-d5-6Mf">
+                                        <rect key="frame" x="12.5" y="433" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="CPa-eC-9gP"/>
+                                            <constraint firstAttribute="height" constant="30" id="mQi-ki-g30"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-wL-UJI">
+                                        <rect key="frame" x="12.5" y="824" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="cez-Lw-Lxg"/>
+                                            <constraint firstAttribute="height" constant="30" id="tMk-Gk-Dgj"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="u5v-d5-6Mf" firstAttribute="centerY" secondItem="wsB-kv-GY3" secondAttribute="centerY" id="Avs-an-BHX"/>
+                                    <constraint firstItem="49X-9c-Gq3" firstAttribute="centerX" secondItem="wsB-kv-GY3" secondAttribute="centerX" id="B7z-ZH-GAx"/>
+                                    <constraint firstItem="0Qe-wL-UJI" firstAttribute="centerX" secondItem="wsB-kv-GY3" secondAttribute="centerX" id="DxT-zz-7Be"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="0Qe-wL-UJI" secondAttribute="bottom" id="F8E-fi-Zm0"/>
+                                    <constraint firstItem="u5v-d5-6Mf" firstAttribute="centerX" secondItem="wsB-kv-GY3" secondAttribute="centerX" id="R5s-S4-3on"/>
+                                    <constraint firstItem="Jww-bO-XrH" firstAttribute="top" secondItem="49X-9c-Gq3" secondAttribute="bottom" constant="8" symbolic="YES" id="Upn-mT-k9h"/>
+                                    <constraint firstItem="49X-9c-Gq3" firstAttribute="top" secondItem="wsB-kv-GY3" secondAttribute="topMargin" id="kp0-e8-3ik"/>
+                                    <constraint firstItem="Jww-bO-XrH" firstAttribute="centerX" secondItem="wsB-kv-GY3" secondAttribute="centerX" id="mmw-Uy-TpP"/>
+                                    <constraint firstAttribute="width" constant="55" id="n3V-n7-Wjo"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ek-VZ-efr">
+                                <rect key="frame" x="0.0" y="0.0" width="359" height="896"/>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ttA-Xd-Xce"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wsB-kv-GY3" firstAttribute="trailing" secondItem="ttA-Xd-Xce" secondAttribute="trailing" id="75C-XM-iAT"/>
+                            <constraint firstItem="6Ek-VZ-efr" firstAttribute="leading" secondItem="ttA-Xd-Xce" secondAttribute="leading" id="7aC-vK-rFU"/>
+                            <constraint firstItem="6Ek-VZ-efr" firstAttribute="top" secondItem="EeA-xP-5y4" secondAttribute="top" id="ODS-rF-Uiq"/>
+                            <constraint firstItem="wsB-kv-GY3" firstAttribute="leading" secondItem="6Ek-VZ-efr" secondAttribute="trailing" id="leO-AE-mga"/>
+                            <constraint firstAttribute="bottom" secondItem="6Ek-VZ-efr" secondAttribute="bottom" id="qRP-5j-gdL"/>
+                            <constraint firstItem="wsB-kv-GY3" firstAttribute="top" secondItem="EeA-xP-5y4" secondAttribute="top" id="rkr-7O-sND"/>
+                            <constraint firstAttribute="bottom" secondItem="wsB-kv-GY3" secondAttribute="bottom" id="x9A-cI-dYK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HFb-Qo-ZqA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286.9565217391305" y="197.54464285714286"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fXv-4X-IYm">
             <objects>
@@ -172,11 +260,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -133,7 +133,13 @@ class LeadDetailsViewController: UIViewController {
             self.floatButton.close()
         }
         
-        self.floatButton.addItem("properties".localized, icon: UIImage(systemName: "building.2")) { [weak self] (item: FloatyItem) in
+        let image: UIImage
+        if #available(iOS 14, *) {
+            image = UIImage(systemName: "building.2")!
+        } else {
+            image = UIImage(systemName: "house")!
+        }
+        self.floatButton.addItem("properties".localized, icon: image) { [weak self] (item: FloatyItem) in
             guard let self = self else { return }
             self.showPropertyScreen(isShowOnlyMode: false)
             self.floatButton.close()

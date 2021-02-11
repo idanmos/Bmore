@@ -24,8 +24,8 @@ enum BalanceType: Int, CaseIterable {
         switch self {
         case .day: return DateFormatter.dayFormatter.string(from: date)
         case .week:
-            let startOfWeek: String = DateFormatter.dayFormatter.string(from: date.startOfWeek())
-            let endOfWeek: String = DateFormatter.dayFormatter.string(from: date.endOfWeek())
+            let startOfWeek: String = DateFormatter.dayFormatter.string(from: date.startOfWeek)
+            let endOfWeek: String = DateFormatter.dayFormatter.string(from: date.endOfWeek)
             return "\(startOfWeek) - \(endOfWeek)"
         case .month: return DateFormatter.monthFormatter.string(from: date)
         case .quarter: return DateFormatter.quarterFormatter.string(from: date)

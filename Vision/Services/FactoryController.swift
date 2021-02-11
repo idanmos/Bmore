@@ -9,6 +9,7 @@ import UIKit
 
 class FactoryController {
     enum Screen {
+        case dashboard
         case properties
         case leads
         case tasks
@@ -26,6 +27,7 @@ class FactoryController {
         
         var viewController: UIViewController {
             switch self {
+            case .dashboard: return UIStoryboard(name: "Dashboard", bundle: nil).instantiateViewController(withIdentifier: DashboardTableViewController.className())
             case .properties: return PropertiesViewController(style: .plain)
             case .leads: return UIStoryboard(name: "Leads", bundle: nil).instantiateInitialViewController()!
             case .tasks: return TasksViewController(nibName: TasksViewController.className(), bundle: nil)

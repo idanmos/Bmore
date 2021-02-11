@@ -37,10 +37,23 @@ class MasterTableViewController: UITableViewController {
         var image: UIImage? {
             switch self {
             case .profile: return UIImage(systemName: "person.crop.circle")
-            case .properties: return UIImage(systemName: "building.2")
+                
+            case .properties:
+                if #available(iOS 14, *) {
+                    return UIImage(systemName: "building.2")
+                } else {
+                    return UIImage(systemName: "house")
+                }
+                
             case .leads: return UIImage(systemName: "person.2")
             case .timeTracking: return UIImage(systemName: "clock")
-            case .targets: return UIImage(systemName: "target")
+                
+            case .targets:
+                if #available(iOS 14, *) {
+                    return UIImage(systemName: "target")
+                } else {
+                    return UIImage(systemName: "arrow.up.forward")
+                }
             case .balance: return UIImage(systemName: "chart.pie")
             case .meetings: return UIImage(systemName: "person.3")
             case .transactions: return UIImage(systemName: "dollarsign.circle")

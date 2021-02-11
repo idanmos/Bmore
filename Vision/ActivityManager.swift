@@ -15,11 +15,38 @@ enum ActivityType: Int16 {
     case addTransaction, editTransaction, deleteTransaction
     case addLead, editLead, deleteLead
     case addTimeTracking, editTimeTracking, deleteTimeTracking
+    
+    var title: String {
+        switch self {
+        case .addProperty: return "add_property".localized
+        case .editProperty: return "edit_property".localized
+        case .deleteProperty: return "delete_property".localized
+        case .addTask: return "add_task".localized
+        case .editTask: return "edit_task".localized
+        case .deleteTask: return "delete_task".localized
+        case .addMeeting: return "add_meeting".localized
+        case .editMeeting: return "edit_meeting".localized
+        case .deleteMeeting: return "delete_meeting".localized
+        case .addTransaction: return "add_transaction".localized
+        case .editTransaction: return "edit_transaction".localized
+        case .deleteTransaction: return "".localized
+        case .addLead: return "add_lead".localized
+        case .editLead: return "edit_lead".localized
+        case .deleteLead: return "delete_lead".localized
+        case .addTimeTracking: return "add_time_tracking".localized
+        case .editTimeTracking: return "edit_time_tracking".localized
+        case .deleteTimeTracking: return "delete_time_tracking".localized
+        }
+    }
 }
 
 class ActivityManager {
     
     static let shared = ActivityManager()
+    
+    deinit {
+        debugPrint("Deallocating \(self)")
+    }
     
     // MARK: - NSFetchedResultsController
     
@@ -74,6 +101,7 @@ class ActivityManager {
         
         do {
             try self.fetchedResultsController.performFetch()
+            debugPrint("self.activities", self.activities)
         } catch {
             debugPrint(#file, #function, error)
         }

@@ -51,4 +51,16 @@ extension UIView {
         }
     }
     
+    func findContainingViewController() -> UIViewController? {
+        if let nextResponder = next as? UIViewController {
+            return nextResponder
+        }
+
+        if let nextResponder = next as? UIView {
+            return nextResponder.findContainingViewController()
+        }
+
+        return nil
+    }
+    
 }
