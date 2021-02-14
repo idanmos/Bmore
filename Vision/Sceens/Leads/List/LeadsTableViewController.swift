@@ -28,6 +28,8 @@ class LeadsTableViewController: BaseTableViewController {
         
         self.title = "leads".localized
         
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
 //        self.navigationItem.searchController = self.searchController
 //        self.navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -92,13 +94,9 @@ class LeadsTableViewController: BaseTableViewController {
             break
         case .delete:
             let lead: Lead = self.viewModel.object(at: indexPath)
-//            self.viewModel.delete(lead)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
             self.viewModel.delete(lead) {
-                debugPrint(#file, #function, "self.viewModel.delete(lead)", "inside handler")
                 self.didUpdateLead(nil)
             }
-            
         case .insert:
             break
         @unknown default:
@@ -134,11 +132,14 @@ class LeadsTableViewController: BaseTableViewController {
     }()
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return UISwipeActionsConfiguration(actions: [
+        let configuration = UISwipeActionsConfiguration(actions: [
             self.phoneCallAction(for: indexPath),
             self.smsAction(for: indexPath),
             self.emailAction(for: indexPath)
         ])
+        
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     // MARK: - Navigation
