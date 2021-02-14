@@ -19,6 +19,9 @@
 		8A0608E42587EDB5000765D8 /* Properties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0608E32587EDB5000765D8 /* Properties.storyboard */; };
 		8A0608F22587F154000765D8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A0608F42587F154000765D8 /* Localizable.strings */; };
 		8A0608F92587F267000765D8 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A0608F82587F267000765D8 /* More.storyboard */; };
+		8A10837625D5DAC300AD1547 /* PropertyNewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A10837425D5DAC300AD1547 /* PropertyNewTableViewCell.swift */; };
+		8A10837725D5DAC300AD1547 /* PropertyNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A10837525D5DAC300AD1547 /* PropertyNewTableViewCell.xib */; };
+		8A10837A25D5DDE900AD1547 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A10837925D5DDE900AD1547 /* CALayer+Extensions.swift */; };
 		8A1A249125C0D6250027A45D /* LeadQualityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1A248F25C0D6250027A45D /* LeadQualityTableViewCell.swift */; };
 		8A1A249225C0D6250027A45D /* LeadQualityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1A249025C0D6250027A45D /* LeadQualityTableViewCell.xib */; };
 		8A1A249525C0D7BB0027A45D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1A249425C0D7BB0027A45D /* Theme.swift */; };
@@ -29,6 +32,9 @@
 		8A1FA77125B7170000722A40 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA77025B7170000722A40 /* UINavigationController+Extensions.swift */; };
 		8A1FA78D25B76F4300722A40 /* ApplicationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA78C25B76F4300722A40 /* ApplicationFeature.swift */; };
 		8A1FA7A025B77CBC00722A40 /* DeviceContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FA79F25B77CBC00722A40 /* DeviceContact.swift */; };
+		8A22E79125D8FC9E000ECE1E /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22E79025D8FC9E000ECE1E /* PopOverViewController.swift */; };
+		8A22E79425D913E0000ECE1E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22E79325D913E0000ECE1E /* UIImage+Extensions.swift */; };
+		8A22E79B25D91918000ECE1E /* Lead+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22E79A25D91918000ECE1E /* Lead+Extensions.swift */; };
 		8A414B9625CFE4BD005A1D96 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A414B9525CFE4BD005A1D96 /* UITableViewCell+Extension.swift */; };
 		8A414B9925CFE634005A1D96 /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A414B9825CFE634005A1D96 /* NSLayoutConstraint+Extensions.swift */; };
 		8A46F8292588D1A500021679 /* PropertyDetailsHeadTopBottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A46F8272588D1A500021679 /* PropertyDetailsHeadTopBottomTableViewCell.swift */; };
@@ -269,6 +275,9 @@
 		8A0608F32587F154000765D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8A0608F62587F16A000765D8 /* he-IL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "he-IL"; path = "he-IL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8A0608F82587F267000765D8 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		8A10837425D5DAC300AD1547 /* PropertyNewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyNewTableViewCell.swift; sourceTree = "<group>"; };
+		8A10837525D5DAC300AD1547 /* PropertyNewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PropertyNewTableViewCell.xib; sourceTree = "<group>"; };
+		8A10837925D5DDE900AD1547 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		8A1A248F25C0D6250027A45D /* LeadQualityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadQualityTableViewCell.swift; sourceTree = "<group>"; };
 		8A1A249025C0D6250027A45D /* LeadQualityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadQualityTableViewCell.xib; sourceTree = "<group>"; };
 		8A1A249425C0D7BB0027A45D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -280,6 +289,9 @@
 		8A1FA77325B71A7F00722A40 /* B-more-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "B-more-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A1FA78C25B76F4300722A40 /* ApplicationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFeature.swift; sourceTree = "<group>"; };
 		8A1FA79F25B77CBC00722A40 /* DeviceContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceContact.swift; sourceTree = "<group>"; };
+		8A22E79025D8FC9E000ECE1E /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
+		8A22E79325D913E0000ECE1E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		8A22E79A25D91918000ECE1E /* Lead+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+Extensions.swift"; sourceTree = "<group>"; };
 		8A414B9525CFE4BD005A1D96 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		8A414B9825CFE634005A1D96 /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
 		8A46F8272588D1A500021679 /* PropertyDetailsHeadTopBottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsHeadTopBottomTableViewCell.swift; sourceTree = "<group>"; };
@@ -588,6 +600,9 @@
 				8AAC9D1825C765D500FF5D7E /* UIVIewController+Permissions.swift */,
 				8A414B9525CFE4BD005A1D96 /* UITableViewCell+Extension.swift */,
 				8A414B9825CFE634005A1D96 /* NSLayoutConstraint+Extensions.swift */,
+				8A10837925D5DDE900AD1547 /* CALayer+Extensions.swift */,
+				8A22E79325D913E0000ECE1E /* UIImage+Extensions.swift */,
+				8A22E79A25D91918000ECE1E /* Lead+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -813,6 +828,7 @@
 			children = (
 				8A9A429425ADFB250064994C /* DatePickerPopOverController.swift */,
 				8A9A429525ADFB250064994C /* Popovers.storyboard */,
+				8A22E79025D8FC9E000ECE1E /* PopOverViewController.swift */,
 			);
 			path = Popovers;
 			sourceTree = "<group>";
@@ -946,6 +962,8 @@
 				8A973E2E257FA9C0002422B8 /* PropertyCollectionViewCell.xib */,
 				8A74702825BD3F5B00EC0676 /* PropertyTableViewCell.swift */,
 				8A74702925BD3F5B00EC0676 /* PropertyTableViewCell.xib */,
+				8A10837425D5DAC300AD1547 /* PropertyNewTableViewCell.swift */,
+				8A10837525D5DAC300AD1547 /* PropertyNewTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1539,6 +1557,7 @@
 				8A973E7525816AD0002422B8 /* MiniTableViewController.xib in Resources */,
 				8A973E2F257FA9C0002422B8 /* PropertyCollectionViewCell.xib in Resources */,
 				8A9A439C25B449270064994C /* LeadContactTableViewCell.xib in Resources */,
+				8A10837725D5DAC300AD1547 /* PropertyNewTableViewCell.xib in Resources */,
 				8A49015B25987E1600CFA2A1 /* MeetingsTableViewController.xib in Resources */,
 				8A973E8525823E45002422B8 /* LabelAndTextFieldTableViewCell.xib in Resources */,
 				8A9A422F25AB8F250064994C /* InstagramStoryView.xib in Resources */,
@@ -1625,6 +1644,7 @@
 				8A99233625CA89600021B3E9 /* DocumentsPickerProvider.swift in Sources */,
 				8A9A41F725A86E480064994C /* TargetsViewModel.swift in Sources */,
 				8AE7748E25D3C50200B84F91 /* PhoneNumber.swift in Sources */,
+				8A22E79B25D91918000ECE1E /* Lead+Extensions.swift in Sources */,
 				8A99232325C9C8990021B3E9 /* MoreTableViewController.swift in Sources */,
 				8A973E6E25814D09002422B8 /* ImagePreviewViewController.swift in Sources */,
 				8A06084F25865542000765D8 /* MultipleSelectionCollectionViewCell.swift in Sources */,
@@ -1676,6 +1696,7 @@
 				8AEE754525C149B900CA2D48 /* FloatRatingView.swift in Sources */,
 				8A0608DC25874FC6000765D8 /* ContactsService.swift in Sources */,
 				8A973DF4257EC223002422B8 /* PropertyDetailsTitleAndSubtitleTableViewCell.swift in Sources */,
+				8A22E79425D913E0000ECE1E /* UIImage+Extensions.swift in Sources */,
 				8A46F836258901BD00021679 /* TimeTrackingTableViewController.swift in Sources */,
 				8AAC9D1C25C77B3500FF5D7E /* AppContext.swift in Sources */,
 				8A9A436125B1A8510064994C /* AlertViewModel.swift in Sources */,
@@ -1696,8 +1717,10 @@
 				8A9A424225AB9DCF0064994C /* InstagramFeedTableViewCell.swift in Sources */,
 				8A49015625987D7600CFA2A1 /* MeetingsTableViewController.swift in Sources */,
 				8A9A43A025B44D2A0064994C /* LeadDetailDisclosureTableViewCell.swift in Sources */,
+				8A10837A25D5DDE900AD1547 /* CALayer+Extensions.swift in Sources */,
 				8A0608422586524A000765D8 /* MultipleSelectionCollectionViewController.swift in Sources */,
 				8A81CAA625A6EB51002BC2D8 /* GoalCollectionViewCell.swift in Sources */,
+				8A22E79125D8FC9E000ECE1E /* PopOverViewController.swift in Sources */,
 				8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */,
 				8A9A425E25AC7CD30064994C /* TasksViewModel.swift in Sources */,
 				8A83D5E725C1CD9800E2C00A /* LeadTableViewCell.swift in Sources */,
@@ -1751,6 +1774,7 @@
 				8A973DF0257EBDCE002422B8 /* UITableView+Extensions.swift in Sources */,
 				8A9A420725A9AFFF0064994C /* SingleTransactionTableViewCell.swift in Sources */,
 				8A81CAB825A6FD4C002BC2D8 /* GraphViewController.swift in Sources */,
+				8A10837625D5DAC300AD1547 /* PropertyNewTableViewCell.swift in Sources */,
 				8A8CD2BB25B9000000A91104 /* Floaty.swift in Sources */,
 				8A9A429625ADFB250064994C /* DatePickerPopOverController.swift in Sources */,
 				8A973D86257CC59A002422B8 /* PropertiesMapViewController.swift in Sources */,

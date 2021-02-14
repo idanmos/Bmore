@@ -64,3 +64,42 @@ extension UIView {
     }
     
 }
+
+extension UIView{
+    func showMessage(message:NSString,animateDuration:Double)
+    {
+        let window = UIApplication.shared.keyWindow
+        let showView = UIView()
+        showView.backgroundColor = UIColor.black
+        showView.frame = CGRect(x: 1, y: 1, width: 1, height: 1)//CGRectMake(1, 1, 1, 1);
+        showView.alpha = 1.0;
+        showView.layer.cornerRadius = 5.0;
+        showView.layer.masksToBounds = true;
+        window?.addSubview(showView)
+        
+        let label = UILabel()
+        let attributesArray = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 17),NSAttributedString.Key.foregroundColor:UIColor.lightGray]
+        let labelSize:CGSize = message.size(withAttributes: attributesArray)
+        
+        label.frame = CGRect(x: 10.0, y: 5.0, width: labelSize.width, height: labelSize.height)//CGRectMake(10.0, 5.0, labelSize.width,labelSize.height);
+        label.numberOfLines = 0
+        label.text = message as String;
+        label.textColor = UIColor.white;
+        label.textAlignment = NSTextAlignment(rawValue: 1)!
+        label.backgroundColor = UIColor.clear;
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        showView.addSubview(label)
+        showView.frame = CGRect(x: (UIScreen.main.bounds.width - labelSize.width - 20.0)/2.0, y: UIScreen.main.bounds.width - 200.0, width:  labelSize.width+20.0, height: labelSize.height+10.0)
+        
+        //CGRectMake((UIScreen.main.bounds.width - labelSize.width - 20.0)/2.0,  UIScreen.main.bounds.width - 200.0, labelSize.width+20.0, labelSize.height+10.0)
+        
+        UIView.animate(withDuration: animateDuration, animations: { () -> Void in
+            showView.alpha = 0
+        }) { (finished) -> Void in
+            showView.removeFromSuperview()
+        }
+        
+    }
+
+}
+

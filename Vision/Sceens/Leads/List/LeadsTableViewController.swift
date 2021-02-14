@@ -106,6 +106,41 @@ class LeadsTableViewController: BaseTableViewController {
         }
     }
     
+    lazy var phoneCallAction: UIContextualAction = {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context: UIContextualAction, view: UIView, handler: @escaping (Bool) -> Void) in
+            guard let self = self else { return }
+        }
+        action.image = UIImage(systemName: "phone")
+        action.backgroundColor = .systemBlue
+        return action
+    }()
+    
+    lazy var messageAction: UIContextualAction = {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context: UIContextualAction, view: UIView, handler: @escaping (Bool) -> Void) in
+            guard let self = self else { return }
+        }
+        action.image = UIImage(systemName: "message")
+        action.backgroundColor = .systemGreen
+        return action
+    }()
+    
+    lazy var emailAction: UIContextualAction = {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context: UIContextualAction, view: UIView, handler: @escaping (Bool) -> Void) in
+            guard let self = self else { return }
+        }
+        action.image = UIImage(systemName: "envelope")
+        action.backgroundColor = .systemRed
+        return action
+    }()
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [
+            self.phoneCallAction(for: indexPath),
+            self.smsAction(for: indexPath),
+            self.emailAction(for: indexPath)
+        ])
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -117,6 +152,55 @@ class LeadsTableViewController: BaseTableViewController {
 // MARK: - General Methods
 
 extension LeadsTableViewController {
+    
+    private func phoneCallAction(for indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context, view, handler) in
+            guard let self = self else { return }
+            
+            let lead: Lead = self.viewModel.object(at: indexPath)
+            let phoneNumbers: [String] = lead.phoneNumbers
+            if phoneNumbers.count > 0 {
+                guard let number = URL(string: "tel://" + phoneNumbers[0]) else { return }
+                UIApplication.shared.open(number, options: [:], completionHandler: nil)
+            }
+            handler(true)
+        }
+        action.image = UIImage(systemName: "phone")
+        action.backgroundColor = .systemBlue
+        return action
+    }
+    
+    private func smsAction(for indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context, view, handler) in
+            guard let self = self else { return }
+            
+            let lead: Lead = self.viewModel.object(at: indexPath)
+            let phoneNumbers: [String] = lead.phoneNumbers
+            if phoneNumbers.count > 0 {
+                self.sendSMS(phoneNumber: phoneNumbers.first ?? "")
+            }
+            handler(true)
+        }
+        action.image = UIImage(systemName: "message")
+        action.backgroundColor = .systemGreen
+        return action
+    }
+    
+    private func emailAction(for indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (context, view, handler) in
+            guard let self = self else { return }
+            
+            let lead: Lead = self.viewModel.object(at: indexPath)
+            let emailAddresses: [String] = lead.emailAddresses
+            if emailAddresses.count > 0 {
+                self.sendEmail(email: emailAddresses.first ?? "")
+            }
+            handler(true)
+        }
+        action.image = UIImage(systemName: "envelope")
+        action.backgroundColor = .systemRed
+        return action
+    }
     
     @objc private func reloadScreen() {
         debugPrint(#file, #function)
