@@ -228,7 +228,7 @@ class AddPropertyTableViewController: BaseTableViewController {
         
         self.tableView.estimatedRowHeight = Constants.defaultCellHeight
         
-        self.galleryCollectionView.register(className: MiniGalleryCollectionViewCell.self)
+        self.galleryCollectionView.register(MiniGalleryCollectionViewCell.self)
     }
     
     // MARK: - Navigation
@@ -546,7 +546,7 @@ extension AddPropertyTableViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeue(className: MiniGalleryCollectionViewCell.self, indexPath: indexPath)
+        let cell = collectionView.dequeue(MiniGalleryCollectionViewCell.self, indexPath: indexPath)
         cell.imageView.image = self.images[indexPath.item]
         return cell
     }

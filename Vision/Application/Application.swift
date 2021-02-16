@@ -26,7 +26,9 @@ class Application {
         window.backgroundColor = .white
         
         let tabBarController = UITabBarController()
-                
+        
+        let feedViewController = FacebookFeedTableViewController(style: .plain)
+        
         let dashboardViewController = FactoryController.Screen.dashboard.viewController.wrappedNavigationController()
         dashboardViewController.tabBarItem = UITabBarItem.build(title: "dashboard".localized, systemImageName: "square.grid.2x2")
     
@@ -51,7 +53,8 @@ class Application {
         moreViewController.tabBarItem = UITabBarItem.build(title: "more".localized, systemImageName: "ellipsis")
         
         let viewControllers: [UIViewController] = [
-            dashboardViewController,
+            feedViewController,
+            // dashboardViewController,
             propertiesViewController,
             leadsViewController,
             reportsViewController,

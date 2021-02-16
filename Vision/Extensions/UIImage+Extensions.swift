@@ -19,3 +19,43 @@ extension UIImage {
         return image
     }
 }
+
+extension UIImage {
+    
+    static func propertyImage() -> UIImage? {
+        if #available(iOS 14, *) {
+            return UIImage(systemName: "building.2")
+        } else {
+            return UIImage(systemName: "house")
+        }
+    }
+    
+    static func leadsImage() -> UIImage? {
+        return UIImage(systemName: "person.2")
+    }
+    
+    static func taskImage() -> UIImage? {
+        return UIImage(systemName: "list.number")
+    }
+    
+    static func timeTrackingImage() -> UIImage? {
+        return UIImage(systemName: "clock")
+    }
+    
+    static func meetingImage() -> UIImage? {
+        return UIImage(systemName: "person.3")
+    }
+    
+    static func transactionImage() -> UIImage? {
+        return UIImage(systemName: "dollarsign.circle")
+    }
+    
+    static func targetsImage() -> UIImage? {
+        if #available(iOS 14, *) {
+            return UIImage(systemName: "target")
+        } else {
+            return UIImage(systemName: "arrow.up.forward")
+        }
+    }
+    
+}

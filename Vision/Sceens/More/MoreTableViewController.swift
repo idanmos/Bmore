@@ -8,7 +8,7 @@
 import UIKit
 
 private enum SectionType: Int, CaseIterable {
-    case profile, settings, meetings, transactions, timeTracking, goals
+    case profile, settings, meetings, transactions, timeTracking, goals, documents
     
     var title: String {
         switch self {
@@ -18,6 +18,7 @@ private enum SectionType: Int, CaseIterable {
         case .transactions: return "transactions".localized
         case .timeTracking: return "time_tracking".localized
         case .goals: return "goals".localized
+        case .documents: return "documents".localized
         }
     }
     
@@ -28,6 +29,7 @@ private enum SectionType: Int, CaseIterable {
         case .meetings: return UIImage(systemName: "person.3")
         case .transactions: return UIImage(systemName: "dollarsign.circle")
         case .timeTracking: return UIImage(systemName: "clock")
+        case .documents: return UIImage(systemName: "doc")
             
         case .goals:
             if #available(iOS 14, *) {
@@ -47,6 +49,7 @@ private enum SectionType: Int, CaseIterable {
         case .transactions: return .emerald
         case .timeTracking: return .peterRiver
         case .goals: return .wisteria
+        case .documents: return .systemBlue
         }
     }
 }
@@ -61,7 +64,7 @@ class MoreTableViewController: BaseTableViewController {
         super.init(coder: coder)
     }
     
-    private var dataSource: [SectionType] = [.settings, .meetings, .transactions, .timeTracking, .goals]
+    private var dataSource: [SectionType] = [.settings, .meetings, .transactions, .timeTracking, .goals, .documents]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +138,9 @@ class MoreTableViewController: BaseTableViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
         case .goals:
             break
+        case .documents:
+            let viewController = DocumentsCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 

@@ -38,6 +38,17 @@ enum ActivityType: Int16 {
         case .deleteTimeTracking: return "delete_time_tracking".localized
         }
     }
+    
+    var image: UIImage? {
+        switch self {
+        case .addProperty, .editProperty, .deleteProperty: return UIImage.propertyImage()
+        case .addTask, .editTask, .deleteTask: return UIImage.taskImage()
+        case .addMeeting, .editMeeting, .deleteMeeting: return UIImage.meetingImage()
+        case .addTransaction, .editTransaction, .deleteTransaction: return UIImage.transactionImage()
+        case .addLead, .editLead, .deleteLead: return UIImage.leadsImage()
+        case .addTimeTracking, .editTimeTracking, .deleteTimeTracking: return UIImage.timeTrackingImage()
+        }
+    }
 }
 
 class ActivityManager {
