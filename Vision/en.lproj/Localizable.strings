@@ -171,3 +171,7 @@
 "every_3_months" = "Every 3 Months";
 "every_6_months" = "Every 6 Months";
 "every_year" = "Every Year";
+
+// MARK: - Documents
+
+"deleted" = "deleted";

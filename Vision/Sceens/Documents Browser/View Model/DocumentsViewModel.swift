@@ -89,9 +89,27 @@ class DocumentsViewModel {
                 }
                 
                 DispatchMainThreadSafe { handler() }
-                
                 lock.unlock()
             }
+        }
+    }
+    
+    func delete(_ files: [URL], _ handler: @escaping (Bool) -> Void) {
+        let lock = NSLock()
+        lock.lock()
+        
+        DispatchQueue.global(qos: .background).async {
+            for file: URL in files {
+                do {
+                    try FileManager.default.removeItem(at: file)
+                    DispatchMainThreadSafe { handler(true) }
+                } catch {
+                    debugPrint(#file, #function, error)
+                    DispatchMainThreadSafe { handler(false) }
+                }
+            }
+            
+            lock.unlock()
         }
     }
     

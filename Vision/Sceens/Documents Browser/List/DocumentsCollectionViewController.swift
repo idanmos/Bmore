@@ -195,12 +195,22 @@ extension DocumentsCollectionViewController: DocumentCollectionViewCellDelegate 
         
         let alertController = UIAlertController(title: "delete".localized, message: file.name, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: "ok".localized, style: .destructive, handler: { (action: UIAlertAction) in
-            let deleteMessage: String = "\(file.name) - \("deleted".localized)"
-            self.view.showMessage(message: (deleteMessage as NSString), animateDuration: 3.0)
-        }))
+        let deleteAction = UIAlertAction(title: "ok".localized, style: .destructive, handler: { [weak self] (action: UIAlertAction) in
+            guard let self = self else { return }
+            
+            self.viewModel.delete([file.url]) { (success: Bool) in
+                if success {
+                    let deleteMessage: String = "\(file.name) - \("deleted".localized)"
+                    self.view.showMessage(message: (deleteMessage as NSString), animateDuration: 3.0)
+                }
+            }
+        })
         
-        alertController.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil)
+        
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
     }

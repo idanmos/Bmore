@@ -166,3 +166,7 @@
 "every_3_months" = "פעם ברבעון";
 "every_6_months" = "פעם בחצי שנה";
 "every_year" = "פעם בשנה";
+
+// MARK: - Documents
+
+"deleted" = "נמחק";
