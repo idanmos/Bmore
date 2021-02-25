@@ -74,8 +74,6 @@ class PropertyProvider {
                 self.persistentContainer.viewContext.save(with: .addProperty)
             }
             DispatchMainThreadSafe { handler() }
-            
-            ActivityManager.shared.save(.addProperty)
         }
     }
     
@@ -92,7 +90,6 @@ class PropertyProvider {
                 context.save(with: .deleteProperty)
             }
             DispatchMainThreadSafe { handler() }
-            ActivityManager.shared.save(.deleteProperty)
         }
     }
     

@@ -27,11 +27,6 @@ class Application {
         
         let tabBarController = UITabBarController()
         
-        let feedViewController = FacebookFeedTableViewController(style: .plain)
-        
-        let dashboardViewController = FactoryController.Screen.dashboard.viewController.wrappedNavigationController()
-        dashboardViewController.tabBarItem = UITabBarItem.build(title: "dashboard".localized, systemImageName: "square.grid.2x2")
-    
         let propertiesViewController = FactoryController.Screen.properties.viewController.wrappedNavigationController()
         
         if #available(iOS 14, *) {
@@ -43,8 +38,8 @@ class Application {
         let leadsViewController = FactoryController.Screen.leads.viewController
         leadsViewController.tabBarItem = UITabBarItem.build(title: "leads".localized, systemImageName: "person.2")
         
-//        let tasksViewController = FactoryController.Screen.tasks.viewController.wrappedNavigationController()
-//        tasksViewController.tabBarItem = UITabBarItem.build(title: "tasks".localized, systemImageName: "list.number")
+        let tasksViewController = FactoryController.Screen.tasks.viewController.wrappedNavigationController()
+        tasksViewController.tabBarItem = UITabBarItem.build(title: "tasks".localized, systemImageName: "list.number")
         
         let reportsViewController = FactoryController.Screen.reports.viewController.wrappedNavigationController()
         reportsViewController.tabBarItem = UITabBarItem.build(title: "reports".localized, systemImageName: "chart.pie")
@@ -53,10 +48,9 @@ class Application {
         moreViewController.tabBarItem = UITabBarItem.build(title: "more".localized, systemImageName: "ellipsis")
         
         let viewControllers: [UIViewController] = [
-            feedViewController,
-            // dashboardViewController,
             propertiesViewController,
             leadsViewController,
+            tasksViewController,
             reportsViewController,
             moreViewController
         ]
@@ -65,13 +59,6 @@ class Application {
                 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
-    }
-    
-    func showLoginViewController() {
-        let loginViewController = LoginViewController(nibName: LoginViewController.className(), bundle: nil)
-        loginViewController.modalPresentationStyle = .overCurrentContext
-        loginViewController.isModalInPresentation = true
-        AppDelegate.sharedDelegate().window?.rootViewController?.present(loginViewController, animated: true, completion: nil)
     }
     
     static let bundleIdentifier: String = Bundle.main.bundleIdentifier ?? ""

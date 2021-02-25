@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import CoreData
-import Contacts
 import UIKit
+import CoreData
 
 // MARK: - Core Data Stack
 

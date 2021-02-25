@@ -198,11 +198,10 @@ extension DocumentsCollectionViewController: DocumentCollectionViewCellDelegate 
         let deleteAction = UIAlertAction(title: "ok".localized, style: .destructive, handler: { [weak self] (action: UIAlertAction) in
             guard let self = self else { return }
             
-            self.viewModel.delete([file.url]) { (success: Bool) in
-                if success {
-                    let deleteMessage: String = "\(file.name) - \("deleted".localized)"
-                    self.view.showMessage(message: (deleteMessage as NSString), animateDuration: 3.0)
-                }
+            self.viewModel.delete(file.url) {
+                self.collectionView.reloadData()
+                let deleteMessage: String = "\(file.name) - \("deleted".localized)"
+                self.view.showMessage(message: (deleteMessage as NSString), animateDuration: 3.0)
             }
         })
         

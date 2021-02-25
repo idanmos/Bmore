@@ -44,7 +44,11 @@ class DocumentsViewModel {
     
     init() {
         do {
-            try FileManager.default.createDirectory(at: .appDocumentDirectory, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(
+                at: .appDocumentDirectory,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
         } catch {
             debugPrint(#file, #function, error)
         }
@@ -57,7 +61,11 @@ class DocumentsViewModel {
             var urls: [URL] = []
             
             do {
-                urls = try FileManager.default.contentsOfDirectory(at: .appDocumentDirectory, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+                urls = try FileManager.default.contentsOfDirectory(
+                    at: .appDocumentDirectory,
+                    includingPropertiesForKeys: [],
+                    options: .skipsHiddenFiles
+                )
             } catch {
                 debugPrint(#file, #function, error)
             }
@@ -71,9 +79,6 @@ class DocumentsViewModel {
     }
     
     func save(files: [URL], _ handler: @escaping () -> Void) {
-        let lock = NSLock()
-        lock.lock()
-        
         DispatchQueue.global(qos: .background).async {
             for file: URL in files {
                 let newURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -89,27 +94,23 @@ class DocumentsViewModel {
                 }
                 
                 DispatchMainThreadSafe { handler() }
-                lock.unlock()
             }
         }
     }
     
-    func delete(_ files: [URL], _ handler: @escaping (Bool) -> Void) {
-        let lock = NSLock()
-        lock.lock()
-        
+    func delete(_ file: URL, _ handler: @escaping () -> Void) {
         DispatchQueue.global(qos: .background).async {
-            for file: URL in files {
-                do {
-                    try FileManager.default.removeItem(at: file)
-                    DispatchMainThreadSafe { handler(true) }
-                } catch {
-                    debugPrint(#file, #function, error)
-                    DispatchMainThreadSafe { handler(false) }
-                }
+            do {
+                try FileManager.default.removeItem(at: file)
+            } catch {
+                debugPrint(#file, #function, error)
             }
             
-            lock.unlock()
+            self.fetchFiles {
+                DispatchMainThreadSafe {
+                    handler()
+                }
+            }
         }
     }
     

@@ -29,7 +29,7 @@ extension UIViewController {
             }
         }
         
-        if CurrentAppContext().reportedApplicationState == .background {
+        if UIApplication.shared.applicationState == .background {
             debugPrint("Skipping camera permissions request when app is in background.")
             callback(false)
             return
@@ -104,7 +104,7 @@ extension UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
         
-        if CurrentAppContext().reportedApplicationState == .background {
+        if UIApplication.shared.applicationState == .background {
             debugPrint("Skipping media library permissions request when app is in background.")
             callback(false)
             return
@@ -145,7 +145,7 @@ extension UIViewController {
             }
         }
         
-        if CurrentAppContext().reportedApplicationState == .background {
+        if UIApplication.shared.applicationState == .background {
             debugPrint("Skipping microphone permissions request when app is in background.")
             callback(false)
             return

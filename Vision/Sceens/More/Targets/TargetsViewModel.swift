@@ -7,6 +7,8 @@
 
 import UIKit
 
+// goals: tasks, new leads, properties, meetings
+
 enum TargetCategory: Int, CaseIterable {
     case personal, financial, transactions, meetings, score
     
