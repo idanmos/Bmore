@@ -11,7 +11,6 @@ class ReportsPageViewController: BasePageViewController, UIPageViewControllerDel
     
     private var viewModel = ReportsViewModel()
     private var chartControllers: [ChartViewController] = []
-    private var advancedViewController: MoreViewController?
     
     private lazy var addBarButton: UIBarButtonItem = {
         let control = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onPressAddButton(_:)))

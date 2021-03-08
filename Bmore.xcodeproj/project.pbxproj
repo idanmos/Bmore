@@ -24,6 +24,9 @@
 		8A10837A25D5DDE900AD1547 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A10837925D5DDE900AD1547 /* CALayer+Extensions.swift */; };
 		8A12D25525E7B91F003019A7 /* MasterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A12D25325E7B91F003019A7 /* MasterTableViewCell.xib */; };
 		8A12D25625E7B91F003019A7 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12D25425E7B91F003019A7 /* MasterTableViewCell.swift */; };
+		8A12D26325E7EE4E003019A7 /* GoalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12D26225E7EE4E003019A7 /* GoalsTableViewController.swift */; };
+		8A12D26725E7EE60003019A7 /* GoalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12D26525E7EE60003019A7 /* GoalTableViewCell.swift */; };
+		8A12D26825E7EE60003019A7 /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A12D26625E7EE60003019A7 /* GoalTableViewCell.xib */; };
 		8A1A249125C0D6250027A45D /* LeadQualityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1A248F25C0D6250027A45D /* LeadQualityTableViewCell.swift */; };
 		8A1A249225C0D6250027A45D /* LeadQualityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1A249025C0D6250027A45D /* LeadQualityTableViewCell.xib */; };
 		8A1A249525C0D7BB0027A45D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1A249425C0D7BB0027A45D /* Theme.swift */; };
@@ -81,10 +84,6 @@
 		8A74706025BEC77200EC0676 /* SelectionPropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */; };
 		8A7ABBF725B5974E0090AB6D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7ABBF625B5974E0090AB6D /* BaseTableViewController.swift */; };
 		8A81CA5525A31774002BC2D8 /* CheckboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CA5425A31774002BC2D8 /* CheckboxTableViewController.swift */; };
-		8A81CAA125A58EBF002BC2D8 /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A81CAA025A58EBF002BC2D8 /* Targets.storyboard */; };
-		8A81CAA625A6EB51002BC2D8 /* GoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAA525A6EB51002BC2D8 /* GoalCollectionViewCell.swift */; };
-		8A81CAA925A6EBC9002BC2D8 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAA825A6EBC9002BC2D8 /* GoalsViewController.swift */; };
-		8A81CAB425A6FC26002BC2D8 /* GoalsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAB325A6FC26002BC2D8 /* GoalsPageViewController.swift */; };
 		8A81CAB825A6FD4C002BC2D8 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A81CAB725A6FD4C002BC2D8 /* GraphViewController.swift */; };
 		8A83D5E725C1CD9800E2C00A /* LeadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A83D5E525C1CD9800E2C00A /* LeadTableViewCell.swift */; };
 		8A83D5E825C1CD9800E2C00A /* LeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A83D5E625C1CD9800E2C00A /* LeadTableViewCell.xib */; };
@@ -163,7 +162,7 @@
 		8A99233B25CABADE0021B3E9 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */; };
 		8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99233E25CABCF20021B3E9 /* KeychainItem.swift */; };
 		8A9A41F125A768DD0064994C /* GraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A41F025A768DD0064994C /* GraphViewController.xib */; };
-		8A9A41F725A86E480064994C /* TargetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A41F625A86E480064994C /* TargetsViewModel.swift */; };
+		8A9A41F725A86E480064994C /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A41F625A86E480064994C /* GoalsViewModel.swift */; };
 		8A9A41FC25A872AB0064994C /* HelpGestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A41FA25A872AB0064994C /* HelpGestureViewController.swift */; };
 		8A9A41FD25A872AB0064994C /* HelpGestureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A41FB25A872AB0064994C /* HelpGestureViewController.xib */; };
 		8A9A420225A89C2A0064994C /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A420125A89C2A0064994C /* UserDefaults+Extensions.swift */; };
@@ -174,7 +173,6 @@
 		8A9A425525AC72EB0064994C /* MiniGalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9A425425AC72EB0064994C /* MiniGalleryCollectionViewCell.xib */; };
 		8A9A425B25AC7CC40064994C /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A425A25AC7CC40064994C /* TasksViewController.swift */; };
 		8A9A425E25AC7CD30064994C /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A425D25AC7CD30064994C /* TasksViewModel.swift */; };
-		8A9A426125AC7EC20064994C /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426025AC7EC20064994C /* MoreViewController.swift */; };
 		8A9A426525AC7F140064994C /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426425AC7F140064994C /* MoreViewModel.swift */; };
 		8A9A426D25AC80DC0064994C /* ReportsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A426C25AC80DC0064994C /* ReportsPageViewController.swift */; };
 		8A9A427225ACE1ED0064994C /* FinancialBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A427125ACE1ED0064994C /* FinancialBalance.swift */; };
@@ -238,12 +236,9 @@
 		8ADDB0CA259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */; };
 		8ADDB0D325A0894900E12C37 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */; };
 		8AEE754525C149B900CA2D48 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEE754425C149B900CA2D48 /* FloatRatingView.swift */; };
-		C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFF1331E6124D15B9CB334C /* Pods_Bmore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2CFF1331E6124D15B9CB334C /* Pods_Bmore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bmore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		782EAD4F8591477D0BA559FC /* Pods-Bmore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bmore.debug.xcconfig"; path = "Target Support Files/Pods-Bmore/Pods-Bmore.debug.xcconfig"; sourceTree = "<group>"; };
 		8A0608402586524A000765D8 /* MultipleSelectionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionCollectionViewController.swift; sourceTree = "<group>"; };
 		8A0608412586524A000765D8 /* MultipleSelectionCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionCollectionViewController.xib; sourceTree = "<group>"; };
 		8A060846258652BC000765D8 /* MultipleSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionTableViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +257,9 @@
 		8A10837925D5DDE900AD1547 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		8A12D25325E7B91F003019A7 /* MasterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterTableViewCell.xib; sourceTree = "<group>"; };
 		8A12D25425E7B91F003019A7 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
+		8A12D26225E7EE4E003019A7 /* GoalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsTableViewController.swift; sourceTree = "<group>"; };
+		8A12D26525E7EE60003019A7 /* GoalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTableViewCell.swift; sourceTree = "<group>"; };
+		8A12D26625E7EE60003019A7 /* GoalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
 		8A1A248F25C0D6250027A45D /* LeadQualityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadQualityTableViewCell.swift; sourceTree = "<group>"; };
 		8A1A249025C0D6250027A45D /* LeadQualityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadQualityTableViewCell.xib; sourceTree = "<group>"; };
 		8A1A249425C0D7BB0027A45D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -319,10 +317,6 @@
 		8A74705E25BEC77100EC0676 /* SelectionPropertyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionPropertyTableViewCell.xib; sourceTree = "<group>"; };
 		8A7ABBF625B5974E0090AB6D /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		8A81CA5425A31774002BC2D8 /* CheckboxTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxTableViewController.swift; sourceTree = "<group>"; };
-		8A81CAA025A58EBF002BC2D8 /* Targets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Targets.storyboard; sourceTree = "<group>"; };
-		8A81CAA525A6EB51002BC2D8 /* GoalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCollectionViewCell.swift; sourceTree = "<group>"; };
-		8A81CAA825A6EBC9002BC2D8 /* GoalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewController.swift; sourceTree = "<group>"; };
-		8A81CAB325A6FC26002BC2D8 /* GoalsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsPageViewController.swift; sourceTree = "<group>"; };
 		8A81CAB725A6FD4C002BC2D8 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		8A83D5E525C1CD9800E2C00A /* LeadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadTableViewCell.swift; sourceTree = "<group>"; };
 		8A83D5E625C1CD9800E2C00A /* LeadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadTableViewCell.xib; sourceTree = "<group>"; };
@@ -404,7 +398,7 @@
 		8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
 		8A99233E25CABCF20021B3E9 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		8A9A41F025A768DD0064994C /* GraphViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GraphViewController.xib; sourceTree = "<group>"; };
-		8A9A41F625A86E480064994C /* TargetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsViewModel.swift; sourceTree = "<group>"; };
+		8A9A41F625A86E480064994C /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		8A9A41FA25A872AB0064994C /* HelpGestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpGestureViewController.swift; sourceTree = "<group>"; };
 		8A9A41FB25A872AB0064994C /* HelpGestureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpGestureViewController.xib; sourceTree = "<group>"; };
 		8A9A420125A89C2A0064994C /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
@@ -415,7 +409,6 @@
 		8A9A425425AC72EB0064994C /* MiniGalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniGalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8A9A425A25AC7CC40064994C /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		8A9A425D25AC7CD30064994C /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
-		8A9A426025AC7EC20064994C /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8A9A426425AC7F140064994C /* MoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewModel.swift; sourceTree = "<group>"; };
 		8A9A426C25AC80DC0064994C /* ReportsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsPageViewController.swift; sourceTree = "<group>"; };
 		8A9A427125ACE1ED0064994C /* FinancialBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialBalance.swift; sourceTree = "<group>"; };
@@ -479,7 +472,6 @@
 		8ADDB0C9259FAA3F00E12C37 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		8ADDB0D225A0894900E12C37 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		8AEE754425C149B900CA2D48 /* FloatRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../../../Downloads/FloatRatingView.swift; sourceTree = "<group>"; };
-		8E1238A401BB85D601047A47 /* Pods-Bmore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bmore.release.xcconfig"; path = "Target Support Files/Pods-Bmore/Pods-Bmore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,7 +482,6 @@
 				8A74701925BB6CDA00EC0676 /* Alamofire in Frameworks */,
 				8A742A372593A50F0014848A /* AAInfographics in Frameworks */,
 				8A83D5EF25C1F29C00E2C00A /* CloudKit.framework in Frameworks */,
-				C1C17F8BA73CE7B7F68555DD /* Pods_Bmore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +492,6 @@
 			isa = PBXGroup;
 			children = (
 				8A83D5EE25C1F29C00E2C00A /* CloudKit.framework */,
-				2CFF1331E6124D15B9CB334C /* Pods_Bmore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -605,13 +595,21 @@
 				8A12D25325E7B91F003019A7 /* MasterTableViewCell.xib */,
 				8A9A426425AC7F140064994C /* MoreViewModel.swift */,
 				8A99232225C9C8990021B3E9 /* MoreTableViewController.swift */,
-				8A9A426025AC7EC20064994C /* MoreViewController.swift */,
 				8A0608F82587F267000765D8 /* More.storyboard */,
 				8A49015825987D7800CFA2A1 /* Meetings */,
 				8ADDB021259CEFBE00E12C37 /* Transactions */,
-				8A81CAA325A58EC2002BC2D8 /* Targets */,
+				8A81CAA325A58EC2002BC2D8 /* Goals */,
 			);
 			path = More;
+			sourceTree = "<group>";
+		};
+		8A12D26A25E7EE64003019A7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8A12D26525E7EE60003019A7 /* GoalTableViewCell.swift */,
+				8A12D26625E7EE60003019A7 /* GoalTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		8A1A249725C0D7C60027A45D /* Common */ = {
@@ -757,24 +755,14 @@
 			path = Selection;
 			sourceTree = "<group>";
 		};
-		8A81CAA325A58EC2002BC2D8 /* Targets */ = {
+		8A81CAA325A58EC2002BC2D8 /* Goals */ = {
 			isa = PBXGroup;
 			children = (
-				8A9A41F625A86E480064994C /* TargetsViewModel.swift */,
-				8A81CAA025A58EBF002BC2D8 /* Targets.storyboard */,
-				8A81CAA825A6EBC9002BC2D8 /* GoalsViewController.swift */,
-				8A9A41F325A86E1E0064994C /* Cells */,
-				8A81CAB225A6FC11002BC2D8 /* Page Controller */,
+				8A9A41F625A86E480064994C /* GoalsViewModel.swift */,
+				8A12D26225E7EE4E003019A7 /* GoalsTableViewController.swift */,
+				8A12D26A25E7EE64003019A7 /* Cells */,
 			);
-			path = Targets;
-			sourceTree = "<group>";
-		};
-		8A81CAB225A6FC11002BC2D8 /* Page Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8A81CAB325A6FC26002BC2D8 /* GoalsPageViewController.swift */,
-			);
-			path = "Page Controller";
+			path = Goals;
 			sourceTree = "<group>";
 		};
 		8A881EE125B52C6D008F4D96 /* Popovers */ = {
@@ -872,7 +860,6 @@
 				8A83D5F025C1F2E400E2C00A /* Bmore.entitlements */,
 				8A973D60257C12AD002422B8 /* Vision */,
 				8A973D5F257C12AD002422B8 /* Products */,
-				BDD6F82053A45ABAAE603B23 /* Pods */,
 				5FC145B6BCD84F8718CA42CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1116,14 +1103,6 @@
 				8A99233A25CABADE0021B3E9 /* AuthenticationServices.swift */,
 			);
 			path = AuthenticationServices;
-			sourceTree = "<group>";
-		};
-		8A9A41F325A86E1E0064994C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8A81CAA525A6EB51002BC2D8 /* GoalCollectionViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		8A9A41FF25A8763C0064994C /* Help */ = {
@@ -1371,15 +1350,6 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		BDD6F82053A45ABAAE603B23 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				782EAD4F8591477D0BA559FC /* Pods-Bmore.debug.xcconfig */,
-				8E1238A401BB85D601047A47 /* Pods-Bmore.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1387,7 +1357,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A973D75257C12AF002422B8 /* Build configuration list for PBXNativeTarget "Bmore" */;
 			buildPhases = (
-				FED283CFD45D83AEBEB66846 /* [CP] Check Pods Manifest.lock */,
 				8A973D5A257C12AD002422B8 /* Sources */,
 				8A973D5B257C12AD002422B8 /* Frameworks */,
 				8A973D5C257C12AD002422B8 /* Resources */,
@@ -1467,7 +1436,6 @@
 				8A8F0A1525CBE8FA00287C46 /* TaskCheckboxTableViewCell.xib in Resources */,
 				8A1FA75525B63C5F00722A40 /* Profile.storyboard in Resources */,
 				8A973EB82583E3EB002422B8 /* Properties_AirBnB.storyboard in Resources */,
-				8A81CAA125A58EBF002BC2D8 /* Targets.storyboard in Resources */,
 				8A46F89D258A356A00021679 /* DatePickerTableViewCell.xib in Resources */,
 				8A46F8AD258AB6B900021679 /* CalendarEventTableViewCell.xib in Resources */,
 				8A74705B25BEBBE700EC0676 /* SelectionTaskTableViewCell.xib in Resources */,
@@ -1475,6 +1443,7 @@
 				8A83D5E825C1CD9800E2C00A /* LeadTableViewCell.xib in Resources */,
 				8A9A41F125A768DD0064994C /* GraphViewController.xib in Resources */,
 				8A0608F22587F154000765D8 /* Localizable.strings in Resources */,
+				8A12D26825E7EE60003019A7 /* GoalTableViewCell.xib in Resources */,
 				8A973DC8257E6E86002422B8 /* GalleryTableViewCell.xib in Resources */,
 				8A99233025CA7A760021B3E9 /* ProfileTableViewCell.xib in Resources */,
 				8A973EA025829B4C002422B8 /* SegmentControlTableViewCell.xib in Resources */,
@@ -1513,31 +1482,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		FED283CFD45D83AEBEB66846 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Bmore-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8A973D5A257C12AD002422B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1563,7 +1507,7 @@
 				8A4901672599D04300CFA2A1 /* MeetingTableViewCell.swift in Sources */,
 				8A973DC7257E6E86002422B8 /* GalleryTableViewCell.swift in Sources */,
 				8A99233625CA89600021B3E9 /* DocumentsPickerProvider.swift in Sources */,
-				8A9A41F725A86E480064994C /* TargetsViewModel.swift in Sources */,
+				8A9A41F725A86E480064994C /* GoalsViewModel.swift in Sources */,
 				8AAC5FE125DB0EEC00A3D104 /* DynamicValue.swift in Sources */,
 				8A22E79B25D91918000ECE1E /* Lead+Extensions.swift in Sources */,
 				8A99232325C9C8990021B3E9 /* MoreTableViewController.swift in Sources */,
@@ -1593,18 +1537,17 @@
 				8A8CD2BE25B9000000A91104 /* FloatyViewController.swift in Sources */,
 				8A973E0C257ED703002422B8 /* AssetDetailsMapTableViewCell.swift in Sources */,
 				8A973E2C257FA7E5002422B8 /* UICollectionView+Extensions.swift in Sources */,
-				8A81CAB425A6FC26002BC2D8 /* GoalsPageViewController.swift in Sources */,
 				8A973E29257F982A002422B8 /* Application.swift in Sources */,
 				8A46F897258A291800021679 /* TimeTrackDetailsTableViewController.swift in Sources */,
 				8A8CD2BA25B9000000A91104 /* FloatyItem.swift in Sources */,
 				8A9A42CF25AF9BAE0064994C /* FactoryController.swift in Sources */,
 				8A1A249525C0D7BB0027A45D /* Theme.swift in Sources */,
 				8A9A437C25B22F9B0064994C /* CoreDataOperation.swift in Sources */,
-				8A81CAA925A6EBC9002BC2D8 /* GoalsViewController.swift in Sources */,
 				8A973DBE257D8345002422B8 /* PropertiesViewModel.swift in Sources */,
 				8A9A424E25AC2D540064994C /* MiniGalleryCollectionViewCell.swift in Sources */,
 				8A46F8CF258D3FB900021679 /* ColumnFlowLayout.swift in Sources */,
 				8A74701F25BC4B2A00EC0676 /* ExternalApplicationProvider.swift in Sources */,
+				8A12D26325E7EE4E003019A7 /* GoalsTableViewController.swift in Sources */,
 				8AAC9C5925C4589100FF5D7E /* PropertyConfiguration.swift in Sources */,
 				8A973E8925823EDC002422B8 /* LabelAndAccessoryTableViewCell.swift in Sources */,
 				8A9A439325B449010064994C /* LeadPersonalDetailsTableViewCell.swift in Sources */,
@@ -1632,7 +1575,6 @@
 				8A10837A25D5DDE900AD1547 /* CALayer+Extensions.swift in Sources */,
 				8A22E7C425DA4D22000ECE1E /* DocumentPreview.swift in Sources */,
 				8A0608422586524A000765D8 /* MultipleSelectionCollectionViewController.swift in Sources */,
-				8A81CAA625A6EB51002BC2D8 /* GoalCollectionViewCell.swift in Sources */,
 				8A22E79125D8FC9E000ECE1E /* PopOverViewController.swift in Sources */,
 				8A99233F25CABCF20021B3E9 /* KeychainItem.swift in Sources */,
 				8A9A425E25AC7CD30064994C /* TasksViewModel.swift in Sources */,
@@ -1660,6 +1602,7 @@
 				8ADDB037259DA57400E12C37 /* AddTransactionTableViewController.swift in Sources */,
 				8AAC5FDE25DB0DBD00A3D104 /* AdvancedCollectionViewFlowLayout.swift in Sources */,
 				8A742A3A2593A5490014848A /* GraphView.swift in Sources */,
+				8A12D26725E7EE60003019A7 /* GoalTableViewCell.swift in Sources */,
 				8A74702A25BD3F5B00EC0676 /* PropertyTableViewCell.swift in Sources */,
 				8A9A42AA25AF2C8C0064994C /* NewTaskTableViewController.swift in Sources */,
 				8A973E8425823E45002422B8 /* LabelAndTextFieldTableViewCell.swift in Sources */,
@@ -1677,7 +1620,6 @@
 				8A92FAF125DA8D63004896B3 /* DocumentsViewModel.swift in Sources */,
 				8A742A4E25948D900014848A /* Date+Extension.swift in Sources */,
 				8ADB6B3125CC4A4A000724B7 /* TransactionHeaderView.swift in Sources */,
-				8A9A426125AC7EC20064994C /* MoreViewController.swift in Sources */,
 				8A9A438E25B4450A0064994C /* LeadDetailsViewController.swift in Sources */,
 				8A973E32257FCBF6002422B8 /* FlowLayout.swift in Sources */,
 				8A74701C25BB6F7C00EC0676 /* NetworkManager.swift in Sources */,
@@ -1861,7 +1803,6 @@
 		};
 		8A973D76257C12AF002422B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 782EAD4F8591477D0BA559FC /* Pods-Bmore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1888,7 +1829,6 @@
 		};
 		8A973D77257C12AF002422B8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E1238A401BB85D601047A47 /* Pods-Bmore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
